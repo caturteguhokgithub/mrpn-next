@@ -1,10 +1,10 @@
 "use client";
 
-import Content from "@/app/components/content/page";
+import ContentPage from "@/app/components/content/page";
 import { Grid, Icon, Paper, Stack, Typography, alpha } from "@mui/material";
 import React from "react";
 import { logoBlue, logoBrown, logoGreen, logoOrange } from "@/app/utils/color";
-import { DashboardLayout } from "../components/layouts/page";
+import DashboardLayout from "../components/layouts/page";
 
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 
@@ -43,7 +43,7 @@ const PageUserManagement = (props: any) => {
  ];
  return (
   <DashboardLayout>
-   <Content title="Manajemen User">
+   <ContentPage title="Manajemen User">
     <div style={{ height: 400, width: "100%" }}>
      <DataGrid
       rows={rows}
@@ -57,7 +57,7 @@ const PageUserManagement = (props: any) => {
       checkboxSelection
      />
     </div>
-   </Content>
+   </ContentPage>
   </DashboardLayout>
  );
 };

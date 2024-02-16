@@ -43,7 +43,7 @@ const MenuGroup = ({ label, children, collapseActive }: IMenu & ILayout) => {
      sx={{
       bgcolor: "transparent",
       mb: "1rem",
-      mx: collapseActive ? "20px" : 0,
+      mx: collapseActive ? "24px" : 0,
      }}
     >
      <Typography

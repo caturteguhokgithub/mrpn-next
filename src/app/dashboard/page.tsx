@@ -30,11 +30,11 @@
 
 // export default Page;
 
-import Content from "@/app/components/content/page";
+import ContentPage from "@/app/components/content/page";
 import { Grid, Icon, Paper, Stack, Typography, alpha } from "@mui/material";
 import React from "react";
 import { logoBlue, logoBrown, logoGreen, logoOrange } from "@/app/utils/color";
-import { DashboardLayout } from "../components/layouts/page";
+import DashboardLayout from "../components/layouts/page";
 
 type ICard = {
  iconName: string;
@@ -99,39 +99,39 @@ const CardValue = ({ iconName, color, value, total, title }: ICard) => {
 const PageDashboard = (props: any) => {
  return (
   <DashboardLayout>
-   <Content title="dashboard">
-    <Paper elevation={3} sx={{ borderRadius: "1.25rem", p: "1.5rem" }}>
-     {/* <Box bgcolor="white" borderRadius="1.25rem" p="1.5rem"> */}
-     <Grid container gap={3} flexWrap="nowrap">
-      <CardValue
-       iconName="square-poll-vertical"
-       color={logoOrange}
-       value="47"
-       title="Total Nilai Risiko"
-       total="Jumlah Risiko: 12"
-      />
-      <CardValue
-       iconName="layer-group"
-       color={logoBrown}
-       value="75.00%"
-       title="Rencana Mitigasi"
-      />
-      <CardValue
-       iconName="road"
-       color={logoGreen}
-       value="9.09%"
-       title="Realisasi Mitigasi"
-      />
-      <CardValue
-       iconName="server"
-       color={logoBlue}
-       value="8.51%"
-       title="Impact Mitigasi"
-      />
-     </Grid>
-     {/* </Box> */}
-    </Paper>
-   </Content>
+   {/* <ContentPage title="dashboard"> */}
+   <Paper elevation={3} sx={{ borderRadius: "1.25rem", p: "1.5rem" }}>
+    {/* <Box bgcolor="white" borderRadius="1.25rem" p="1.5rem"> */}
+    <Grid container gap={3} flexWrap="nowrap">
+     <CardValue
+      iconName="square-poll-vertical"
+      color={logoOrange}
+      value="47"
+      title="Total Nilai Risiko"
+      total="Jumlah Risiko: 12"
+     />
+     <CardValue
+      iconName="layer-group"
+      color={logoBrown}
+      value="75.00%"
+      title="Rencana Mitigasi"
+     />
+     <CardValue
+      iconName="road"
+      color={logoGreen}
+      value="9.09%"
+      title="Realisasi Mitigasi"
+     />
+     <CardValue
+      iconName="server"
+      color={logoBlue}
+      value="8.51%"
+      title="Impact Mitigasi"
+     />
+    </Grid>
+    {/* </Box> */}
+   </Paper>
+   {/* </ContentPage> */}
   </DashboardLayout>
  );
 };
