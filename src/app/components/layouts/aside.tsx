@@ -1,5 +1,6 @@
-"use client";
+// "use client";
 
+import React, { useState } from "react";
 import { whiteRGB } from "@/app/utils/color";
 import theme from "@/theme";
 import {
@@ -17,8 +18,8 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
-// import { Link, Route, Router, Routes } from "react-router-dom";
+import { usePathname, useRouter } from "next/navigation";
+import { blue } from "@mui/material/colors";
 
 type ILayout = {
  children?: React.ReactNode;
@@ -29,11 +30,10 @@ type IMenu = {
  icon?: string;
  url?: string;
  reflect?: boolean;
- collapseActive?: boolean;
+ isExpanded?: boolean;
 };
 
-const MenuGroup = ({ label, children, collapseActive }: IMenu & ILayout) => {
- //  const ellipsisText = label;
+const MenuGroup = ({ label, children, isExpanded }: IMenu & ILayout) => {
  return (
   <List
    component="nav"
@@ -43,7 +43,7 @@ const MenuGroup = ({ label, children, collapseActive }: IMenu & ILayout) => {
      sx={{
       bgcolor: "transparent",
       mb: "1rem",
-      mx: collapseActive ? "24px" : 0,
+      mx: isExpanded ? "24px" : 0,
      }}
     >
      <Typography
@@ -52,10 +52,10 @@ const MenuGroup = ({ label, children, collapseActive }: IMenu & ILayout) => {
       textTransform="uppercase"
       sx={{ opacity: 0.5 }}
      >
-      {collapseActive ? (
+      {isExpanded ? (
        label
       ) : (
-       <> {label.length >= 5 ? label.substr(0, 5) + "..." : label}</>
+       <>{label.length >= 5 ? label.substr(0, 5) + "..." : label}</>
       )}
      </Typography>
     </ListSubheader>
@@ -66,62 +66,119 @@ const MenuGroup = ({ label, children, collapseActive }: IMenu & ILayout) => {
  );
 };
 
-const MenuItem = ({ label, icon, url, reflect, collapseActive }: IMenu) => {
+const MenuItem = ({ label, icon, url, reflect, isExpanded }: IMenu) => {
+ const pathname = usePathname();
+
  return (
   <>
-   {/* <Route path={`/${url}`}> */}
-   {/* <Link to={`/${url}`}> */}
-   <Link href={`/${url}`}>
+   <Link href={`/${url}`} passHref>
     <ListItemButton
-     selected={window.location.pathname === `/${url}`}
-     // href={`/${url}`}
+     selected={
+      typeof window !== "undefined"
+       ? window.location.pathname === `/${url}`
+       : false
+     }
+     className={pathname == `/${url}` ? "link-active" : ""}
      sx={{
+      // isCollapsed
       px: "22px",
-      gap: collapseActive ? 2 : "6px",
-      borderRadius: collapseActive ? "50px" : 0,
-      mx: collapseActive ? "20px" : 0,
-      display: collapseActive ? null : "flex",
-      flexDirection: collapseActive ? null : "column",
-      ".MuiIcon-root": {
-       color: "white",
-      },
-      "&.Mui-focusVisible, &:hover": {
-       backgroundColor: collapseActive
-        ? "#146dab"
-        : theme.palette.primary.light,
-       ".MuiIcon-root": {
-        color: collapseActive ? "white" : theme.palette.primary.main,
-       },
-       p: {
-        color: collapseActive
-         ? theme.palette.primary.light
-         : theme.palette.primary.main,
-       },
-      },
-      "&.Mui-selected": {
-       backgroundColor: collapseActive
-        ? alpha(whiteRGB, 0.2)
-        : theme.palette.primary.light,
-       border: collapseActive ? "1px solid white" : 0,
-       transition: "all 1s ease",
-       p: {
-        color: collapseActive
-         ? theme.palette.primary.light
-         : theme.palette.primary.main,
-       },
-       ".MuiIcon-root": {
-        color: collapseActive ? "white" : theme.palette.primary.main,
+      gap: "6px",
+      borderRadius: 0,
+      mx: 0,
+      display: "flex",
+      flexDirection: "column",
+      transition: "all 300ms ease",
+      "&.Mui-selected, &.link-active": {
+       backgroundColor: theme.palette.primary.light,
+       border: 0,
+       cursor: "default",
+       ".MuiIcon-root, p": {
+        color: theme.palette.primary.main,
        },
        "&.Mui-focusVisible, &:hover": {
-        backgroundColor: collapseActive ? "transparent" : alpha(whiteRGB, 0.2),
+        backgroundColor: theme.palette.primary.light,
+        ".MuiIcon-root, p": {
+         color: theme.palette.primary.main,
+        },
+       },
+      },
+      "&.Mui-focusVisible, &:hover": {
+       backgroundColor: alpha(blue[900], 0.5),
+       ".MuiIcon-root, p": {
+        color: theme.palette.primary.light,
+       },
+      },
+
+      ...(isExpanded && {
+       gap: 2,
+       borderRadius: "50px",
+       mx: "20px",
+       flexDirection: "row",
+       ".MuiIcon-root, p": {
+        color: theme.palette.primary.light,
+       },
+       "&.Mui-selected, &.link-active": {
+        backgroundColor: alpha(whiteRGB, 0.2),
+        border: "1px solid white",
+        transition: "all 1s ease",
+        "&.Mui-focusVisible, &:hover": {
+         backgroundColor: alpha(whiteRGB, 0.2),
+         ".MuiIcon-root": {
+          color: theme.palette.primary.light,
+         },
+         p: {
+          color: theme.palette.primary.light,
+         },
+        },
+       },
+       "&.Mui-focusVisible, &:hover": {
+        backgroundColor: alpha(blue[900], 0.5),
         ".MuiIcon-root": {
-         color: "white",
+         color: theme.palette.primary.light,
         },
         p: {
          color: theme.palette.primary.light,
         },
        },
-      },
+      }),
+
+      // "&.Mui-selected": {
+      //  backgroundColor: isExpanded
+      //   ? alpha(whiteRGB, 0.2)
+      //   : theme.palette.primary.light,
+      //  border: isExpanded ? "1px solid white" : 0,
+      //  transition: "all 1s ease",
+      //  ".MuiIcon-root, p": {
+      //   color: isExpanded
+      //    ? theme.palette.primary.light
+      //    : theme.palette.primary.main,
+      //  },
+      //  "&.Mui-focusVisible, &:hover": {
+      //   backgroundColor: isExpanded ? "transparent" : alpha(whiteRGB, 0.2),
+      //   ".MuiIcon-root": {
+      //    color: theme.palette.primary.light,
+      //   },
+      //   p: {
+      //    color: theme.palette.primary.light,
+      //   },
+      //  },
+      // },
+      // "&.Mui-focusVisible, &:hover": {
+      //  backgroundColor: isExpanded
+      //   ? "#146dab"
+      //   : theme.palette.primary.light,
+      //  ".MuiIcon-root": {
+      //   color: isExpanded
+      //    ? theme.palette.primary.light
+      //    : theme.palette.primary.main,
+      //  },
+      //  p: {
+      //   // color: "red",
+      //   color: isExpanded
+      //    ? theme.palette.primary.light
+      //    : theme.palette.primary.main,
+      //  },
+      // },
      }}
     >
      <ListItemIcon sx={{ minWidth: 0 }}>
@@ -130,51 +187,32 @@ const MenuItem = ({ label, icon, url, reflect, collapseActive }: IMenu) => {
        className={`fa-${icon}`}
        sx={{
         fontSize: "18px",
-        color: collapseActive ? theme.palette.primary.main : "white",
+        color: isExpanded
+         ? theme.palette.primary.main
+         : theme.palette.primary.light,
         width: "auto",
         height: "auto",
         transform: reflect ? "rotate(180deg)" : null,
        }}
       />
      </ListItemIcon>
-     <ListItemText
-      sx={{ textTransform: "capitalize", my: collapseActive ? 1 : 0 }}
-     >
+     <ListItemText sx={{ textTransform: "capitalize", my: isExpanded ? 1 : 0 }}>
       <Typography
-       fontSize={collapseActive ? "14px" : "8px"}
-       textAlign={collapseActive ? "left" : "center"}
-       lineHeight={collapseActive ? "1.5" : "1.3"}
+       fontSize={isExpanded ? "14px" : "8px"}
+       textAlign={isExpanded ? "left" : "center"}
+       lineHeight={isExpanded ? "1.5" : "1.3"}
       >
        {label}
       </Typography>
      </ListItemText>
     </ListItemButton>
    </Link>
-   {/* </Link> */}
-   {/* </Route> */}
   </>
  );
 };
 
-export const Aside = ({ collapseActive }: ILayout & IMenu) => {
- const [display, setDisplay] = useState(false);
+export default function Aside({ isExpanded }: { isExpanded?: boolean }) {
  const [open, setOpen] = React.useState(false);
- const [selectedIndex, setSelectedIndex] = React.useState(1);
-
- const handleListItemClick = (
-  event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  index: number
- ) => {
-  setSelectedIndex(index);
- };
-
- const handleClick = () => {
-  setOpen(!open);
- };
-
- function notExpand(e: any) {
-  e.stopPropagation();
- }
 
  return (
   <Box color="white" px="0" height="100vh" pb={4}>
@@ -185,7 +223,7 @@ export const Aside = ({ collapseActive }: ILayout & IMenu) => {
     justifyContent="center"
     direction="row"
    >
-    <Collapse in={collapseActive}>
+    <Collapse in={isExpanded}>
      <Stack
       width="100%"
       height="120px"
@@ -226,45 +264,74 @@ export const Aside = ({ collapseActive }: ILayout & IMenu) => {
     justifyContent="space-between"
     height="calc(100% - 120px)"
    >
-    <Stack gap="40px" direction="column">
-     <MenuGroup collapseActive={collapseActive} label="menu">
+    <Stack
+     gap="40px"
+     direction="column"
+     sx={
+      {
+       // ".MuiIcon-root, p": {
+       //  color: theme.palette.primary.light,
+       // },
+       // ".link-active": {
+       //  backgroundColor: isExpanded
+       //   ? alpha(whiteRGB, 0.2)
+       //   : theme.palette.primary.light,
+       //  border: isExpanded ? "1px solid white" : 0,
+       //  transition: "all 1s ease",
+       //  ".MuiIcon-root, p": {
+       //   color: isExpanded
+       //    ? theme.palette.primary.light
+       //    : theme.palette.primary.main,
+       //  },
+       // },
+       // ".Mui-selected.link-active": {
+       //  ".MuiIcon-root, p": {
+       //   color: isExpanded
+       //    ? theme.palette.primary.light
+       //    : theme.palette.primary.main,
+       //  },
+       // },
+      }
+     }
+    >
+     <MenuGroup isExpanded={isExpanded} label="menu">
       <Stack direction="column" gap={1}>
        <MenuItem
-        collapseActive={collapseActive}
+        isExpanded={isExpanded}
         label="dashboard"
         icon="border-all"
         url=""
        />
        <MenuItem
-        collapseActive={collapseActive}
+        isExpanded={isExpanded}
         label="Executive Summary"
         icon="book"
         url="exsum"
        />
        <MenuItem
-        collapseActive={collapseActive}
+        isExpanded={isExpanded}
         label="konteks strategis"
         icon="receipt"
         url="konstra"
        />
        <MenuItem
-        collapseActive={collapseActive}
+        isExpanded={isExpanded}
         label="Mitigasi Risiko"
         icon="calculator"
         url="mitigasi-risiko"
        />
        <MenuItem
-        collapseActive={collapseActive}
+        isExpanded={isExpanded}
         label="Summary"
         icon="clipboard-check"
         url="summary"
        />
       </Stack>
      </MenuGroup>
-     <MenuGroup collapseActive={collapseActive} label="administrator">
+     <MenuGroup isExpanded={isExpanded} label="administrator">
       <Stack direction="column" gap={1}>
        <MenuItem
-        collapseActive={collapseActive}
+        isExpanded={isExpanded}
         label="manajemen user"
         icon="user-gear"
         url="manajemen-user"
@@ -273,7 +340,7 @@ export const Aside = ({ collapseActive }: ILayout & IMenu) => {
      </MenuGroup>
     </Stack>
     <MenuItem
-     collapseActive={collapseActive}
+     isExpanded={isExpanded}
      reflect
      label="keluar sistem"
      icon="arrow-right-from-bracket"
@@ -282,4 +349,4 @@ export const Aside = ({ collapseActive }: ILayout & IMenu) => {
    </Stack>
   </Box>
  );
-};
+}

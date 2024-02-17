@@ -1,14 +1,12 @@
 "use client";
 
-import ContentPage from "@/app/components/content/page";
-import { Grid, Icon, Paper, Stack, Typography, alpha } from "@mui/material";
+import ContentPage from "@/app/components/contents/content";
 import React from "react";
-import { logoBlue, logoBrown, logoGreen, logoOrange } from "@/app/utils/color";
-import DashboardLayout from "../components/layouts/page";
-
+import DashboardLayout from "../components/layouts/layout";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 
-const PageUserManagement = (props: any) => {
+export default function PageUserManagement({}) {
+ // const PageUserManagement = (props: any) => {
  const rows = [
   { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
   { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
@@ -60,6 +58,4 @@ const PageUserManagement = (props: any) => {
    </ContentPage>
   </DashboardLayout>
  );
-};
-
-export default PageUserManagement;
+}

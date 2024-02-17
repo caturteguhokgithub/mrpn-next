@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import { useCallback, useEffect } from "react";
 import { usePathname } from "next/navigation";
@@ -11,16 +11,12 @@ import {
  Zoom,
  useTheme,
 } from "@mui/material";
-import { Footer } from "./footer";
-import { Aside } from "./aside";
-import { Header } from "./header";
+import Footer from "./footer";
+import Aside from "./aside";
+import Header from "./header";
 import { grey } from "@mui/material/colors";
 import React from "react";
 import Image from "next/image";
-
-type ILayout = {
- children?: React.ReactNode;
-};
 
 export default function DashboardLayout({
  children,
@@ -28,10 +24,15 @@ export default function DashboardLayout({
  children: React.ReactNode;
 }) {
  const pathname = usePathname();
+ const theme = useTheme();
  const drawerOpenKey = "drawerOpen";
- const defaultOpen = localStorage.getItem(drawerOpenKey) === "true";
+ //  const defaultOpen = localStorage.getItem(drawerOpenKey) === "true";
  const [openNav, setOpenNav] = React.useState(true);
- const [checked, setChecked] = React.useState(defaultOpen);
+ const [checked, setChecked] = React.useState(
+  typeof window !== "undefined"
+   ? localStorage.getItem(drawerOpenKey) === "true"
+   : false
+ );
 
  const handleChange = () => {
   setChecked((prev) => !prev);
@@ -52,10 +53,9 @@ export default function DashboardLayout({
  );
 
  useEffect(() => {
-  localStorage.setItem(drawerOpenKey, checked);
+  localStorage.setItem(drawerOpenKey, JSON.stringify(checked));
  }, [checked]);
 
- const theme = useTheme();
  return (
   <Box
    sx={{
@@ -88,7 +88,7 @@ export default function DashboardLayout({
       },
      }}
     >
-     <Aside collapseActive={checked} />
+     <Aside isExpanded={checked} />
     </Collapse>
    </Box>
    <Box component="header" sx={{ gridArea: "header", p: "20px 0" }}>

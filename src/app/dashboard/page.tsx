@@ -30,11 +30,11 @@
 
 // export default Page;
 
-import ContentPage from "@/app/components/content/page";
+import ContentPage from "@/app/components/contents/content";
 import { Grid, Icon, Paper, Stack, Typography, alpha } from "@mui/material";
 import React from "react";
 import { logoBlue, logoBrown, logoGreen, logoOrange } from "@/app/utils/color";
-import DashboardLayout from "../components/layouts/page";
+import DashboardLayout from "../components/layouts/layout";
 
 type ICard = {
  iconName: string;
@@ -96,7 +96,7 @@ const CardValue = ({ iconName, color, value, total, title }: ICard) => {
  );
 };
 
-const PageDashboard = (props: any) => {
+export default function PageDashboard({}) {
  return (
   <DashboardLayout>
    {/* <ContentPage title="dashboard"> */}
@@ -134,6 +134,4 @@ const PageDashboard = (props: any) => {
    {/* </ContentPage> */}
   </DashboardLayout>
  );
-};
-
-export default PageDashboard;
+}

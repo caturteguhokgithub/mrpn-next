@@ -1,8 +1,8 @@
-"use client";
+// "use client";
 
 import { Avatar, Box, Stack, Typography } from "@mui/material";
 
-export const Header = () => {
+export default function Header({}) {
  return (
   <Box
    sx={{
@@ -32,4 +32,4 @@ export const Header = () => {
    </Stack>
   </Box>
  );
-};
+}

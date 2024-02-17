@@ -1,11 +1,11 @@
-"use client";
+// "use client";
 
 import { blackRGB, whiteRGB } from "@/app/utils/color";
 import theme from "@/theme";
 import { Box, Typography, alpha } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
-export const Footer = () => {
+export default function Footer({}) {
  return (
   <>
    <Typography fontSize={14} color={grey[600]} py={2}>
@@ -14,4 +14,4 @@ export const Footer = () => {
    </Typography>
   </>
  );
-};
+}
