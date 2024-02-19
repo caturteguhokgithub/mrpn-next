@@ -1,0 +1,10 @@
+export { IconDashboard } from "./dashboard";
+export { IconExecutive } from "./executive";
+export { IconPenetapan } from "./penetapan";
+export { IconAnalisis } from "./analisis";
+export { IconProfil } from "./profil";
+export { IconEvaluasi } from "./evaluasi";
+export { IconPerlakuan } from "./perlakuan";
+export { IconPemantauan } from "./pemantauan";
+export { IconManajemen } from "./manajemen";
+export { IconKeluar } from "./keluar";

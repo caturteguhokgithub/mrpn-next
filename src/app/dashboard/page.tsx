@@ -1,40 +1,11 @@
 "use client";
 
-// const SIDE_NAV_WIDTH = 280;
-
-// const LayoutRoot = styled("div")(({ theme }) => ({
-//  display: "flex",
-//  flex: "1 1 auto",
-//  maxWidth: "100%",
-//  [theme.breakpoints.up("lg")]: {
-//   paddingLeft: SIDE_NAV_WIDTH,
-//  },
-// }));
-
-// const LayoutContainer = styled("div")({
-//  display: "flex",
-//  flex: "1 1 auto",
-//  flexDirection: "column",
-//  width: "100%",
-// });
-
-// const Page = () => (
-//  <>
-//   <LayoutRoot>
-//    <LayoutContainer>Page stream</LayoutContainer>
-//   </LayoutRoot>
-//  </>
-// );
-
-// Page.getLayout = (page: any) => <DashboardLayout>{page}</DashboardLayout>;
-
-// export default Page;
-
-import ContentPage from "@/app/components/contents/content";
 import { Grid, Icon, Paper, Stack, Typography, alpha } from "@mui/material";
 import React from "react";
 import { logoBlue, logoBrown, logoGreen, logoOrange } from "@/app/utils/color";
-import DashboardLayout from "../components/layouts/layout";
+import DashboardLayout from "@/app/components/layouts/layout";
+import ContentPage from "@/app//components/contents/content";
+import Head from "next/head";
 
 type ICard = {
  iconName: string;
@@ -96,42 +67,42 @@ const CardValue = ({ iconName, color, value, total, title }: ICard) => {
  );
 };
 
-export default function PageDashboard({}) {
+export default function PageDashboardPartial({}) {
  return (
-  <DashboardLayout>
-   {/* <ContentPage title="dashboard"> */}
-   <Paper elevation={3} sx={{ borderRadius: "1.25rem", p: "1.5rem" }}>
-    {/* <Box bgcolor="white" borderRadius="1.25rem" p="1.5rem"> */}
-    <Grid container gap={3} flexWrap="nowrap">
-     <CardValue
-      iconName="square-poll-vertical"
-      color={logoOrange}
-      value="47"
-      title="Total Nilai Risiko"
-      total="Jumlah Risiko: 12"
-     />
-     <CardValue
-      iconName="layer-group"
-      color={logoBrown}
-      value="75.00%"
-      title="Rencana Mitigasi"
-     />
-     <CardValue
-      iconName="road"
-      color={logoGreen}
-      value="9.09%"
-      title="Realisasi Mitigasi"
-     />
-     <CardValue
-      iconName="server"
-      color={logoBlue}
-      value="8.51%"
-      title="Impact Mitigasi"
-     />
-    </Grid>
-    {/* </Box> */}
-   </Paper>
-   {/* </ContentPage> */}
-  </DashboardLayout>
+  <>
+   <DashboardLayout>
+    <ContentPage title="dashboard">
+     <Paper elevation={3} sx={{ borderRadius: "1.25rem", p: "1.5rem" }}>
+      <Grid container gap={3} flexWrap="nowrap">
+       <CardValue
+        iconName="square-poll-vertical"
+        color={logoOrange}
+        value="47"
+        title="Total Nilai Risiko"
+        total="Jumlah Risiko: 12"
+       />
+       <CardValue
+        iconName="layer-group"
+        color={logoBrown}
+        value="75.00%"
+        title="Rencana Mitigasi"
+       />
+       <CardValue
+        iconName="road"
+        color={logoGreen}
+        value="9.09%"
+        title="Realisasi Mitigasi"
+       />
+       <CardValue
+        iconName="server"
+        color={logoBlue}
+        value="8.51%"
+        title="Impact Mitigasi"
+       />
+      </Grid>
+     </Paper>
+    </ContentPage>
+   </DashboardLayout>
+  </>
  );
 }

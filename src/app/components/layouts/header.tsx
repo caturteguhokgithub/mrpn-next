@@ -1,5 +1,3 @@
-// "use client";
-
 import { Avatar, Box, Stack, Typography } from "@mui/material";
 
 export default function Header({}) {

@@ -1,11 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
  images: {
-  domains: ["res.cloudinary.com"],
-  //   remotePatterns: ["res.cloudinary.com"],
+  remotePatterns: [
+   {
+    protocol: "https",
+    hostname: "res.cloudinary.com",
+    pathname: "**",
+   },
+  ],
  },
  compiler: {
-  // Enables the styled-components SWC transform
   styledComponents: true,
  },
 };

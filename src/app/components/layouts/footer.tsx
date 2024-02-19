@@ -1,8 +1,4 @@
-// "use client";
-
-import { blackRGB, whiteRGB } from "@/app/utils/color";
-import theme from "@/theme";
-import { Box, Typography, alpha } from "@mui/material";
+import { Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
 export default function Footer({}) {
