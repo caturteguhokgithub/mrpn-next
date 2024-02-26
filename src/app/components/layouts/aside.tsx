@@ -1,4 +1,5 @@
 import React from "react";
+import { usePathname } from "next/navigation";
 import { Typography, Box, Stack, Collapse } from "@mui/material";
 import Image from "next/image";
 import { MenuItem } from "./partials/menu";
@@ -154,7 +155,7 @@ export default function Aside({ isExpanded }: { isExpanded?: boolean }) {
       <MenuItem
        hasChild
        isExpanded={isExpanded}
-       label="Pemantauan Pelaksanaan Mitigasi"
+       label="Pemantauan Pelaksanaan Risiko"
        icon={<IconPemantauan />}
        url={subMenuMitigasi}
        menuParentActive={

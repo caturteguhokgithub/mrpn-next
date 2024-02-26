@@ -15,7 +15,7 @@ import {
  Button,
 } from "@mui/material";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { blue } from "@mui/material/colors";
 import { ClickAwayListener } from "@mui/base/ClickAwayListener";
 

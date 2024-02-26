@@ -8,3 +8,5 @@ export { IconPerlakuan } from "./perlakuan";
 export { IconPemantauan } from "./pemantauan";
 export { IconManajemen } from "./manajemen";
 export { IconKeluar } from "./keluar";
+export { IconEmptyPage } from "./empty-page";
+export { IconEmptyData } from "./empty-data";

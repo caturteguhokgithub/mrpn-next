@@ -122,6 +122,7 @@ export default function DashboardLayout({
     bgcolor={theme.palette.primary.light}
     gridArea="main"
     p="42px"
+    pb="24px"
     position="relative"
     sx={{ borderTopLeftRadius: "50px", transition: "all 600ms ease" }}
    >
@@ -131,13 +132,14 @@ export default function DashboardLayout({
      justifyContent="center"
      alignItems="center"
      position="absolute"
-     top="47px"
-     left="-12px"
+     top="42px"
+     left="-15px"
      onClick={handleChange}
-     width="27px"
-     height="27px"
-     border="3px solid"
+     width="22px"
+     height="22px"
+     border="5px solid"
      borderColor={theme.palette.primary.light}
+     boxSizing="content-box"
      sx={{ cursor: "pointer" }}
     >
      <Icon
@@ -148,6 +150,9 @@ export default function DashboardLayout({
        color: "white",
        transform: checked ? "rotate(180deg)" : "rotate(0deg)",
        transition: "all 1s ease",
+       position: "relative",
+       top: checked ? -1 : 0,
+       left: 0,
       }}
      />
     </Stack>
@@ -155,7 +160,11 @@ export default function DashboardLayout({
    </Box>
    <Stack
     component="footer"
-    sx={{ gridArea: "footer", bgcolor: theme.palette.primary.light }}
+    sx={{
+     gridArea: "footer",
+     bgcolor: theme.palette.primary.light,
+     maxWidth: "100%",
+    }}
     direction="column"
     justifyContent="center"
     px={4}
