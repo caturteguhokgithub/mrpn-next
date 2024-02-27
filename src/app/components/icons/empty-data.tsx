@@ -2,7 +2,7 @@ import { SvgIcon } from "@mui/material";
 
 export const IconEmptyData = () => {
  return (
-  <SvgIcon>
+  <SvgIcon sx={{ width: "120px", height: "auto" }}>
    <svg
     width="121"
     height="100"

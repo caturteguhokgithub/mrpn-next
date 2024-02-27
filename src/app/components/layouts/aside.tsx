@@ -115,8 +115,8 @@ export default function Aside({ isExpanded }: { isExpanded?: boolean }) {
       <MenuItem
        hasChild
        isExpanded={isExpanded}
-       label="Analisis Risiko"
-       icon={<IconAnalisis />}
+       label="Profil Risiko"
+       icon={<IconProfil />}
        url={subMenuAnalisis}
        menuParentActive={
         typeof window !== "undefined"
@@ -134,13 +134,24 @@ export default function Aside({ isExpanded }: { isExpanded?: boolean }) {
         url={subMenuAnalisis}
         urlLv2="penilaian-risiko"
        />
-       <SubmenuItem
+       {/* Sub menu di penilaian risiko */}
+       {/* <SubmenuItem
         label="Persetujuan Risiko"
+        url={subMenuAnalisis}
+        urlLv2="persetujuan-risiko"
+       /> */}
+       <SubmenuItem
+        label="Evaluasi Risiko"
+        url={subMenuAnalisis}
+        urlLv2="persetujuan-risiko"
+       />
+       <SubmenuItem
+        label="Perlakuan Risiko"
         url={subMenuAnalisis}
         urlLv2="persetujuan-risiko"
        />
       </MenuItem>
-      <MenuItem
+      {/* <MenuItem
        isExpanded={isExpanded}
        label="Profil Risiko"
        icon={<IconProfil />}
@@ -151,7 +162,7 @@ export default function Aside({ isExpanded }: { isExpanded?: boolean }) {
        label="Evaluasi Risiko"
        icon={<IconEvaluasi />}
        url="evaluasi-risiko"
-      />
+      /> */}
       <MenuItem
        hasChild
        isExpanded={isExpanded}

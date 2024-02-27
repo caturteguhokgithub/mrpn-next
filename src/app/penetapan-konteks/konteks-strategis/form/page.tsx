@@ -9,10 +9,15 @@ import {
  Divider,
  FormControl,
  Grid,
- Stack,
  TextField,
  Typography,
 } from "@mui/material";
+import TableSasaranPkppr from "./partials/table-sasaran-pkkpr";
+import TableSasaran from "./partials/table-sasaran-global";
+import TableRincianOutput from "./partials/table-ro";
+import TableMilestone from "./partials/table-milestone";
+import TableStakeholder from "./partials/table-stakeholder";
+import TablePeraturan from "./partials/table-peraturan";
 
 export default function PageFormKonteksStrategis({}) {
  return (
@@ -78,7 +83,11 @@ export default function PageFormKonteksStrategis({}) {
      </Grid>
     </Grid>
     <Divider sx={{ my: 3 }} />
-    <Typography>Sasaran KP</Typography>
+    <TableSasaran variant="KP" />
+    <Divider sx={{ my: 3 }} />
+    <TableSasaran variant="PN" />
+    <Divider sx={{ my: 3 }} />
+    <TableSasaranPkppr />
     <Divider sx={{ my: 3 }} />
     <Grid container spacing={2}>
      <Grid item lg={6}>
@@ -147,6 +156,13 @@ export default function PageFormKonteksStrategis({}) {
      </Grid>
     </Grid>
     <Divider sx={{ my: 3 }} />
+    <TableRincianOutput />
+    <Divider sx={{ my: 3 }} />
+    <TableMilestone />
+    <Divider sx={{ my: 3 }} />
+    <TableStakeholder />
+    <Divider sx={{ my: 3 }} />
+    <TablePeraturan />
    </ContentPage>
   </DashboardLayout>
  );
