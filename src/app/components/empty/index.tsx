@@ -1,6 +1,5 @@
 import React from "react";
-import { Box, Paper, Stack, Typography } from "@mui/material";
-import { IconEmptyPage } from "../icons";
+import { Stack, Typography } from "@mui/material";
 
 export default function EmptyState({
  title,

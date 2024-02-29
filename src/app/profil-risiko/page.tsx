@@ -12,7 +12,7 @@ export default function PageProfilRisiko({}) {
    <ContentPage title="Profil Risiko" withCard>
     <EmptyState
      icon={<IconEmptyPage />}
-     title="Halaman Profil Risiko Masih Kosong"
+     title="Halaman Profil Risiko Kosong"
      description="Silahkan isi konten halaman ini"
     />
    </ContentPage>

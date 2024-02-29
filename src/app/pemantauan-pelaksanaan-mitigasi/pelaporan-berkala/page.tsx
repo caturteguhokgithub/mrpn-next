@@ -12,7 +12,7 @@ export default function PagePelaporanBerkala({}) {
    <ContentPage title="Pelaporan Berkala" withCard>
     <EmptyState
      icon={<IconEmptyPage />}
-     title="Halaman Pelaporan Berkala Masih Kosong"
+     title="Halaman Pelaporan Berkala Kosong"
      description="Silahkan isi konten halaman ini"
     />
    </ContentPage>

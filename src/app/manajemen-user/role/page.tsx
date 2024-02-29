@@ -266,64 +266,63 @@ const SectionChecbox = ({
 export default function PageUserManagement({}) {
  return (
   <DashboardLayout>
-   <ContentPage title="Manajemen User">
-    <Paper elevation={1} sx={{ borderRadius: 4 }}>
-     <Stack direction="row" justifyContent="space-between" p={2}>
-      <TextField
-       //  label="Nama User"
-       value="Human Resource Department"
-       size="small"
-       placeholder="Nama User"
-      />
-      <Box>
-       <Button
-        variant="outlined"
-        startIcon={
-         <Icon
-          baseClassName="fas"
-          className={`fa-plus-circle`}
-          sx={{
-           fontSize: 2,
-          }}
-         />
-        }
-        sx={{ borderRadius: "50px" }}
-       >
-        Tambah Menu
-       </Button>
-      </Box>
-     </Stack>
-     <Divider />
-     <Box p={2}>
-      <Stack
-       direction="column"
-       gap={2}
-       maxHeight="1200px"
-       maxWidth="100%"
-       flexWrap="wrap"
+   <ContentPage title="Manajemen User" withCard>
+    {/* <Paper elevation={1} sx={{ borderRadius: 4 }}> */}
+    <Stack direction="row" justifyContent="space-between">
+     <TextField
+      //  label="Nama User"
+      value="Human Resource Department"
+      size="small"
+      placeholder="Nama User"
+      sx={{ minWidth: "30%" }}
+     />
+     <Box>
+      <Button
+       variant="outlined"
+       startIcon={
+        <Icon
+         baseClassName="fas"
+         className={`fa-plus-circle`}
+         sx={{
+          fontSize: 2,
+         }}
+        />
+       }
+       sx={{ borderRadius: "50px" }}
       >
-       <SectionChecbox menuLabel="dashboard" noChild />
-       <SectionChecbox menuLabel="Executive Summary" noChild />
-       <SectionChecbox menuLabel="Penetapan Konteks" hasChild>
-        <SectionChecbox menuLabel="Konteks Strategis" />
-        <SectionChecbox menuLabel="Selera Risiko" />
-       </SectionChecbox>
-       <SectionChecbox menuLabel="Analisis Risiko" hasChild>
-        <SectionChecbox menuLabel="Registrasi Risiko" />
-        <SectionChecbox menuLabel="Penilaian Risiko" />
-        <SectionChecbox menuLabel="Persetujuan Risiko" />
-       </SectionChecbox>
-       <SectionChecbox menuLabel="Profil Risiko" noChild />
-       <SectionChecbox menuLabel="Evaluasi Risiko" noChild />
-       <SectionChecbox menuLabel="Perlakuan Risiko Strategis" noChild />
-       <SectionChecbox menuLabel="Pemantauan Pelaksanaan Mitigasi" hasChild>
-        <SectionChecbox menuLabel="Peringatan Dini & Saran" />
-        <SectionChecbox menuLabel="Pemantauan" />
-        <SectionChecbox menuLabel="Pelaporan Berkala" />
-       </SectionChecbox>
-      </Stack>
+       Tambah Menu
+      </Button>
      </Box>
-    </Paper>
+    </Stack>
+    <Divider sx={{ my: 2 }} />
+    <Stack
+     direction="column"
+     gap={2}
+     maxHeight="1200px"
+     maxWidth="100%"
+     flexWrap="wrap"
+    >
+     <SectionChecbox menuLabel="dashboard" noChild />
+     <SectionChecbox menuLabel="Executive Summary" noChild />
+     <SectionChecbox menuLabel="Penetapan Konteks" hasChild>
+      <SectionChecbox menuLabel="Konteks Strategis" />
+      <SectionChecbox menuLabel="Selera Risiko" />
+     </SectionChecbox>
+     <SectionChecbox menuLabel="Analisis Risiko" hasChild>
+      <SectionChecbox menuLabel="Registrasi Risiko" />
+      <SectionChecbox menuLabel="Penilaian Risiko" />
+      <SectionChecbox menuLabel="Persetujuan Risiko" />
+     </SectionChecbox>
+     <SectionChecbox menuLabel="Profil Risiko" noChild />
+     <SectionChecbox menuLabel="Evaluasi Risiko" noChild />
+     <SectionChecbox menuLabel="Perlakuan Risiko Strategis" noChild />
+     <SectionChecbox menuLabel="Pemantauan Pelaksanaan Mitigasi" hasChild>
+      <SectionChecbox menuLabel="Peringatan Dini & Saran" />
+      <SectionChecbox menuLabel="Pemantauan" />
+      <SectionChecbox menuLabel="Pelaporan Berkala" />
+     </SectionChecbox>
+    </Stack>
+    {/* </Paper> */}
    </ContentPage>
   </DashboardLayout>
  );

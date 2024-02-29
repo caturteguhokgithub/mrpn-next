@@ -1,6 +1,5 @@
-import theme from "@/theme";
-import { Box, Button, Icon, IconButton, Link, Stack } from "@mui/material";
-import { blue, grey, red } from "@mui/material/colors";
+import { Box } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import { MRT_GlobalFilterTextField } from "material-react-table";
 
 type ColumnsType = {};
@@ -68,6 +67,13 @@ export const advancedTable: ColumnsType = {
   sx: {
    borderRadius: 5,
    m: 1,
+  },
+ },
+ muiTableContainerProps: {
+  sx: {
+   "&::-webkit-scrollbar": {
+    height: "10px",
+   },
   },
  },
  muiTableHeadCellProps: {

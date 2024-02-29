@@ -10,39 +10,14 @@ import {
 } from "material-react-table";
 import { advancedTable } from "@/app/components/table";
 import { columns, data } from "./setting";
-import { Box, Button, Icon } from "@mui/material";
-import { blue } from "@mui/material/colors";
-import ActionColumn from "../components/actions/action";
+import ActionColumn from "@/components/actions/action";
+import AddButton from "@/utils/smallComponent";
 
 type ColumnsType = {};
 
 export default function PageUserManagement() {
  const renderTopToolbar: ColumnsType = {
-  renderTopToolbarCustomActions: () => (
-   <Box>
-    <Button
-     variant="outlined"
-     startIcon={
-      <Icon
-       baseClassName="fas"
-       className={`fa-plus-circle`}
-       sx={{
-        fontSize: 2,
-       }}
-      />
-     }
-     sx={{
-      borderRadius: "50px",
-      "&:hover": {
-       bgcolor: blue[800],
-       color: "white",
-      },
-     }}
-    >
-     Tambah User
-    </Button>
-   </Box>
-  ),
+  renderTopToolbarCustomActions: () => <AddButton title="Tambah User" />,
  };
  const table = useMaterialReactTable({
   columns,
@@ -53,7 +28,7 @@ export default function PageUserManagement() {
    "mrt-row-actions": {
     header: "",
     size: 50,
-    Cell: () => <ActionColumn editUrl="/manajemen-user" />,
+    Cell: () => <ActionColumn editUrl="/manajemen-user/role" />,
    },
   },
  });

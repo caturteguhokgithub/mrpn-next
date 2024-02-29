@@ -12,7 +12,7 @@ export default function PagePeringatanDiniSaran({}) {
    <ContentPage title="Peringatan Dini & Saran" withCard>
     <EmptyState
      icon={<IconEmptyPage />}
-     title="Halaman Peringatan Dini & Saranko Masih Kosong"
+     title="Halaman Peringatan Dini & Saran Kosong"
      description="Silahkan isi konten halaman ini"
     />
    </ContentPage>

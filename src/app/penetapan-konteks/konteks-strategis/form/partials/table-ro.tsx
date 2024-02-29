@@ -1,6 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-"use client";
-
 import React from "react";
 import {
  Button,
@@ -16,17 +13,32 @@ import {
 } from "@mui/material";
 import theme from "@/theme";
 import { AddCircle } from "@mui/icons-material";
+import EmptyState from "@/app/components/empty";
+import { IconEmptyData } from "@/app/components/icons";
 
-export default function TableRincianOutput({}) {
+export default function TableRincianOutput({ mode }: { mode?: string }) {
  function createData(
   id: number,
-  kode: string,
+  kodeRo: string,
   namaRo: string,
-  target: number,
+  uraian: string,
   satuan: string,
-  kementerian: string
+  target: number,
+  keuangan: string,
+  kementerian: string,
+  kode: string
  ) {
-  return { id, kode, namaRo, target, satuan, kementerian };
+  return {
+   id,
+   kodeRo,
+   namaRo,
+   uraian,
+   satuan,
+   target,
+   keuangan,
+   kementerian,
+   kode,
+  };
  }
 
  const rows = [
@@ -34,17 +46,23 @@ export default function TableRincianOutput({}) {
    1,
    "xxx.xxx.xx.xxxx.xx",
    "Eksekusi Realisasi Investasi Proyek-Proyek Mangkrak Di Wilayah Barat",
-   253,
+   "-",
    "juta",
-   "BADAN INTELIJEN NEGARA"
+   1,
+   "-",
+   "BADAN INTELIJEN NEGARA",
+   "-"
   ),
   createData(
    2,
    "xxx.xxx.xx.xxxx.xx",
    "Layanan Pendampingan Keberlanjutan Investasi",
-   6000,
+   "-",
    "orang",
-   "BADAN INTELIJEN NEGARA"
+   2,
+   "-",
+   "BADAN INTELIJEN NEGARA",
+   "-"
   ),
  ];
 
@@ -57,39 +75,64 @@ export default function TableRincianOutput({}) {
     alignItems="center"
    >
     <Typography>Rincian Output (RO) Kunci</Typography>
-    <Button
-     variant="contained"
-     size="small"
-     startIcon={<AddCircle />}
-     sx={{ lineHeight: 1, py: 1 }}
-    >
-     Tambah RO Kunci
-    </Button>
+    {mode === "add" || mode === "edit" ? (
+     <Button
+      variant="contained"
+      size="small"
+      startIcon={<AddCircle />}
+      sx={{ lineHeight: 1, py: 1 }}
+     >
+      Tambah RO Kunci
+     </Button>
+    ) : null}
    </Stack>
    <TableContainer component={Paper}>
     <Table sx={{ minWidth: 650 }} size="small">
      <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
       <TableRow>
-       <TableCell>Kode</TableCell>
-       <TableCell>Nama RO</TableCell>
-       <TableCell width="120px">Target RO</TableCell>
-       <TableCell width="120px">Satuan</TableCell>
-       <TableCell>Kementerian</TableCell>
+       <TableCell rowSpan={2}>Kode RO</TableCell>
+       <TableCell rowSpan={2}>Nama RO</TableCell>
+       <TableCell colSpan={4} align="center">
+        Indikator Sasaran
+       </TableCell>
+       <TableCell rowSpan={2}>Kementerian</TableCell>
+       <TableCell rowSpan={2}>Kode</TableCell>
+      </TableRow>
+      <TableRow>
+       <TableCell width="120px">Uraian Sasaran</TableCell>
+       <TableCell width="120px"> Satuan Sasaran</TableCell>
+       <TableCell width="120px">Target Fisik</TableCell>
+       <TableCell width="120px">Keuangan</TableCell>
       </TableRow>
      </TableHead>
      <TableBody>
-      {rows.map((row) => (
-       <TableRow
-        key={row.id}
-        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-       >
-        <TableCell>{row.kode}</TableCell>
-        <TableCell>{row.namaRo}</TableCell>
-        <TableCell>{row.target}</TableCell>
-        <TableCell>{row.satuan}</TableCell>
-        <TableCell>{row.kementerian}</TableCell>
-       </TableRow>
-      ))}
+      {mode === "add" ? (
+       <TableCell colSpan={8}>
+        <EmptyState
+         icon={<IconEmptyData />}
+         title="Data Kosong"
+         description="Silahkan isi konten tabel ini"
+        />
+       </TableCell>
+      ) : (
+       <>
+        {rows.map((row) => (
+         <TableRow
+          key={row.id}
+          sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+         >
+          <TableCell>{row.kodeRo}</TableCell>
+          <TableCell>{row.namaRo}</TableCell>
+          <TableCell>{row.uraian}</TableCell>
+          <TableCell>{row.satuan}</TableCell>
+          <TableCell>{row.target}</TableCell>
+          <TableCell>{row.keuangan}</TableCell>
+          <TableCell>{row.kementerian}</TableCell>
+          <TableCell>{row.kode}</TableCell>
+         </TableRow>
+        ))}
+       </>
+      )}
      </TableBody>
     </Table>
    </TableContainer>

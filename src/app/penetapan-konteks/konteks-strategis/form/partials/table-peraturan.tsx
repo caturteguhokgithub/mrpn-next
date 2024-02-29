@@ -1,6 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-"use client";
-
 import React from "react";
 import {
  Button,
@@ -19,8 +16,10 @@ import {
 } from "@mui/material";
 import theme from "@/theme";
 import { AddCircle } from "@mui/icons-material";
+import EmptyState from "@/app/components/empty";
+import { IconEmptyData } from "@/app/components/icons";
 
-export default function TablePeraturan({}) {
+export default function TablePeraturan({ mode }: { mode?: string }) {
  function createData(id: number, peraturan: string, amanat: string) {
   return { id, peraturan, amanat };
  }
@@ -52,14 +51,16 @@ export default function TablePeraturan({}) {
     alignItems="center"
    >
     <Typography>Daftar Peraturan Perundang-Undangan yang Terkait</Typography>
-    <Button
-     variant="contained"
-     size="small"
-     startIcon={<AddCircle />}
-     sx={{ lineHeight: 1, py: 1 }}
-    >
-     Tambah Peraturan Terkait
-    </Button>
+    {mode === "add" || mode === "edit" ? (
+     <Button
+      variant="contained"
+      size="small"
+      startIcon={<AddCircle />}
+      sx={{ lineHeight: 1, py: 1 }}
+     >
+      Tambah Peraturan Terkait
+     </Button>
+    ) : null}
    </Stack>
    <TableContainer component={Paper}>
     <Table sx={{ minWidth: 650 }} size="small">
@@ -71,28 +72,44 @@ export default function TablePeraturan({}) {
       </TableRow>
      </TableHead>
      <TableBody>
-      {rows.map((row) => (
-       <TableRow
-        key={row.id}
-        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-       >
-        <TableCell sx={{ textAlign: "center" }}>
-         <Tooltip title="Delete" placement="top">
-          <IconButton aria-label="delete" color="error">
-           <Icon
-            baseClassName="fas"
-            className={`fa-trash-alt`}
-            sx={{
-             fontSize: "14px",
-            }}
-           />
-          </IconButton>
-         </Tooltip>
-        </TableCell>
-        <TableCell>{row.peraturan}</TableCell>
-        <TableCell>{row.amanat}</TableCell>
-       </TableRow>
-      ))}
+      {mode === "add" ? (
+       <TableCell colSpan={3}>
+        <EmptyState
+         icon={<IconEmptyData />}
+         title="Data Kosong"
+         description="Silahkan isi konten tabel ini"
+        />
+       </TableCell>
+      ) : (
+       <>
+        {rows.map((row) => (
+         <TableRow
+          key={row.id}
+          sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+         >
+          <TableCell sx={{ textAlign: "center" }}>
+           <Tooltip title="Delete" placement="top">
+            <IconButton
+             aria-label="delete"
+             color="error"
+             disabled={mode === "view"}
+            >
+             <Icon
+              baseClassName="fas"
+              className={`fa-trash-alt`}
+              sx={{
+               fontSize: "14px",
+              }}
+             />
+            </IconButton>
+           </Tooltip>
+          </TableCell>
+          <TableCell>{row.peraturan}</TableCell>
+          <TableCell>{row.amanat}</TableCell>
+         </TableRow>
+        ))}
+       </>
+      )}
      </TableBody>
     </Table>
    </TableContainer>

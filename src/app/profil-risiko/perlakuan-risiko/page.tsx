@@ -6,13 +6,13 @@ import DashboardLayout from "@/app/components/layouts/layout";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyPage } from "@/app/components/icons";
 
-export default function PageRegistrasiRisiko({}) {
+export default function PagePersetujuanRisiko({}) {
  return (
   <DashboardLayout>
-   <ContentPage title="Registrasi Risiko" withCard>
+   <ContentPage title="Perlakuan Risiko" withCard>
     <EmptyState
      icon={<IconEmptyPage />}
-     title="Halaman Registrasi Risiko Masih Kosong"
+     title="Halaman Perlakuan Risiko Kosong"
      description="Silahkan isi konten halaman ini"
     />
    </ContentPage>

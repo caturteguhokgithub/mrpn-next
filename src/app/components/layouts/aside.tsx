@@ -65,7 +65,7 @@ export default function Aside({ isExpanded }: { isExpanded?: boolean }) {
  );
 
  const subMenuKonteks = "penetapan-konteks";
- const subMenuAnalisis = "analisis-risiko";
+ const subMenuProfil = "profil-risiko";
  const subMenuMitigasi = "pemantauan-pelaksanaan-mitigasi";
 
  const Sidemenu = (
@@ -106,6 +106,7 @@ export default function Aside({ isExpanded }: { isExpanded?: boolean }) {
         url={subMenuKonteks}
         urlLv2="konteks-strategis"
        />
+       {/* Pedoman 8 di submenu selera */}
        <SubmenuItem
         label="Selera Risiko"
         url={subMenuKonteks}
@@ -117,52 +118,35 @@ export default function Aside({ isExpanded }: { isExpanded?: boolean }) {
        isExpanded={isExpanded}
        label="Profil Risiko"
        icon={<IconProfil />}
-       url={subMenuAnalisis}
+       url={subMenuProfil}
        menuParentActive={
         typeof window !== "undefined"
-         ? window.location.pathname.includes(subMenuAnalisis)
+         ? window.location.pathname.includes(subMenuProfil)
          : false
        }
       >
        <SubmenuItem
         label="Registrasi Risiko"
-        url={subMenuAnalisis}
+        url={subMenuProfil}
         urlLv2="registrasi-risiko"
        />
+       {/* Pedoman 6 & 7 di submenu analisis */}
        <SubmenuItem
-        label="Penilaian Risiko"
-        url={subMenuAnalisis}
-        urlLv2="penilaian-risiko"
+        label="Analisis Risiko"
+        url={subMenuProfil}
+        urlLv2="analisis-risiko"
        />
-       {/* Sub menu di penilaian risiko */}
-       {/* <SubmenuItem
-        label="Persetujuan Risiko"
-        url={subMenuAnalisis}
-        urlLv2="persetujuan-risiko"
-       /> */}
        <SubmenuItem
         label="Evaluasi Risiko"
-        url={subMenuAnalisis}
-        urlLv2="persetujuan-risiko"
+        url={subMenuProfil}
+        urlLv2="evaluasi-risiko"
        />
        <SubmenuItem
         label="Perlakuan Risiko"
-        url={subMenuAnalisis}
-        urlLv2="persetujuan-risiko"
+        url={subMenuProfil}
+        urlLv2="perlakuan-risiko"
        />
       </MenuItem>
-      {/* <MenuItem
-       isExpanded={isExpanded}
-       label="Profil Risiko"
-       icon={<IconProfil />}
-       url="profil-risiko"
-      />
-      <MenuItem
-       isExpanded={isExpanded}
-       label="Evaluasi Risiko"
-       icon={<IconEvaluasi />}
-       url="evaluasi-risiko"
-      /> */}
       <MenuItem
        hasChild
        isExpanded={isExpanded}

@@ -12,9 +12,19 @@ import { data } from "./setting";
 import { advancedTable } from "@/app/components/table";
 import { Typography } from "@mui/material";
 import ActionColumn from "@/app/components/actions/action";
+import AddButton from "@/app/utils/smallComponent";
+
+type ColumnsType = {};
 
 export default function PageKonteksStrategis({}) {
  const mainUrl = "/penetapan-konteks/konteks-strategis/";
+ const addUrl = `${mainUrl}form/add`;
+
+ const renderTopToolbar: ColumnsType = {
+  renderTopToolbarCustomActions: () => (
+   <AddButton url={addUrl} title="Tambah Konteks" />
+  ),
+ };
  const columns = useMemo(
   () => [
    {
@@ -91,12 +101,18 @@ export default function PageKonteksStrategis({}) {
  const table = useMaterialReactTable({
   columns,
   data,
+  ...renderTopToolbar,
   ...advancedTable,
   displayColumnDefOptions: {
    "mrt-row-actions": {
     header: "",
     size: 100,
-    Cell: () => <ActionColumn editUrl={`${mainUrl}form`} viewUrl="/" />,
+    Cell: () => (
+     <ActionColumn
+      editUrl={`${mainUrl}form/edit`}
+      viewUrl={`${mainUrl}form/view`}
+     />
+    ),
    },
   },
  });

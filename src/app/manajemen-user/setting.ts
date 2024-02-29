@@ -215,3 +215,5 @@ export const data: Person[] = [
   city: "San Francisco",
  },
 ];
+
+export const dataEmpty = [];

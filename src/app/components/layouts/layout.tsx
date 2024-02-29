@@ -124,7 +124,34 @@ export default function DashboardLayout({
     p="42px"
     pb="24px"
     position="relative"
-    sx={{ borderTopLeftRadius: "50px", transition: "all 600ms ease" }}
+    className={checked ? "" : "collapse-active"}
+    sx={{
+     borderTopLeftRadius: "50px",
+     transition: "all 600ms ease",
+     ".table-collapsed": {
+      ".MuiTableContainer-root": {
+       maxWidth: checked ? "calc(100vw - 364px)" : "calc(100vw - 163px)",
+       thead: {
+        tr: {
+         "&:not(:last-of-type)": {
+          boxShadow: "none",
+          th: {
+           "&[colspan='1']": {
+            borderBottom: 0,
+           },
+           "&:not([colspan='1'])": {
+            backgroundColor: grey[200],
+           },
+          },
+         },
+        },
+       },
+       ".MuiTableRow-root": {
+        boxShadow: "none",
+       },
+      },
+     },
+    }}
    >
     <Stack
      borderRadius="50%"

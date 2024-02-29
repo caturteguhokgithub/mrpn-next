@@ -12,7 +12,7 @@ export default function PageExecutiveSummary({}) {
    <ContentPage title="Executive Summary" withCard>
     <EmptyState
      icon={<IconEmptyPage />}
-     title="Halaman Executive Summary Masih Kosong"
+     title="Halaman Executive Summary Kosong"
      description="Silahkan isi konten halaman ini"
     />
    </ContentPage>
