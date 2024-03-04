@@ -5,15 +5,17 @@ export default function EmptyState({
  title,
  description,
  icon,
+ dense,
 }: {
  title: string;
  description?: React.ReactNode;
  icon?: React.ReactNode;
+ dense?: boolean;
 }) {
  return (
   <Stack
    width="100%"
-   minHeight="400px"
+   minHeight={dense ? "200px" : "400px"}
    justifyContent="center"
    alignItems="center"
   >

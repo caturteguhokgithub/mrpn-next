@@ -308,15 +308,13 @@ export default function PageUserManagement({}) {
       <SectionChecbox menuLabel="Konteks Strategis" />
       <SectionChecbox menuLabel="Selera Risiko" />
      </SectionChecbox>
-     <SectionChecbox menuLabel="Analisis Risiko" hasChild>
+     <SectionChecbox menuLabel="Profil Risiko" hasChild>
       <SectionChecbox menuLabel="Registrasi Risiko" />
-      <SectionChecbox menuLabel="Penilaian Risiko" />
-      <SectionChecbox menuLabel="Persetujuan Risiko" />
+      <SectionChecbox menuLabel="Analisis Risiko" />
+      <SectionChecbox menuLabel="Evaluasi Risiko" />
+      <SectionChecbox menuLabel="Perlakuan Risiko" />
      </SectionChecbox>
-     <SectionChecbox menuLabel="Profil Risiko" noChild />
-     <SectionChecbox menuLabel="Evaluasi Risiko" noChild />
-     <SectionChecbox menuLabel="Perlakuan Risiko Strategis" noChild />
-     <SectionChecbox menuLabel="Pemantauan Pelaksanaan Mitigasi" hasChild>
+     <SectionChecbox menuLabel="Pemantauan Pelaksanaan Risiko" hasChild>
       <SectionChecbox menuLabel="Peringatan Dini & Saran" />
       <SectionChecbox menuLabel="Pemantauan" />
       <SectionChecbox menuLabel="Pelaporan Berkala" />

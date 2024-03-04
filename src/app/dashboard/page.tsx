@@ -31,9 +31,10 @@ import {
 } from "./partials/chart";
 import { BarChart } from "@mui/x-charts/BarChart";
 import theme from "@/theme";
-import EmptyState from "../components/empty";
-import { IconEmptyData } from "../components/icons";
+import EmptyState from "@/components/empty";
+import { IconEmptyData } from "@/components/icons";
 import { green, red, yellow } from "@mui/material/colors";
+import { IconFA } from "@/components/icons/icon-fa";
 
 type ICard = {
  iconName: string;
@@ -93,11 +94,7 @@ const CardValue = ({ iconName, color, value, total, title }: ICard) => {
       alignItems="center"
       justifyContent="center"
      >
-      <Icon
-       baseClassName="fas"
-       className={`fa-${iconName}`}
-       sx={{ fontSize: "18px", color: "white" }}
-      />
+      <IconFA size={18} name={iconName} color="white" />
      </Stack>
      <Typography
       component="span"

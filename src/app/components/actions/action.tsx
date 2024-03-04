@@ -2,6 +2,7 @@ import React from "react";
 import { Icon, IconButton, Link, Stack } from "@mui/material";
 import theme from "@/theme";
 import { blue, green, red } from "@mui/material/colors";
+import { IconFA } from "../icons/icon-fa";
 
 export default function ActionColumn({
  editUrl,
@@ -30,13 +31,7 @@ export default function ActionColumn({
        },
       }}
      >
-      <Icon
-       baseClassName="fas"
-       className={`fa-eye`}
-       sx={{
-        fontSize: "14px",
-       }}
-      />
+      <IconFA size={14} name="eye" />
      </IconButton>
     </Link>
    )}
@@ -53,13 +48,7 @@ export default function ActionColumn({
       },
      }}
     >
-     <Icon
-      baseClassName="fas"
-      className={`fa-pencil`}
-      sx={{
-       fontSize: "14px",
-      }}
-     />
+     <IconFA size={14} name="pencil" />
     </IconButton>
    </Link>
    <IconButton
@@ -74,14 +63,7 @@ export default function ActionColumn({
      },
     }}
    >
-    <Icon
-     //  onClick={() => table.setEditingRow(row)}
-     baseClassName="fas"
-     className={`fa-trash`}
-     sx={{
-      fontSize: "14px",
-     }}
-    />
+    <IconFA size={14} name="trash" />
    </IconButton>
   </Stack>
  );

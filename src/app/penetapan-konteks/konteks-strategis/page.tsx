@@ -12,7 +12,7 @@ import { data } from "./setting";
 import { advancedTable } from "@/app/components/table";
 import { Typography } from "@mui/material";
 import ActionColumn from "@/app/components/actions/action";
-import AddButton from "@/app/utils/smallComponent";
+import AddButton from "@/app/components/buttonAdd";
 
 type ColumnsType = {};
 

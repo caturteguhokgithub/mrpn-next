@@ -6,20 +6,25 @@ import Link from "next/link";
 export default function AddButton({
  title,
  url,
+ filled,
+ small,
 }: {
  title: string;
  url?: string;
+ filled?: boolean;
+ small?: boolean;
 }) {
  return (
   <Link href={`${url}`}>
    <Button
-    variant="outlined"
+    variant={filled ? "contained" : "outlined"}
+    size={small ? "small" : "medium"}
     startIcon={
      <Icon
       baseClassName="fas"
       className={`fa-plus-circle`}
       sx={{
-       fontSize: 2,
+       fontSize: small ? "16px !important" : "18px",
       }}
      />
     }

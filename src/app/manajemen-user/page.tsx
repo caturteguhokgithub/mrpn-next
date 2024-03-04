@@ -11,7 +11,7 @@ import {
 import { advancedTable } from "@/app/components/table";
 import { columns, data } from "./setting";
 import ActionColumn from "@/components/actions/action";
-import AddButton from "@/utils/smallComponent";
+import AddButton from "@/app/components/buttonAdd";
 
 type ColumnsType = {};
 

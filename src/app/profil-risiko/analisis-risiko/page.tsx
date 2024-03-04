@@ -5,9 +5,11 @@ import React from "react";
 import DashboardLayout from "@/app/components/layouts/layout";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyPage } from "@/app/components/icons";
-import { Box, Tabs, Tab, Typography } from "@mui/material";
+import { Box, Tabs, Tab, Typography, Icon } from "@mui/material";
 import TabInformasi from "./partials/tabInformasi";
 import TabTable from "./partials/tabTable";
+import theme from "@/theme";
+import { grey } from "@mui/material/colors";
 
 interface TabPanelProps {
  children?: React.ReactNode;
@@ -42,6 +44,7 @@ function CustomTabPanel(props: TabPanelProps) {
   </div>
  );
 }
+
 export default function PageAnalisisRisiko({}) {
  const [value, setValue] = React.useState(0);
 
@@ -49,28 +52,81 @@ export default function PageAnalisisRisiko({}) {
   setValue(newValue);
  };
 
+ const isEmpty = false;
+
  return (
   <DashboardLayout>
    <ContentPage title="Analisis Risiko" withCard noPadding>
-    {/* <EmptyState
-     icon={<IconEmptyPage />}
-     title="Halaman Analisis Risiko Masih Kosong"
-     description="Silahkan isi konten halaman ini"
-    /> */}
-    <Box sx={{ width: "100%" }}>
-     <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-      <Tabs value={value} onChange={handleChange} aria-label="Tabel Analisis">
-       <Tab label="Tabel" {...a11yProps(0)} />
-       <Tab label="Informasi" {...a11yProps(1)} />
-      </Tabs>
+    {isEmpty ? (
+     <EmptyState
+      icon={<IconEmptyPage />}
+      title="Halaman Analisis Risiko Masih Kosong"
+      description="Silahkan isi konten halaman ini"
+     />
+    ) : (
+     <Box sx={{ width: "100%" }}>
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+       <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="Tabel Analisis"
+        sx={{
+         mx: 2,
+         ".MuiTabs-flexContainer": {
+          gap: 1,
+         },
+         button: {
+          p: 2,
+          px: 3,
+          my: 2,
+          minHeight: 0,
+          bgcolor: grey[200],
+          borderRadius: 2,
+          "&.Mui-selected": {
+           bgcolor: theme.palette.primary.main,
+           color: "white",
+          },
+         },
+        }}
+       >
+        <Tab
+         label="Tabel"
+         {...a11yProps(0)}
+         iconPosition="start"
+         icon={
+          <Icon
+           baseClassName="fas"
+           className={`fa-table`}
+           sx={{
+            fontSize: "16px",
+           }}
+          />
+         }
+        />
+        <Tab
+         label="Informasi"
+         {...a11yProps(1)}
+         iconPosition="start"
+         icon={
+          <Icon
+           baseClassName="fas"
+           className={`fa-circle-info`}
+           sx={{
+            fontSize: "16px",
+           }}
+          />
+         }
+        />
+       </Tabs>
+      </Box>
+      <CustomTabPanel value={value} index={0} noPadding>
+       <TabTable />
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+       <TabInformasi />
+      </CustomTabPanel>
      </Box>
-     <CustomTabPanel value={value} index={0} noPadding>
-      <TabTable />
-     </CustomTabPanel>
-     <CustomTabPanel value={value} index={1}>
-      <TabInformasi />
-     </CustomTabPanel>
-    </Box>
+    )}
    </ContentPage>
   </DashboardLayout>
  );

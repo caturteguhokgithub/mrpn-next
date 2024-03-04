@@ -9,6 +9,8 @@ import {
  Stack,
  Typography,
 } from "@mui/material";
+import theme from "@/theme";
+import SelectCustomTheme from "../select";
 
 export default function ContentPage({
  title,
@@ -20,6 +22,7 @@ export default function ContentPage({
  breadcrumb,
  noPadding,
  heightTitleBreadcrumb,
+ overflowHidden,
 }: {
  children: React.ReactNode;
  title: string;
@@ -30,6 +33,7 @@ export default function ContentPage({
  heightTitleBreadcrumb?: boolean;
  titleChild?: React.ReactNode;
  breadcrumb?: React.ReactNode;
+ overflowHidden?: boolean;
 }) {
  const [project, setProject] = React.useState("3");
  const [konteks, setKonteks] = React.useState("");
@@ -69,7 +73,7 @@ export default function ContentPage({
      </Stack>
      {titleChild}
     </Stack>
-    <Stack direction="row" gap={2}>
+    <Stack direction="row" gap={1}>
      {chooseProject && (
       <FormControl
        size="small"
@@ -81,46 +85,38 @@ export default function ContentPage({
         }
        }
       >
-       <Select
-        value={project}
-        onChange={handleChangeProject}
-        displayEmpty
-        sx={{
-         ".MuiSelect-select": {
-          //   fontSize: 14,
-          //   py: "6px",
-          //   borderRadius: 6,
-          //   bgcolor: theme.palette.primary.main,
-          //   color: theme.palette.primary.light,
-         },
-        }}
-       >
-        <MenuItem value="">Pilih project</MenuItem>
-        <MenuItem value="1">
+       <SelectCustomTheme value={project} onChange={handleChangeProject}>
+        <MenuItem value="" disabled>
+         Pilih project
+        </MenuItem>
+        <MenuItem value="1" defaultChecked>
          KP-01 - Industri 4.0 di 6 Subsektor Prioritas
         </MenuItem>
         <MenuItem value="2">KP-02 - Destinasi Pariwisata Prioritas</MenuItem>
         <MenuItem value="3">
          KP-03 - Kawasan Industri Prioritas dan Smelter
         </MenuItem>
-       </Select>
+       </SelectCustomTheme>
       </FormControl>
      )}
      {chooseKonteks && (
       <FormControl size="small">
-       <Select value={konteks} onChange={handleChangeKonteks} displayEmpty>
+       <SelectCustomTheme value={konteks} onChange={handleChangeKonteks}>
         <MenuItem value="">Pilih konteks strategis</MenuItem>
-       </Select>
+       </SelectCustomTheme>
       </FormControl>
      )}
     </Stack>
    </Stack>
    <Box
-    // height="calc(100vh - 234px)"
     height={
-     heightTitleBreadcrumb ? "calc(100vh - 258px)" : "calc(100vh - 244px)"
+     heightTitleBreadcrumb
+      ? "calc(100vh - 258px)"
+      : overflowHidden
+      ? "calc(100vh - 244px)"
+      : "calc(100vh - 244px)"
     }
-    overflow="auto"
+    overflow={overflowHidden ? "hidden" : "auto"}
     margin={-1}
     sx={{
      overflowX: "hidden",
