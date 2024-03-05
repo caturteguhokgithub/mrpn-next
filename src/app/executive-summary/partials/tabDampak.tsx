@@ -5,8 +5,9 @@ import { IconEmptyData } from "@/app/components/icons";
 import CardItem from "@/app/components/cardTabItem";
 import AddButton from "@/app/components/buttonAdd";
 import TableDampak from "./table-dampak";
-import ReactQuill from "react-quill";
+// import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import dynamic from "next/dynamic";
 
 export default function TabDampak({}) {
  const [modalOpen, setModalOpen] = React.useState(false);
@@ -18,6 +19,7 @@ export default function TabDampak({}) {
  const handleModalClose = () => {
   setModalOpen(false);
  };
+ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
  const isEmpty = false;
 

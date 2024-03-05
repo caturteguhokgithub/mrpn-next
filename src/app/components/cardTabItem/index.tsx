@@ -5,8 +5,6 @@ import {
  CardContent,
  CardHeader,
  IconButton,
- Avatar,
- Divider,
  ListItemIcon,
  ListItemText,
  Menu,
@@ -14,10 +12,9 @@ import {
 } from "@mui/material";
 import { IconFA } from "@/app/components/icons/icon-fa";
 import { grey, red } from "@mui/material/colors";
-import { IconKeluar } from "../icons";
 import theme from "@/theme";
 
-const CardItem = ({
+export default function CardItem({
  title,
  children,
  addButton,
@@ -29,7 +26,7 @@ const CardItem = ({
  addButton?: React.ReactNode;
  setting?: React.ReactNode;
  settingEditOnclick?: () => void;
-}) => {
+}) {
  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
  const open = Boolean(anchorEl);
  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -133,6 +130,4 @@ const CardItem = ({
    <CardContent sx={{ pb: "16px !important" }}>{children}</CardContent>
   </Card>
  );
-};
-
-export default CardItem;
+}
