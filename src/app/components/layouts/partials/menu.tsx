@@ -61,12 +61,12 @@ export const MenuItem = ({
    <Typography
     fontSize={isExpanded ? "14px" : "8px"}
     textAlign={isExpanded ? "left" : "center"}
-    lineHeight={isExpanded ? "1.5" : "1.3"}
+    lineHeight={isExpanded ? "1.3" : "1.3"}
    >
     {label.length >= 20 ? (
      <Typography
       component="span"
-      fontSize={isExpanded ? "12px" : "8px"}
+      fontSize={isExpanded ? "13px" : "8px"}
       lineHeight="1.3"
      >
       {label}

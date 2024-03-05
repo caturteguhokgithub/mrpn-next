@@ -22,11 +22,13 @@ const CardItem = ({
  children,
  addButton,
  setting,
+ settingEditOnclick,
 }: {
  title: string;
  children: React.ReactNode;
  addButton?: React.ReactNode;
  setting?: React.ReactNode;
+ settingEditOnclick?: () => void;
 }) => {
  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
  const open = Boolean(anchorEl);
@@ -85,7 +87,7 @@ const CardItem = ({
     transformOrigin={{ horizontal: "right", vertical: "top" }}
     anchorOrigin={{ horizontal: "right", vertical: "top" }}
    >
-    <MenuItem>
+    <MenuItem onClick={settingEditOnclick}>
      <ListItemIcon sx={{ minWidth: "0 !important" }}>
       <IconFA size={14} name="edit" />
      </ListItemIcon>

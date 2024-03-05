@@ -166,7 +166,7 @@ export default function PageDashboardPartial({}) {
   <DashboardLayout>
    <ContentPage title="dashboard">
     <Grid container spacing={1}>
-     <Grid item lg={12}>
+     {/* <Grid item lg={12}>
       <BlockCard>
        <Grid container gap={3} flexWrap="nowrap">
         <CardValue
@@ -196,7 +196,7 @@ export default function PageDashboardPartial({}) {
         />
        </Grid>
       </BlockCard>
-     </Grid>
+     </Grid> */}
      <Grid item lg={6}>
       <BlockCard title="Akumulasi Risiko" minHeight="388px">
        <TableContainer sx={{ mt: 4 }}>

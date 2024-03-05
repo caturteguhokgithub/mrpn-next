@@ -41,18 +41,32 @@ export default function Header({}) {
    }}
   >
    <Stack direction="row" justifyContent="space-between" width="100%">
-    <Stack direction="row" alignItems="center" spacing={1}>
-     <Typography component="h1" fontWeight="800" fontSize="1.25rem">
+    <Stack direction="column">
+     <Typography
+      component="h1"
+      fontWeight="800"
+      fontSize="1.25rem"
+      lineHeight={1.2}
+     >
       MRPN 2024
      </Typography>
      <Typography
+      component="p"
+      fontWeight="400"
+      fontSize="14px"
+      letterSpacing="0.5px"
+      lineHeight={1.3}
+     >
+      National Risk Information System
+     </Typography>
+     {/* <Typography
       component="h1"
       letterSpacing={4}
       fontSize="1.25rem"
       fontWeight={300}
      >
       BAPPENAS
-     </Typography>
+     </Typography> */}
     </Stack>
     <Button onClick={handleClick} sx={{ p: 0, m: 0, minWidth: 0 }}>
      <Avatar sx={{ bgcolor: "white" }}>

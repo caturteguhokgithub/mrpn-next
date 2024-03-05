@@ -15,7 +15,7 @@ export default function EmptyState({
  return (
   <Stack
    width="100%"
-   minHeight={dense ? "200px" : "400px"}
+   minHeight={dense ? "200px" : "300px"}
    justifyContent="center"
    alignItems="center"
   >

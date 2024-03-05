@@ -130,7 +130,8 @@ export default function DashboardLayout({
      transition: "all 600ms ease",
      ".table-collapsed": {
       ".MuiTableContainer-root": {
-       maxWidth: checked ? "calc(100vw - 364px)" : "calc(100vw - 163px)",
+       //  maxWidth: checked ? "calc(100vw - 364px)" : "calc(100vw - 163px)",
+       maxWidth: checked ? "calc(100vw - 364px)" : "calc(100vw - 132px)",
        thead: {
         tr: {
          "&:not(:last-of-type)": {
@@ -148,6 +149,11 @@ export default function DashboardLayout({
        },
        ".MuiTableRow-root": {
         boxShadow: "none",
+       },
+      },
+      "&.perlakuan-risiko": {
+       ".MuiTableContainer-root": {
+        maxWidth: checked ? "calc(100vw - 348px)" : "calc(100vw - 132px)",
        },
       },
      },
@@ -194,7 +200,7 @@ export default function DashboardLayout({
     }}
     direction="column"
     justifyContent="center"
-    px={4}
+    px="42px"
    >
     <Divider variant="middle" sx={{ bgcolor: grey[200], m: 0, width: 160 }} />
     <Footer />

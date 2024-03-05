@@ -92,7 +92,7 @@ export default function Aside({ isExpanded }: { isExpanded?: boolean }) {
       <MenuItem
        hasChild
        isExpanded={isExpanded}
-       label="penetapan konteks"
+       label="Penetapan"
        icon={<IconPenetapan />}
        url={subMenuKonteks}
        menuParentActive={
@@ -150,7 +150,7 @@ export default function Aside({ isExpanded }: { isExpanded?: boolean }) {
       <MenuItem
        hasChild
        isExpanded={isExpanded}
-       label="Pemantauan Pelaksanaan Risiko"
+       label="Pemantauan Perlakuan Risiko"
        icon={<IconPemantauan />}
        url={subMenuMitigasi}
        menuParentActive={
@@ -160,7 +160,7 @@ export default function Aside({ isExpanded }: { isExpanded?: boolean }) {
        }
       >
        <SubmenuItem
-        label="Peringatan Dini & Saran"
+        label="Peringatan Dini"
         url={subMenuMitigasi}
         urlLv2="peringatan-dini-saran"
        />
