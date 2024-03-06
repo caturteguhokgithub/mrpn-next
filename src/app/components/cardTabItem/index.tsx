@@ -21,7 +21,7 @@ export default function CardItem({
  setting,
  settingEditOnclick,
 }: {
- title: string;
+ title: React.ReactNode;
  children: React.ReactNode;
  addButton?: React.ReactNode;
  setting?: React.ReactNode;

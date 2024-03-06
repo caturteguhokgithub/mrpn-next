@@ -13,6 +13,8 @@ import TabLatarBelakang from "./partials/tabLatarBelakang";
 import TabDeskripsi from "./partials/tabDeskripsi";
 import TabPendanaan from "./partials/tabPendanaan";
 import TabDampak from "./partials/tabDampak";
+import TabProfil from "./partials/tabProfil";
+import TabPolicy from "./partials/tabPolicy";
 
 interface TabPanelProps {
  children?: React.ReactNode;
@@ -101,43 +103,45 @@ export default function PageExecutiveSummary({}) {
         }}
        >
         <Tab
-         label="Latar Belakang"
+         label="Latar Belakang Proyek"
          {...a11yProps(0)}
          iconPosition="start"
          icon={<IconFA size={16} name="pen-to-square" />}
         />
         <Tab
-         label="Deskripsi & Status"
+         label="Profil Proyek/KP"
          {...a11yProps(1)}
          iconPosition="start"
-         icon={<IconFA size={16} name="file-lines" />}
+         icon={<IconFA size={16} name="address-card" sx={{ width: "auto" }} />}
         />
         <Tab
-         label="Pendanaan"
+         label="Policy Brief"
          {...a11yProps(3)}
          iconPosition="start"
-         icon={<IconFA size={16} name="hand-holding-dollar" />}
+         icon={<IconFA size={16} name="file-shield" sx={{ width: "auto" }} />}
         />
-        <Tab
+        {/* <Tab
          label="Dampak & Roadmap"
          {...a11yProps(4)}
          iconPosition="start"
          icon={<IconFA size={16} name="road" />}
-        />
+        /> */}
        </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
        <TabLatarBelakang />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-       <TabDeskripsi />
+       {/* <TabDeskripsi /> */}
+       <TabProfil />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-       <TabPendanaan />
+       {/* <TabPendanaan /> */}
+       <TabPolicy />
       </CustomTabPanel>
-      <CustomTabPanel value={value} index={3}>
+      {/* <CustomTabPanel value={value} index={3}>
        <TabDampak />
-      </CustomTabPanel>
+      </CustomTabPanel> */}
      </Box>
     )}
    </ContentPage>

@@ -1,13 +1,15 @@
-import { Icon, SvgIcon } from "@mui/material";
+import { Icon } from "@mui/material";
 
 export const IconFA = ({
  name,
  size,
  color,
+ sx,
 }: {
  name: string;
  size: number;
  color?: string;
+ sx?: any;
 }) => {
  return (
   <Icon
@@ -16,6 +18,7 @@ export const IconFA = ({
    sx={{
     fontSize: `${size}px`,
     color: color,
+    ...sx,
    }}
   />
  );
