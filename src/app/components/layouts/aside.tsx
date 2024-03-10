@@ -16,6 +16,7 @@ import {
  IconPenetapan,
  IconProfil,
 } from "../icons";
+import { IconFA } from "../icons/icon-fa";
 
 export default function Aside({ isExpanded }: { isExpanded?: boolean }) {
  const CompanyIcon = (
@@ -82,6 +83,12 @@ export default function Aside({ isExpanded }: { isExpanded?: boolean }) {
        label="dashboard"
        icon={<IconDashboard />}
        url=""
+      />
+      <MenuItem
+       isExpanded={isExpanded}
+       label="Tema"
+       icon={<IconFA name="palette" size={16} />}
+       url="tema"
       />
       <MenuItem
        isExpanded={isExpanded}

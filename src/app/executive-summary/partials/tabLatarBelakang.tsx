@@ -7,7 +7,7 @@ import CardItem from "@/app/components/cardTabItem";
 export default function TabLatarBelakang({}) {
  return (
   <Stack gap={1}>
-   <CardItem title="Fakta & Data" setting>
+   <CardItem title="Fakta & Data (Struktur Masalah yang Dihadapi)" setting>
     <EmptyState
      dense
      icon={<IconEmptyData width={100} />}

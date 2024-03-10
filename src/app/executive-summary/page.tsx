@@ -15,6 +15,7 @@ import TabPendanaan from "./partials/tabPendanaan";
 import TabDampak from "./partials/tabDampak";
 import TabProfil from "./partials/tabProfil";
 import TabPolicy from "./partials/tabPolicy";
+import TabOverall from "./partials/tabOverall";
 
 interface TabPanelProps {
  children?: React.ReactNode;
@@ -116,16 +117,22 @@ export default function PageExecutiveSummary({}) {
         />
         <Tab
          label="Policy Brief"
-         {...a11yProps(3)}
+         {...a11yProps(2)}
          iconPosition="start"
          icon={<IconFA size={16} name="file-shield" sx={{ width: "auto" }} />}
         />
-        {/* <Tab
-         label="Dampak & Roadmap"
-         {...a11yProps(4)}
+        <Tab
+         label="Overall Risk"
+         {...a11yProps(3)}
          iconPosition="start"
-         icon={<IconFA size={16} name="road" />}
-        /> */}
+         icon={
+          <IconFA
+           size={16}
+           name="triangle-exclamation"
+           sx={{ width: "auto" }}
+          />
+         }
+        />
        </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
@@ -142,6 +149,9 @@ export default function PageExecutiveSummary({}) {
       {/* <CustomTabPanel value={value} index={3}>
        <TabDampak />
       </CustomTabPanel> */}
+      <CustomTabPanel value={value} index={3}>
+       <TabOverall />
+      </CustomTabPanel>
      </Box>
     )}
    </ContentPage>
