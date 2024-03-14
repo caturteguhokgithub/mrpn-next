@@ -1,8 +1,10 @@
 import React from "react";
-import { Typography, Stack, Paper } from "@mui/material";
+import { Stack } from "@mui/material";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
 import CardItem from "@/app/components/cardTabItem";
+import TableTagging from "./table-tagging";
+import AddButton from "@/app/components/buttonAdd";
 
 export default function TabLatarBelakang({}) {
  return (
@@ -46,7 +48,10 @@ export default function TabLatarBelakang({}) {
      description="Silahkan isi konten halaman ini"
     />
    </CardItem>
-   <CardItem title="Tagging Atas Kebijakan Lain" setting>
+   <CardItem
+    title="Tagging Atas Kebijakan Lain"
+    addButton={<AddButton filled small title="Tambah Tagging" />}
+   >
     {/* <EmptyState
      dense
      icon={<IconEmptyData width={100} />}
@@ -54,7 +59,7 @@ export default function TabLatarBelakang({}) {
      description="Silahkan isi konten halaman ini"
     /> */}
 
-    <Stack gap={1}>
+    {/* <Stack gap={1}>
      <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
       <Typography fontWeight={500}>SDGs</Typography>
      </Paper>
@@ -64,7 +69,8 @@ export default function TabLatarBelakang({}) {
      <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
       <Typography fontWeight={500}>DAK</Typography>
      </Paper>
-    </Stack>
+    </Stack> */}
+    <TableTagging />
    </CardItem>
    <CardItem title="Segment Penerima Manfaat" setting>
     <EmptyState

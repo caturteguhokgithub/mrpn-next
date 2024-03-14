@@ -30,6 +30,8 @@ export default function AddButton({
     }
     sx={{
      borderRadius: "50px",
+     minHeight: 30,
+     lineHeight: 1,
      "&:hover": {
       bgcolor: blue[800],
       color: "white",

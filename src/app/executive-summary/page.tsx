@@ -96,6 +96,7 @@ export default function PageExecutiveSummary({}) {
           minHeight: 0,
           bgcolor: grey[300],
           borderRadius: 2,
+          lineHeight: 1,
           "&.Mui-selected": {
            bgcolor: theme.palette.primary.main,
            color: "white",

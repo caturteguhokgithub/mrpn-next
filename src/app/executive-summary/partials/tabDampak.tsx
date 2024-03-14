@@ -5,7 +5,6 @@ import { IconEmptyData } from "@/app/components/icons";
 import CardItem from "@/app/components/cardTabItem";
 import AddButton from "@/app/components/buttonAdd";
 import TableDampak from "./table-dampak";
-// import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 

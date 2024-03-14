@@ -74,6 +74,13 @@ export default function Aside({ isExpanded }: { isExpanded?: boolean }) {
    direction="column"
    justifyContent="space-between"
    height="calc(100% - 120px)"
+   maxHeight="calc(100% - 120px)"
+   overflow="auto"
+   sx={{
+    "&::-webkit-scrollbar": {
+     width: "3px",
+    },
+   }}
   >
    <Stack gap="40px" direction="column">
     <MenuGroup isExpanded={isExpanded} label="menu">
