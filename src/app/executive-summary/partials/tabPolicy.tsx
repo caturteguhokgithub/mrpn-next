@@ -3,6 +3,7 @@ import { Typography, Stack, Paper } from "@mui/material";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
 import CardItem from "@/app/components/cardTabItem";
+import TableProfilIntervensi from "./table-profil-intervensi";
 
 export default function TabPolicy({}) {
  return (
@@ -22,26 +23,7 @@ export default function TabPolicy({}) {
      title="Data Kosong"
      description="Silahkan isi konten halaman ini"
     /> */}
-    <Stack gap={1}>
-     <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-      <Typography fontWeight={500}>Nomenklatur</Typography>
-     </Paper>
-     <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-      <Typography fontWeight={500}>Anggaran</Typography>
-     </Paper>
-     <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-      <Typography fontWeight={500}>Sumber Anggaran</Typography>
-     </Paper>
-     <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-      <Typography fontWeight={500}>Target</Typography>
-     </Paper>
-     <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-      <Typography fontWeight={500}>KL Pelaksana</Typography>
-     </Paper>
-     <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-      <Typography fontWeight={500}>KL Kontributor</Typography>
-     </Paper>
-    </Stack>
+    <TableProfilIntervensi />
    </CardItem>
    <CardItem
     title={

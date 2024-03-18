@@ -6,6 +6,7 @@ import CardItem from "@/app/components/cardTabItem";
 import { green, grey, red } from "@mui/material/colors";
 import TableDampak from "./table-dampak";
 import AddButton from "@/app/components/buttonAdd";
+import TableProfilOutput from "./table-profil-output";
 
 const FundSource = ({
  label,
@@ -76,17 +77,7 @@ export default function TabProfil({}) {
      title="Data Kosong"
      description="Silahkan isi konten halaman ini"
     /> */}
-    <Stack gap={1}>
-     <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-      <Typography fontWeight={500}>Alokasi APBN</Typography>
-     </Paper>
-     <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-      <Typography fontWeight={500}>Target</Typography>
-     </Paper>
-     <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-      <Typography fontWeight={500}>KL Pelaksana/PIC</Typography>
-     </Paper>
-    </Stack>
+    <TableProfilOutput />
    </CardItem>
    <CardItem title={<em>Stakeholder Mapping</em>} setting>
     <EmptyState
