@@ -91,7 +91,7 @@ export default function PagePerlakuanRisiko({}) {
 
  return (
   <DashboardLayout>
-   <ContentPage title="Perlakuan Risiko">
+   <ContentPage title="Perlakuan Risiko" chooseProject>
     {isEmpty ? (
      <EmptyState
       icon={<IconEmptyPage />}

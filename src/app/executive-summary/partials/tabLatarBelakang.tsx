@@ -1,15 +1,43 @@
 import React from "react";
-import { Stack } from "@mui/material";
+import { Dialog, DialogContent, DialogTitle, Stack } from "@mui/material";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
 import CardItem from "@/app/components/cardTabItem";
 import TableTagging from "./table-tagging";
 import AddButton from "@/app/components/buttonAdd";
+import dynamic from "next/dynamic";
+import DialogQuill from "@/app/components/dialog";
 
 export default function TabLatarBelakang({}) {
+ const [modalOpenFact, setModalOpenFact] = React.useState(false);
+ const [modalOpenGoal, setModalOpenGoal] = React.useState(false);
+ const [modalOpenSegment, setModalOpenSegment] = React.useState(false);
+ const [value, setValue] = React.useState("");
+
+ const handleModalOpenFact = () => {
+  setModalOpenFact(true);
+ };
+ const handleModalOpenGoal = () => {
+  setModalOpenGoal(true);
+ };
+ const handleModalOpenSegment = () => {
+  setModalOpenSegment(true);
+ };
+ const handleModalClose = () => {
+  setModalOpenFact(false);
+  setModalOpenGoal(false);
+  setModalOpenSegment(false);
+ };
+
+ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+
  return (
   <Stack gap={1}>
-   <CardItem title="Fakta & Data (Struktur Masalah yang Dihadapi)" setting>
+   <CardItem
+    title="Fakta & Data (Struktur Masalah yang Dihadapi)"
+    setting
+    settingEditOnclick={handleModalOpenFact}
+   >
     <EmptyState
      dense
      icon={<IconEmptyData width={100} />}
@@ -39,14 +67,32 @@ export default function TabLatarBelakang({}) {
       </li>
      </ul>
     </Typography> */}
+    <DialogQuill
+     dialogOpen={modalOpenFact}
+     dialogClose={handleModalClose}
+     title="Fakta & Data (Struktur Masalah yang Dihadapi)"
+    >
+     <ReactQuill theme="snow" value={value} onChange={setValue} />
+    </DialogQuill>
    </CardItem>
-   <CardItem title="Tujuan Utama/Goals Proyek" setting>
+   <CardItem
+    title="Tujuan Utama/Goals Proyek"
+    setting
+    settingEditOnclick={handleModalOpenGoal}
+   >
     <EmptyState
      dense
      icon={<IconEmptyData width={100} />}
      title="Data Kosong"
      description="Silahkan isi konten halaman ini"
     />
+    <DialogQuill
+     dialogOpen={modalOpenGoal}
+     dialogClose={handleModalClose}
+     title="Tujuan Utama/Goals Proyek"
+    >
+     <ReactQuill theme="snow" value={value} onChange={setValue} />
+    </DialogQuill>
    </CardItem>
    <CardItem
     title="Tagging Atas Kebijakan Lain"
@@ -72,7 +118,11 @@ export default function TabLatarBelakang({}) {
     </Stack> */}
     <TableTagging />
    </CardItem>
-   <CardItem title="Segment Penerima Manfaat" setting>
+   <CardItem
+    title="Segment Penerima Manfaat"
+    setting
+    settingEditOnclick={handleModalOpenSegment}
+   >
     <EmptyState
      dense
      icon={<IconEmptyData width={100} />}
@@ -84,6 +134,13 @@ export default function TabLatarBelakang({}) {
      minuman, tekstil, otomotif, elektronik, kimia dan farmasi, serta alat
      kesehatan
     </Typography> */}
+    <DialogQuill
+     dialogOpen={modalOpenSegment}
+     dialogClose={handleModalClose}
+     title="Segment Penerima Manfaat"
+    >
+     <ReactQuill theme="snow" value={value} onChange={setValue} />
+    </DialogQuill>
    </CardItem>
    {/* <CardItem title="Intisari" setting>
     <Typography variant="body2" color="text.secondary">

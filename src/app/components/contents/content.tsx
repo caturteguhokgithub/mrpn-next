@@ -1,6 +1,7 @@
 import React from "react";
 import {
  Box,
+ Chip,
  FormControl,
  MenuItem,
  Paper,
@@ -75,29 +76,34 @@ export default function ContentPage({
     </Stack>
     <Stack direction="row" gap={1}>
      {chooseProject && (
-      <FormControl
-       size="small"
-       sx={
-        {
-         // fieldset: {
-         //  border: 0,
-         // },
-        }
-       }
-      >
-       <SelectCustomTheme value={project} onChange={handleChangeProject}>
-        <MenuItem value="" disabled>
-         Pilih project
-        </MenuItem>
-        <MenuItem value="1" defaultChecked>
-         KP-01 - Industri 4.0 di 6 Subsektor Prioritas
-        </MenuItem>
-        <MenuItem value="2">KP-02 - Destinasi Pariwisata Prioritas</MenuItem>
-        <MenuItem value="3">
-         KP-03 - Kawasan Industri Prioritas dan Smelter
-        </MenuItem>
-       </SelectCustomTheme>
-      </FormControl>
+      <>
+       <Chip
+        color="primary"
+        // variant="outlined"
+        label="KP-03 - Kawasan Industri Prioritas dan Smelter"
+        sx={{
+         //  bgcolor: "white",
+         fontWeight: 500,
+         lineHeight: 1,
+         cursor: "default",
+         px: 1,
+        }}
+       />
+       {/* <FormControl size="small">
+        <SelectCustomTheme value={project} onChange={handleChangeProject}>
+         <MenuItem value="" disabled>
+          Pilih project
+         </MenuItem>
+         <MenuItem value="1" defaultChecked>
+          KP-01 - Industri 4.0 di 6 Subsektor Prioritas
+         </MenuItem>
+         <MenuItem value="2">KP-02 - Destinasi Pariwisata Prioritas</MenuItem>
+         <MenuItem value="3">
+          KP-03 - Kawasan Industri Prioritas dan Smelter
+         </MenuItem>
+        </SelectCustomTheme>
+       </FormControl> */}
+      </>
      )}
      {chooseKonteks && (
       <FormControl size="small">

@@ -93,12 +93,12 @@ export default function TableMilestone({ mode }: { mode?: string }) {
      </Button>
     ) : null}
    </Stack>
-   <TableContainer component={Paper}>
+   <TableContainer component={Paper} elevation={0}>
     <Table sx={{ minWidth: 650 }} size="small">
      <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
       <TableRow>
        <TableCell width="70px"></TableCell>
-       <TableCell>Program/ Kegiatan</TableCell>
+       <TableCell>Program/Kegiatan</TableCell>
        <TableCell>Penanggung Jawab</TableCell>
        <TableCell>Sumber Anggaran</TableCell>
        <TableCell width="150px">Waktu Mulai Pekerjaan</TableCell>

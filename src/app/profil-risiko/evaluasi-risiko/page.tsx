@@ -9,7 +9,7 @@ import { IconEmptyPage } from "@/components/icons";
 export default function PageEvaluasiRisiko({}) {
  return (
   <DashboardLayout>
-   <ContentPage title="Evaluasi Risiko" withCard>
+   <ContentPage title="Evaluasi Risiko" withCard chooseProject>
     <EmptyState
      icon={<IconEmptyPage />}
      title="Halaman Profil Risiko Kosong"

@@ -37,7 +37,7 @@ export default function PagePemantauan({}) {
    },
    {
     id: "nilai_target_sebelum",
-    header: "Nilai Target Risiko Sebelum Mitigasi",
+    header: "Nilai Target Risiko Sebelum Perlakuan",
     columns: [
      {
       accessorKey: "kemungkinan",
@@ -61,7 +61,7 @@ export default function PagePemantauan({}) {
    },
    {
     id: "nilai_target_setelah",
-    header: "Nilai Target Risiko Setelah Mitigasi",
+    header: "Nilai Target Risiko Setelah Perlakuan",
     columns: [
      {
       accessorKey: "kemungkinan",
@@ -83,60 +83,60 @@ export default function PagePemantauan({}) {
      },
     ],
    },
-   {
-    accessorKey: "perlakuan",
-    header: "Perlakuan Risiko",
-    size: 200,
-    enableColumnActions: false,
-   },
-   {
-    id: "waktu",
-    header: "Waktu Rencana dan Realisasi Mitigasi",
-    columns: [
-     {
-      accessorKey: "tgl_rencana",
-      header: "Tanggal Rencana",
-      size: 200,
-      enableColumnActions: false,
-     },
-     {
-      accessorKey: "tgl_realisasi",
-      header: "Tanggal Realisasi",
-      size: 200,
-      enableColumnActions: false,
-     },
-    ],
-   },
-   {
-    id: "nilai_penurunan",
-    header: "Nilai Penurunan Target Risiko Setelah Mitigasi",
-    columns: [
-     {
-      accessorKey: "kemungkinan",
-      header: "Kemungkinan",
-      size: 170,
-      enableColumnActions: false,
-     },
-     {
-      accessorKey: "dampak",
-      header: "Dampak",
-      size: 170,
-      enableColumnActions: false,
-     },
-     {
-      accessorKey: "tingkat_risiko",
-      header: "Tingkat Risiko",
-      size: 170,
-      enableColumnActions: false,
-     },
-    ],
-   },
-   {
-    accessorKey: "keterangan",
-    header: "Keterangan Perlakuan Risiko",
-    size: 250,
-    enableColumnActions: false,
-   },
+   //    {
+   //     accessorKey: "perlakuan",
+   //     header: "Perlakuan Risiko",
+   //     size: 200,
+   //     enableColumnActions: false,
+   //    },
+   //    {
+   //     id: "waktu",
+   //     header: "Waktu Rencana dan Realisasi Mitigasi",
+   //     columns: [
+   //      {
+   //       accessorKey: "tgl_rencana",
+   //       header: "Tanggal Rencana",
+   //       size: 200,
+   //       enableColumnActions: false,
+   //      },
+   //      {
+   //       accessorKey: "tgl_realisasi",
+   //       header: "Tanggal Realisasi",
+   //       size: 200,
+   //       enableColumnActions: false,
+   //      },
+   //     ],
+   //    },
+   //    {
+   //     id: "nilai_penurunan",
+   //     header: "Nilai Penurunan Target Risiko Setelah Mitigasi",
+   //     columns: [
+   //      {
+   //       accessorKey: "kemungkinan",
+   //       header: "Kemungkinan",
+   //       size: 170,
+   //       enableColumnActions: false,
+   //      },
+   //      {
+   //       accessorKey: "dampak",
+   //       header: "Dampak",
+   //       size: 170,
+   //       enableColumnActions: false,
+   //      },
+   //      {
+   //       accessorKey: "tingkat_risiko",
+   //       header: "Tingkat Risiko",
+   //       size: 170,
+   //       enableColumnActions: false,
+   //      },
+   //     ],
+   //    },
+   //    {
+   //     accessorKey: "keterangan",
+   //     header: "Keterangan Perlakuan Risiko",
+   //     size: 250,
+   //     enableColumnActions: false,
+   //    },
   ],
   []
  );
@@ -156,13 +156,13 @@ export default function PagePemantauan({}) {
     },
    },
   },
-  renderEmptyRowsFallback: ({ table }) => (
-   <EmptyState
-    icon={<IconEmptyData />}
-    title="Data Kosong"
-    description="Silahkan isi konten halaman ini"
-   />
-  ),
+  //   renderEmptyRowsFallback: ({ table }) => (
+  //    <EmptyState
+  //     icon={<IconEmptyData />}
+  //     title="Data Kosong"
+  //     description="Silahkan isi konten halaman ini"
+  //    />
+  //   ),
  });
 
  return (

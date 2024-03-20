@@ -13,28 +13,34 @@ import theme from "@/theme";
 export default function TableProfilOutput() {
  function createData(
   id: number,
-  alokasiApbn: string,
+  kl: string,
+  ro: string,
   target: string,
-  pic: string
+  anggaran: string
  ) {
   return {
    id,
-   alokasiApbn,
+   kl,
+   ro,
    target,
-   pic,
+   anggaran,
   };
  }
 
- const rows = [createData(1, "-", "-", "-")];
+ const rows = [createData(1, "-", "-", "-", "-")];
 
  return (
   <TableContainer component={Paper} elevation={0}>
    <Table sx={{ minWidth: 650 }} size="small">
     <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
      <TableRow>
-      <TableCell>Alokasi APBN</TableCell>
+      {/* <TableCell>Alokasi APBN</TableCell>
       <TableCell>Target</TableCell>
-      <TableCell>KL Pelaksana/PIC</TableCell>
+      <TableCell>KL Pelaksana/PIC</TableCell> */}
+      <TableCell>KL</TableCell>
+      <TableCell>RO</TableCell>
+      <TableCell>Target</TableCell>
+      <TableCell>Anggaran</TableCell>
      </TableRow>
     </TableHead>
     <TableBody>
@@ -43,9 +49,10 @@ export default function TableProfilOutput() {
        key={row.id}
        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
       >
-       <TableCell>{row.alokasiApbn}</TableCell>
+       <TableCell>{row.kl}</TableCell>
+       <TableCell>{row.ro}</TableCell>
        <TableCell>{row.target}</TableCell>
-       <TableCell>{row.pic}</TableCell>
+       <TableCell>{row.anggaran}</TableCell>
       </TableRow>
      ))}
     </TableBody>

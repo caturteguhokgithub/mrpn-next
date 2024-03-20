@@ -126,13 +126,7 @@ export default function PageExecutiveSummary({}) {
          label="Overall Risk"
          {...a11yProps(3)}
          iconPosition="start"
-         icon={
-          <IconFA
-           size={16}
-           name="triangle-exclamation"
-           sx={{ width: "auto" }}
-          />
-         }
+         icon={<IconFA size={16} name="rotate" sx={{ width: "auto" }} />}
         />
        </Tabs>
       </Box>

@@ -11,74 +11,79 @@ import { IconEmptyData } from "@/app/components/icons";
 export default function TabTable({}) {
  const columns = useMemo(
   () => [
-   {
-    accessorKey: "no",
-    header: "No.",
-    size: 80,
-    enableColumnActions: false,
-   },
+   //    {
+   //     accessorKey: "no",
+   //     header: "No.",
+   //     size: 80,
+   //     enableColumnActions: false,
+   //    },
    {
     accessorKey: "peristiwa",
     header: "Peristiwa Risiko",
-    size: 200,
     enableColumnActions: false,
     enableSorting: false,
    },
    {
-    accessorKey: "ada_tidak",
-    header: "Pengendalian yang ada (Ada/Tidak)",
-    size: 250,
+    accessorKey: "peristiwa",
+    header: "Nilai Risiko",
     enableColumnActions: false,
+    enableSorting: false,
    },
-   {
-    id: "tingkat_risiko",
-    header: "Tingkat Risiko",
-    columns: [
-     {
-      accessorKey: "kemungkinan",
-      header: "Kemungkinan",
-      size: 170,
-      enableColumnActions: false,
-     },
-     {
-      accessorKey: "dampak",
-      header: "Dampak",
-      size: 170,
-      enableColumnActions: false,
-     },
-     {
-      accessorKey: "tingkat_risiko",
-      header: "Tingkat Risiko",
-      size: 170,
-      enableColumnActions: false,
-     },
-    ],
-   },
-   {
-    id: "perlakuan_risiko",
-    header: "Perlakuan Risiko",
-    columns: [
-     {
-      accessorKey: "deskripsi",
-      header: "Deskripsi Rencana Mitigasi",
-      size: 220,
-      enableColumnActions: false,
-      enableSorting: false,
-     },
-     {
-      accessorKey: "waktu",
-      header: "Waktu Rencana Mitigasi",
-      size: 220,
-      enableColumnActions: false,
-     },
-     {
-      accessorKey: "penanggungjawab",
-      header: "Penanggung Jawab",
-      size: 220,
-      enableColumnActions: false,
-     },
-    ],
-   },
+   //    {
+   //     accessorKey: "ada_tidak",
+   //     header: "Pengendalian yang ada (Ada/Tidak)",
+   //     size: 250,
+   //     enableColumnActions: false,
+   //    },
+   //    {
+   //     id: "tingkat_risiko",
+   //     header: "Tingkat Risiko",
+   //     columns: [
+   //      {
+   //       accessorKey: "kemungkinan",
+   //       header: "Kemungkinan",
+   //       size: 170,
+   //       enableColumnActions: false,
+   //      },
+   //      {
+   //       accessorKey: "dampak",
+   //       header: "Dampak",
+   //       size: 170,
+   //       enableColumnActions: false,
+   //      },
+   //      {
+   //       accessorKey: "tingkat_risiko",
+   //       header: "Tingkat Risiko",
+   //       size: 170,
+   //       enableColumnActions: false,
+   //      },
+   //     ],
+   //    },
+   //    {
+   //     id: "perlakuan_risiko",
+   //     header: "Perlakuan Risiko",
+   //     columns: [
+   //      {
+   //       accessorKey: "deskripsi",
+   //       header: "Deskripsi Rencana Mitigasi",
+   //       size: 220,
+   //       enableColumnActions: false,
+   //       enableSorting: false,
+   //      },
+   //      {
+   //       accessorKey: "waktu",
+   //       header: "Waktu Rencana Mitigasi",
+   //       size: 220,
+   //       enableColumnActions: false,
+   //      },
+   //      {
+   //       accessorKey: "penanggungjawab",
+   //       header: "Penanggung Jawab",
+   //       size: 220,
+   //       enableColumnActions: false,
+   //      },
+   //     ],
+   //    },
   ],
   []
  );

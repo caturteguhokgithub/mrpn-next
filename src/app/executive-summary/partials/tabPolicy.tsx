@@ -16,7 +16,7 @@ export default function TabPolicy({}) {
      description="Silahkan isi konten halaman ini"
     />
    </CardItem>
-   <CardItem title="Profil Intervensi Kunci" setting>
+   <CardItem title="Profil RO Kunci" setting>
     {/* <EmptyState
      dense
      icon={<IconEmptyData width={100} />}

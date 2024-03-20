@@ -86,7 +86,7 @@ export default function TableRincianOutput({ mode }: { mode?: string }) {
      </Button>
     ) : null}
    </Stack>
-   <TableContainer component={Paper}>
+   <TableContainer component={Paper} elevation={0}>
     <Table sx={{ minWidth: 650 }} size="small">
      <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
       <TableRow>
@@ -99,8 +99,9 @@ export default function TableRincianOutput({ mode }: { mode?: string }) {
        <TableCell rowSpan={2}>Kode</TableCell>
       </TableRow>
       <TableRow>
+       {/* <TableCell width="120px">Dukungan Sasaran KP</TableCell> */}
        <TableCell width="120px">Uraian Sasaran</TableCell>
-       <TableCell width="120px"> Satuan Sasaran</TableCell>
+       <TableCell width="120px">Satuan Sasaran</TableCell>
        <TableCell width="120px">Target Fisik</TableCell>
        <TableCell width="120px">Keuangan</TableCell>
       </TableRow>

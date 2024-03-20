@@ -41,21 +41,21 @@ export default function Header({}) {
    }}
   >
    <Stack direction="row" justifyContent="space-between" width="100%">
-    <Stack direction="column">
-     <Typography
+    <Stack direction="column" justifyContent="center">
+     {/* <Typography
       component="h1"
       fontWeight="800"
       fontSize="1.25rem"
       lineHeight={1.2}
      >
       MRPN 2024
-     </Typography>
+     </Typography> */}
      <Typography
       component="p"
-      fontWeight="400"
-      fontSize="14px"
+      fontWeight="700"
+      fontSize="20px"
       letterSpacing="0.5px"
-      lineHeight={1.3}
+      //   lineHeight={1.3}
      >
       National Risk Information System
      </Typography>

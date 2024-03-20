@@ -16,6 +16,7 @@ import { grey } from "@mui/material/colors";
 import React from "react";
 import Image from "next/image";
 import { loadCSS } from "fg-loadcss";
+import "react-quill/dist/quill.snow.css";
 
 export default function DashboardLayout({
  children,

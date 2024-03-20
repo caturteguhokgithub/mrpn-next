@@ -38,12 +38,12 @@ export default function TableProfilIntervensi() {
    <Table sx={{ minWidth: 650 }} size="small">
     <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
      <TableRow>
-      <TableCell>Nomenklatur</TableCell>
+      <TableCell>KL Utama</TableCell>
+      <TableCell>KL Kontributor</TableCell>
+      <TableCell>Nomenklatur RO</TableCell>
+      <TableCell>Target</TableCell>
       <TableCell>Anggaran</TableCell>
       <TableCell>Sumber Anggaran</TableCell>
-      <TableCell>Target</TableCell>
-      <TableCell>KL Pelaksana</TableCell>
-      <TableCell>KL Kontributor</TableCell>
      </TableRow>
     </TableHead>
     <TableBody>
@@ -52,12 +52,12 @@ export default function TableProfilIntervensi() {
        key={row.id}
        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
       >
-       <TableCell>{row.nomenklatur}</TableCell>
-       <TableCell>{row.anggaran}</TableCell>
-       <TableCell>{row.sumberAnggaran}</TableCell>
-       <TableCell>{row.target}</TableCell>
        <TableCell>{row.klPelaksana}</TableCell>
        <TableCell>{row.klKontributor}</TableCell>
+       <TableCell>{row.nomenklatur}</TableCell>
+       <TableCell>{row.target}</TableCell>
+       <TableCell>{row.anggaran}</TableCell>
+       <TableCell>{row.sumberAnggaran}</TableCell>
       </TableRow>
      ))}
     </TableBody>

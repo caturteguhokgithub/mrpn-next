@@ -49,51 +49,58 @@ export default function PageKonteksStrategis({}) {
     enableColumnActions: false,
    },
    {
-    accessorKey: "latar_belakang",
-    header: "Latar Belakang",
-    grow: true,
+    accessorKey: "kl_utama",
+    header: "KL Utama",
+    size: 200,
+    grow: false,
     enableColumnActions: false,
-    enableSorting: false,
-    accessorFn: (row: any) => row.latar_belakang,
-    Cell: ({ renderedCellValue }: any) => (
-     <Typography
-      fontSize="14px"
-      color="inherit"
-      sx={{
-       overflow: "hidden",
-       textOverflow: "ellipsis",
-       display: "-webkit-box",
-       WebkitLineClamp: "2",
-       WebkitBoxOrient: "vertical",
-      }}
-     >
-      {renderedCellValue}
-     </Typography>
-    ),
    },
-   {
-    accessorKey: "ruang_lingkup",
-    header: "Ruang Lingkup",
-    grow: true,
-    enableColumnActions: false,
-    enableSorting: false,
-    accessorFn: (row: any) => row.ruang_lingkup,
-    Cell: ({ renderedCellValue }: any) => (
-     <Typography
-      fontSize="14px"
-      color="inherit"
-      sx={{
-       overflow: "hidden",
-       textOverflow: "ellipsis",
-       display: "-webkit-box",
-       WebkitLineClamp: "2",
-       WebkitBoxOrient: "vertical",
-      }}
-     >
-      {renderedCellValue}
-     </Typography>
-    ),
-   },
+   //    {
+   //     accessorKey: "latar_belakang",
+   //     header: "Latar Belakang",
+   //     grow: true,
+   //     enableColumnActions: false,
+   //     enableSorting: false,
+   //     accessorFn: (row: any) => row.latar_belakang,
+   //     Cell: ({ renderedCellValue }: any) => (
+   //      <Typography
+   //       fontSize="14px"
+   //       color="inherit"
+   //       sx={{
+   //        overflow: "hidden",
+   //        textOverflow: "ellipsis",
+   //        display: "-webkit-box",
+   //        WebkitLineClamp: "2",
+   //        WebkitBoxOrient: "vertical",
+   //       }}
+   //      >
+   //       {renderedCellValue}
+   //      </Typography>
+   //     ),
+   //    },
+   //    {
+   //     accessorKey: "ruang_lingkup",
+   //     header: "Ruang Lingkup",
+   //     grow: true,
+   //     enableColumnActions: false,
+   //     enableSorting: false,
+   //     accessorFn: (row: any) => row.ruang_lingkup,
+   //     Cell: ({ renderedCellValue }: any) => (
+   //      <Typography
+   //       fontSize="14px"
+   //       color="inherit"
+   //       sx={{
+   //        overflow: "hidden",
+   //        textOverflow: "ellipsis",
+   //        display: "-webkit-box",
+   //        WebkitLineClamp: "2",
+   //        WebkitBoxOrient: "vertical",
+   //       }}
+   //      >
+   //       {renderedCellValue}
+   //      </Typography>
+   //     ),
+   //    },
   ],
   []
  );

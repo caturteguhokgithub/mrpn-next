@@ -56,7 +56,7 @@ export default function PageAnalisisRisiko({}) {
 
  return (
   <DashboardLayout>
-   <ContentPage title="Analisis Risiko" withCard noPadding>
+   <ContentPage title="Analisis Risiko" withCard noPadding chooseProject>
     {isEmpty ? (
      <EmptyState
       icon={<IconEmptyPage />}

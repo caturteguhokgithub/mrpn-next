@@ -87,11 +87,14 @@ export const MenuItem = ({
    display: "flex",
    flexDirection: "column",
    transition: "all 300ms ease",
+   ".MuiListItemIcon-root": {
+    color: theme.palette.primary.light,
+   },
    "&.Mui-selected, &.link-active": {
     backgroundColor: theme.palette.primary.light,
     border: 0,
     cursor: "default",
-    "svg, p": {
+    "svg, p, .MuiListItemIcon-root": {
      color: theme.palette.primary.main,
      fill: theme.palette.primary.main,
     },
@@ -128,20 +131,14 @@ export const MenuItem = ({
      transition: "all 1s ease",
      "&.Mui-focusVisible, &:hover": {
       backgroundColor: alpha(whiteRGB, 0.2),
-      ".MuiIcon-root": {
-       color: theme.palette.primary.light,
-      },
-      p: {
+      ".MuiIcon-root, p": {
        color: theme.palette.primary.light,
       },
      },
     },
     "&.Mui-focusVisible, &:hover": {
      backgroundColor: alpha(blue[900], 0.5),
-     ".MuiIcon-root": {
-      color: theme.palette.primary.light,
-     },
-     p: {
+     ".MuiIcon-root, p": {
       color: theme.palette.primary.light,
      },
     },
@@ -161,20 +158,14 @@ export const MenuItem = ({
     transition: "all 1s ease",
     "&.Mui-focusVisible, &:hover": {
      backgroundColor: alpha(whiteRGB, 0.2),
-     ".MuiIcon-root": {
-      color: theme.palette.primary.light,
-     },
-     p: {
+     ".MuiIcon-root, p": {
       color: theme.palette.primary.light,
      },
     },
    },
    "&.Mui-focusVisible, &:hover": {
     backgroundColor: alpha(blue[900], 0.5),
-    ".MuiIcon-root": {
-     color: theme.palette.primary.light,
-    },
-    p: {
+    ".MuiIcon-root, p": {
      color: theme.palette.primary.light,
     },
    },

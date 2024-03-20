@@ -30,7 +30,12 @@ export default function FormKonstra({ mode }: { mode?: string }) {
       color="primary"
       variant="outlined"
       label="KP-03 - Kawasan Industri Prioritas dan Smelter"
-      sx={{ bgcolor: "white", fontWeight: 600, lineHeight: 1 }}
+      sx={{
+       bgcolor: "white",
+       fontWeight: 600,
+       lineHeight: 1,
+       cursor: "default",
+      }}
      />
     }
     breadcrumb={
