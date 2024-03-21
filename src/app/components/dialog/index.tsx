@@ -1,16 +1,20 @@
 import React from "react";
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 
-export default function DialogQuill({
+export default function DialogComponent({
  title,
  dialogOpen,
  dialogClose,
  children,
+ dialogFooter,
+ width,
 }: {
  title: string;
  dialogOpen: boolean;
  dialogClose?: () => void;
  children?: React.ReactNode;
+ dialogFooter?: React.ReactNode;
+ width?: number;
 }) {
  return (
   <Dialog
@@ -19,7 +23,7 @@ export default function DialogQuill({
    onClose={dialogClose}
    sx={{
     ".MuiPaper-root": {
-     minWidth: 800,
+     minWidth: width ? width : 800,
      ".quill": {
       height: "calc(100vh - 400px)",
       ".ql-container": {
@@ -31,6 +35,7 @@ export default function DialogQuill({
   >
    <DialogTitle>{title}</DialogTitle>
    <DialogContent dividers>{children}</DialogContent>
+   {dialogFooter}
   </Dialog>
  );
 }

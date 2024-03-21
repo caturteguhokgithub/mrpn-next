@@ -10,7 +10,7 @@ export default function TabOverall({}) {
 
  return (
   <Stack gap={1}>
-   <CardItem title={<em>Overall Risk</em>} setting>
+   <CardItem title={<em>Overall Risk</em>}>
     {isEmpty ? (
      <EmptyState
       dense

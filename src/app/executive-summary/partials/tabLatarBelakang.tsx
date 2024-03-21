@@ -1,17 +1,26 @@
 import React from "react";
-import { Dialog, DialogContent, DialogTitle, Stack } from "@mui/material";
+import {
+ Button,
+ Dialog,
+ DialogActions,
+ DialogContent,
+ DialogTitle,
+ Stack,
+} from "@mui/material";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
 import CardItem from "@/app/components/cardTabItem";
 import TableTagging from "./table-tagging";
 import AddButton from "@/app/components/buttonAdd";
 import dynamic from "next/dynamic";
-import DialogQuill from "@/app/components/dialog";
+import DialogComponent from "@/app/components/dialog";
+import FormTagging from "./form-tagging";
 
 export default function TabLatarBelakang({}) {
  const [modalOpenFact, setModalOpenFact] = React.useState(false);
  const [modalOpenGoal, setModalOpenGoal] = React.useState(false);
  const [modalOpenSegment, setModalOpenSegment] = React.useState(false);
+ const [modalOpenTag, setModalOpenTag] = React.useState(false);
  const [value, setValue] = React.useState("");
 
  const handleModalOpenFact = () => {
@@ -23,10 +32,15 @@ export default function TabLatarBelakang({}) {
  const handleModalOpenSegment = () => {
   setModalOpenSegment(true);
  };
+ const handleModalOpenTag = () => {
+  setModalOpenTag(true);
+ };
+
  const handleModalClose = () => {
   setModalOpenFact(false);
   setModalOpenGoal(false);
   setModalOpenSegment(false);
+  setModalOpenTag(false);
  };
 
  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -67,13 +81,23 @@ export default function TabLatarBelakang({}) {
       </li>
      </ul>
     </Typography> */}
-    <DialogQuill
+    <DialogComponent
      dialogOpen={modalOpenFact}
      dialogClose={handleModalClose}
      title="Fakta & Data (Struktur Masalah yang Dihadapi)"
+     dialogFooter={
+      <DialogActions sx={{ p: 2, px: 3 }}>
+       <Button variant="outlined" onClick={handleModalClose}>
+        Batal
+       </Button>
+       <Button variant="contained" type="submit">
+        Simpan
+       </Button>
+      </DialogActions>
+     }
     >
      <ReactQuill theme="snow" value={value} onChange={setValue} />
-    </DialogQuill>
+    </DialogComponent>
    </CardItem>
    <CardItem
     title="Tujuan Utama/Goals Proyek"
@@ -86,17 +110,34 @@ export default function TabLatarBelakang({}) {
      title="Data Kosong"
      description="Silahkan isi konten halaman ini"
     />
-    <DialogQuill
+    <DialogComponent
      dialogOpen={modalOpenGoal}
      dialogClose={handleModalClose}
      title="Tujuan Utama/Goals Proyek"
+     dialogFooter={
+      <DialogActions sx={{ p: 2, px: 3 }}>
+       <Button variant="outlined" onClick={handleModalClose}>
+        Batal
+       </Button>
+       <Button variant="contained" type="submit">
+        Simpan
+       </Button>
+      </DialogActions>
+     }
     >
      <ReactQuill theme="snow" value={value} onChange={setValue} />
-    </DialogQuill>
+    </DialogComponent>
    </CardItem>
    <CardItem
     title="Tagging Atas Kebijakan Lain"
-    addButton={<AddButton filled small title="Tambah Tagging" />}
+    addButton={
+     <AddButton
+      filled
+      small
+      title="Tambah Tagging"
+      onclick={handleModalOpenTag}
+     />
+    }
    >
     {/* <EmptyState
      dense
@@ -104,7 +145,6 @@ export default function TabLatarBelakang({}) {
      title="Data Kosong"
      description="Silahkan isi konten halaman ini"
     /> */}
-
     {/* <Stack gap={1}>
      <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
       <Typography fontWeight={500}>SDGs</Typography>
@@ -117,6 +157,23 @@ export default function TabLatarBelakang({}) {
      </Paper>
     </Stack> */}
     <TableTagging />
+    <DialogComponent
+     dialogOpen={modalOpenTag}
+     dialogClose={handleModalClose}
+     title="Tambah Tagging"
+     dialogFooter={
+      <DialogActions sx={{ p: 2, px: 3 }}>
+       <Button variant="outlined" onClick={handleModalClose}>
+        Batal
+       </Button>
+       <Button variant="contained" type="submit">
+        Simpan
+       </Button>
+      </DialogActions>
+     }
+    >
+     <FormTagging mode="add" />
+    </DialogComponent>
    </CardItem>
    <CardItem
     title="Segment Penerima Manfaat"
@@ -134,13 +191,23 @@ export default function TabLatarBelakang({}) {
      minuman, tekstil, otomotif, elektronik, kimia dan farmasi, serta alat
      kesehatan
     </Typography> */}
-    <DialogQuill
+    <DialogComponent
      dialogOpen={modalOpenSegment}
      dialogClose={handleModalClose}
      title="Segment Penerima Manfaat"
+     dialogFooter={
+      <DialogActions sx={{ p: 2, px: 3 }}>
+       <Button variant="outlined" onClick={handleModalClose}>
+        Batal
+       </Button>
+       <Button variant="contained" type="submit">
+        Simpan
+       </Button>
+      </DialogActions>
+     }
     >
      <ReactQuill theme="snow" value={value} onChange={setValue} />
-    </DialogQuill>
+    </DialogComponent>
    </CardItem>
    {/* <CardItem title="Intisari" setting>
     <Typography variant="body2" color="text.secondary">

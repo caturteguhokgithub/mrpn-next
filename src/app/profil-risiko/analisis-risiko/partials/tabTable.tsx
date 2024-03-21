@@ -1,14 +1,47 @@
 import React, { useMemo } from "react";
 import { advancedTable } from "@/app/components/table";
-import { Box } from "@mui/material";
+import { Box, Button, DialogActions } from "@mui/material";
 import {
  useMaterialReactTable,
  MaterialReactTable,
 } from "material-react-table";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
+import AddButton from "@/app/components/buttonAdd";
+import { data } from "../setting";
+import ActionColumn from "@/app/components/actions/action";
+import DialogComponent from "@/app/components/dialog";
+import FormTable from "./form-table";
 
 export default function TabTable({}) {
+ const [modalOpenView, setModalOpenView] = React.useState(false);
+ const [modalOpenEdit, setModalOpenEdit] = React.useState(false);
+ const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
+ const [modalOpenDelete, setModalOpenDelete] = React.useState(false);
+
+ const handleModalOpenView = () => {
+  setModalOpenView(true);
+ };
+
+ const handleModalOpenEdit = () => {
+  setModalOpenEdit(true);
+ };
+
+ const handleModalOpenAdd = () => {
+  setModalOpenAdd(true);
+ };
+
+ const handleModalOpenDelete = () => {
+  setModalOpenDelete(true);
+ };
+
+ const handleModalClose = () => {
+  setModalOpenView(false);
+  setModalOpenEdit(false);
+  setModalOpenAdd(false);
+  setModalOpenDelete(false);
+ };
+
  const columns = useMemo(
   () => [
    //    {
@@ -24,7 +57,7 @@ export default function TabTable({}) {
     enableSorting: false,
    },
    {
-    accessorKey: "peristiwa",
+    accessorKey: "nilai",
     header: "Nilai Risiko",
     enableColumnActions: false,
     enableSorting: false,
@@ -88,41 +121,116 @@ export default function TabTable({}) {
   []
  );
 
- const data: any = [];
+ //  const data: any = [];
+ type ColumnsType = {};
+
+ const renderTopToolbar: ColumnsType = {
+  renderTopToolbarCustomActions: () => (
+   <AddButton onclick={handleModalOpenAdd} title="Tambah Analisis" />
+  ),
+ };
 
  const table = useMaterialReactTable({
   columns,
   data,
+  ...renderTopToolbar,
   ...advancedTable,
-  enableRowActions: false,
-  muiTableContainerProps: {
-   sx: {
-    maxWidth: "calc(100vw - 364px)",
-    "&::-webkit-scrollbar": {
-     height: "10px",
-    },
+  //   enableRowActions: false,
+  //   muiTableContainerProps: {
+  //    sx: {
+  //     maxWidth: "calc(100vw - 364px)",
+  //     "&::-webkit-scrollbar": {
+  //      height: "10px",
+  //     },
+  //    },
+  //   },
+  //   renderEmptyRowsFallback: ({ table }) => (
+  //    <EmptyState
+  //     icon={<IconEmptyData />}
+  //     title="Data Kosong"
+  //     description="Silahkan isi konten halaman ini"
+  //    />
+  //   ),
+  displayColumnDefOptions: {
+   "mrt-row-actions": {
+    header: "",
+    size: 100,
+    Cell: () => (
+     <ActionColumn
+      viewClick={handleModalOpenView}
+      editClick={handleModalOpenEdit}
+      deleteClick={handleModalOpenDelete}
+     />
+    ),
    },
   },
-  renderEmptyRowsFallback: ({ table }) => (
-   <EmptyState
-    icon={<IconEmptyData />}
-    title="Data Kosong"
-    description="Silahkan isi konten halaman ini"
-   />
-  ),
  });
 
+ const dialogActionFooter = (
+  <DialogActions sx={{ p: 2, px: 3 }}>
+   <Button onClick={handleModalClose}>Batal</Button>
+   <Button variant="contained" type="submit">
+    Simpan
+   </Button>
+  </DialogActions>
+ );
+
+ const dialogActionDeleteFooter = (
+  <DialogActions sx={{ p: 2, px: 3 }}>
+   <Button onClick={handleModalClose}>Batal</Button>
+   <Button variant="contained" color="error" type="submit">
+    Hapus
+   </Button>
+  </DialogActions>
+ );
+
  return (
-  <Box
-   className="table-collapsed"
-   sx={{
-    ".MuiPaper-root": {
-     m: 0,
-     boxShadow: "none",
-    },
-   }}
-  >
-   <MaterialReactTable table={table} />
-  </Box>
+  <>
+   <Box
+    className="table-collapsed"
+    sx={{
+     ".MuiPaper-root": {
+      m: 0,
+      boxShadow: "none",
+     },
+    }}
+   >
+    <MaterialReactTable table={table} />
+   </Box>
+
+   <DialogComponent
+    dialogOpen={modalOpenView}
+    dialogClose={handleModalClose}
+    title="Detail Analisis Risiko"
+    dialogFooter={dialogActionFooter}
+   >
+    <FormTable mode="view" />
+   </DialogComponent>
+   <DialogComponent
+    dialogOpen={modalOpenEdit}
+    dialogClose={handleModalClose}
+    title="Detail Analisis Risiko"
+    dialogFooter={dialogActionFooter}
+   >
+    <FormTable mode="edit" />
+   </DialogComponent>
+   <DialogComponent
+    dialogOpen={modalOpenAdd}
+    dialogClose={handleModalClose}
+    title="Detail Analisis Risiko"
+    dialogFooter={dialogActionFooter}
+   >
+    <FormTable mode="add" />
+   </DialogComponent>
+   <DialogComponent
+    width={240}
+    dialogOpen={modalOpenDelete}
+    dialogClose={handleModalClose}
+    title="Hapus Data"
+    dialogFooter={dialogActionDeleteFooter}
+   >
+    Anda yakin akan menghapus data ini?
+   </DialogComponent>
+  </>
  );
 }

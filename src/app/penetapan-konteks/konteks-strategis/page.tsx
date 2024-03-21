@@ -10,21 +10,51 @@ import {
 } from "material-react-table";
 import { data } from "./setting";
 import { advancedTable } from "@/app/components/table";
-import { Typography } from "@mui/material";
+import { Button, DialogActions } from "@mui/material";
 import ActionColumn from "@/app/components/actions/action";
 import AddButton from "@/app/components/buttonAdd";
+import DialogComponent from "@/app/components/dialog";
+import FormTable from "./form/partials/form-table";
 
 type ColumnsType = {};
 
 export default function PageKonteksStrategis({}) {
- const mainUrl = "/penetapan-konteks/konteks-strategis/";
- const addUrl = `${mainUrl}form/add`;
+ //  const mainUrl = "/penetapan-konteks/konteks-strategis/";
+ //  const addUrl = `${mainUrl}form/add`;
+ const [modalOpenView, setModalOpenView] = React.useState(false);
+ const [modalOpenEdit, setModalOpenEdit] = React.useState(false);
+ const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
+ const [modalOpenDelete, setModalOpenDelete] = React.useState(false);
 
  const renderTopToolbar: ColumnsType = {
   renderTopToolbarCustomActions: () => (
-   <AddButton url={addUrl} title="Tambah Konteks" />
+   <AddButton onclick={handleModalOpenAdd} title="Tambah Konteks" />
   ),
  };
+
+ const handleModalOpenView = () => {
+  setModalOpenView(true);
+ };
+
+ const handleModalOpenEdit = () => {
+  setModalOpenEdit(true);
+ };
+
+ const handleModalOpenAdd = () => {
+  setModalOpenAdd(true);
+ };
+
+ const handleModalOpenDelete = () => {
+  setModalOpenDelete(true);
+ };
+
+ const handleModalClose = () => {
+  setModalOpenView(false);
+  setModalOpenEdit(false);
+  setModalOpenAdd(false);
+  setModalOpenDelete(false);
+ };
+
  const columns = useMemo(
   () => [
    {
@@ -116,18 +146,73 @@ export default function PageKonteksStrategis({}) {
     size: 100,
     Cell: () => (
      <ActionColumn
-      editUrl={`${mainUrl}form/edit`}
-      viewUrl={`${mainUrl}form/view`}
+      viewClick={handleModalOpenView}
+      editClick={handleModalOpenEdit}
+      deleteClick={handleModalOpenDelete}
      />
     ),
    },
   },
  });
+
+ const dialogActionFooter = (
+  <DialogActions sx={{ p: 2, px: 3 }}>
+   <Button onClick={handleModalClose}>Batal</Button>
+   <Button variant="contained" type="submit">
+    Simpan
+   </Button>
+  </DialogActions>
+ );
+
+ const dialogActionDeleteFooter = (
+  <DialogActions sx={{ p: 2, px: 3 }}>
+   <Button onClick={handleModalClose}>Batal</Button>
+   <Button variant="contained" color="error" type="submit">
+    Hapus
+   </Button>
+  </DialogActions>
+ );
+
  return (
-  <DashboardLayout>
-   <ContentPage title="Konteks Strategis" chooseKonteks>
-    <MaterialReactTable table={table} />
-   </ContentPage>
-  </DashboardLayout>
+  <>
+   <DashboardLayout>
+    <ContentPage title="Konteks Strategis" chooseKonteks>
+     <MaterialReactTable table={table} />
+    </ContentPage>
+   </DashboardLayout>
+   <DialogComponent
+    dialogOpen={modalOpenView}
+    dialogClose={handleModalClose}
+    title="Detail Konteks Strategis"
+    dialogFooter={dialogActionFooter}
+   >
+    <FormTable mode="view" />
+   </DialogComponent>
+   <DialogComponent
+    dialogOpen={modalOpenEdit}
+    dialogClose={handleModalClose}
+    title="Detail Konteks Strategis"
+    dialogFooter={dialogActionFooter}
+   >
+    <FormTable mode="edit" />
+   </DialogComponent>
+   <DialogComponent
+    dialogOpen={modalOpenAdd}
+    dialogClose={handleModalClose}
+    title="Detail Konteks Strategis"
+    dialogFooter={dialogActionFooter}
+   >
+    <FormTable mode="add" />
+   </DialogComponent>
+   <DialogComponent
+    width={240}
+    dialogOpen={modalOpenDelete}
+    dialogClose={handleModalClose}
+    title="Hapus Data"
+    dialogFooter={dialogActionDeleteFooter}
+   >
+    Anda yakin akan menghapus data ini?
+   </DialogComponent>
+  </>
  );
 }

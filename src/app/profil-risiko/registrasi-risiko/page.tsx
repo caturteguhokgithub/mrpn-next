@@ -4,7 +4,7 @@ import ContentPage from "@/app/components/contents/content";
 import React, { useMemo } from "react";
 import DashboardLayout from "@/app/components/layouts/layout";
 import { advancedTable } from "@/app/components/table";
-import { Box } from "@mui/material";
+import { Box, Button, DialogActions } from "@mui/material";
 import {
  useMaterialReactTable,
  MaterialReactTable,
@@ -12,10 +12,41 @@ import {
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
 import ActionColumn from "@/app/components/actions/action";
+import AddButton from "@/app/components/buttonAdd";
+import { data } from "./setting";
+import DialogComponent from "@/app/components/dialog";
+import FormTable from "./partials/form-table";
 
 export default function PageRegistrasiRisiko({}) {
- const mainUrl = "/penetapan-konteks/konteks-strategis/";
- const addUrl = `${mainUrl}form/add`;
+ //  const mainUrl = "/penetapan-konteks/konteks-strategis/";
+ //  const addUrl = `${mainUrl}form/add`;
+ const [modalOpenView, setModalOpenView] = React.useState(false);
+ const [modalOpenEdit, setModalOpenEdit] = React.useState(false);
+ const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
+ const [modalOpenDelete, setModalOpenDelete] = React.useState(false);
+
+ const handleModalOpenView = () => {
+  setModalOpenView(true);
+ };
+
+ const handleModalOpenEdit = () => {
+  setModalOpenEdit(true);
+ };
+
+ const handleModalOpenAdd = () => {
+  setModalOpenAdd(true);
+ };
+
+ const handleModalOpenDelete = () => {
+  setModalOpenDelete(true);
+ };
+
+ const handleModalClose = () => {
+  setModalOpenView(false);
+  setModalOpenEdit(false);
+  setModalOpenAdd(false);
+  setModalOpenDelete(false);
+ };
 
  const columns = useMemo(
   () => [
@@ -83,11 +114,19 @@ export default function PageRegistrasiRisiko({}) {
   []
  );
 
- const data: any = [];
+ //  const data: any = [];
+ type ColumnsType = {};
+
+ const renderTopToolbar: ColumnsType = {
+  renderTopToolbarCustomActions: () => (
+   <AddButton onclick={handleModalOpenAdd} title="Tambah Registrasi" />
+  ),
+ };
 
  const table = useMaterialReactTable({
   columns,
   data,
+  ...renderTopToolbar,
   ...advancedTable,
   //   enableRowActions: false,
   //   muiTableContainerProps: {
@@ -111,21 +150,75 @@ export default function PageRegistrasiRisiko({}) {
     size: 100,
     Cell: () => (
      <ActionColumn
-      editUrl={`${mainUrl}form/edit`}
-      viewUrl={`${mainUrl}form/view`}
+      viewClick={handleModalOpenView}
+      editClick={handleModalOpenEdit}
+      deleteClick={handleModalOpenDelete}
      />
     ),
    },
   },
  });
 
+ const dialogActionFooter = (
+  <DialogActions sx={{ p: 2, px: 3 }}>
+   <Button onClick={handleModalClose}>Batal</Button>
+   <Button variant="contained" type="submit">
+    Simpan
+   </Button>
+  </DialogActions>
+ );
+
+ const dialogActionDeleteFooter = (
+  <DialogActions sx={{ p: 2, px: 3 }}>
+   <Button onClick={handleModalClose}>Batal</Button>
+   <Button variant="contained" color="error" type="submit">
+    Hapus
+   </Button>
+  </DialogActions>
+ );
+
  return (
-  <DashboardLayout>
-   <ContentPage title="Registrasi Risiko" chooseKonteks chooseProject>
-    <Box className="table-collapsed">
-     <MaterialReactTable table={table} data={data} />
-    </Box>
-   </ContentPage>
-  </DashboardLayout>
+  <>
+   <DashboardLayout>
+    <ContentPage title="Registrasi Risiko" chooseKonteks chooseProject>
+     {/* <Box className="table-collapsed"> */}
+     <MaterialReactTable table={table} />
+     {/* </Box> */}
+    </ContentPage>
+   </DashboardLayout>
+   <DialogComponent
+    dialogOpen={modalOpenView}
+    dialogClose={handleModalClose}
+    title="Detail Registrasi Risiko"
+    dialogFooter={dialogActionFooter}
+   >
+    <FormTable mode="view" />
+   </DialogComponent>
+   <DialogComponent
+    dialogOpen={modalOpenEdit}
+    dialogClose={handleModalClose}
+    title="Detail Registrasi Risiko"
+    dialogFooter={dialogActionFooter}
+   >
+    <FormTable mode="edit" />
+   </DialogComponent>
+   <DialogComponent
+    dialogOpen={modalOpenAdd}
+    dialogClose={handleModalClose}
+    title="Detail Registrasi Risiko"
+    dialogFooter={dialogActionFooter}
+   >
+    <FormTable mode="add" />
+   </DialogComponent>
+   <DialogComponent
+    width={240}
+    dialogOpen={modalOpenDelete}
+    dialogClose={handleModalClose}
+    title="Hapus Data"
+    dialogFooter={dialogActionDeleteFooter}
+   >
+    Anda yakin akan menghapus data ini?
+   </DialogComponent>
+  </>
  );
 }
