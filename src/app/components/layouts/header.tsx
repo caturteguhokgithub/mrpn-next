@@ -9,12 +9,10 @@ import {
  ListItemText,
  Menu,
  MenuItem,
- MenuList,
- Popover,
  Stack,
  Typography,
 } from "@mui/material";
-import { red } from "@mui/material/colors";
+import { orange, red } from "@mui/material/colors";
 import React from "react";
 import { IconKeluar } from "../icons";
 import { IconFA } from "../icons/icon-fa";
@@ -57,7 +55,26 @@ export default function Header({}) {
       letterSpacing="0.5px"
       //   lineHeight={1.3}
      >
-      National Risk Information System
+      <Box component="span" color={orange[500]} textTransform="uppercase">
+       Na
+      </Box>
+      tional{" "}
+      <Box component="span" color={orange[500]} textTransform="uppercase">
+       R
+      </Box>
+      i
+      <Box component="span" color={orange[500]} textTransform="uppercase">
+       s
+      </Box>
+      k{" "}
+      <Box component="span" color={orange[500]} textTransform="uppercase">
+       I
+      </Box>
+      nformation{" "}
+      <Box component="span" color={orange[500]} textTransform="uppercase">
+       S
+      </Box>
+      ystem
      </Typography>
      {/* <Typography
       component="h1"
@@ -69,7 +86,7 @@ export default function Header({}) {
      </Typography> */}
     </Stack>
     <Button onClick={handleClick} sx={{ p: 0, m: 0, minWidth: 0 }}>
-     <Avatar sx={{ bgcolor: "white" }}>
+     <Avatar sx={{ bgcolor: "white", width: 36, height: 36 }}>
       <IconFA size={16} name="user-tie" color={theme.palette.primary.main} />
      </Avatar>
     </Button>

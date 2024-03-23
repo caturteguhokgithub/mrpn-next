@@ -16,35 +16,21 @@ import AddButton from "@/app/components/buttonAdd";
 import { data } from "./setting";
 import DialogComponent from "@/app/components/dialog";
 import FormTable from "./partials/form-table";
+import { addUrl, editUrl } from "@/app/utils/constant";
 
 export default function PageRegistrasiRisiko({}) {
- //  const mainUrl = "/penetapan-konteks/konteks-strategis/";
- //  const addUrl = `${mainUrl}form/add`;
  const [modalOpenView, setModalOpenView] = React.useState(false);
- const [modalOpenEdit, setModalOpenEdit] = React.useState(false);
- const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
  const [modalOpenDelete, setModalOpenDelete] = React.useState(false);
 
  const handleModalOpenView = () => {
   setModalOpenView(true);
  };
-
- const handleModalOpenEdit = () => {
-  setModalOpenEdit(true);
- };
-
- const handleModalOpenAdd = () => {
-  setModalOpenAdd(true);
- };
-
  const handleModalOpenDelete = () => {
   setModalOpenDelete(true);
  };
 
  const handleModalClose = () => {
   setModalOpenView(false);
-  setModalOpenEdit(false);
-  setModalOpenAdd(false);
   setModalOpenDelete(false);
  };
 
@@ -119,7 +105,7 @@ export default function PageRegistrasiRisiko({}) {
 
  const renderTopToolbar: ColumnsType = {
   renderTopToolbarCustomActions: () => (
-   <AddButton onclick={handleModalOpenAdd} title="Tambah Registrasi" />
+   <AddButton url={addUrl} title="Tambah Registrasi" />
   ),
  };
 
@@ -151,7 +137,7 @@ export default function PageRegistrasiRisiko({}) {
     Cell: () => (
      <ActionColumn
       viewClick={handleModalOpenView}
-      editClick={handleModalOpenEdit}
+      editUrl={editUrl}
       deleteClick={handleModalOpenDelete}
      />
     ),
@@ -190,25 +176,8 @@ export default function PageRegistrasiRisiko({}) {
     dialogOpen={modalOpenView}
     dialogClose={handleModalClose}
     title="Detail Registrasi Risiko"
-    dialogFooter={dialogActionFooter}
    >
     <FormTable mode="view" />
-   </DialogComponent>
-   <DialogComponent
-    dialogOpen={modalOpenEdit}
-    dialogClose={handleModalClose}
-    title="Detail Registrasi Risiko"
-    dialogFooter={dialogActionFooter}
-   >
-    <FormTable mode="edit" />
-   </DialogComponent>
-   <DialogComponent
-    dialogOpen={modalOpenAdd}
-    dialogClose={handleModalClose}
-    title="Detail Registrasi Risiko"
-    dialogFooter={dialogActionFooter}
-   >
-    <FormTable mode="add" />
    </DialogComponent>
    <DialogComponent
     width={240}

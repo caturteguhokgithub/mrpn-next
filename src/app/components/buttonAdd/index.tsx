@@ -8,13 +8,17 @@ export default function AddButton({
  url,
  filled,
  small,
+ noMargin,
  onclick,
+ sx,
 }: {
  title: string;
  url?: string;
  filled?: boolean;
  small?: boolean;
+ noMargin?: boolean;
  onclick?: () => void;
+ sx?: any;
 }) {
  const buttonAdd = (
   <Button
@@ -30,9 +34,12 @@ export default function AddButton({
     />
    }
    sx={{
+    ...sx,
+    mx: noMargin ? 0 : 1,
     borderRadius: "50px",
     minHeight: 30,
     lineHeight: 1,
+    whiteSpace: "nowrap",
     "&:hover": {
      bgcolor: blue[800],
      color: "white",

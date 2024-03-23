@@ -5,6 +5,7 @@ export type PerlakuanType = {
  is_fisik: string;
  peristiwa: string;
  pemilik: string;
+ ada_tidak: string;
 };
 
 export const data: PerlakuanType[] = [
@@ -15,5 +16,6 @@ export const data: PerlakuanType[] = [
   is_fisik: "-",
   peristiwa: "-",
   pemilik: "-",
+  ada_tidak: "-",
  },
 ];

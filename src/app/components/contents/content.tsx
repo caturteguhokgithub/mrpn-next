@@ -24,6 +24,7 @@ export default function ContentPage({
  noPadding,
  heightTitleBreadcrumb,
  overflowHidden,
+ addButton,
 }: {
  children: React.ReactNode;
  title: string;
@@ -35,6 +36,7 @@ export default function ContentPage({
  titleChild?: React.ReactNode;
  breadcrumb?: React.ReactNode;
  overflowHidden?: boolean;
+ addButton?: React.ReactNode;
 }) {
  const [project, setProject] = React.useState("3");
  const [konteks, setKonteks] = React.useState("");
@@ -112,6 +114,7 @@ export default function ContentPage({
        </SelectCustomTheme>
       </FormControl>
      )}
+     {addButton && addButton}
     </Stack>
    </Stack>
    <Box

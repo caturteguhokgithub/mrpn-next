@@ -16,23 +16,14 @@ import AddButton from "@/app/components/buttonAdd";
 import { data } from "./setting";
 import DialogComponent from "@/app/components/dialog";
 import FormTable from "./partials/form-table";
+import { addUrl, editUrl } from "@/app/utils/constant";
 
 export default function PagePerlakuanRisiko({}) {
  const [modalOpenView, setModalOpenView] = React.useState(false);
- const [modalOpenEdit, setModalOpenEdit] = React.useState(false);
- const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
  const [modalOpenDelete, setModalOpenDelete] = React.useState(false);
 
  const handleModalOpenView = () => {
   setModalOpenView(true);
- };
-
- const handleModalOpenEdit = () => {
-  setModalOpenEdit(true);
- };
-
- const handleModalOpenAdd = () => {
-  setModalOpenAdd(true);
  };
 
  const handleModalOpenDelete = () => {
@@ -41,8 +32,6 @@ export default function PagePerlakuanRisiko({}) {
 
  const handleModalClose = () => {
   setModalOpenView(false);
-  setModalOpenEdit(false);
-  setModalOpenAdd(false);
   setModalOpenDelete(false);
  };
 
@@ -100,7 +89,7 @@ export default function PagePerlakuanRisiko({}) {
 
  const renderTopToolbar: ColumnsType = {
   renderTopToolbarCustomActions: () => (
-   <AddButton onclick={handleModalOpenAdd} title="Tambah Perlakuan" />
+   <AddButton url={addUrl} title="Tambah Perlakuan" />
   ),
  };
 
@@ -132,7 +121,7 @@ export default function PagePerlakuanRisiko({}) {
     Cell: () => (
      <ActionColumn
       viewClick={handleModalOpenView}
-      editClick={handleModalOpenEdit}
+      editUrl={editUrl}
       deleteClick={handleModalOpenDelete}
      />
     ),
@@ -171,17 +160,7 @@ export default function PagePerlakuanRisiko({}) {
        description="Silahkan isi konten halaman ini"
       />
      ) : (
-      <Box
-       className="table-collapsed perlakuan-risiko"
-       sx={{
-        ".MuiPaper-root": {
-         m: 0,
-         boxShadow: "none",
-        },
-       }}
-      >
-       <MaterialReactTable table={table} />
-      </Box>
+      <MaterialReactTable table={table} />
      )}
     </ContentPage>
    </DashboardLayout>
@@ -189,25 +168,8 @@ export default function PagePerlakuanRisiko({}) {
     dialogOpen={modalOpenView}
     dialogClose={handleModalClose}
     title="Detail Perlakuan Risiko"
-    dialogFooter={dialogActionFooter}
    >
     <FormTable mode="view" />
-   </DialogComponent>
-   <DialogComponent
-    dialogOpen={modalOpenEdit}
-    dialogClose={handleModalClose}
-    title="Detail Perlakuan Risiko"
-    dialogFooter={dialogActionFooter}
-   >
-    <FormTable mode="edit" />
-   </DialogComponent>
-   <DialogComponent
-    dialogOpen={modalOpenAdd}
-    dialogClose={handleModalClose}
-    title="Detail Perlakuan Risiko"
-    dialogFooter={dialogActionFooter}
-   >
-    <FormTable mode="add" />
    </DialogComponent>
    <DialogComponent
     width={240}
