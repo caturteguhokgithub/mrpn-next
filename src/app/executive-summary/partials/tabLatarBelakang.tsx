@@ -45,6 +45,8 @@ export default function TabLatarBelakang({}) {
 
  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
+ const isEmpty = false;
+
  return (
   <Stack gap={1}>
    <CardItem
@@ -52,35 +54,77 @@ export default function TabLatarBelakang({}) {
     setting
     settingEditOnclick={handleModalOpenFact}
    >
-    <EmptyState
-     dense
-     icon={<IconEmptyData width={100} />}
-     title="Data Kosong"
-     description="Silahkan isi konten halaman ini"
-    />
-    {/* <Typography variant="body2" component="div" color="text.secondary">
-     <ul style={{ paddingLeft: 20 }}>
-      <li>
-       Nilai kontribusi PDB industri menurun menjadi di bawah 20 persen, dengan
-       rata-rata pertumbuhan PDB yang lebih rendah dari pertumbuhan nasional.
-      </li>
-      <li>
-       Produktivitas tenaga kerja industri meningkat namun dalam laju yang lebih
-       lambat dibandingkan peningkatan produktivitas tenaga kerja di negara lain
-      </li>
-      <li>
-       Kontribusi ekspor industri Indonesia lebih rendah dibandingkan dengan
-       negara China, Filipina, Thailand, Vietnam dan Malaysia, dan sebagian
-       besar ekspor industri dari Indonesia memiliki kandungan teknologi yang
-       lebih rendah.
-      </li>
-      <li>
-       Potensi pemanfaatan teknologi digital sangat besar dengan percepatan
-       aplikasi teknologi digital di berbagai macam aspek kehidupan, termasuk
-       pada sektor industri nasional
-      </li>
-     </ul>
-    </Typography> */}
+    {isEmpty ? (
+     <EmptyState
+      dense
+      icon={<IconEmptyData width={100} />}
+      title="Data Kosong"
+      description="Silahkan isi konten halaman ini"
+     />
+    ) : (
+     <>
+      <strong>Strength</strong>
+      <ul>
+       <li>
+        Sumber daya manusia yang terlatih dalam bidang kesehatan dan gizi.
+       </li>
+       <li>
+        Program-program pemerintah yang telah ada untuk mempromosikan gizi
+        seimbang.
+       </li>
+       <li>Kolaborasi lintas sektor (Kesehatan, Pendidikan, dan social)</li>
+       <li>
+        Ketersediaan teknologi dan inovasi dalam pemantauan dan evaluasi status
+        gizi anak
+       </li>
+      </ul>
+      <strong>Weakness</strong>
+      <ul>
+       <li>
+        Akses terbatas ke layanan kesehatan dan gizi, terutama di daerah
+        pedesaan.
+       </li>
+       <li>Kurangnya kesadaran masyarakat tentang pentingnya gizi seimbang.</li>
+       <li>
+        Keterbatasan anggaran untuk program-program penanggulangan stunting.
+       </li>
+       <li>
+        Kurangnya infrastruktur yang memadai untuk mendukung distribusi makanan
+        bergizi ke daerah-daerah yang terpencil.
+       </li>
+      </ul>
+      <strong>Opportunity</strong>
+      <ol type="1">
+       <li>
+        Peningkatan pendapatan per kapita dapat memungkinkan akses yang lebih
+        baik ke makanan bergizi.
+       </li>
+       <li>
+        Kerjasama antara pemerintah, lembaga swadaya masyarakat, dan sektor
+        swasta untuk meningkatkan akses terhadap layanan kesehatan dan gizi
+       </li>
+       <li>
+        Dukungan dari organisasi internasional dan Lembaga nirlaba yang
+        berpengalaman dalam masalah gizi dan Kesehatan anak
+       </li>
+      </ol>
+      <strong>Threat</strong>
+      <ul>
+       <li>
+        Perubahan iklim dan bencana alam dapat mempengaruhi ketersediaan dan
+        akses terhadap makanan bergizi.
+       </li>
+       <li>
+        Konflik dan ketidakstabilan politik dapat mengganggu implementasi
+        program-program penanggulangan stunting.
+       </li>
+       <li>
+        Peningkatan harga makanan dan inflasi dapat membuat makanan bergizi
+        menjadi tidak terjangkau bagi masyarakat berpenghasilan rendah.
+       </li>
+      </ul>
+     </>
+    )}
     <DialogComponent
      dialogOpen={modalOpenFact}
      dialogClose={handleModalClose}
@@ -104,12 +148,25 @@ export default function TabLatarBelakang({}) {
     setting
     settingEditOnclick={handleModalOpenGoal}
    >
-    <EmptyState
-     dense
-     icon={<IconEmptyData width={100} />}
-     title="Data Kosong"
-     description="Silahkan isi konten halaman ini"
-    />
+    {isEmpty ? (
+     <EmptyState
+      dense
+      icon={<IconEmptyData width={100} />}
+      title="Data Kosong"
+      description="Silahkan isi konten halaman ini"
+     />
+    ) : (
+     <ol type="1">
+      <li>
+       Menurunkan Prevalensi wasting (kurus dan sangat kurus) pada balita hingga
+       3% pada tahun 2029
+      </li>
+      <li>
+       Menurunkan Persentase bayi dengan berat badan lahir rendah hingga 3,8%
+       pada tahun 2029
+      </li>
+     </ol>
+    )}
     <DialogComponent
      dialogOpen={modalOpenGoal}
      dialogClose={handleModalClose}
@@ -139,24 +196,16 @@ export default function TabLatarBelakang({}) {
      />
     }
    >
-    {/* <EmptyState
-     dense
-     icon={<IconEmptyData width={100} />}
-     title="Data Kosong"
-     description="Silahkan isi konten halaman ini"
-    /> */}
-    {/* <Stack gap={1}>
-     <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-      <Typography fontWeight={500}>SDGs</Typography>
-     </Paper>
-     <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-      <Typography fontWeight={500}>Janpres</Typography>
-     </Paper>
-     <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-      <Typography fontWeight={500}>DAK</Typography>
-     </Paper>
-    </Stack> */}
-    <TableTagging />
+    {isEmpty ? (
+     <EmptyState
+      dense
+      icon={<IconEmptyData width={100} />}
+      title="Data Kosong"
+      description="Silahkan isi konten halaman ini"
+     />
+    ) : (
+     <TableTagging />
+    )}
     <DialogComponent
      dialogOpen={modalOpenTag}
      dialogClose={handleModalClose}
@@ -180,17 +229,22 @@ export default function TabLatarBelakang({}) {
     setting
     settingEditOnclick={handleModalOpenSegment}
    >
-    <EmptyState
-     dense
-     icon={<IconEmptyData width={100} />}
-     title="Data Kosong"
-     description="Silahkan isi konten halaman ini"
-    />
-    {/* <Typography variant="body2" color="text.secondary">
-     Fokus pada industri 6 subsektor prioritas, yaitu industri makanan dan
-     minuman, tekstil, otomotif, elektronik, kimia dan farmasi, serta alat
-     kesehatan
-    </Typography> */}
+    {isEmpty ? (
+     <EmptyState
+      dense
+      icon={<IconEmptyData width={100} />}
+      title="Data Kosong"
+      description="Silahkan isi konten halaman ini"
+     />
+    ) : (
+     <ul>
+      <li>Fasilitas kesehatan pemerintah dan swasta</li>
+      <li>
+       Remaja putri, calon pengantin, ibu hamil, ibu nifas, ibu menyusui; anak
+       berusia 0 (nol) - 59 (lima puluh sembilan) bulan
+      </li>
+     </ul>
+    )}
     <DialogComponent
      dialogOpen={modalOpenSegment}
      dialogClose={handleModalClose}

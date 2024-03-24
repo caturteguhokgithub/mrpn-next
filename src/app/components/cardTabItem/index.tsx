@@ -120,6 +120,42 @@ export default function CardItem({
     ".MuiCardHeader-action": {
      m: 0,
     },
+    "ul, ol": {
+     pl: 1,
+     "& + strong": {
+      marginTop: 2,
+      display: "block",
+     },
+    },
+    ul: {
+     pl: 4,
+     li: {
+      pl: "5px",
+     },
+    },
+    ol: {
+     counterReset: "item",
+     li: {
+      display: "block",
+      marginLeft: "1.7em",
+      position: "relative",
+      "&:before": {
+       content: 'counter(item) ". "',
+       counterIncrement: "item",
+       display: "inline-block",
+       position: "absolute",
+       marginLeft: "-1.7em",
+      },
+     },
+    },
+    ".MuiTable-root": {
+     ul: {
+      pl: 2.5,
+      li: {
+       pl: "2px",
+      },
+     },
+    },
    }}
   >
    <CardHeader

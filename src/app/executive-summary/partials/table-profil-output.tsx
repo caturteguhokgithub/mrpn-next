@@ -27,7 +27,50 @@ export default function TableProfilOutput() {
   };
  }
 
- const rows = [createData(1, "-", "-", "-", "-")];
+ const rows = [
+  createData(
+   1,
+   "Kementerian PUPR",
+   "Studi Kelayakan Pengembangan SPAM dari Bendungan ...... Di Daerah XXXX (target 1000 SR)",
+   "-",
+   "-"
+  ),
+  createData(
+   2,
+   "Kementerian Kesehatan",
+   "Diseminasi Informasi Mengenai Stunting",
+   "-",
+   "-"
+  ),
+  createData(
+   3,
+   "Kementerian PUPR",
+   "Pembebasan Lahan di Daerah XXXX (pembangunan SPAM)",
+   "-",
+   "-"
+  ),
+  createData(
+   4,
+   "Kementerian Kesehatan",
+   "Pengembangan SPAM di Daerah XXXX (300 SR Kumulatif)",
+   "-",
+   "-"
+  ),
+  createData(
+   5,
+   "Kementerian Kesehatan",
+   "Pengembangan SPAM di Daerah XXXX (400 SR Kumulatif)",
+   "-",
+   "-"
+  ),
+  createData(
+   6,
+   "Kementerian Kesehatan",
+   "Pengembangan SPAM di Daerah XXXX (300 SR Kumulatif)",
+   "-",
+   "-"
+  ),
+ ];
 
  return (
   <TableContainer component={Paper} elevation={0}>

@@ -7,6 +7,10 @@ import {
  Box,
  Button,
  DialogActions,
+ Card,
+ CardActions,
+ CardContent,
+ CardMedia,
 } from "@mui/material";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
@@ -20,6 +24,7 @@ import FormSasaran from "./form-sasaran";
 import FormProfilRo from "./form-profil-ro";
 import dynamic from "next/dynamic";
 import FormPendanaan from "./form-pendanaan";
+import Image from "next/image";
 
 const FundSource = ({
  label,
@@ -44,7 +49,6 @@ const FundSource = ({
     bgcolor={color}
     border={`2px solid ${color}`}
     p="8px 16px"
-    // borderRadius="8px 0 0 8px"
     fontWeight={700}
     letterSpacing={0.2}
     fontSize={14}
@@ -61,6 +65,39 @@ const FundSource = ({
     {value}
    </Box>
   </Stack>
+ );
+};
+
+const CardStakeholder = ({
+ title,
+ img,
+ description,
+}: {
+ title: string;
+ img: string;
+ description: React.ReactNode;
+}) => {
+ return (
+  <Card sx={{ maxWidth: 345 }} elevation={2}>
+   <CardContent>
+    <Typography gutterBottom variant="h6" component="div" lineHeight={1.3}>
+     {title}
+    </Typography>
+   </CardContent>
+   <CardContent sx={{ textAlign: "center" }}>
+    <Image
+     alt={title}
+     src={img}
+     width={0}
+     height={0}
+     sizes="100vw"
+     style={{ width: "100%", height: "auto" }}
+    />
+   </CardContent>
+   <CardContent>
+    <Typography variant="body2">{description}</Typography>
+   </CardContent>
+  </Card>
  );
 };
 
@@ -93,6 +130,8 @@ export default function TabProfil({}) {
 
  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
+ const isEmpty = false;
+
  return (
   <Stack gap={1}>
    <CardItem
@@ -110,13 +149,16 @@ export default function TabProfil({}) {
      />
     }
    >
-    {/* <EmptyState
-     dense
-     icon={<IconEmptyData width={100} />}
-     title="Data Kosong"
-     description="Silahkan isi konten halaman ini"
-    /> */}
-    <TableDampak />
+    {isEmpty ? (
+     <EmptyState
+      dense
+      icon={<IconEmptyData width={100} />}
+      title="Data Kosong"
+      description="Silahkan isi konten halaman ini"
+     />
+    ) : (
+     <TableDampak />
+    )}
     <DialogComponent
      dialogOpen={modalOpenSasaran}
      dialogClose={handleModalClose}
@@ -176,12 +218,58 @@ export default function TabProfil({}) {
     setting
     settingEditOnclick={handleModalOpenStakeholder}
    >
-    <EmptyState
-     dense
-     icon={<IconEmptyData width={100} />}
-     title="Data Kosong"
-     description="Silahkan isi konten halaman ini"
-    />
+    {isEmpty ? (
+     <EmptyState
+      dense
+      icon={<IconEmptyData width={100} />}
+      title="Data Kosong"
+      description="Silahkan isi konten halaman ini"
+     />
+    ) : (
+     <Stack direction="row" flexWrap="wrap" gap={2} maxWidth={800}>
+      <CardStakeholder
+       title="Entitas Pendukung"
+       img="https://res.cloudinary.com/caturteguh/image/upload/v1711255729/mrpn/stakeholder-entitas-pendukung_e0fimb.png"
+       description={
+        <>
+         <strong>Keep Satisfied</strong>. Penyediaan gizi sesuai dengan standar.
+        </>
+       }
+      />
+      <CardStakeholder
+       title="Entitas Utama"
+       img="https://res.cloudinary.com/caturteguh/image/upload/v1711255595/mrpn/stakeholder-entitas-utama_zsyvn4.png"
+       description={
+        <>
+         <strong>Manage Closely</strong>. Meningkatkan asupan gizi dan
+         menyediakan sarana dan prasarana dasar.
+        </>
+       }
+      />
+      <CardStakeholder
+       title="Monitoring dan Pengawasan"
+       img="https://res.cloudinary.com/caturteguh/image/upload/v1711255600/mrpn/stakeholder-monitoring_ztxfek.png"
+       description={
+        <>
+         <strong>Monitor</strong>. Melakukan proses pengawasan atas penyaluran
+         asupan gizi dan penyediaan sarpras secara berkelanjutan kepada
+         masyarakat.
+        </>
+       }
+      />
+      <CardStakeholder
+       title="Koordinasi, Informasi, sosialisasi berkala"
+       img="https://res.cloudinary.com/caturteguh/image/upload/v1711255598/mrpn/stakeholder-koordinasi_bjgmuu.png"
+       description={
+        <>
+         <strong>Keep Informed</strong>. Keterlibatan pemerintah daerah dalam
+         pelaksanaan penurunan stunting yang diagendakan pada beberapa daerah.
+        </>
+       }
+      />
+     </Stack>
+    )}
+
     <DialogComponent
      dialogOpen={modalOpenStakeholder}
      dialogClose={handleModalClose}
@@ -205,38 +293,50 @@ export default function TabProfil({}) {
     setting
     settingEditOnclick={handleModalOpenPendanaan}
    >
-    {/* <EmptyState
-     dense
-     icon={<IconEmptyData width={100} />}
-     title="Data Kosong"
-     description="Silahkan isi konten halaman ini"
-    /> */}
-    <Grid container spacing={2}>
-     <Grid item lg={4}>
-      <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-       <Typography fontWeight={500}>Jumlah per Tahun</Typography>
-       <Stack gap={1} mt={1}>
-        <FundSource color={grey[600]} label="2023" value="Rp. -" />
-        <FundSource color={grey[600]} label="2024" value="Rp. -" />
-       </Stack>
-      </Paper>
+    {isEmpty ? (
+     <EmptyState
+      dense
+      icon={<IconEmptyData width={100} />}
+      title="Data Kosong"
+      description="Silahkan isi konten halaman ini"
+     />
+    ) : (
+     <Grid container spacing={2}>
+      <Grid item lg={4}>
+       <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
+        <Typography fontWeight={500} mb={2}>
+         Jumlah per Tahun
+        </Typography>
+        <Stack gap={1} mt={1}>
+         <FundSource color={grey[600]} label="2023" value="Rp. -" />
+         <FundSource color={grey[600]} label="2024" value="Rp. -" />
+        </Stack>
+       </Paper>
+      </Grid>
+      <Grid item lg={4}>
+       <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
+        <Typography fontWeight={500} mb={2}>
+         Sumber Pendanaan
+        </Typography>
+        <Stack gap={1} mt={1}>
+         <FundSource color={green[400]} label="APBN" value="Rp. -" />
+         <FundSource color={red[400]} label="Non-APBN" value="Rp. -" />
+        </Stack>
+       </Paper>
+      </Grid>
+      <Grid item lg={4}>
+       <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
+        <Typography fontWeight={500} mb={2}>
+         Kesiapan Pendanaan
+        </Typography>
+        <ul>
+         <li>Menyebutkan posisi saat ini dalam proses pemenuhan pendanaan</li>
+         <li>Menyebutkan persen nominal pendanaan yang sudah didapatkan</li>
+        </ul>
+       </Paper>
+      </Grid>
      </Grid>
-     <Grid item lg={4}>
-      <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-       <Typography fontWeight={500}>Sumber Pendanaan</Typography>
-       <Stack gap={1} mt={1}>
-        <FundSource color={green[400]} label="APBN" value="Rp. -" />
-        <FundSource color={red[400]} label="Non-APBN" value="Rp. -" />
-       </Stack>
-      </Paper>
-     </Grid>
-     <Grid item lg={4}>
-      <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-       <Typography fontWeight={500}>Kesiapan Pendanaan</Typography>
-       <Typography>-</Typography>
-      </Paper>
-     </Grid>
-    </Grid>
+    )}
     <DialogComponent
      dialogOpen={modalOpenPendanaan}
      dialogClose={handleModalClose}

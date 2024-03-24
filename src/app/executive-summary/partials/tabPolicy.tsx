@@ -1,5 +1,13 @@
 import React from "react";
-import { Typography, Stack, Paper, Button, DialogActions } from "@mui/material";
+import Image from "next/image";
+import {
+ Typography,
+ Stack,
+ Paper,
+ Button,
+ DialogActions,
+ Box,
+} from "@mui/material";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
 import CardItem from "@/app/components/cardTabItem";
@@ -35,6 +43,8 @@ export default function TabPolicy({}) {
 
  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
+ const isEmpty = false;
+
  return (
   <Stack gap={1}>
    <CardItem
@@ -42,12 +52,26 @@ export default function TabPolicy({}) {
     setting
     settingEditOnclick={handleModalOpenRoadmap}
    >
-    <EmptyState
-     dense
-     icon={<IconEmptyData width={100} />}
-     title="Data Kosong"
-     description="Silahkan isi konten halaman ini"
-    />
+    {isEmpty ? (
+     <EmptyState
+      dense
+      icon={<IconEmptyData width={100} />}
+      title="Data Kosong"
+      description="Silahkan isi konten halaman ini"
+     />
+    ) : (
+     <Box width="100%" textAlign="center">
+      <Image
+       alt="project-roadmap"
+       src="https://res.cloudinary.com/caturteguh/image/upload/v1711265069/mrpn/project-roadmap_oleiip.png"
+       width={0}
+       height={0}
+       sizes="100vw"
+       style={{ width: "70%", height: "auto", margin: "0 auto" }}
+      />
+     </Box>
+    )}
+
     <DialogComponent
      dialogOpen={modalOpenRoadmap}
      dialogClose={handleModalClose}
@@ -77,13 +101,16 @@ export default function TabPolicy({}) {
      />
     }
    >
-    {/* <EmptyState
-     dense
-     icon={<IconEmptyData width={100} />}
-     title="Data Kosong"
-     description="Silahkan isi konten halaman ini"
-    /> */}
-    <TableProfilIntervensi />
+    {isEmpty ? (
+     <EmptyState
+      dense
+      icon={<IconEmptyData width={100} />}
+      title="Data Kosong"
+      description="Silahkan isi konten halaman ini"
+     />
+    ) : (
+     <TableProfilIntervensi />
+    )}
     <DialogComponent
      dialogOpen={modalOpenProfilRoKunci}
      dialogClose={handleModalClose}
@@ -111,12 +138,25 @@ export default function TabPolicy({}) {
     setting
     settingEditOnclick={handleModalOpenCritical}
    >
-    <EmptyState
-     dense
-     icon={<IconEmptyData width={100} />}
-     title="Data Kosong"
-     description="Silahkan isi konten halaman ini"
-    />
+    {isEmpty ? (
+     <EmptyState
+      dense
+      icon={<IconEmptyData width={100} />}
+      title="Data Kosong"
+      description="Silahkan isi konten halaman ini"
+     />
+    ) : (
+     <Box width="100%" textAlign="center">
+      <Image
+       alt="project-roadmap"
+       src="https://res.cloudinary.com/caturteguh/image/upload/v1711267538/mrpn/critical-path_rgszyv.png"
+       width={0}
+       height={0}
+       sizes="100vw"
+       style={{ width: "70%", height: "auto", margin: "0 auto" }}
+      />
+     </Box>
+    )}
     <DialogComponent
      dialogOpen={modalOpenCritical}
      dialogClose={handleModalClose}

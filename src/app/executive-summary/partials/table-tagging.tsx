@@ -11,7 +11,7 @@ import {
 import theme from "@/theme";
 
 export default function TableTagging() {
- function createData(id: number, kebijakan: string, note: string) {
+ function createData(id: number, kebijakan: string, note: React.ReactNode) {
   return {
    id,
    kebijakan,
@@ -20,9 +20,23 @@ export default function TableTagging() {
  }
 
  const rows = [
-  createData(1, "SDGs", "-"),
-  createData(2, "Janpres", "-"),
-  createData(3, "DAK", "-"),
+  createData(
+   1,
+   "Janpres",
+   "Memberi makan siang dan susu gratis di sekolah dan pesantren, serta bantuan gizi untuk anak balita dan ibu hamil"
+  ),
+  createData(
+   2,
+   "RPJPN",
+   <ul>
+    <li>
+     Investasi pelayanan Kesehatan primer, penuntasan stunting, serta eliminasi
+     penyakit menular dan penyakit tropis terabaikan (terutama: tuberculosis dan
+     kusta)
+    </li>
+    <li>Prevalensi stunting (pendek dan sangat pendek) pada balita (%)</li>
+   </ul>
+  ),
  ];
 
  return (
@@ -30,7 +44,7 @@ export default function TableTagging() {
    <Table sx={{ minWidth: 650 }} size="small">
     <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
      <TableRow>
-      <TableCell sx={{ width: 250 }}>Kebijakan</TableCell>
+      <TableCell sx={{ width: 200 }}>Kebijakan</TableCell>
       <TableCell>Keterangan</TableCell>
      </TableRow>
     </TableHead>

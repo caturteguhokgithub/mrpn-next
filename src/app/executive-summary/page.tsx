@@ -5,7 +5,16 @@ import React from "react";
 import DashboardLayout from "@/components/layouts/layout";
 import EmptyState from "@/components/empty";
 import { IconEmptyPage } from "@/components/icons";
-import { Box, Tab, Tabs, Typography } from "@mui/material";
+import {
+ Box,
+ Collapse,
+ FormControl,
+ MenuItem,
+ SelectChangeEvent,
+ Tab,
+ Tabs,
+ Typography,
+} from "@mui/material";
 import theme from "@/theme";
 import { grey } from "@mui/material/colors";
 import { IconFA } from "@/components/icons/icon-fa";
@@ -16,6 +25,7 @@ import TabDampak from "./partials/tabDampak";
 import TabProfil from "./partials/tabProfil";
 import TabPolicy from "./partials/tabPolicy";
 import TabOverall from "./partials/tabOverall";
+import SelectCustomTheme from "../components/select";
 
 interface TabPanelProps {
  children?: React.ReactNode;
@@ -62,6 +72,11 @@ function CustomTabPanel(props: TabPanelProps) {
 
 export default function PageExecutiveSummary({}) {
  const [value, setValue] = React.useState(0);
+ const [project, setProject] = React.useState("");
+
+ const handleChangeProject = (event: SelectChangeEvent) => {
+  setProject(event.target.value);
+ };
 
  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
   setValue(newValue);
@@ -70,14 +85,37 @@ export default function PageExecutiveSummary({}) {
 
  return (
   <DashboardLayout>
-   <ContentPage title="Executive Summary" overflowHidden chooseProject>
-    {isEmpty ? (
+   <ContentPage
+    title="Executive Summary"
+    overflowHidden
+    withCard={project !== "1"}
+    chooseProject={
+     <FormControl size="small">
+      <SelectCustomTheme value={project} onChange={handleChangeProject}>
+       <MenuItem value="" disabled>
+        <Typography fontStyle="italic">
+         Pilih Kegiatan Pembangunan (KP)
+        </Typography>
+       </MenuItem>
+       <MenuItem value="1" defaultChecked>
+        KP.02 - Penurunan stunting
+       </MenuItem>
+       <MenuItem value="2">KP-03 - Peningkatan pelayanan kesehatan...</MenuItem>
+       <MenuItem value="3">
+        KP-03 - Kawasan Industri Prioritas dan Smelter
+       </MenuItem>
+      </SelectCustomTheme>
+     </FormControl>
+    }
+   >
+    {project !== "1" ? (
      <EmptyState
       icon={<IconEmptyPage />}
       title="Halaman Executive Summary Kosong"
       description="Silahkan isi konten halaman ini"
      />
-    ) : (
+    ) : null}
+    <Collapse in={project === "1"}>
      <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
        <Tabs
@@ -142,13 +180,13 @@ export default function PageExecutiveSummary({}) {
        <TabPolicy />
       </CustomTabPanel>
       {/* <CustomTabPanel value={value} index={3}>
-       <TabDampak />
-      </CustomTabPanel> */}
+      <TabDampak />
+     </CustomTabPanel> */}
       <CustomTabPanel value={value} index={3}>
        <TabOverall />
       </CustomTabPanel>
      </Box>
-    )}
+    </Collapse>
    </ContentPage>
   </DashboardLayout>
  );

@@ -53,9 +53,9 @@ export default function PageTema({}) {
 
  const handleAlignment = (
   event: React.MouseEvent<HTMLElement>,
-  newAlignment: string | null
+  newTheme: string | null
  ) => {
-  setValueTheme(newAlignment);
+  setValueTheme(newTheme);
  };
 
  const dialogActionFooter = (
@@ -160,15 +160,21 @@ export default function PageTema({}) {
         <ToggleContentTema>
          <FormControlLabel
           control={<Checkbox />}
-          label="KP-01 - Industri 4.0 di 6 Subsektor Prioritas"
+          label="KP.02 - Penurunan stunting"
          />
+        </ToggleContentTema>
+        <Button
+         variant="contained"
+         sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
+        >
+         Simpan
+        </Button>
+       </Collapse>
+       <Collapse in={valueTheme === "penurunan-kemiskinan"}>
+        <ToggleContentTema>
          <FormControlLabel
           control={<Checkbox />}
-          label="KP-02 - Destinasi Pariwisata Prioritas"
-         />
-         <FormControlLabel
-          control={<Checkbox />}
-          label="KP-03 - Kawasan Industri Prioritas dan Smelter"
+          label="KP.03 - Peningkatan pelayanan kesehatan dan gizi bagi usia sekolah, usia produktif, lansia, serta KB dan kespro"
          />
         </ToggleContentTema>
         <Button

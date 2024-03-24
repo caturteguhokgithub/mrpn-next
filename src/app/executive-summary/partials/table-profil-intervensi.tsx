@@ -13,25 +13,62 @@ import theme from "@/theme";
 export default function TableProfilIntervensi() {
  function createData(
   id: number,
+  klUtama: string,
+  klKontributor: string,
   nomenklatur: string,
-  anggaran: string,
-  sumberAnggaran: string,
   target: string,
-  klPelaksana: string,
-  klKontributor: string
+  anggaran: string,
+  sumberAnggaran: string
  ) {
   return {
    id,
+   klUtama,
+   klKontributor,
    nomenklatur,
+   target,
    anggaran,
    sumberAnggaran,
-   target,
-   klPelaksana,
-   klKontributor,
   };
  }
 
- const rows = [createData(1, "-", "-", "-", "-", "-", "-")];
+ const rows = [
+  createData(
+   1,
+   "Kementerian Kesehatan",
+   "-",
+   "Pendampingan terkait Kesehatan dan gizi bagi ibu hamil di Daerah XXXX",
+   "-",
+   "-",
+   "APBN"
+  ),
+  createData(
+   2,
+   "Kementerian Kesehatan",
+   "-",
+   "Ibu Hamil yang melahirkan di faskes Daerah XXXX",
+   "-",
+   "-",
+   "APBN"
+  ),
+  createData(
+   3,
+   "Kementerian Kesehatan",
+   "-",
+   "Ibu Hamil yang mengkonsumsi PMT di Daerah XXXX",
+   "-",
+   "-",
+   "APBN"
+  ),
+  createData(
+   4,
+   "Kementerian Kesehatan",
+   "-",
+   "Pembinaan pendampingan Ibu pascapersalinan di Daerahh XXXX",
+   "-",
+   "-",
+   "APBN"
+  ),
+ ];
 
  return (
   <TableContainer component={Paper} elevation={0}>
@@ -52,7 +89,7 @@ export default function TableProfilIntervensi() {
        key={row.id}
        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
       >
-       <TableCell>{row.klPelaksana}</TableCell>
+       <TableCell>{row.klUtama}</TableCell>
        <TableCell>{row.klKontributor}</TableCell>
        <TableCell>{row.nomenklatur}</TableCell>
        <TableCell>{row.target}</TableCell>

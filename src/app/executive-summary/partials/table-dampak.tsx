@@ -30,26 +30,8 @@ export default function TableDampak() {
  const rows = [
   createData(
    1,
-   //    "Meningkatkan pertumbuhan PDB industri pengolahan menjadi 5,3%-5,7% dan kontribusi industri pengolahan terhadap PDB menjadii 19,9%-20,0% (2022)",
-   //    "02 - Meningkatnya nilai tambah, lapangan kerja, investasi, ekspor, dan daya saing perekonomian",
-   "-",
-   "-",
-   true
-  ),
-  createData(
-   2,
-   //    "Meningkatnya nilai ekspor produk industri pengolahan menjadi USD 153,7 miliar (2022)",
-   //    "02 - Meningkatnya nilai tambah, lapangan kerja, investasi, ekspor, dan daya saing perekonomian",
-   "-",
-   "-",
-   false
-  ),
-  createData(
-   3,
-   //    "Pertumbuhan ekspor produk industri berteknologi tinggi menjadi 8,2-10,1% (2022)",
-   //    "02 - Meningkatnya nilai tambah, lapangan kerja, investasi, ekspor, dan daya saing perekonomian",
-   "-",
-   "-",
+   "Menurunnya prevalensi stunting pada balita",
+   "Kesehatan untuk Semua ",
    true
   ),
  ];
@@ -60,7 +42,7 @@ export default function TableDampak() {
     <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
      <TableRow>
       <TableCell>Outcome/Dampak</TableCell>
-      <TableCell>Sasaran PN</TableCell>
+      <TableCell>Sasaran AP</TableCell>
       <TableCell width="150px">Highlight</TableCell>
      </TableRow>
     </TableHead>
