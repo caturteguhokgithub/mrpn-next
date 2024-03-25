@@ -93,7 +93,7 @@ export default function PageExecutiveSummary({}) {
      <FormControl size="small">
       <SelectCustomTheme value={project} onChange={handleChangeProject}>
        <MenuItem value="" disabled>
-        <Typography fontStyle="italic">
+        <Typography fontSize={14} fontStyle="italic">
          Pilih Kegiatan Pembangunan (KP)
         </Typography>
        </MenuItem>

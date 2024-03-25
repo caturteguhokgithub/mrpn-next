@@ -25,7 +25,7 @@ import CustomToggleButton from "@/components/toggleButton";
 import AddButton from "../components/buttonAdd";
 import DialogComponent from "../components/dialog";
 import FormTable from "./partials/form-table";
-import Posts from "./partials/search";
+import SearchKP from "./partials/search";
 
 const ToggleContentTema = ({ children }: { children?: React.ReactNode }) => {
  return (
@@ -169,48 +169,7 @@ export default function PageTema({}) {
         />
        </ToggleButtonGroup>
        <Collapse in={valueTheme === "penurunan-stunting"}>
-        {/* <ToggleContentTema> */}
-        {/* {listKp.map(({ id, kode_kp, nama_kp }) => (
-          <FormControlLabel
-           key={id}
-           control={<Checkbox />}
-           label={`${kode_kp} - ${nama_kp}`}
-          />
-         ))} */}
-        {/* <FormControlLabel
-          control={<Checkbox />}
-          label="KP.02 - Penurunan stunting"
-         />
-         <FormControlLabel
-          control={<Checkbox />}
-          label="KP.02 - Penurunan stunting"
-         /> */}
-        {/* </ToggleContentTema> */}
-        {/* {listKp.map((item) => (
-         <>
-          <div key={item.id}>
-           <input
-            type="checkbox"
-            checked={selectedItems.includes(item.id)}
-            onChange={() => handleCheckboxChange(item.id)}
-           />
-           <label>{item.nama_kp}</label>
-          </div>
-         </>
-        ))}
-        <div>
-         <h2>Data yang dipilih:</h2>
-         <ul>
-          {data
-           .filter((item) => selectedItems.includes(item.id))
-           .map((selectedItem) => (
-            <li key={selectedItem.id}>{selectedItem.name}</li>
-           ))}
-         </ul>
-        </div>
-
-        {hasPromo && <Chip label={promo} />} */}
-        <Posts />
+        <SearchKP valueTheme="penurunan-stunting" />
         <Button
          variant="contained"
          sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
@@ -219,12 +178,43 @@ export default function PageTema({}) {
         </Button>
        </Collapse>
        <Collapse in={valueTheme === "penurunan-kemiskinan"}>
-        <ToggleContentTema>
-         <FormControlLabel
-          control={<Checkbox />}
-          label="KP.03 - Peningkatan pelayanan kesehatan dan gizi bagi usia sekolah, usia produktif, lansia, serta KB dan kespro"
-         />
-        </ToggleContentTema>
+        <SearchKP valueTheme="penurunan-kemiskinan" />
+        <Button
+         variant="contained"
+         sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
+        >
+         Simpan
+        </Button>
+       </Collapse>
+       <Collapse in={valueTheme === "percepatan-transisi-energi"}>
+        <SearchKP valueTheme="percepatan-transisi-energi" />
+        <Button
+         variant="contained"
+         sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
+        >
+         Simpan
+        </Button>
+       </Collapse>
+       <Collapse in={valueTheme === "peningkatan-pariwisata"}>
+        <SearchKP valueTheme="peningkatan-pariwisata" />
+        <Button
+         variant="contained"
+         sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
+        >
+         Simpan
+        </Button>
+       </Collapse>
+       <Collapse in={valueTheme === "ketahanan-pangan"}>
+        <SearchKP valueTheme="ketahanan-pangan" />
+        <Button
+         variant="contained"
+         sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
+        >
+         Simpan
+        </Button>
+       </Collapse>
+       <Collapse in={valueTheme === "sistem-persampahan"}>
+        <SearchKP valueTheme="sistem-persampahan" />
         <Button
          variant="contained"
          sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}

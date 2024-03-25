@@ -1,12 +1,6 @@
-import {
- Box,
- Checkbox,
- FormControlLabel,
- Stack,
- Typography,
-} from "@mui/material";
+import { Checkbox, FormControlLabel, Stack } from "@mui/material";
 
-export default function qPost(props: any) {
+export default function SearchResult(props: any) {
  const { title, body } = props;
 
  return (

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import SearchField from "./search-bar";
-import Post from "./search-result";
 import { listKp } from "@/app/executive-summary/data";
 import { Box, Divider, FormGroup, Stack, Typography } from "@mui/material";
 import { grey, yellow } from "@mui/material/colors";
+import SearchResult from "./search-result";
 
-export default function Posts() {
+export default function SearchKP({ valueTheme }: { valueTheme: string }) {
  const [searchTerm, setSearchTerm] = useState("");
 
  const handleSearchTermUpdate = (searchTermUpdate: any) => {
@@ -72,14 +72,27 @@ export default function Posts() {
     mt={2}
    >
     <Typography color={grey[600]} fontSize={14} fontStyle="italic">
-     Pilih KP
+     Pilih KP dari tema{" "}
+     <Typography fontWeight={600} fontSize={14} component="span">
+      {valueTheme === "penurunan-stunting"
+       ? "01.01.02 - Penurunan Stunting"
+       : valueTheme === "penurunan-kemiskinan"
+       ? "01.01.03 - Penurunan Kemiskinan"
+       : valueTheme === "percepatan-transisi-energi"
+       ? "01.01.04 - Percepatan Transisi Energi"
+       : valueTheme === "peningkatan-pariwisata"
+       ? "01.01.05 - Peningkatan Pariwisata"
+       : valueTheme === "ketahanan-pangan"
+       ? "01.01.06 - Ketahanan Pangan"
+       : "01.01.07 - Sistem Persampahan"}
+     </Typography>
     </Typography>
     <SearchField handleSearchTermUpdate={handleSearchTermUpdate} />
    </Stack>
    <Box
     mt={2}
     sx={{
-     maxHeight: "36vh",
+     maxHeight: "30vh",
      overflow: "auto",
      "&::-webkit-scrollbar": {
       width: "3px",
@@ -88,7 +101,7 @@ export default function Posts() {
    >
     <FormGroup>
      {highlightedPosts.map((post) => {
-      return <Post key={post.id} {...post} />;
+      return <SearchResult key={post.id} {...post} />;
      })}
     </FormGroup>
    </Box>
