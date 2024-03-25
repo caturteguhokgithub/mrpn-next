@@ -25,7 +25,7 @@ import CustomToggleButton from "@/components/toggleButton";
 import AddButton from "../components/buttonAdd";
 import DialogComponent from "../components/dialog";
 import FormTable from "./partials/form-table";
-import { listKp } from "../executive-summary/data";
+import Posts from "./partials/search";
 
 const ToggleContentTema = ({ children }: { children?: React.ReactNode }) => {
  return (
@@ -80,18 +80,6 @@ export default function PageTema({}) {
  );
 
  const isEmpty = false;
-
- // State untuk menyimpan status checkbox
- const [selectedItems, setSelectedItems] = React.useState([]);
-
- // Fungsi untuk menangani perubahan checkbox
- //  const handleCheckboxChange = (id: any) => {
- //   if (selectedItems.includes(id)) {
- //    setSelectedItems(selectedItems.filter((item) => item !== id));
- //   } else {
- //    setSelectedItems([...selectedItems, id]);
- //   }
- //  };
 
  return (
   <>
@@ -181,15 +169,15 @@ export default function PageTema({}) {
         />
        </ToggleButtonGroup>
        <Collapse in={valueTheme === "penurunan-stunting"}>
-        <ToggleContentTema>
-         {listKp.map(({ id, kode_kp, nama_kp }) => (
+        {/* <ToggleContentTema> */}
+        {/* {listKp.map(({ id, kode_kp, nama_kp }) => (
           <FormControlLabel
            key={id}
            control={<Checkbox />}
            label={`${kode_kp} - ${nama_kp}`}
           />
-         ))}
-         {/* <FormControlLabel
+         ))} */}
+        {/* <FormControlLabel
           control={<Checkbox />}
           label="KP.02 - Penurunan stunting"
          />
@@ -197,7 +185,7 @@ export default function PageTema({}) {
           control={<Checkbox />}
           label="KP.02 - Penurunan stunting"
          /> */}
-        </ToggleContentTema>
+        {/* </ToggleContentTema> */}
         {/* {listKp.map((item) => (
          <>
           <div key={item.id}>
@@ -222,6 +210,7 @@ export default function PageTema({}) {
         </div>
 
         {hasPromo && <Chip label={promo} />} */}
+        <Posts />
         <Button
          variant="contained"
          sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}

@@ -100,10 +100,8 @@ export default function PageExecutiveSummary({}) {
        <MenuItem value="1" defaultChecked>
         KP.02 - Penurunan stunting
        </MenuItem>
-       <MenuItem value="2">KP-03 - Peningkatan pelayanan kesehatan...</MenuItem>
-       <MenuItem value="3">
-        KP-03 - Kawasan Industri Prioritas dan Smelter
-       </MenuItem>
+       <MenuItem value="2">KP.03 - Peningkatan pelayanan kesehatan...</MenuItem>
+       <MenuItem value="3">KP.04 - Penyediaan Akses Terhadap Rumah...</MenuItem>
       </SelectCustomTheme>
      </FormControl>
     }

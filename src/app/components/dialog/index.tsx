@@ -8,6 +8,7 @@ export default function DialogComponent({
  children,
  dialogFooter,
  width,
+ tableMode,
 }: {
  title: string;
  dialogOpen: boolean;
@@ -15,6 +16,7 @@ export default function DialogComponent({
  children?: React.ReactNode;
  dialogFooter?: React.ReactNode;
  width?: number;
+ tableMode?: boolean;
 }) {
  return (
   <Dialog
@@ -34,7 +36,9 @@ export default function DialogComponent({
    }}
   >
    <DialogTitle>{title}</DialogTitle>
-   <DialogContent dividers>{children}</DialogContent>
+   <DialogContent dividers sx={{ p: tableMode ? 0 : "16px 24px" }}>
+    {children}
+   </DialogContent>
    {dialogFooter}
   </Dialog>
  );

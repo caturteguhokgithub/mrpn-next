@@ -17,6 +17,7 @@ import FormProfilRo from "./form-profil-ro";
 import AddButton from "@/app/components/buttonAdd";
 import FormProfilRoKunci from "./form-profil-ro-kunci";
 import dynamic from "next/dynamic";
+import TableProfilRoKunci from "./table-profil-ro-kunci";
 
 export default function TabPolicy({}) {
  const [modalOpenProfilRoKunci, setModalOpenProfilRoKunci] =
@@ -112,9 +113,11 @@ export default function TabPolicy({}) {
      <TableProfilIntervensi />
     )}
     <DialogComponent
+     tableMode
+     width={1000}
      dialogOpen={modalOpenProfilRoKunci}
      dialogClose={handleModalClose}
-     title="Tambah Profil RO"
+     title="Tambah Profil RO Kunci"
      dialogFooter={
       <DialogActions sx={{ p: 2, px: 3 }}>
        <Button variant="outlined" onClick={handleModalClose}>
@@ -126,7 +129,7 @@ export default function TabPolicy({}) {
       </DialogActions>
      }
     >
-     <FormProfilRoKunci mode="add" />
+     <TableProfilRoKunci />
     </DialogComponent>
    </CardItem>
    <CardItem

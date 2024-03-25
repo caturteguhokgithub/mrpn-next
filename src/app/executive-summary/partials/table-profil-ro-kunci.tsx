@@ -1,5 +1,6 @@
 import React from "react";
 import {
+ Checkbox,
  Paper,
  Table,
  TableBody,
@@ -9,11 +10,11 @@ import {
  TableRow,
 } from "@mui/material";
 import theme from "@/theme";
-import { CheckBox } from "@mui/icons-material";
 
-export default function TableProfilIntervensi() {
+export default function TableProfilRoKunci() {
  function createData(
   id: number,
+  checked: boolean,
   klUtama: string,
   klKontributor: string,
   nomenklatur: string,
@@ -23,6 +24,7 @@ export default function TableProfilIntervensi() {
  ) {
   return {
    id,
+   checked,
    klUtama,
    klKontributor,
    nomenklatur,
@@ -35,6 +37,7 @@ export default function TableProfilIntervensi() {
  const rows = [
   createData(
    1,
+   true,
    "Kementerian Kesehatan",
    "-",
    "Pendampingan terkait Kesehatan dan gizi bagi ibu hamil di Daerah XXXX",
@@ -44,6 +47,7 @@ export default function TableProfilIntervensi() {
   ),
   createData(
    2,
+   true,
    "Kementerian Kesehatan",
    "-",
    "Ibu Hamil yang melahirkan di faskes Daerah XXXX",
@@ -53,6 +57,7 @@ export default function TableProfilIntervensi() {
   ),
   createData(
    3,
+   true,
    "Kementerian Kesehatan",
    "-",
    "Ibu Hamil yang mengkonsumsi PMT di Daerah XXXX",
@@ -62,9 +67,40 @@ export default function TableProfilIntervensi() {
   ),
   createData(
    4,
+   true,
    "Kementerian Kesehatan",
    "-",
    "Pembinaan pendampingan Ibu pascapersalinan di Daerahh XXXX",
+   "-",
+   "-",
+   "APBN"
+  ),
+  createData(
+   5,
+   false,
+   "Kementerian Kesehatan",
+   "-",
+   "Penyediaan konsumsi tablet tambah daerah bagi ibu melahirkan di Daerah XXXX",
+   "-",
+   "-",
+   "APBN"
+  ),
+  createData(
+   6,
+   false,
+   "Kementerian Kesehatan",
+   "-",
+   "Anak balita yang mendapat Suplementasi Gizi Mikro di Daerah XXXX",
+   "-",
+   "-",
+   "APBN"
+  ),
+  createData(
+   7,
+   false,
+   "Kementerian Kesehatan",
+   "-",
+   "Alat dan perbekalan kesehatan untuk pelayanan kesehatan ibu dan anak sesuai standar",
    "-",
    "-",
    "APBN"
@@ -76,12 +112,13 @@ export default function TableProfilIntervensi() {
    <Table sx={{ minWidth: 650 }} size="small">
     <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
      <TableRow>
-      <TableCell>KL Utama</TableCell>
-      <TableCell>KL Kontributor</TableCell>
-      <TableCell>Nomenklatur RO</TableCell>
+      <TableCell></TableCell>
+      <TableCell>KL</TableCell>
+      {/* <TableCell>KL Kontributor</TableCell> */}
+      <TableCell>Rincian Output (RO)</TableCell>
       <TableCell>Target</TableCell>
       <TableCell>Anggaran</TableCell>
-      <TableCell>Sumber Anggaran</TableCell>
+      {/* <TableCell>Sumber Anggaran</TableCell> */}
      </TableRow>
     </TableHead>
     <TableBody>
@@ -90,12 +127,17 @@ export default function TableProfilIntervensi() {
        key={row.id}
        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
       >
+       <TableCell>
+        {row.checked === false ? (
+         <Checkbox />
+        ) : (
+         <Checkbox checked={row.checked} />
+        )}
+       </TableCell>
        <TableCell>{row.klUtama}</TableCell>
-       <TableCell>{row.klKontributor}</TableCell>
        <TableCell>{row.nomenklatur}</TableCell>
        <TableCell>{row.target}</TableCell>
        <TableCell>{row.anggaran}</TableCell>
-       <TableCell>{row.sumberAnggaran}</TableCell>
       </TableRow>
      ))}
     </TableBody>

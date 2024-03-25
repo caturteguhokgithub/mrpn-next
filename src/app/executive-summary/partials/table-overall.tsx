@@ -47,10 +47,10 @@ export default function TableOverall() {
 
  const rows = [
   {
-   name: "K/L-1",
+   name: "Kementerian Kesehatan",
    detail: [
     {
-     RO: "RO-1.1",
+     RO: "Pendampingan terkait Kesehatan dan gizi bagi ibu hamil di Daerah XXXX",
      alokasi: "-",
      realisasi: "-",
      progress: "-",
@@ -58,7 +58,7 @@ export default function TableOverall() {
      evaluasiRisiko: "-",
     },
     {
-     RO: "RO-1.2",
+     RO: "Ibu Hamil yang melahirkan di faskes Daerah XXXX",
      alokasi: "-",
      realisasi: "-",
      progress: "-",
@@ -66,7 +66,7 @@ export default function TableOverall() {
      evaluasiRisiko: "-",
     },
     {
-     RO: "RO-1.3",
+     RO: "Ibu Hamil yang mengkonsumsi PMT di Daerah XXXX",
      alokasi: "-",
      realisasi: "-",
      progress: "-",
@@ -74,7 +74,7 @@ export default function TableOverall() {
      evaluasiRisiko: "-",
     },
     {
-     RO: "RO-1.4",
+     RO: "Pembinaan pendampingan Ibu pascapersalinan di Daerahh XXXX",
      alokasi: "-",
      realisasi: "-",
      progress: "-",
@@ -85,10 +85,10 @@ export default function TableOverall() {
    options,
   },
   {
-   name: "K/L-2",
+   name: "Kementerian PUPR",
    detail: [
     {
-     RO: "RO-2.1",
+     RO: "Studi Kelayakan Pengembangan SPAM dari Bendungan ...... Di Daerah XXXX (target 1000 SR)",
      alokasi: "-",
      realisasi: "-",
      progress: "-",
@@ -96,7 +96,7 @@ export default function TableOverall() {
      evaluasiRisiko: "-",
     },
     {
-     RO: "RO-2.2",
+     RO: "Pembebasan Lahan di Daerah XXXX (pembangunan SPAM)",
      alokasi: "-",
      realisasi: "-",
      progress: "-",
@@ -114,7 +114,7 @@ export default function TableOverall() {
     <Table size="small">
      <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
       <TableRow>
-       <TableCell>K/L</TableCell>
+       <TableCell width={150}>K/L</TableCell>
        <TableCell>Rincian Output (RO)</TableCell>
        <TableCell>Alokasi</TableCell>
        <TableCell>Realisasi</TableCell>
