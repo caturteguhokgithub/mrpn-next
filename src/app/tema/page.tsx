@@ -17,6 +17,7 @@ import {
  FormGroup,
  Button,
  DialogActions,
+ Chip,
 } from "@mui/material";
 import theme from "@/theme";
 import { grey } from "@mui/material/colors";
@@ -24,6 +25,7 @@ import CustomToggleButton from "@/components/toggleButton";
 import AddButton from "../components/buttonAdd";
 import DialogComponent from "../components/dialog";
 import FormTable from "./partials/form-table";
+import { listKp } from "../executive-summary/data";
 
 const ToggleContentTema = ({ children }: { children?: React.ReactNode }) => {
  return (
@@ -32,7 +34,16 @@ const ToggleContentTema = ({ children }: { children?: React.ReactNode }) => {
    <Typography mt={2} color={grey[600]} fontSize={14} fontStyle="italic">
     Pilih KP
    </Typography>
-   <Box mt={2}>
+   <Box
+    mt={2}
+    sx={{
+     maxHeight: "36vh",
+     overflow: "auto",
+     "&::-webkit-scrollbar": {
+      width: "3px",
+     },
+    }}
+   >
     <FormGroup>{children}</FormGroup>
    </Box>
   </>
@@ -40,7 +51,8 @@ const ToggleContentTema = ({ children }: { children?: React.ReactNode }) => {
 };
 
 export default function PageTema({}) {
- const [valueTheme, setValueTheme] = React.useState<string | null>("");
+ const [valueTheme, setValueTheme] = React.useState<string | null>("[]");
+ //  const [valueTheme, setValueTheme] = React.useState([]);
  const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
 
  const handleModalOpenAdd = () => {
@@ -68,6 +80,18 @@ export default function PageTema({}) {
  );
 
  const isEmpty = false;
+
+ // State untuk menyimpan status checkbox
+ const [selectedItems, setSelectedItems] = React.useState([]);
+
+ // Fungsi untuk menangani perubahan checkbox
+ //  const handleCheckboxChange = (id: any) => {
+ //   if (selectedItems.includes(id)) {
+ //    setSelectedItems(selectedItems.filter((item) => item !== id));
+ //   } else {
+ //    setSelectedItems([...selectedItems, id]);
+ //   }
+ //  };
 
  return (
   <>
@@ -158,11 +182,46 @@ export default function PageTema({}) {
        </ToggleButtonGroup>
        <Collapse in={valueTheme === "penurunan-stunting"}>
         <ToggleContentTema>
-         <FormControlLabel
+         {listKp.map(({ id, kode_kp, nama_kp }) => (
+          <FormControlLabel
+           key={id}
+           control={<Checkbox />}
+           label={`${kode_kp} - ${nama_kp}`}
+          />
+         ))}
+         {/* <FormControlLabel
           control={<Checkbox />}
           label="KP.02 - Penurunan stunting"
          />
+         <FormControlLabel
+          control={<Checkbox />}
+          label="KP.02 - Penurunan stunting"
+         /> */}
         </ToggleContentTema>
+        {/* {listKp.map((item) => (
+         <>
+          <div key={item.id}>
+           <input
+            type="checkbox"
+            checked={selectedItems.includes(item.id)}
+            onChange={() => handleCheckboxChange(item.id)}
+           />
+           <label>{item.nama_kp}</label>
+          </div>
+         </>
+        ))}
+        <div>
+         <h2>Data yang dipilih:</h2>
+         <ul>
+          {data
+           .filter((item) => selectedItems.includes(item.id))
+           .map((selectedItem) => (
+            <li key={selectedItem.id}>{selectedItem.name}</li>
+           ))}
+         </ul>
+        </div>
+
+        {hasPromo && <Chip label={promo} />} */}
         <Button
          variant="contained"
          sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
