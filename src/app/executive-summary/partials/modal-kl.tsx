@@ -66,7 +66,7 @@ export default function ModalKl({
     }}
    >
     <Typography component="h3" fontWeight={600} fontSize={16}>
-     Detail K/L-1
+     Detail Entitas Utama: <strong>Kementerian Kesehatan</strong>
     </Typography>
     <IconButton onClick={handleModalClose}>
      <IconFA size={16} name="close" />
@@ -101,13 +101,16 @@ export default function ModalKl({
      <Grid item md={6}>
       <FormControl fullWidth>
        <Typography mb={1}>Nilai Kinerja</Typography>
-       <Stack direction="row" gap={2}>
+       <Typography fontWeight={600} fontSize={16}>
+        -
+       </Typography>
+       {/* <Stack direction="row" gap={2}>
         <Chip label="A" size="small" color="primary" />
         <Chip label="B" size="small" />
         <Chip label="C" size="small" />
         <Chip label="D" size="small" />
-        <Chip label="E" size="small" />
-        {/* <Chip label="B" size="small" color="success" />
+        <Chip label="E" size="small" /> */}
+       {/* <Chip label="B" size="small" color="success" />
          <Chip
           label="C"
           size="small"
@@ -123,7 +126,7 @@ export default function ModalKl({
           size="small"
           sx={{ bgcolor: red[700], color: "white" }}
          /> */}
-       </Stack>
+       {/* </Stack> */}
       </FormControl>
      </Grid>
     </Grid>

@@ -17,6 +17,7 @@ import TableMilestone from "./table-milestone";
 import TableStakeholder from "./table-stakeholder";
 import TablePeraturan from "./table-peraturan";
 import Link from "next/link";
+import TextareaComponent from "@/app/components/textarea";
 
 export default function FormKonstra({ mode }: { mode?: string }) {
  return (
@@ -113,22 +114,15 @@ export default function FormKonstra({ mode }: { mode?: string }) {
       <FormControl fullWidth>
        <Typography>Latar Belakang</Typography>
        {mode === "add" ? (
-        <TextField
-         variant="outlined"
-         size="small"
+        <TextareaComponent
+         label="Latar Belakang"
          placeholder="Latar Belakang"
-         InputLabelProps={{
-          shrink: true,
-         }}
         />
        ) : mode === "edit" ? (
-        <TextField
-         variant="outlined"
-         size="small"
+        <TextareaComponent
+         label="Latar Belakang"
+         placeholder="Latar Belakang"
          value="-"
-         InputLabelProps={{
-          shrink: true,
-         }}
         />
        ) : (
         <Typography fontWeight={600}>-</Typography>
@@ -148,22 +142,12 @@ export default function FormKonstra({ mode }: { mode?: string }) {
       <FormControl fullWidth>
        <Typography>Ruang Lingkup</Typography>
        {mode === "add" ? (
-        <TextField
-         variant="outlined"
-         size="small"
-         placeholder="Ruang Lingkup"
-         InputLabelProps={{
-          shrink: true,
-         }}
-        />
+        <TextareaComponent label="Ruang Lingkup" placeholder="Ruang Lingkup" />
        ) : mode === "edit" ? (
-        <TextField
-         variant="outlined"
-         size="small"
+        <TextareaComponent
+         label="Ruang Lingkup"
+         placeholder="Ruang Lingkup"
          value="-"
-         InputLabelProps={{
-          shrink: true,
-         }}
         />
        ) : (
         <Typography fontWeight={600}>-</Typography>

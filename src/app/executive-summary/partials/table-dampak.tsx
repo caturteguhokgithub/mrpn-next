@@ -16,12 +16,14 @@ export default function TableDampak() {
  function createData(
   id: number,
   outcome: string,
+  kode: string,
   sasaran: string,
   highlight: boolean
  ) {
   return {
    id,
    outcome,
+   kode,
    sasaran,
    highlight,
   };
@@ -31,7 +33,8 @@ export default function TableDampak() {
   createData(
    1,
    "Menurunnya prevalensi stunting pada balita",
-   "Kesehatan untuk Semua ",
+   "-",
+   "Kesehatan untuk Semua",
    true
   ),
  ];
@@ -42,6 +45,7 @@ export default function TableDampak() {
     <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
      <TableRow>
       <TableCell>Outcome/Dampak</TableCell>
+      <TableCell>Kode Sasaran AP</TableCell>
       <TableCell>Sasaran AP</TableCell>
       <TableCell width="150px">Highlight</TableCell>
      </TableRow>
@@ -53,6 +57,7 @@ export default function TableDampak() {
        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
       >
        <TableCell>{row.outcome}</TableCell>
+       <TableCell>{row.kode}</TableCell>
        <TableCell>{row.sasaran}</TableCell>
        <TableCell align="center">
         {row.highlight ? (

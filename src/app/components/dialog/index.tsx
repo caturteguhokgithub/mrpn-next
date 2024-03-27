@@ -10,12 +10,12 @@ export default function DialogComponent({
  width,
  tableMode,
 }: {
- title: string;
+ title?: string;
  dialogOpen: boolean;
  dialogClose?: () => void;
  children?: React.ReactNode;
  dialogFooter?: React.ReactNode;
- width?: number;
+ width?: number | string;
  tableMode?: boolean;
 }) {
  return (
@@ -35,7 +35,7 @@ export default function DialogComponent({
     },
    }}
   >
-   <DialogTitle>{title}</DialogTitle>
+   {title && <DialogTitle>{title}</DialogTitle>}
    <DialogContent dividers sx={{ p: tableMode ? 0 : "16px 24px" }}>
     {children}
    </DialogContent>

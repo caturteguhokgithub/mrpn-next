@@ -162,6 +162,13 @@ export const MenuItem = ({
       color: theme.palette.primary.light,
      },
     },
+    "&.collapse-active": {
+     "&.Mui-focusVisible, &:hover": {
+      ".MuiIcon-root, p": {
+       color: theme.palette.primary.main,
+      },
+     },
+    },
    },
    "&.Mui-focusVisible, &:hover": {
     backgroundColor: alpha(blue[900], 0.5),
@@ -291,13 +298,12 @@ export const MenuItem = ({
        </ListItemButton>
       ) : (
        <Button
-        color="error"
         onClick={clickPopoverCollapse}
         className={
          openSubmenu || activeSubmenuCollapse
           ? "expand-active"
           : menuParentActive
-          ? "link-active"
+          ? "link-active collapse-active"
           : ""
         }
         sx={[

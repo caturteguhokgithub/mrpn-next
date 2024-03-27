@@ -114,11 +114,12 @@ export default function TableOverall() {
     <Table size="small">
      <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
       <TableRow>
-       <TableCell width={150}>K/L</TableCell>
-       <TableCell>Rincian Output (RO)</TableCell>
-       <TableCell>Alokasi</TableCell>
-       <TableCell>Realisasi</TableCell>
+       <TableCell width={150}>Entitas Utama</TableCell>
+       <TableCell>Intervensi Kunci</TableCell>
+       <TableCell>Target</TableCell>
+       <TableCell>Capaian</TableCell>
        <TableCell>Progress</TableCell>
+       <TableCell>Realisasi Anggaran (%)</TableCell>
        <TableCell>Nilai Risiko</TableCell>
        <TableCell>Evaluasi Risiko</TableCell>
        <TableCell width="100px"></TableCell>
@@ -148,6 +149,7 @@ export default function TableOverall() {
            </TableCell>
           ) : null}
           <TableCell>{detailItem.RO}</TableCell>
+          <TableCell>{detailItem.alokasi}</TableCell>
           <TableCell>{detailItem.alokasi}</TableCell>
           <TableCell>{detailItem.realisasi}</TableCell>
           <TableCell>{detailItem.progress}</TableCell>

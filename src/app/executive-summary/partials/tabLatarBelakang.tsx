@@ -225,7 +225,7 @@ export default function TabLatarBelakang({}) {
     </DialogComponent>
    </CardItem>
    <CardItem
-    title="Segment Penerima Manfaat"
+    title="Segmen Penerima Manfaat"
     setting
     settingEditOnclick={handleModalOpenSegment}
    >

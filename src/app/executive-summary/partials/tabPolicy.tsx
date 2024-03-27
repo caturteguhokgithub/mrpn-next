@@ -7,6 +7,7 @@ import {
  Button,
  DialogActions,
  Box,
+ Tooltip,
 } from "@mui/material";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
@@ -25,6 +26,8 @@ export default function TabPolicy({}) {
  const [modalOpenRoadmap, setModalOpenRoadmap] = React.useState(false);
  const [modalOpenCritical, setModalOpenCritical] = React.useState(false);
  const [value, setValue] = React.useState("");
+ const [modalOpenImgRoadmap, setModalOpenImgRoadmap] = React.useState(false);
+ const [modalOpenImgCritical, setModalOpenImgCritical] = React.useState(false);
 
  const handleModalOpenProfilRoKunci = () => {
   setModalOpenProfilRoKunci(true);
@@ -35,11 +38,19 @@ export default function TabPolicy({}) {
  const handleModalOpenCritical = () => {
   setModalOpenCritical(true);
  };
+ const handleModalImgRoadmap = () => {
+  setModalOpenImgRoadmap(true);
+ };
+ const handleModalImgCritical = () => {
+  setModalOpenImgCritical(true);
+ };
 
  const handleModalClose = () => {
   setModalOpenProfilRoKunci(false);
   setModalOpenRoadmap(false);
   setModalOpenCritical(false);
+  setModalOpenImgRoadmap(false);
+  setModalOpenImgCritical(false);
  };
 
  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -49,7 +60,7 @@ export default function TabPolicy({}) {
  return (
   <Stack gap={1}>
    <CardItem
-    title={<em>Project Roadmap</em>}
+    title="Project Roadmap"
     setting
     settingEditOnclick={handleModalOpenRoadmap}
    >
@@ -61,18 +72,46 @@ export default function TabPolicy({}) {
       description="Silahkan isi konten halaman ini"
      />
     ) : (
-     <Box width="100%" textAlign="center">
-      <Image
-       alt="project-roadmap"
-       src="https://res.cloudinary.com/caturteguh/image/upload/v1711265069/mrpn/project-roadmap_oleiip.png"
-       width={0}
-       height={0}
-       sizes="100vw"
-       style={{ width: "70%", height: "auto", margin: "0 auto" }}
-      />
-     </Box>
+     <>
+      <Box width="100%" textAlign="center">
+       <Tooltip title="Klik untuk perbesar gambar" placement="right">
+        <Image
+         alt="project-roadmap"
+         src="https://res.cloudinary.com/caturteguh/image/upload/v1711265069/mrpn/project-roadmap_oleiip.png"
+         width={0}
+         height={0}
+         sizes="100vw"
+         style={{
+          width: "70%",
+          height: "auto",
+          margin: "0 auto",
+          cursor: "pointer",
+         }}
+         onClick={handleModalImgRoadmap}
+        />
+       </Tooltip>
+      </Box>
+      <DialogComponent
+       width="80%"
+       dialogOpen={modalOpenImgRoadmap}
+       dialogClose={handleModalClose}
+      >
+       <Image
+        alt="project-roadmap"
+        src="https://res.cloudinary.com/caturteguh/image/upload/v1711265069/mrpn/project-roadmap_oleiip.png"
+        width={0}
+        height={0}
+        sizes="100vw"
+        style={{
+         width: "100%",
+         height: "auto",
+         margin: "0 auto",
+        }}
+        onClick={handleModalImgRoadmap}
+       />
+      </DialogComponent>
+     </>
     )}
-
     <DialogComponent
      dialogOpen={modalOpenRoadmap}
      dialogClose={handleModalClose}
@@ -88,11 +127,15 @@ export default function TabPolicy({}) {
       </DialogActions>
      }
     >
+     <Typography variant="caption" component="div" mb={2}>
+      Format gambar: <strong>.png / .jpg / .jpeg</strong>. Ukuran gambar{" "}
+      <strong>max. 200kb</strong>
+     </Typography>
      <ReactQuill theme="snow" value={value} onChange={setValue} />
     </DialogComponent>
    </CardItem>
    <CardItem
-    title="Profil RO Kunci"
+    title="Profil Intevensi Kunci"
     addButton={
      <AddButton
       filled
@@ -133,11 +176,7 @@ export default function TabPolicy({}) {
     </DialogComponent>
    </CardItem>
    <CardItem
-    title={
-     <>
-      <em>Critical Path</em> Prioritas Proyek
-     </>
-    }
+    title="Critical Path Prioritas Proyek"
     setting
     settingEditOnclick={handleModalOpenCritical}
    >
@@ -149,16 +188,45 @@ export default function TabPolicy({}) {
       description="Silahkan isi konten halaman ini"
      />
     ) : (
-     <Box width="100%" textAlign="center">
-      <Image
-       alt="project-roadmap"
-       src="https://res.cloudinary.com/caturteguh/image/upload/v1711267538/mrpn/critical-path_rgszyv.png"
-       width={0}
-       height={0}
-       sizes="100vw"
-       style={{ width: "70%", height: "auto", margin: "0 auto" }}
-      />
-     </Box>
+     <>
+      <Box width="100%" textAlign="center">
+       <Tooltip title="Klik untuk perbesar gambar" placement="right">
+        <Image
+         alt="Critical Path Prioritas Proyek"
+         src="https://res.cloudinary.com/caturteguh/image/upload/v1711267538/mrpn/critical-path_rgszyv.png"
+         width={0}
+         height={0}
+         sizes="100vw"
+         style={{
+          width: "70%",
+          height: "auto",
+          margin: "0 auto",
+          cursor: "pointer",
+         }}
+         onClick={handleModalImgCritical}
+        />
+       </Tooltip>
+      </Box>
+      <DialogComponent
+       width="80%"
+       dialogOpen={modalOpenImgCritical}
+       dialogClose={handleModalClose}
+      >
+       <Image
+        alt="Critical Path Prioritas Proyek"
+        src="https://res.cloudinary.com/caturteguh/image/upload/v1711267538/mrpn/critical-path_rgszyv.png"
+        width={0}
+        height={0}
+        sizes="100vw"
+        style={{
+         width: "100%",
+         height: "auto",
+         margin: "0 auto",
+        }}
+        onClick={handleModalImgRoadmap}
+       />
+      </DialogComponent>
+     </>
     )}
     <DialogComponent
      dialogOpen={modalOpenCritical}
@@ -175,6 +243,10 @@ export default function TabPolicy({}) {
       </DialogActions>
      }
     >
+     <Typography variant="caption" component="div" mb={2}>
+      Format gambar: <strong>.png / .jpg / .jpeg</strong>. Ukuran gambar{" "}
+      <strong>max. 200kb</strong>
+     </Typography>
      <ReactQuill theme="snow" value={value} onChange={setValue} />
     </DialogComponent>
    </CardItem>

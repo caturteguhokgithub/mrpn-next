@@ -10,13 +10,16 @@ import {
  useTheme,
 } from "@mui/material";
 import Footer from "./footer";
-import Aside from "./aside";
+// import Aside from "./aside";
 import Header from "./header";
 import { grey } from "@mui/material/colors";
 import React from "react";
 import Image from "next/image";
 import { loadCSS } from "fg-loadcss";
 import "react-quill/dist/quill.snow.css";
+import dynamic from "next/dynamic";
+
+const Aside = dynamic(() => import("./aside"), { ssr: false });
 
 export default function DashboardLayout({
  children,

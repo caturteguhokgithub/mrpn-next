@@ -86,7 +86,7 @@ export default function TableRincianOutput({ mode }: { mode?: string }) {
      </Button>
     ) : null}
    </Stack>
-   <TableContainer component={Paper} elevation={0}>
+   <TableContainer component={Paper} elevation={0} variant="outlined">
     <Table sx={{ minWidth: 650 }} size="small">
      <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
       <TableRow>

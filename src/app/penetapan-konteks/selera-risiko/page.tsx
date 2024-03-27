@@ -3,19 +3,10 @@
 import ContentPage from "@/app/components/contents/content";
 import React from "react";
 import DashboardLayout from "@/app/components/layouts/layout";
-import EmptyState from "@/app/components/empty";
-import { IconEmptyPage } from "@/app/components/icons";
 import {
  Box,
- Checkbox,
  Collapse,
- FormControl,
- FormControlLabel,
- FormLabel,
- Radio,
- RadioGroup,
  Stack,
- ToggleButton,
  ToggleButtonGroup,
  Typography,
  alpha,
@@ -112,10 +103,30 @@ export default function PageSeleraRisiko({}) {
       },
      }}
     >
-     <CustomToggleButton code="Nilai" value="1" label="1 - 3" />
-     <CustomToggleButton code="Nilai" value="2" label="4 - 5" />
-     <CustomToggleButton code="Nilai" value="3" label="6 - 7" />
-     <CustomToggleButton code="Nilai" value="4" label="8 - 9" />
+     <CustomToggleButton
+      variant="danger"
+      code="Nilai"
+      value="1"
+      label="1 - 3"
+     />
+     <CustomToggleButton
+      variant="warning"
+      code="Nilai"
+      value="2"
+      label="4 - 5"
+     />
+     <CustomToggleButton
+      variant="primary"
+      code="Nilai"
+      value="3"
+      label="6 - 7"
+     />
+     <CustomToggleButton
+      variant="success"
+      code="Nilai"
+      value="4"
+      label="8 - 9"
+     />
     </ToggleButtonGroup>
     <Collapse in={valueTheme === "1"}>
      <Box mt={2}>
@@ -186,99 +197,6 @@ export default function PageSeleraRisiko({}) {
       />
      </Box>
     </Collapse>
-    {/* <FormControl>
-     <RadioGroup
-      aria-labelledby="demo-controlled-radio-buttons-group"
-      name="controlled-radio-buttons-group"
-      value={value}
-      onChange={handleChange}
-      sx={{ gap: 2 }}
-     >
-      <FormControlLabel
-       value="1"
-       control={<Radio sx={{ mt: -1 }} />}
-       sx={{ alignItems: "flex-start" }}
-       label={
-        <LabelRadio
-         heading="Tidak memberikan toleransi"
-         description="Sangat berhati-hati dalam mengambil risiko dan lebih memilih menjaga
-        stabilitas dan konsistensi dalam operasi bisnis"
-        />
-       }
-      />
-      <FormControlLabel
-       value="2"
-       control={<Radio sx={{ mt: -1 }} />}
-       sx={{ alignItems: "flex-start" }}
-       label={
-        <LabelRadio
-         heading="Konservatif"
-         description={
-          <>
-           <Box component="p">
-            Berhati-hati dalam mengambil risiko, dengan memilih beberapa risiko
-            yang terkendali tetapi tetap memprioritaskan kestabilan kegiatan.
-           </Box>
-           <Box component="p">
-            Keputusan didasarkan pada upaya untuk melindungi nilai dari risiko
-            besar yang tidak terduga, termasuk di dalamnya menghindari paparan
-            terhadap fluktuasi/kondisi global/eksternal yang signifikan serta
-            dapat menanggung beban yang kecil.
-           </Box>
-          </>
-         }
-        />
-       }
-      />
-      <FormControlLabel
-       value="3"
-       control={<Radio sx={{ mt: -1 }} />}
-       sx={{ alignItems: "flex-start" }}
-       label={
-        <LabelRadio
-         heading="Moderat"
-         description={
-          <>
-           <Box component="p">
-            Bersedia mengambil risiko dalam batas tertentu untuk mencapai
-            manfaat, tetapi tetap memperhatikan perlindungan terhadap kerugian
-            besar.
-           </Box>
-           <Box component="p">
-            Keputusan mempertimbangkan peluang pertumbuhan dan dampak risiko
-            secara bersamaan dan dapat menanggung beban sedang.
-           </Box>
-          </>
-         }
-        />
-       }
-      />
-      <FormControlLabel
-       value="4"
-       control={<Radio sx={{ mt: -1 }} />}
-       sx={{ alignItems: "flex-start" }}
-       label={
-        <LabelRadio
-         heading="Agresif"
-         description={
-          <>
-           <Box component="p">
-            Secara aktif menerapkan strategi yang melibatkan pengelolaan risiko
-            sebagai bagian integral dari rencana kegiatan, mengambil risiko
-            lebih tinggi dalam rangka mencapai peluang dan inovasi yang lebih
-            besar.
-           </Box>
-           <Box component="p">
-            Keputusan didasarkan pada analisis risiko dan pengembalian investasi
-            jangka panjang serta dapat menanggung beban yang besar.
-           </Box>
-          </>
-         }
-        />
-       }
-      />
-     </RadioGroup>
-    </FormControl> */}
    </ContentPage>
   </DashboardLayout>
  );

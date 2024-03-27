@@ -30,10 +30,12 @@ const FundSource = ({
  label,
  value,
  color,
+ isYear,
 }: {
  label: string;
  value: string;
  color: string;
+ isYear?: boolean;
 }) => {
  return (
   <Stack
@@ -52,6 +54,7 @@ const FundSource = ({
     fontWeight={700}
     letterSpacing={0.2}
     fontSize={14}
+    minWidth={isYear ? 0 : 120}
    >
     {label}
    </Box>
@@ -135,11 +138,7 @@ export default function TabProfil({}) {
  return (
   <Stack gap={1}>
    <CardItem
-    title={
-     <>
-      <em>Cascading</em> Sasaran, Indikator, Target RO
-     </>
-    }
+    title="Cascading Sasaran, Indikator, Target RO"
     addButton={
      <AddButton
       filled
@@ -175,6 +174,73 @@ export default function TabProfil({}) {
      }
     >
      <FormSasaran mode="add" />
+    </DialogComponent>
+   </CardItem>
+   <CardItem
+    title="Pendanaan & Investasi Proyek"
+    setting
+    settingEditOnclick={handleModalOpenPendanaan}
+   >
+    {isEmpty ? (
+     <EmptyState
+      dense
+      icon={<IconEmptyData width={100} />}
+      title="Data Kosong"
+      description="Silahkan isi konten halaman ini"
+     />
+    ) : (
+     <Grid container spacing={2}>
+      <Grid item lg={4}>
+       <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
+        <Typography fontWeight={500} mb={2}>
+         Jumlah per Tahun
+        </Typography>
+        <Stack gap={1} mt={1}>
+         <FundSource isYear color={grey[600]} label="2023" value="Rp. -" />
+         <FundSource isYear color={grey[600]} label="2024" value="Rp. -" />
+        </Stack>
+       </Paper>
+      </Grid>
+      <Grid item lg={4}>
+       <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
+        <Typography fontWeight={500} mb={2}>
+         Sumber Pendanaan
+        </Typography>
+        <Stack gap={1} mt={1}>
+         <FundSource color={green[400]} label="APBN" value="Rp. -" />
+         <FundSource color={red[400]} label="Non-APBN" value="Rp. -" />
+        </Stack>
+       </Paper>
+      </Grid>
+      <Grid item lg={4}>
+       <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
+        <Typography fontWeight={500} mb={2}>
+         Kesiapan Pendanaan
+        </Typography>
+        <ul>
+         <li>Menyebutkan posisi saat ini dalam proses pemenuhan pendanaan</li>
+         <li>Menyebutkan persen nominal pendanaan yang sudah didapatkan</li>
+        </ul>
+       </Paper>
+      </Grid>
+     </Grid>
+    )}
+    <DialogComponent
+     dialogOpen={modalOpenPendanaan}
+     dialogClose={handleModalClose}
+     title="Pendanaan & Investasi Proyek"
+     dialogFooter={
+      <DialogActions sx={{ p: 2, px: 3 }}>
+       <Button variant="outlined" onClick={handleModalClose}>
+        Batal
+       </Button>
+       <Button variant="contained" type="submit">
+        Simpan
+       </Button>
+      </DialogActions>
+     }
+    >
+     <FormPendanaan mode="add" />
     </DialogComponent>
    </CardItem>
    <CardItem
@@ -214,7 +280,7 @@ export default function TabProfil({}) {
     </DialogComponent>
    </CardItem>
    <CardItem
-    title={<em>Stakeholder Mapping</em>}
+    title="Stakeholder Mapping"
     setting
     settingEditOnclick={handleModalOpenStakeholder}
    >
@@ -286,73 +352,6 @@ export default function TabProfil({}) {
      }
     >
      <ReactQuill theme="snow" value={value} onChange={setValue} />
-    </DialogComponent>
-   </CardItem>
-   <CardItem
-    title="Pendanaan & Investasi Proyek"
-    setting
-    settingEditOnclick={handleModalOpenPendanaan}
-   >
-    {isEmpty ? (
-     <EmptyState
-      dense
-      icon={<IconEmptyData width={100} />}
-      title="Data Kosong"
-      description="Silahkan isi konten halaman ini"
-     />
-    ) : (
-     <Grid container spacing={2}>
-      <Grid item lg={4}>
-       <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-        <Typography fontWeight={500} mb={2}>
-         Jumlah per Tahun
-        </Typography>
-        <Stack gap={1} mt={1}>
-         <FundSource color={grey[600]} label="2023" value="Rp. -" />
-         <FundSource color={grey[600]} label="2024" value="Rp. -" />
-        </Stack>
-       </Paper>
-      </Grid>
-      <Grid item lg={4}>
-       <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-        <Typography fontWeight={500} mb={2}>
-         Sumber Pendanaan
-        </Typography>
-        <Stack gap={1} mt={1}>
-         <FundSource color={green[400]} label="APBN" value="Rp. -" />
-         <FundSource color={red[400]} label="Non-APBN" value="Rp. -" />
-        </Stack>
-       </Paper>
-      </Grid>
-      <Grid item lg={4}>
-       <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-        <Typography fontWeight={500} mb={2}>
-         Kesiapan Pendanaan
-        </Typography>
-        <ul>
-         <li>Menyebutkan posisi saat ini dalam proses pemenuhan pendanaan</li>
-         <li>Menyebutkan persen nominal pendanaan yang sudah didapatkan</li>
-        </ul>
-       </Paper>
-      </Grid>
-     </Grid>
-    )}
-    <DialogComponent
-     dialogOpen={modalOpenPendanaan}
-     dialogClose={handleModalClose}
-     title="Pendanaan & Investasi Proyek"
-     dialogFooter={
-      <DialogActions sx={{ p: 2, px: 3 }}>
-       <Button variant="outlined" onClick={handleModalClose}>
-        Batal
-       </Button>
-       <Button variant="contained" type="submit">
-        Simpan
-       </Button>
-      </DialogActions>
-     }
-    >
-     <FormPendanaan mode="add" />
     </DialogComponent>
    </CardItem>
   </Stack>
