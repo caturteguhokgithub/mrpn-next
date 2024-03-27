@@ -168,7 +168,7 @@ export default function PageTema({}) {
          label="Sistem Persampahan"
         />
        </ToggleButtonGroup>
-       {/* <Collapse in={valueTheme === "penurunan-stunting"}>
+       <Collapse in={valueTheme === "penurunan-stunting"}>
         <SearchKP valueTheme="penurunan-stunting" />
         <Button
          variant="contained"
@@ -221,7 +221,7 @@ export default function PageTema({}) {
         >
          Simpan
         </Button>
-       </Collapse> */}
+       </Collapse>
       </>
      )}
     </ContentPage>
