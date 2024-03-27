@@ -228,7 +228,7 @@ export default function PagePemantauan({}) {
  return (
   <>
    <DashboardLayout>
-    <ContentPage title="Pemantauan" chooseKonteks chooseProject>
+    <ContentPage title="Pemantauan" chooseProject>
      {/* <EmptyState
      icon={<IconEmptyPage />}
      title="Halaman Pemantauan Masih Kosong"

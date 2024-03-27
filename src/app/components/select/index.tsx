@@ -6,21 +6,25 @@ export default function SelectCustomTheme({
  value,
  children,
  onChange,
+ defaultStyle,
+ small,
 }: {
  value: string;
  children: React.ReactNode;
  //  onChange?: () => void | any;
  onChange?: any;
+ defaultStyle?: boolean;
+ small?: boolean;
 }) {
  return (
   <Select
+   size={small ? "small" : "medium"}
    value={value}
    onChange={onChange}
    displayEmpty
    inputProps={{
     PaperProps: {
      sx: {
-      bgcolor: "pink",
       "& .MuiMenuItem-root": {
        padding: 2,
       },
@@ -46,15 +50,15 @@ export default function SelectCustomTheme({
    }}
    sx={{
     ".MuiSelect-icon": {
-     color: "white",
+     color: defaultStyle ? "inherit" : "white",
     },
     "&.MuiInputBase-root": {
-     fontSize: 14,
+     fontSize: defaultStyle ? "inherit" : 14,
      py: 0,
-     borderRadius: 6,
+     borderRadius: defaultStyle ? 2 : 6,
      border: 0,
-     bgcolor: theme.palette.primary.main,
-     color: theme.palette.primary.light,
+     bgcolor: defaultStyle ? "inherit" : theme.palette.primary.main,
+     color: defaultStyle ? "inherit" : theme.palette.primary.light,
     },
    }}
   >

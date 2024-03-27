@@ -19,6 +19,7 @@ export default function ContentPage({
  withCard,
  chooseKonteks,
  chooseProject,
+ chooseProjectPage,
  titleChild,
  breadcrumb,
  noPadding,
@@ -31,6 +32,7 @@ export default function ContentPage({
  withCard?: boolean;
  noPadding?: boolean;
  chooseProject?: React.ReactNode;
+ chooseProjectPage?: React.ReactNode;
  chooseKonteks?: boolean;
  heightTitleBreadcrumb?: boolean;
  titleChild?: React.ReactNode;
@@ -38,12 +40,12 @@ export default function ContentPage({
  overflowHidden?: boolean;
  addButton?: React.ReactNode;
 }) {
- //  const [project, setProject] = React.useState("");
+ const [project, setProject] = React.useState("");
  const [konteks, setKonteks] = React.useState("");
 
- //  const handleChangeProject = (event: SelectChangeEvent) => {
- //   setProject(event.target.value);
- //  };
+ const handleChangeProject = (event: SelectChangeEvent) => {
+  setProject(event.target.value);
+ };
  const handleChangeKonteks = (event: SelectChangeEvent) => {
   setKonteks(event.target.value);
  };
@@ -77,10 +79,10 @@ export default function ContentPage({
      {titleChild}
     </Stack>
     <Stack direction="row" gap={1}>
-     {chooseProject}
-     {/* {chooseProject && ( */}
-     <>
-      {/* <Chip
+     {chooseProjectPage}
+     {chooseProject && (
+      <>
+       {/* <Chip
         color="primary"
         // variant="outlined"
         label="KP-03 - Kawasan Industri Prioritas dan Smelter"
@@ -92,25 +94,26 @@ export default function ContentPage({
          px: 1,
         }}
        /> */}
-      {/* <FormControl size="small">
+       <FormControl size="small">
         <SelectCustomTheme value={project} onChange={handleChangeProject}>
          <MenuItem value="" disabled>
-          <Typography fontStyle="italic">
+          <Typography fontSize={14} fontStyle="italic">
            Pilih Kegiatan Pembangunan (KP)
           </Typography>
          </MenuItem>
          <MenuItem value="1" defaultChecked>
           KP.02 - Penurunan stunting
          </MenuItem>
-         <MenuItem value="2">KP-02 - Destinasi Pariwisata Prioritas</MenuItem>
+         <MenuItem value="2">
+          KP.03 - Peningkatan pelayanan kesehatan...
+         </MenuItem>
          <MenuItem value="3">
-          KP-03 - Kawasan Industri Prioritas dan Smelter
+          KP.04 - Penyediaan Akses Terhadap Rumah...
          </MenuItem>
         </SelectCustomTheme>
-        {project === "1" && "tes"}
-       </FormControl> */}
-     </>
-     {/* )} */}
+       </FormControl>
+      </>
+     )}
      {chooseKonteks && (
       <FormControl size="small">
        <SelectCustomTheme value={konteks} onChange={handleChangeKonteks}>

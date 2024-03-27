@@ -140,8 +140,8 @@ export default function FormPendanaan({ mode }: { mode?: string }) {
        />
       ) : mode === "edit" ? (
        <TextareaComponent
-        label="Keterangan"
-        placeholder="Keterangan"
+        label="Kesiapan Pendanaan"
+        placeholder="Kesiapan Pendanaan"
         value="-"
        />
       ) : (

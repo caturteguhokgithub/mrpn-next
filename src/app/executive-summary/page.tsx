@@ -89,7 +89,7 @@ export default function PageExecutiveSummary({}) {
     title="Executive Summary"
     overflowHidden
     withCard={project !== "1"}
-    chooseProject={
+    chooseProjectPage={
      <FormControl size="small">
       <SelectCustomTheme value={project} onChange={handleChangeProject}>
        <MenuItem value="" disabled>

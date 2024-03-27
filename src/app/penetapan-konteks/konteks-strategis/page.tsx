@@ -163,7 +163,7 @@ export default function PageKonteksStrategis({}) {
  return (
   <>
    <DashboardLayout>
-    <ContentPage title="Konteks Strategis" chooseKonteks>
+    <ContentPage title="Konteks Strategis" chooseProject>
      <MaterialReactTable table={table} />
     </ContentPage>
    </DashboardLayout>

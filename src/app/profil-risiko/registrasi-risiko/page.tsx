@@ -166,7 +166,7 @@ export default function PageRegistrasiRisiko({}) {
  return (
   <>
    <DashboardLayout>
-    <ContentPage title="Registrasi Risiko" chooseKonteks chooseProject>
+    <ContentPage title="Registrasi Risiko" chooseProject>
      {/* <Box className="table-collapsed"> */}
      <MaterialReactTable table={table} />
      {/* </Box> */}

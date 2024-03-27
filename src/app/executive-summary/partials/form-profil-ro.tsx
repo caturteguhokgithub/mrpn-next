@@ -1,11 +1,25 @@
 import React from "react";
-import { FormControl, Grid, TextField, Typography } from "@mui/material";
+import {
+ FormControl,
+ Grid,
+ MenuItem,
+ SelectChangeEvent,
+ TextField,
+ Typography,
+} from "@mui/material";
+import TextareaComponent from "@/app/components/textarea";
+import SelectCustomTheme from "@/app/components/select";
 
 export default function FormProfilRo({ mode }: { mode?: string }) {
+ const [project, setProject] = React.useState("");
+
+ const handleChangeProject = (event: SelectChangeEvent) => {
+  setProject(event.target.value);
+ };
  return (
   <>
    <Grid container spacing={2}>
-    <Grid item lg={6}>
+    <Grid item lg={4}>
      <FormControl fullWidth>
       <Typography>Kode RKKP</Typography>
       {mode === "add" ? (
@@ -31,78 +45,105 @@ export default function FormProfilRo({ mode }: { mode?: string }) {
       )}
      </FormControl>
     </Grid>
-    <Grid item lg={6}>
+    <Grid item lg={4}>
      <FormControl fullWidth>
       <Typography>Kode KL</Typography>
       {mode === "add" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Kode KL"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+       <SelectCustomTheme
+        defaultStyle
+        small
+        value={project}
+        onChange={handleChangeProject}
+       >
+        <MenuItem value="" disabled>
+         <Typography fontSize={14} fontStyle="italic">
+          Pilih Kode KL
+         </Typography>
+        </MenuItem>
+        <MenuItem value="1" defaultChecked>
+         -
+        </MenuItem>
+        <MenuItem value="2">-</MenuItem>
+        <MenuItem value="3">-</MenuItem>
+       </SelectCustomTheme>
       ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+       <SelectCustomTheme
+        defaultStyle
+        value={project}
+        onChange={handleChangeProject}
+       >
+        <MenuItem value="" disabled>
+         <Typography fontSize={14} fontStyle="italic">
+          Pilih Kode KL
+         </Typography>
+        </MenuItem>
+        <MenuItem value="1" defaultChecked>
+         -
+        </MenuItem>
+        <MenuItem value="2">-</MenuItem>
+        <MenuItem value="3">-</MenuItem>
+       </SelectCustomTheme>
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}
      </FormControl>
     </Grid>
-    <Grid item lg={6}>
+    <Grid item lg={4}>
      <FormControl fullWidth>
       <Typography>KL</Typography>
       {mode === "add" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="KL"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+       <SelectCustomTheme
+        defaultStyle
+        small
+        value={project}
+        onChange={handleChangeProject}
+       >
+        <MenuItem value="" disabled>
+         <Typography fontSize={14} fontStyle="italic">
+          Pilih KL
+         </Typography>
+        </MenuItem>
+        <MenuItem value="1" defaultChecked>
+         -
+        </MenuItem>
+        <MenuItem value="2">-</MenuItem>
+        <MenuItem value="3">-</MenuItem>
+       </SelectCustomTheme>
       ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+       <SelectCustomTheme
+        defaultStyle
+        value={project}
+        onChange={handleChangeProject}
+       >
+        <MenuItem value="" disabled>
+         <Typography fontSize={14} fontStyle="italic">
+          Pilih KL
+         </Typography>
+        </MenuItem>
+        <MenuItem value="1" defaultChecked>
+         -
+        </MenuItem>
+        <MenuItem value="2">-</MenuItem>
+        <MenuItem value="3">-</MenuItem>
+       </SelectCustomTheme>
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}
      </FormControl>
     </Grid>
-    <Grid item lg={6}>
+    <Grid item lg={12}>
      <FormControl fullWidth>
-      <Typography>RO</Typography>
+      <Typography>Rincian Output (RO)</Typography>
       {mode === "add" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="RO"
-        InputLabelProps={{
-         shrink: true,
-        }}
+       <TextareaComponent
+        label="Rincian Output (RO)"
+        placeholder="Rincian Output (RO)"
        />
       ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
+       <TextareaComponent
+        label="Rincian Output (RO)"
+        placeholder="Rincian Output (RO)"
         value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
        />
       ) : (
        <Typography fontWeight={600}>-</Typography>
