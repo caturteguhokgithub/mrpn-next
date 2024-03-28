@@ -20,19 +20,28 @@ import { addUrl, editUrl } from "@/app/utils/constant";
 
 export default function PagePemantauan({}) {
  const [modalOpenView, setModalOpenView] = React.useState(false);
+ const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
+ const [modalOpenEdit, setModalOpenEdit] = React.useState(false);
  const [modalOpenDelete, setModalOpenDelete] = React.useState(false);
 
  const handleModalOpenView = () => {
   setModalOpenView(true);
  };
-
  const handleModalOpenDelete = () => {
   setModalOpenDelete(true);
+ };
+ const handleModalOpenAdd = () => {
+  setModalOpenAdd(true);
+ };
+ const handleModalOpenEdit = () => {
+  setModalOpenEdit(true);
  };
 
  const handleModalClose = () => {
   setModalOpenView(false);
   setModalOpenDelete(false);
+  setModalOpenAdd(false);
+  setModalOpenEdit(false);
  };
 
  const columns = useMemo(
@@ -167,7 +176,7 @@ export default function PagePemantauan({}) {
 
  const renderTopToolbar: ColumnsType = {
   renderTopToolbarCustomActions: () => (
-   <AddButton url={addUrl} title="Tambah Pemantauan" />
+   <AddButton onclick={handleModalOpenAdd} title="Tambah Pemantauan" />
   ),
  };
 
@@ -199,7 +208,7 @@ export default function PagePemantauan({}) {
     Cell: () => (
      <ActionColumn
       viewClick={handleModalOpenView}
-      editUrl={editUrl}
+      editClick={handleModalOpenEdit}
       deleteClick={handleModalOpenDelete}
      />
     ),
@@ -245,6 +254,20 @@ export default function PagePemantauan({}) {
     title="Detail Pemantauan"
    >
     <FormTable mode="view" />
+   </DialogComponent>
+   <DialogComponent
+    dialogOpen={modalOpenAdd}
+    dialogClose={handleModalClose}
+    title="Detail Pemantauan"
+   >
+    <FormTable mode="add" />
+   </DialogComponent>
+   <DialogComponent
+    dialogOpen={modalOpenEdit}
+    dialogClose={handleModalClose}
+    title="Detail Pemantauan"
+   >
+    <FormTable mode="edit" />
    </DialogComponent>
    <DialogComponent
     width={240}

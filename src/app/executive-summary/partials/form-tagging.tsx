@@ -32,10 +32,17 @@ export default function FormTagging({ mode }: { mode?: string }) {
           <Typography fontStyle="italic">Pilih Kebijakan</Typography>
          </MenuItem>
          <MenuItem value="1" defaultChecked>
-          -
+          Janpres
          </MenuItem>
-         <MenuItem value="2">-</MenuItem>
-         <MenuItem value="3">-</MenuItem>
+         <MenuItem value="2">SDGs</MenuItem>
+         <MenuItem value="3">Dekon</MenuItem>
+         <MenuItem value="4">DAK</MenuItem>
+         <MenuItem value="5">PEN</MenuItem>
+         <MenuItem value="6">RPJPN</MenuItem>
+         <MenuItem value="7">RPJMN</MenuItem>
+         <MenuItem value="8">RKP</MenuItem>
+         <MenuItem value="9">Major Project</MenuItem>
+         <MenuItem value="10">Nawacita</MenuItem>
         </SelectCustomTheme>
        </>
       ) : mode === "edit" ? (

@@ -137,12 +137,20 @@ export default function TabPolicy({}) {
    <CardItem
     title="Profil Intevensi Kunci"
     addButton={
-     <AddButton
-      filled
-      small
-      title="Tambah Profil RO"
-      onclick={handleModalOpenProfilRoKunci}
-     />
+     <>
+      <AddButton
+       filled
+       small
+       title="Tambah Project"
+       onclick={handleModalOpenProfilRoKunci}
+      />
+      <AddButton
+       filled
+       small
+       title="Tambah Profil RO"
+       onclick={handleModalOpenProfilRoKunci}
+      />
+     </>
     }
    >
     {isEmpty ? (

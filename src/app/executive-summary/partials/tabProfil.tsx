@@ -25,6 +25,8 @@ import FormProfilRo from "./form-profil-ro";
 import dynamic from "next/dynamic";
 import FormPendanaan from "./form-pendanaan";
 import Image from "next/image";
+import FormStakeholder from "./form-stakeholder";
+import CardStakeholder from "@/app/components/cardStakeholder";
 
 const FundSource = ({
  label,
@@ -68,39 +70,6 @@ const FundSource = ({
     {value}
    </Box>
   </Stack>
- );
-};
-
-const CardStakeholder = ({
- title,
- img,
- description,
-}: {
- title: string;
- img: string;
- description: React.ReactNode;
-}) => {
- return (
-  <Card sx={{ maxWidth: 345 }} elevation={2}>
-   <CardContent>
-    <Typography gutterBottom variant="h6" component="div" lineHeight={1.3}>
-     {title}
-    </Typography>
-   </CardContent>
-   <CardContent sx={{ textAlign: "center" }}>
-    <Image
-     alt={title}
-     src={img}
-     width={0}
-     height={0}
-     sizes="100vw"
-     style={{ width: "100%", height: "auto" }}
-    />
-   </CardContent>
-   <CardContent>
-    <Typography variant="body2">{description}</Typography>
-   </CardContent>
-  </Card>
  );
 };
 
@@ -351,7 +320,7 @@ export default function TabProfil({}) {
       </DialogActions>
      }
     >
-     <ReactQuill theme="snow" value={value} onChange={setValue} />
+     <FormStakeholder mode="add" />
     </DialogComponent>
    </CardItem>
   </Stack>

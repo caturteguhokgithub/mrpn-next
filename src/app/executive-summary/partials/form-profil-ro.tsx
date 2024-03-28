@@ -21,32 +21,6 @@ export default function FormProfilRo({ mode }: { mode?: string }) {
    <Grid container spacing={2}>
     <Grid item lg={4}>
      <FormControl fullWidth>
-      <Typography>Kode RKKP</Typography>
-      {mode === "add" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="KL"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
-      ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
-      ) : (
-       <Typography fontWeight={600}>-</Typography>
-      )}
-     </FormControl>
-    </Grid>
-    <Grid item lg={4}>
-     <FormControl fullWidth>
       <Typography>Kode KL</Typography>
       {mode === "add" ? (
        <SelectCustomTheme
@@ -126,6 +100,32 @@ export default function FormProfilRo({ mode }: { mode?: string }) {
         <MenuItem value="2">-</MenuItem>
         <MenuItem value="3">-</MenuItem>
        </SelectCustomTheme>
+      ) : (
+       <Typography fontWeight={600}>-</Typography>
+      )}
+     </FormControl>
+    </Grid>
+    <Grid item lg={4}>
+     <FormControl fullWidth>
+      <Typography>Kode PKKR</Typography>
+      {mode === "add" ? (
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Kode PKKR"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      ) : mode === "edit" ? (
+       <TextField
+        variant="outlined"
+        size="small"
+        value="-"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}

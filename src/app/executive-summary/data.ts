@@ -2404,3 +2404,11 @@ export const listKp = [
   nama_kp: "Nomenklatur KP",
  },
 ];
+
+export const imgStakeholder = [
+ {
+  id: "1",
+  value: "",
+  imgUrl: "",
+ },
+];

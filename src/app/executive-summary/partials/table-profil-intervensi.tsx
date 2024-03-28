@@ -86,9 +86,9 @@ export default function TableProfilIntervensi() {
       <TableCell>Entitas Utama</TableCell>
       <TableCell>Entitas Kontributor</TableCell>
       <TableCell>Nomenklatur RO/Project</TableCell>
-      {/* <TableCell>Target</TableCell>
+      <TableCell>Target</TableCell>
       <TableCell>Anggaran</TableCell>
-      <TableCell>Sumber Anggaran</TableCell> */}
+      <TableCell>Sumber Anggaran</TableCell>
      </TableRow>
     </TableHead>
     <TableBody>
@@ -101,9 +101,9 @@ export default function TableProfilIntervensi() {
        <TableCell>{row.klUtama}</TableCell>
        <TableCell>{row.klKontributor}</TableCell>
        <TableCell>{row.nomenklatur}</TableCell>
-       {/* <TableCell>{row.target}</TableCell>
+       <TableCell>{row.target}</TableCell>
        <TableCell>{row.anggaran}</TableCell>
-       <TableCell>{row.sumberAnggaran}</TableCell> */}
+       <TableCell>{row.sumberAnggaran}</TableCell>
       </TableRow>
      ))}
     </TableBody>
