@@ -197,7 +197,7 @@ export default function PageDashboardPartial({}) {
        </Grid>
       </BlockCard>
      </Grid> */}
-     <Grid item lg={6}>
+     <Grid item lg={6} md={12} sm={12}>
       <BlockCard title="Akumulasi Risiko" minHeight="388px">
        <TableContainer sx={{ mt: 4 }}>
         <Table size="small" sx={{ width: "100%" }}>
@@ -272,7 +272,7 @@ export default function PageDashboardPartial({}) {
        </TableContainer>
       </BlockCard>
      </Grid>
-     <Grid item lg={6}>
+     <Grid item lg={6} md={12} sm={12}>
       <BlockCard title="Kategori vs. Jumlah Risiko">
        <BarChart
         dataset={datasetKategori}
@@ -299,7 +299,7 @@ export default function PageDashboardPartial({}) {
        />
       </BlockCard>
      </Grid>
-     <Grid item lg={12}>
+     <Grid item lg={12} sm={12}>
       <BlockCard title="10 Project dengan Nilai Risiko Terbesar">
        <BarChart
         dataset={dataset}

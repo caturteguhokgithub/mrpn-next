@@ -136,7 +136,7 @@ export default function FormTable({ mode }: { mode?: string }) {
       <Grid container spacing={2}>
        <Grid item lg={12}>
         <Divider>
-         <Chip label="Pelaksana Pembangunan (PP)" size="small" />
+         <Chip label="Proyek Pembangunan (PP)" size="small" />
         </Divider>
        </Grid>
        {/* <ItemKP full /> */}

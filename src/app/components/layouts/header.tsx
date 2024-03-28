@@ -16,6 +16,7 @@ import { orange, red } from "@mui/material/colors";
 import React from "react";
 import { IconKeluar } from "../icons";
 import { IconFA } from "../icons/icon-fa";
+import Image from "next/image";
 
 export default function Header({}) {
  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -36,6 +37,9 @@ export default function Header({}) {
     color: "white",
     padding: "0 42px",
     pl: "3rem",
+    [theme.breakpoints.down("md")]: {
+     px: 3,
+    },
    }}
   >
    <Stack direction="row" justifyContent="space-between" width="100%">
@@ -48,6 +52,21 @@ export default function Header({}) {
      >
       MRPN 2024
      </Typography> */}
+     <Box
+      sx={{
+       [theme.breakpoints.up("md")]: {
+        display: "none",
+       },
+      }}
+     >
+      <Image
+       width={50}
+       height={53}
+       src="https://res.cloudinary.com/caturteguh/image/upload/v1708049745/mrpn/logo-2024_ne4yaj.png"
+       alt="MRPN 2024"
+       priority
+      />
+     </Box>
      <Typography
       component="p"
       fontWeight="700"

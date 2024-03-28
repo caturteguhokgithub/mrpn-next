@@ -48,11 +48,11 @@ export default function SearchKP({ valueTheme }: { valueTheme: string }) {
 
  const highlightedPosts = filteredPostsArray.map((post) => {
   const bodyHighlighted = post.nama_kp.replace(replaceRegex, function (a) {
-   return `<span style="background-color: ${yellow[200]}; font-weight: 500;">${a}</span>`;
+   return `<span style="background-color:rgb(255, 203, 127); font-weight: 500;">${a}</span>`;
   });
 
   const titleHighlighted = post.kode_kp.replace(replaceRegex, function (a) {
-   return `<span style="background-color:  ${yellow[200]}; font-weight: 500;">${a}</span>`;
+   return `<span style="background-color:rgb(255, 203, 127); font-weight: 500;">${a}</span>`;
   });
 
   return {
@@ -75,16 +75,16 @@ export default function SearchKP({ valueTheme }: { valueTheme: string }) {
      Pilih KP dari tema{" "}
      <Typography fontWeight={600} fontSize={14} component="span">
       {valueTheme === "penurunan-stunting"
-       ? "01.01.02 - Penurunan Stunting"
+       ? "Penurunan Stunting"
        : valueTheme === "penurunan-kemiskinan"
-       ? "01.01.03 - Penurunan Kemiskinan"
+       ? "Penurunan Kemiskinan"
        : valueTheme === "percepatan-transisi-energi"
-       ? "01.01.04 - Percepatan Transisi Energi"
+       ? "Percepatan Transisi Energi"
        : valueTheme === "peningkatan-pariwisata"
-       ? "01.01.05 - Peningkatan Pariwisata"
+       ? "Peningkatan Pariwisata"
        : valueTheme === "ketahanan-pangan"
-       ? "01.01.06 - Ketahanan Pangan"
-       : "01.01.07 - Sistem Persampahan"}
+       ? "Ketahanan Pangan"
+       : "Sistem Persampahan"}
      </Typography>
     </Typography>
     <SearchField handleSearchTermUpdate={handleSearchTermUpdate} />

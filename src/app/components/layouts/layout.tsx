@@ -76,6 +76,10 @@ export default function DashboardLayout({
     gridTemplateAreas: `'aside header' 'aside main' 'aside footer'`,
     height: "100vh",
     transition: "grid-template-columns 600ms ease",
+    [theme.breakpoints.down("md")]: {
+     gridTemplateColumns: "1fr",
+     gridTemplateAreas: `'header' 'main' 'footer'`,
+    },
    }}
   >
    <Box
@@ -85,6 +89,9 @@ export default function DashboardLayout({
      bgcolor: theme.palette.primary.main,
      width: checked ? 280 : 64,
      transition: "width 600ms ease",
+     [theme.breakpoints.down("md")]: {
+      display: "none",
+     },
     }}
    >
     <Collapse
@@ -109,7 +116,17 @@ export default function DashboardLayout({
       transitionDelay: "200ms",
      }}
     >
-     <Box mt={0} position="absolute" left={25} zIndex={999}>
+     <Box
+      mt={0}
+      position="absolute"
+      left={25}
+      zIndex={999}
+      sx={{
+       [theme.breakpoints.down("md")]: {
+        display: "none",
+       },
+      }}
+     >
       <Image
        width={50}
        height={53}
@@ -132,6 +149,10 @@ export default function DashboardLayout({
     sx={{
      borderTopLeftRadius: "50px",
      transition: "all 600ms ease",
+     [theme.breakpoints.down("md")]: {
+      borderTopLeftRadius: 0,
+      p: 3,
+     },
      ".table-collapsed": {
       ".MuiTableContainer-root": {
        //  maxWidth: checked ? "calc(100vw - 364px)" : "calc(100vw - 163px)",
@@ -177,7 +198,12 @@ export default function DashboardLayout({
      border="5px solid"
      borderColor={theme.palette.primary.light}
      boxSizing="content-box"
-     sx={{ cursor: "pointer" }}
+     sx={{
+      cursor: "pointer",
+      [theme.breakpoints.down("md")]: {
+       display: "none",
+      },
+     }}
     >
      <Icon
       baseClassName="fas"

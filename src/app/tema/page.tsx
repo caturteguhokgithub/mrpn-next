@@ -118,6 +118,13 @@ export default function PageTema({}) {
          gap: 2,
          mt: 2,
          button: {
+          span: {
+           lineHeight: 1.2,
+           py: 2,
+           height: "100%",
+           display: "inline-flex",
+           alignItems: "center",
+          },
           "&:hover": {
            bgcolor: alpha(theme.palette.primary.main, 0.1),
           },
@@ -135,35 +142,41 @@ export default function PageTema({}) {
            },
           },
          },
+         [theme.breakpoints.down("md")]: {
+          gridTemplateColumns: "1fr 1fr",
+         },
+         [theme.breakpoints.down("sm")]: {
+          gridTemplateColumns: "1fr",
+         },
         }}
        >
         <CustomToggleButton
-         code="01.01.02"
+         //  code="01.01.02"
          value="penurunan-stunting"
          label="Penurunan Stunting"
         />
         <CustomToggleButton
-         code="01.01.03"
+         //  code="01.01.03"
          value="penurunan-kemiskinan"
          label="Penurunan Kemiskinan"
         />
         <CustomToggleButton
-         code="01.01.04"
+         //  code="01.01.04"
          value="percepatan-transisi-energi"
          label="Percepatan Transisi Energi"
         />
         <CustomToggleButton
-         code="01.01.05"
+         //  code="01.01.05"
          value="peningkatan-pariwisata"
          label="Peningkatan Pariwisata"
         />
         <CustomToggleButton
-         code="01.01.06"
+         //  code="01.01.06"
          value="ketahanan-pangan"
          label="Ketahanan Pangan"
         />
         <CustomToggleButton
-         code="01.01.07"
+         //  code="01.01.07"
          value="sistem-persampahan"
          label="Sistem Persampahan"
         />

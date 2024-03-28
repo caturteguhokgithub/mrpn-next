@@ -95,7 +95,7 @@ export default function ContentPage({
         }}
        /> */}
        <FormControl size="small">
-        <SelectCustomTheme value={project} onChange={handleChangeProject}>
+        <SelectCustomTheme small value={project} onChange={handleChangeProject}>
          <MenuItem value="" disabled>
           <Typography fontSize={14} fontStyle="italic">
            Pilih Kegiatan Pembangunan (KP)
