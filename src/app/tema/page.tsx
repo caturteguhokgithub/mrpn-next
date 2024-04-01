@@ -26,34 +26,19 @@ import AddButton from "../components/buttonAdd";
 import DialogComponent from "../components/dialog";
 import FormTable from "./partials/form-table";
 import SearchKP from "./partials/search";
-
-const ToggleContentTema = ({ children }: { children?: React.ReactNode }) => {
- return (
-  <>
-   <Divider sx={{ my: 2 }} />
-   <Typography mt={2} color={grey[600]} fontSize={14} fontStyle="italic">
-    Pilih KP
-   </Typography>
-   <Box
-    mt={2}
-    sx={{
-     maxHeight: "36vh",
-     overflow: "auto",
-     "&::-webkit-scrollbar": {
-      width: "3px",
-     },
-    }}
-   >
-    <FormGroup>{children}</FormGroup>
-   </Box>
-  </>
- );
-};
+import useThemes from "./hooks/useTheme";
 
 export default function PageTema({}) {
- const [valueTheme, setValueTheme] = React.useState<string | null>("[]");
- //  const [valueTheme, setValueTheme] = React.useState([]);
  const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
+
+ const {
+  activeTab,
+  listKp,
+  handleAlignment,
+  listData,
+  handleSearchTermUpdate,
+  searchTab,
+ } = useThemes();
 
  const handleModalOpenAdd = () => {
   setModalOpenAdd(true);
@@ -61,13 +46,6 @@ export default function PageTema({}) {
 
  const handleModalClose = () => {
   setModalOpenAdd(false);
- };
-
- const handleAlignment = (
-  event: React.MouseEvent<HTMLElement>,
-  newTheme: string | null
- ) => {
-  setValueTheme(newTheme);
  };
 
  const dialogActionFooter = (
@@ -108,7 +86,7 @@ export default function PageTema({}) {
         Pilih salah satu tema
        </Typography>
        <ToggleButtonGroup
-        value={valueTheme}
+        value={activeTab}
         exclusive
         onChange={handleAlignment}
         aria-label="text alignment"
@@ -181,8 +159,13 @@ export default function PageTema({}) {
          label="Sistem Persampahan"
         />
        </ToggleButtonGroup>
-       {/* <Collapse in={valueTheme === "penurunan-stunting"}>
-        <SearchKP valueTheme="penurunan-stunting" />
+       <Collapse in={activeTab === "penurunan-stunting"}>
+        <SearchKP
+         activeTab="penurunan-stunting"
+         listData={listData}
+         handleSearchTermUpdate={handleSearchTermUpdate}
+         searchTerm={searchTab}
+        />
         <Button
          variant="contained"
          sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
@@ -190,8 +173,13 @@ export default function PageTema({}) {
          Simpan
         </Button>
        </Collapse>
-       <Collapse in={valueTheme === "penurunan-kemiskinan"}>
-        <SearchKP valueTheme="penurunan-kemiskinan" />
+       <Collapse in={activeTab === "penurunan-kemiskinan"}>
+        <SearchKP
+         activeTab="penurunan-kemiskinan"
+         listData={listData}
+         handleSearchTermUpdate={handleSearchTermUpdate}
+         searchTerm={searchTab}
+        />
         <Button
          variant="contained"
          sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
@@ -199,8 +187,8 @@ export default function PageTema({}) {
          Simpan
         </Button>
        </Collapse>
-       <Collapse in={valueTheme === "percepatan-transisi-energi"}>
-        <SearchKP valueTheme="percepatan-transisi-energi" />
+       <Collapse in={activeTab === "percepatan-transisi-energi"}>
+        {/* <SearchKP activeTab="percepatan-transisi-energi" /> */}
         <Button
          variant="contained"
          sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
@@ -208,8 +196,8 @@ export default function PageTema({}) {
          Simpan
         </Button>
        </Collapse>
-       <Collapse in={valueTheme === "peningkatan-pariwisata"}>
-        <SearchKP valueTheme="peningkatan-pariwisata" />
+       <Collapse in={activeTab === "peningkatan-pariwisata"}>
+        {/* <SearchKP activeTab="peningkatan-pariwisata" /> */}
         <Button
          variant="contained"
          sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
@@ -217,8 +205,8 @@ export default function PageTema({}) {
          Simpan
         </Button>
        </Collapse>
-       <Collapse in={valueTheme === "ketahanan-pangan"}>
-        <SearchKP valueTheme="ketahanan-pangan" />
+       <Collapse in={activeTab === "ketahanan-pangan"}>
+        {/* <SearchKP activeTab="ketahanan-pangan" /> */}
         <Button
          variant="contained"
          sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
@@ -226,15 +214,15 @@ export default function PageTema({}) {
          Simpan
         </Button>
        </Collapse>
-       <Collapse in={valueTheme === "sistem-persampahan"}>
-        <SearchKP valueTheme="sistem-persampahan" />
+       <Collapse in={activeTab === "sistem-persampahan"}>
+        {/* <SearchKP activeTab="sistem-persampahan" /> */}
         <Button
          variant="contained"
          sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
         >
          Simpan
         </Button>
-       </Collapse> */}
+       </Collapse>
       </>
      )}
     </ContentPage>

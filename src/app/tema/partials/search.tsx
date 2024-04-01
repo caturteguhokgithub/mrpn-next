@@ -1,16 +1,25 @@
 import { useState } from "react";
 import SearchField from "./search-bar";
-import { listKp } from "@/app/executive-summary/data";
 import { Box, Divider, FormGroup, Stack, Typography } from "@mui/material";
 import { grey, yellow } from "@mui/material/colors";
 import SearchResult from "./search-result";
 
-export default function SearchKP({ valueTheme }: { valueTheme: string }) {
- const [searchTerm, setSearchTerm] = useState("");
+export default function SearchKP({
+ activeTab,
+ listData,
+ searchTerm,
+ handleSearchTermUpdate,
+}: {
+ activeTab: string;
+ listData: any[];
+ searchTerm: string;
+ handleSearchTermUpdate: any;
+}) {
+ //  const [searchTerm, setSearchTerm] = useState("");
 
- const handleSearchTermUpdate = (searchTermUpdate: any) => {
-  setSearchTerm(searchTermUpdate.target.value);
- };
+ //  const handleSearchTermUpdate = (searchTermUpdate: any) => {
+ //   setSearchTerm(searchTermUpdate.target.value);
+ //  };
 
  // Trim ends, split into array and remove empty strings in array
  const searchTermsArray = searchTerm
@@ -28,32 +37,17 @@ export default function SearchKP({ valueTheme }: { valueTheme: string }) {
   .join("");
  const filterRegex = new RegExp(filterRegexString, "igm");
 
- const filteredPosts = () => {
-  // Return if blanc or no search
-  if (searchTerm.trim() === "") return listKp;
-
-  // Filter posts
-  const filteredPosts = listKp.filter((post) => {
-   const titleAndBodyText =
-    post.kode_kp.replace(/\n/g, " ") + post.nama_kp.replace(/\n/g, " ");
-
-   return filterRegex.test(titleAndBodyText);
-  });
-
-  return filteredPosts;
- };
-
- // Highlight matches
- const filteredPostsArray = filteredPosts();
-
- const highlightedPosts = filteredPostsArray.map((post) => {
-  const bodyHighlighted = post.nama_kp.replace(replaceRegex, function (a) {
+ const highlightedPosts = listData.map((post) => {
+  const bodyHighlighted = post.nama_kp.replace(replaceRegex, function (a: any) {
    return `<span style="background-color:rgb(255, 203, 127); font-weight: 500;">${a}</span>`;
   });
 
-  const titleHighlighted = post.kode_kp.replace(replaceRegex, function (a) {
-   return `<span style="background-color:rgb(255, 203, 127); font-weight: 500;">${a}</span>`;
-  });
+  const titleHighlighted = post.kode_kp.replace(
+   replaceRegex,
+   function (a: any) {
+    return `<span style="background-color:rgb(255, 203, 127); font-weight: 500;">${a}</span>`;
+   }
+  );
 
   return {
    id: post.id,
@@ -74,15 +68,15 @@ export default function SearchKP({ valueTheme }: { valueTheme: string }) {
     <Typography color={grey[600]} fontSize={14} fontStyle="italic">
      Pilih KP dari tema{" "}
      <Typography fontWeight={600} fontSize={14} component="span">
-      {valueTheme === "penurunan-stunting"
+      {activeTab === "penurunan-stunting"
        ? "Penurunan Stunting"
-       : valueTheme === "penurunan-kemiskinan"
+       : activeTab === "penurunan-kemiskinan"
        ? "Penurunan Kemiskinan"
-       : valueTheme === "percepatan-transisi-energi"
+       : activeTab === "percepatan-transisi-energi"
        ? "Percepatan Transisi Energi"
-       : valueTheme === "peningkatan-pariwisata"
+       : activeTab === "peningkatan-pariwisata"
        ? "Peningkatan Pariwisata"
-       : valueTheme === "ketahanan-pangan"
+       : activeTab === "ketahanan-pangan"
        ? "Ketahanan Pangan"
        : "Sistem Persampahan"}
      </Typography>

@@ -261,7 +261,7 @@ export default function TabProfil({}) {
       description="Silahkan isi konten halaman ini"
      />
     ) : (
-     <Stack direction="row" flexWrap="wrap" gap={2} maxWidth={800}>
+     <Stack direction="row" flexWrap="wrap" gap={2}>
       <CardStakeholder
        title="Entitas Pendukung"
        img="https://res.cloudinary.com/caturteguh/image/upload/v1711255729/mrpn/stakeholder-entitas-pendukung_e0fimb.png"
