@@ -9,6 +9,7 @@ export default function DialogComponent({
  dialogFooter,
  width,
  tableMode,
+ headerAction,
 }: {
  title?: string;
  dialogOpen: boolean;
@@ -17,6 +18,7 @@ export default function DialogComponent({
  dialogFooter?: React.ReactNode;
  width?: number | string;
  tableMode?: boolean;
+ headerAction?: React.ReactNode;
 }) {
  return (
   <Dialog
@@ -35,7 +37,18 @@ export default function DialogComponent({
     },
    }}
   >
-   {title && <DialogTitle>{title}</DialogTitle>}
+   {title && (
+    <DialogTitle
+     sx={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+     }}
+    >
+     {title}
+     {headerAction}
+    </DialogTitle>
+   )}
    <DialogContent dividers sx={{ p: tableMode ? 0 : "16px 24px" }}>
     {children}
    </DialogContent>

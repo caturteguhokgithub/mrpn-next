@@ -8,6 +8,7 @@ export default function SelectCustomTheme({
  onChange,
  defaultStyle,
  small,
+ anchorRight,
 }: {
  value: string;
  children: React.ReactNode;
@@ -15,6 +16,7 @@ export default function SelectCustomTheme({
  onChange?: any;
  defaultStyle?: boolean;
  small?: boolean;
+ anchorRight?: boolean;
 }) {
  return (
   <Select
@@ -34,11 +36,11 @@ export default function SelectCustomTheme({
    MenuProps={{
     anchorOrigin: {
      vertical: "bottom",
-     horizontal: "left",
+     horizontal: anchorRight ? "right" : "left",
     },
     transformOrigin: {
      vertical: "top",
-     horizontal: "left",
+     horizontal: anchorRight ? "right" : "left",
     },
     PaperProps: {
      sx: {

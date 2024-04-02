@@ -8,6 +8,8 @@ import {
  DialogActions,
  Box,
  Tooltip,
+ MenuItem,
+ SelectChangeEvent,
 } from "@mui/material";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
@@ -19,15 +21,24 @@ import AddButton from "@/app/components/buttonAdd";
 import FormProfilRoKunci from "./form-profil-ro-kunci";
 import dynamic from "next/dynamic";
 import TableProfilRoKunci from "./table-profil-ro-kunci";
+import FormProfilRoProject from "./form-profil-ro-project";
+import SelectCustomTheme from "@/app/components/select";
 
 export default function TabPolicy({}) {
  const [modalOpenProfilRoKunci, setModalOpenProfilRoKunci] =
+  React.useState(false);
+ const [modalOpenProfilRoKunciProject, setModalOpenProfilRoKunciProject] =
   React.useState(false);
  const [modalOpenRoadmap, setModalOpenRoadmap] = React.useState(false);
  const [modalOpenCritical, setModalOpenCritical] = React.useState(false);
  const [value, setValue] = React.useState("");
  const [modalOpenImgRoadmap, setModalOpenImgRoadmap] = React.useState(false);
  const [modalOpenImgCritical, setModalOpenImgCritical] = React.useState(false);
+ const [project, setProject] = React.useState("");
+
+ const handleChangeProject = (event: SelectChangeEvent) => {
+  setProject(event.target.value);
+ };
 
  const handleModalOpenProfilRoKunci = () => {
   setModalOpenProfilRoKunci(true);
@@ -44,6 +55,9 @@ export default function TabPolicy({}) {
  const handleModalImgCritical = () => {
   setModalOpenImgCritical(true);
  };
+ const handleModalOpenProfilRoKunciProject = () => {
+  setModalOpenProfilRoKunciProject(true);
+ };
 
  const handleModalClose = () => {
   setModalOpenProfilRoKunci(false);
@@ -51,6 +65,7 @@ export default function TabPolicy({}) {
   setModalOpenCritical(false);
   setModalOpenImgRoadmap(false);
   setModalOpenImgCritical(false);
+  setModalOpenProfilRoKunciProject(false);
  };
 
  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -142,7 +157,7 @@ export default function TabPolicy({}) {
        filled
        small
        title="Tambah Project"
-       onclick={handleModalOpenProfilRoKunci}
+       onclick={handleModalOpenProfilRoKunciProject}
       />
       <AddButton
        filled
@@ -169,6 +184,25 @@ export default function TabPolicy({}) {
      dialogOpen={modalOpenProfilRoKunci}
      dialogClose={handleModalClose}
      title="Tambah Profil RO Kunci"
+     headerAction={
+      <SelectCustomTheme
+       small
+       anchorRight
+       value={project}
+       onChange={handleChangeProject}
+      >
+       <MenuItem value="" disabled>
+        <Typography fontSize={14} fontStyle="italic">
+         Pilih K/L
+        </Typography>
+       </MenuItem>
+       <MenuItem value="1" defaultChecked>
+        Kementerian Kesehatan
+       </MenuItem>
+       <MenuItem value="2">Kementerian PUPR</MenuItem>
+       <MenuItem value="3">Kementerian Perindustrian</MenuItem>
+      </SelectCustomTheme>
+     }
      dialogFooter={
       <DialogActions sx={{ p: 2, px: 3 }}>
        <Button variant="outlined" onClick={handleModalClose}>
@@ -181,6 +215,24 @@ export default function TabPolicy({}) {
      }
     >
      <TableProfilRoKunci />
+    </DialogComponent>
+    <DialogComponent
+     width={1000}
+     dialogOpen={modalOpenProfilRoKunciProject}
+     dialogClose={handleModalClose}
+     title="Tambah Nomenklatur RO/Project"
+     dialogFooter={
+      <DialogActions sx={{ p: 2, px: 3 }}>
+       <Button variant="outlined" onClick={handleModalClose}>
+        Batal
+       </Button>
+       <Button variant="contained" type="submit">
+        Simpan
+       </Button>
+      </DialogActions>
+     }
+    >
+     <FormProfilRoProject mode="add" />
     </DialogComponent>
    </CardItem>
    <CardItem
