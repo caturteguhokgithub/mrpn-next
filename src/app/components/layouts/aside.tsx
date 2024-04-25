@@ -18,7 +18,13 @@ import {
 } from "../icons";
 import { IconFA } from "../icons/icon-fa";
 
-export default function Aside({ isExpanded }: { isExpanded?: boolean }) {
+export default function Aside({
+ isExpanded,
+ isMobile,
+}: {
+ isExpanded?: boolean;
+ isMobile?: boolean;
+}) {
  const CompanyIcon = (
   <Stack
    width="100%"
@@ -73,10 +79,11 @@ export default function Aside({ isExpanded }: { isExpanded?: boolean }) {
   <Stack
    direction="column"
    justifyContent="space-between"
-   height="calc(100% - 120px)"
-   maxHeight="calc(100% - 120px)"
+   height={isMobile ? "calc(100% + 16px)" : "calc(100% - 120px)"}
+   maxHeight={isMobile ? "calc(100% + 16px)" : "calc(100% - 120px)"}
    overflow="auto"
    sx={{
+    pt: isMobile ? 3 : 0,
     "&::-webkit-scrollbar": {
      width: "3px",
     },
@@ -218,7 +225,7 @@ export default function Aside({ isExpanded }: { isExpanded?: boolean }) {
 
  return (
   <Box color="white" px="0" height="100vh" pb={4}>
-   {CompanyIcon}
+   {isMobile ? null : CompanyIcon}
    {Sidemenu}
   </Box>
  );

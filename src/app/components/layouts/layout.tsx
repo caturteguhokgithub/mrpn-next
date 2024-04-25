@@ -152,6 +152,8 @@ export default function DashboardLayout({
      [theme.breakpoints.down("md")]: {
       borderTopLeftRadius: 0,
       p: 3,
+      maxWidth: "100%",
+      overflow: "auto",
      },
      ".table-collapsed": {
       ".MuiTableContainer-root": {

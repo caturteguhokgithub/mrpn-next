@@ -5,6 +5,7 @@ import {
  Box,
  Button,
  Divider,
+ Drawer,
  ListItemIcon,
  ListItemText,
  Menu,
@@ -17,15 +18,22 @@ import React from "react";
 import { IconKeluar } from "../icons";
 import { IconFA } from "../icons/icon-fa";
 import Image from "next/image";
+import Aside from "./aside";
 
 export default function Header({}) {
  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+ const [openDrawerMobile, setOpenDrawerMobile] = React.useState(false);
+
  const open = Boolean(anchorEl);
  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
   setAnchorEl(event.currentTarget);
  };
  const handleClose = () => {
   setAnchorEl(null);
+ };
+
+ const toggleDrawerMobile = (newOpen: boolean) => () => {
+  setOpenDrawerMobile(newOpen);
  };
 
  return (
@@ -43,7 +51,17 @@ export default function Header({}) {
    }}
   >
    <Stack direction="row" justifyContent="space-between" width="100%">
-    <Stack direction="column" justifyContent="center">
+    <Stack
+     direction="column"
+     justifyContent="center"
+     sx={{
+      [theme.breakpoints.down("md")]: {
+       flexDirection: "row",
+       alignItems: "center",
+       gap: 2,
+      },
+     }}
+    >
      {/* <Typography
       component="h1"
       fontWeight="800"
@@ -53,19 +71,25 @@ export default function Header({}) {
       MRPN 2024
      </Typography> */}
      <Box
+      component="img"
+      src="https://res.cloudinary.com/caturteguh/image/upload/v1708049745/mrpn/logo-2024_ne4yaj.png"
+      alt="MRPN 2024"
       sx={{
+       display: "flex",
+       alignItems: "center",
+       width: "40px",
        [theme.breakpoints.up("md")]: {
         display: "none",
        },
       }}
      >
-      <Image
+      {/* <Image
        width={50}
        height={53}
        src="https://res.cloudinary.com/caturteguh/image/upload/v1708049745/mrpn/logo-2024_ne4yaj.png"
        alt="MRPN 2024"
        priority
-      />
+      /> */}
      </Box>
      <Typography
       component="p"
@@ -73,6 +97,12 @@ export default function Header({}) {
       fontSize="20px"
       letterSpacing="0.5px"
       //   lineHeight={1.3}
+      sx={{
+       [theme.breakpoints.down("md")]: {
+        fontSize: "1em",
+        lineHeight: 1.2,
+       },
+      }}
      >
       <Box component="span" color={orange[500]} textTransform="uppercase">
        Na
@@ -86,6 +116,16 @@ export default function Header({}) {
        s
       </Box>
       k{" "}
+      <Box
+       component="span"
+       sx={{
+        [theme.breakpoints.up("md")]: {
+         display: "none",
+        },
+       }}
+      >
+       <br />
+      </Box>
       <Box component="span" color={orange[500]} textTransform="uppercase">
        I
       </Box>
@@ -104,11 +144,30 @@ export default function Header({}) {
       BAPPENAS
      </Typography> */}
     </Stack>
-    <Button onClick={handleClick} sx={{ p: 0, m: 0, minWidth: 0 }}>
-     <Avatar sx={{ bgcolor: "white", width: 36, height: 36 }}>
-      <IconFA size={16} name="user-tie" color={theme.palette.primary.main} />
-     </Avatar>
-    </Button>
+    <Stack alignItems="center" direction="row" gap={2}>
+     <Button onClick={handleClick} sx={{ p: 0, m: 0, minWidth: 0 }}>
+      <Avatar sx={{ bgcolor: "white", width: 36, height: 36 }}>
+       <IconFA size={16} name="user-tie" color={theme.palette.primary.main} />
+      </Avatar>
+     </Button>
+     <Box
+      component="span"
+      sx={{
+       display: "inline-flex",
+       cursor: "pointer",
+       [theme.breakpoints.up("md")]: {
+        display: "none",
+       },
+      }}
+     >
+      <IconFA
+       size={20}
+       name="bars"
+       color={theme.palette.primary.light}
+       onclick={toggleDrawerMobile(true)}
+      />
+     </Box>
+    </Stack>
     <Menu
      anchorEl={anchorEl}
      id="account-menu"
@@ -205,6 +264,18 @@ export default function Header({}) {
      </MenuItem>
     </Menu>
    </Stack>
+   <Drawer
+    anchor="right"
+    open={openDrawerMobile}
+    onClose={toggleDrawerMobile(false)}
+    sx={{
+     ".MuiPaper-elevation": {
+      bgcolor: theme.palette.primary.main,
+     },
+    }}
+   >
+    <Aside isExpanded={true} isMobile />
+   </Drawer>
   </Box>
  );
 }
