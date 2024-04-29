@@ -19,7 +19,9 @@ export default function TabOverall({}) {
       description="Silahkan isi konten halaman ini"
      />
     ) : (
-     <TableOverall />
+     <>
+      <TableOverall />
+     </>
     )}
    </CardItem>
   </Stack>

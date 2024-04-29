@@ -28,56 +28,10 @@ import Image from "next/image";
 import FormStakeholder from "./form-stakeholder";
 import CardStakeholder from "@/app/components/cardStakeholder";
 
-const FundSource = ({
- label,
- value,
- color,
- isYear,
-}: {
- label: string;
- value: string;
- color: string;
- isYear?: boolean;
-}) => {
- return (
-  <Stack
-   direction="row"
-   alignItems="center"
-   boxSizing="border-box"
-   width="100%"
-   border={`2px solid ${color}`}
-   borderRadius="8px"
-  >
-   <Box
-    color="white"
-    bgcolor={color}
-    border={`2px solid ${color}`}
-    p="8px 16px"
-    fontWeight={700}
-    letterSpacing={0.2}
-    fontSize={14}
-    minWidth={isYear ? 0 : 120}
-   >
-    {label}
-   </Box>
-   <Box
-    p="8px 16px"
-    fontWeight={600}
-    fontSize={14}
-    flexGrow={1}
-    textAlign="right"
-   >
-    {value}
-   </Box>
-  </Stack>
- );
-};
-
 export default function TabProfil({}) {
  const [modalOpenSasaran, setModalOpenSasaran] = React.useState(false);
  const [modalOpenProfilRo, setModalOpenProfilRo] = React.useState(false);
  const [modalOpenStakeholder, setModalOpenStakeholder] = React.useState(false);
- const [modalOpenPendanaan, setModalOpenPendanaan] = React.useState(false);
  const [value, setValue] = React.useState("");
 
  const handleModalOpenSasaran = () => {
@@ -89,15 +43,11 @@ export default function TabProfil({}) {
  const handleModalOpenStakeholder = () => {
   setModalOpenStakeholder(true);
  };
- const handleModalOpenPendanaan = () => {
-  setModalOpenPendanaan(true);
- };
 
  const handleModalClose = () => {
   setModalOpenSasaran(false);
   setModalOpenProfilRo(false);
   setModalOpenStakeholder(false);
-  setModalOpenPendanaan(false);
  };
 
  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -143,73 +93,6 @@ export default function TabProfil({}) {
      }
     >
      <FormSasaran mode="add" />
-    </DialogComponent>
-   </CardItem>
-   <CardItem
-    title="Pendanaan & Investasi Proyek"
-    setting
-    settingEditOnclick={handleModalOpenPendanaan}
-   >
-    {isEmpty ? (
-     <EmptyState
-      dense
-      icon={<IconEmptyData width={100} />}
-      title="Data Kosong"
-      description="Silahkan isi konten halaman ini"
-     />
-    ) : (
-     <Grid container spacing={2}>
-      <Grid item lg={4}>
-       <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-        <Typography fontWeight={500} mb={2}>
-         Jumlah per Tahun
-        </Typography>
-        <Stack gap={1} mt={1}>
-         <FundSource isYear color={grey[600]} label="2023" value="Rp. -" />
-         <FundSource isYear color={grey[600]} label="2024" value="Rp. -" />
-        </Stack>
-       </Paper>
-      </Grid>
-      <Grid item lg={4}>
-       <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-        <Typography fontWeight={500} mb={2}>
-         Sumber Pendanaan
-        </Typography>
-        <Stack gap={1} mt={1}>
-         <FundSource color={green[400]} label="APBN" value="Rp. -" />
-         <FundSource color={red[400]} label="Non-APBN" value="Rp. -" />
-        </Stack>
-       </Paper>
-      </Grid>
-      <Grid item lg={4}>
-       <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-        <Typography fontWeight={500} mb={2}>
-         Kesiapan Pendanaan
-        </Typography>
-        <ul>
-         <li>Menyebutkan posisi saat ini dalam proses pemenuhan pendanaan</li>
-         <li>Menyebutkan persen nominal pendanaan yang sudah didapatkan</li>
-        </ul>
-       </Paper>
-      </Grid>
-     </Grid>
-    )}
-    <DialogComponent
-     dialogOpen={modalOpenPendanaan}
-     dialogClose={handleModalClose}
-     title="Pendanaan & Investasi Proyek"
-     dialogFooter={
-      <DialogActions sx={{ p: 2, px: 3 }}>
-       <Button variant="outlined" onClick={handleModalClose}>
-        Batal
-       </Button>
-       <Button variant="contained" type="submit">
-        Simpan
-       </Button>
-      </DialogActions>
-     }
-    >
-     <FormPendanaan mode="add" />
     </DialogComponent>
    </CardItem>
    <CardItem

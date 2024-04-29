@@ -12,22 +12,24 @@ export default function CardStakeholder({
  description: React.ReactNode;
 }) {
  return (
-  <Card sx={{ maxWidth: 345 }} elevation={2}>
+  <Card sx={{ maxWidth: 345 }} variant="outlined">
    <CardContent>
     <Typography gutterBottom variant="h6" component="div" lineHeight={1.3}>
      {title}
     </Typography>
    </CardContent>
-   <CardContent sx={{ textAlign: "center" }}>
-    <Image
-     alt={title}
-     src={img}
-     width={0}
-     height={0}
-     sizes="100vw"
-     style={{ width: "100%", height: "auto" }}
-    />
-   </CardContent>
+   {img ? (
+    <CardContent sx={{ textAlign: "center" }}>
+     <Image
+      alt={title}
+      src={img}
+      width={0}
+      height={0}
+      sizes="100vw"
+      style={{ width: "100%", height: "auto" }}
+     />
+    </CardContent>
+   ) : null}
    <CardContent>
     <Typography variant="body2">{description}</Typography>
    </CardContent>

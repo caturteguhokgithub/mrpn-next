@@ -15,6 +15,7 @@ import AddButton from "@/app/components/buttonAdd";
 import dynamic from "next/dynamic";
 import DialogComponent from "@/app/components/dialog";
 import FormTagging from "./form-tagging";
+import CardStakeholder from "@/app/components/cardStakeholder";
 
 export default function TabLatarBelakang({}) {
  const [modalOpenFact, setModalOpenFact] = React.useState(false);
@@ -50,7 +51,8 @@ export default function TabLatarBelakang({}) {
  return (
   <Stack gap={1}>
    <CardItem
-    title="Fakta & Data (Struktur Masalah yang Dihadapi)"
+    // title="Fakta & Data (Struktur Masalah yang Dihadapi)"
+    title="Kondisi Saat Ini/Latar Belakang Proyek (SWOT)"
     setting
     settingEditOnclick={handleModalOpenFact}
    >
@@ -63,66 +65,90 @@ export default function TabLatarBelakang({}) {
      />
     ) : (
      <>
-      <strong>Strength</strong>
-      <ul>
-       <li>
-        Sumber daya manusia yang terlatih dalam bidang kesehatan dan gizi.
-       </li>
-       <li>
-        Program-program pemerintah yang telah ada untuk mempromosikan gizi
-        seimbang.
-       </li>
-       <li>Kolaborasi lintas sektor (Kesehatan, Pendidikan, dan social)</li>
-       <li>
-        Ketersediaan teknologi dan inovasi dalam pemantauan dan evaluasi status
-        gizi anak
-       </li>
-      </ul>
-      <strong>Weakness</strong>
-      <ul>
-       <li>
-        Akses terbatas ke layanan kesehatan dan gizi, terutama di daerah
-        pedesaan.
-       </li>
-       <li>Kurangnya kesadaran masyarakat tentang pentingnya gizi seimbang.</li>
-       <li>
-        Keterbatasan anggaran untuk program-program penanggulangan stunting.
-       </li>
-       <li>
-        Kurangnya infrastruktur yang memadai untuk mendukung distribusi makanan
-        bergizi ke daerah-daerah yang terpencil.
-       </li>
-      </ul>
-      <strong>Opportunity</strong>
-      <ol type="1">
-       <li>
-        Peningkatan pendapatan per kapita dapat memungkinkan akses yang lebih
-        baik ke makanan bergizi.
-       </li>
-       <li>
-        Kerjasama antara pemerintah, lembaga swadaya masyarakat, dan sektor
-        swasta untuk meningkatkan akses terhadap layanan kesehatan dan gizi
-       </li>
-       <li>
-        Dukungan dari organisasi internasional dan Lembaga nirlaba yang
-        berpengalaman dalam masalah gizi dan Kesehatan anak
-       </li>
-      </ol>
-      <strong>Threat</strong>
-      <ul>
-       <li>
-        Perubahan iklim dan bencana alam dapat mempengaruhi ketersediaan dan
-        akses terhadap makanan bergizi.
-       </li>
-       <li>
-        Konflik dan ketidakstabilan politik dapat mengganggu implementasi
-        program-program penanggulangan stunting.
-       </li>
-       <li>
-        Peningkatan harga makanan dan inflasi dapat membuat makanan bergizi
-        menjadi tidak terjangkau bagi masyarakat berpenghasilan rendah.
-       </li>
-      </ul>
+      <Stack direction="row" flexWrap="wrap" gap={2}>
+       <CardStakeholder
+        title="Strength"
+        img=""
+        description={
+         <ul>
+          <li>
+           Sumber daya manusia yang terlatih dalam bidang kesehatan dan gizi.
+          </li>
+          <li>
+           Program-program pemerintah yang telah ada untuk mempromosikan gizi
+           seimbang.
+          </li>
+          <li>Kolaborasi lintas sektor (Kesehatan, Pendidikan, dan social)</li>
+          <li>
+           Ketersediaan teknologi dan inovasi dalam pemantauan dan evaluasi
+           status gizi anak
+          </li>
+         </ul>
+        }
+       />
+       <CardStakeholder
+        title="Weakness"
+        img=""
+        description={
+         <ul>
+          <li>
+           Akses terbatas ke layanan kesehatan dan gizi, terutama di daerah
+           pedesaan.
+          </li>
+          <li>
+           Kurangnya kesadaran masyarakat tentang pentingnya gizi seimbang.
+          </li>
+          <li>
+           Keterbatasan anggaran untuk program-program penanggulangan stunting.
+          </li>
+          <li>
+           Kurangnya infrastruktur yang memadai untuk mendukung distribusi
+           makanan bergizi ke daerah-daerah yang terpencil.
+          </li>
+         </ul>
+        }
+       />
+       <CardStakeholder
+        title="Opportunity"
+        img=""
+        description={
+         <ol type="1">
+          <li>
+           Peningkatan pendapatan per kapita dapat memungkinkan akses yang lebih
+           baik ke makanan bergizi.
+          </li>
+          <li>
+           Kerjasama antara pemerintah, lembaga swadaya masyarakat, dan sektor
+           swasta untuk meningkatkan akses terhadap layanan kesehatan dan gizi
+          </li>
+          <li>
+           Dukungan dari organisasi internasional dan Lembaga nirlaba yang
+           berpengalaman dalam masalah gizi dan Kesehatan anak
+          </li>
+         </ol>
+        }
+       />
+       <CardStakeholder
+        title="Threat"
+        img=""
+        description={
+         <ul>
+          <li>
+           Perubahan iklim dan bencana alam dapat mempengaruhi ketersediaan dan
+           akses terhadap makanan bergizi.
+          </li>
+          <li>
+           Konflik dan ketidakstabilan politik dapat mengganggu implementasi
+           program-program penanggulangan stunting.
+          </li>
+          <li>
+           Peningkatan harga makanan dan inflasi dapat membuat makanan bergizi
+           menjadi tidak terjangkau bagi masyarakat berpenghasilan rendah.
+          </li>
+         </ul>
+        }
+       />
+      </Stack>
      </>
     )}
     <DialogComponent
@@ -183,6 +209,45 @@ export default function TabLatarBelakang({}) {
      }
     >
      <ReactQuill theme="snow" value={value} onChange={setValue} />
+    </DialogComponent>
+   </CardItem>
+   <CardItem
+    title="Uraian Risiko Strategis"
+    // addButton={
+    //  <AddButton
+    //   filled
+    //   small
+    //   title="Tambah Tagging"
+    //   onclick={handleModalOpenTag}
+    //  />
+    // }
+   >
+    {isEmpty ? (
+     <EmptyState
+      dense
+      icon={<IconEmptyData width={100} />}
+      title="Data Kosong"
+      description="Silahkan isi konten halaman ini"
+     />
+    ) : (
+     <TableTagging />
+    )}
+    <DialogComponent
+     dialogOpen={modalOpenTag}
+     dialogClose={handleModalClose}
+     title="Tambah Tagging"
+     dialogFooter={
+      <DialogActions sx={{ p: 2, px: 3 }}>
+       <Button variant="outlined" onClick={handleModalClose}>
+        Batal
+       </Button>
+       <Button variant="contained" type="submit">
+        Simpan
+       </Button>
+      </DialogActions>
+     }
+    >
+     <FormTagging mode="add" />
     </DialogComponent>
    </CardItem>
    <CardItem
