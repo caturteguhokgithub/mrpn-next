@@ -12,7 +12,7 @@ export default function SearchField(props: any) {
     onChange={handleSearchTermUpdate}
     variant="outlined"
     size="small"
-    placeholder="Cari Kegiatan Pembangunan (KP)"
+    placeholder="Cari Kegiatan Pembangunan (KP)/AP/PP"
     InputLabelProps={{
      shrink: true,
     }}

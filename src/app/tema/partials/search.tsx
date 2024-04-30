@@ -66,7 +66,7 @@ export default function SearchKP({
     mt={2}
    >
     <Typography color={grey[600]} fontSize={14} fontStyle="italic">
-     Pilih KP dari tema{" "}
+     Pilih KP/AP/PP dari tema{" "}
      <Typography fontWeight={600} fontSize={14} component="span">
       {activeTab === "penurunan-stunting"
        ? "Penurunan Stunting"

@@ -185,3 +185,31 @@ export const stakeholderKoordinasi = [
    "https://res.cloudinary.com/caturteguh/image/upload/v1711725384/mrpn/company_logo/logo_swatantra_jq1s4e.png",
  },
 ];
+
+export const listSelectKp = [
+ {
+  id: "4",
+  value: "4",
+  nama_kp: "AP.01 - Transformasi Sosial",
+ },
+ {
+  id: "5",
+  value: "5",
+  nama_kp: "PP.01.01 - Peningkatan Kesehatan dan Gizi Masyarakat",
+ },
+ {
+  id: "1",
+  value: "1",
+  nama_kp: "KP.01.01.02 - Penurunan stunting",
+ },
+ {
+  id: "2",
+  value: "2",
+  nama_kp: "KP.01.01.03 - Peningkatan pelayanan kesehatan bagi manusia",
+ },
+ {
+  id: "3",
+  value: "3",
+  nama_kp: "KP.01.01.04 - Penyediaan Akses Terhadap Rumah Tinggal Layak Huni",
+ },
+];

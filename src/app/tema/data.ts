@@ -1,5 +1,15 @@
 export const listKp = [
  {
+  id: "437",
+  kode_kp: "01",
+  nama_kp: "Transformasi Sosial (AP)",
+ },
+ {
+  id: "438",
+  kode_kp: "01.01",
+  nama_kp: "Peningkatan Kesehatan dan Gizi Masyarakat (PP)",
+ },
+ {
   id: "1",
   kode_kp: "01.02.01",
   nama_kp: "Budaya Antikorupsi",
@@ -2275,11 +2285,6 @@ export const listKp = [
   kode_kp: "01.02.15",
   nama_kp:
    "Tata kelola dan kegiatan pendukung pencapaian target penurunan emisi GRK",
- },
- {
-  id: "437",
-  kode_kp: "01.02.Ko",
-  nama_kp: "Nomenklatur KP",
  },
 ];
 

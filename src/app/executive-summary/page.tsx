@@ -10,6 +10,7 @@ import {
  Collapse,
  FormControl,
  MenuItem,
+ Popover,
  SelectChangeEvent,
  Tab,
  Tabs,
@@ -26,6 +27,7 @@ import TabProfil from "./partials/tabProfil";
 import TabPolicy from "./partials/tabPolicy";
 import TabOverall from "./partials/tabOverall";
 import SelectCustomTheme from "../components/select";
+import { listSelectKp } from "./data";
 
 interface TabPanelProps {
  children?: React.ReactNode;
@@ -83,6 +85,18 @@ export default function PageExecutiveSummary({}) {
  };
  const isEmpty = false;
 
+ const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+
+ const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
+  setAnchorEl(event.currentTarget);
+ };
+
+ const handlePopoverClose = () => {
+  setAnchorEl(null);
+ };
+
+ const open = Boolean(anchorEl);
+
  return (
   <DashboardLayout>
    <ContentPage
@@ -91,17 +105,58 @@ export default function PageExecutiveSummary({}) {
     withCard={project !== "1"}
     chooseProjectPage={
      <FormControl size="small">
-      <SelectCustomTheme small value={project} onChange={handleChangeProject}>
+      <SelectCustomTheme
+       small
+       anchorRight
+       value={project}
+       onChange={handleChangeProject}
+      >
        <MenuItem value="" disabled>
         <Typography fontSize={14} fontStyle="italic">
          Pilih Kegiatan Pembangunan (KP)
         </Typography>
        </MenuItem>
-       <MenuItem value="1" defaultChecked>
-        KP.02 - Penurunan stunting
-       </MenuItem>
-       <MenuItem value="2">KP.03 - Peningkatan pelayanan kesehatan...</MenuItem>
-       <MenuItem value="3">KP.04 - Penyediaan Akses Terhadap Rumah...</MenuItem>
+       {listSelectKp.map(({ id, value, nama_kp }) => (
+        <MenuItem key={id} value={value}>
+         {nama_kp.length >= 48 ? (
+          <>
+           <Typography
+            aria-owns={open ? "mouse-over-popover" : undefined}
+            aria-haspopup="true"
+            onMouseEnter={handlePopoverOpen}
+            onMouseLeave={handlePopoverClose}
+            sx={{ fontSize: 14 }}
+           >
+            {nama_kp.substr(0, 48) + "..."}
+           </Typography>
+           <Popover
+            id="mouse-over-popover"
+            sx={{
+             pointerEvents: "none",
+            }}
+            open={open}
+            anchorEl={anchorEl}
+            anchorOrigin={{
+             vertical: "bottom",
+             horizontal: "right",
+            }}
+            transformOrigin={{
+             vertical: "top",
+             horizontal: "right",
+            }}
+            onClose={handlePopoverClose}
+            disableRestoreFocus
+           >
+            <Typography sx={{ fontSize: 14, px: 2, py: 1 }}>
+             {nama_kp}
+            </Typography>
+           </Popover>
+          </>
+         ) : (
+          nama_kp
+         )}
+        </MenuItem>
+       ))}
       </SelectCustomTheme>
      </FormControl>
     }
