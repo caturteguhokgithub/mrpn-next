@@ -16,8 +16,9 @@ import dynamic from "next/dynamic";
 import DialogComponent from "@/app/components/dialog";
 import FormTagging from "./form-tagging";
 import CardStakeholder from "@/app/components/cardStakeholder";
+import TableUraian from "./table-uraian";
 
-export default function TabLatarBelakang({}) {
+export default function TabLatarBelakang({ project }: { project: string }) {
  const [modalOpenFact, setModalOpenFact] = React.useState(false);
  const [modalOpenGoal, setModalOpenGoal] = React.useState(false);
  const [modalOpenSegment, setModalOpenSegment] = React.useState(false);
@@ -56,7 +57,7 @@ export default function TabLatarBelakang({}) {
     setting
     settingEditOnclick={handleModalOpenFact}
    >
-    {isEmpty ? (
+    {isEmpty || project === "4" ? (
      <EmptyState
       dense
       icon={<IconEmptyData width={100} />}
@@ -174,7 +175,7 @@ export default function TabLatarBelakang({}) {
     setting
     settingEditOnclick={handleModalOpenGoal}
    >
-    {isEmpty ? (
+    {isEmpty || project === "4" ? (
      <EmptyState
       dense
       icon={<IconEmptyData width={100} />}
@@ -222,7 +223,7 @@ export default function TabLatarBelakang({}) {
     //  />
     // }
    >
-    {isEmpty ? (
+    {isEmpty || project === "4" ? (
      <EmptyState
       dense
       icon={<IconEmptyData width={100} />}
@@ -230,7 +231,7 @@ export default function TabLatarBelakang({}) {
       description="Silahkan isi konten halaman ini"
      />
     ) : (
-     <TableTagging />
+     <TableUraian />
     )}
     <DialogComponent
      dialogOpen={modalOpenTag}
@@ -261,7 +262,7 @@ export default function TabLatarBelakang({}) {
      />
     }
    >
-    {isEmpty ? (
+    {isEmpty || project === "4" ? (
      <EmptyState
       dense
       icon={<IconEmptyData width={100} />}
@@ -294,7 +295,7 @@ export default function TabLatarBelakang({}) {
     setting
     settingEditOnclick={handleModalOpenSegment}
    >
-    {isEmpty ? (
+    {isEmpty || project === "4" ? (
      <EmptyState
       dense
       icon={<IconEmptyData width={100} />}

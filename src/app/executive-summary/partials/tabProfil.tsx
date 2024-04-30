@@ -28,7 +28,7 @@ import Image from "next/image";
 import FormStakeholder from "./form-stakeholder";
 import CardStakeholder from "@/app/components/cardStakeholder";
 
-export default function TabProfil({}) {
+export default function TabProfil({ project }: { project: string }) {
  const [modalOpenSasaran, setModalOpenSasaran] = React.useState(false);
  const [modalOpenProfilRo, setModalOpenProfilRo] = React.useState(false);
  const [modalOpenStakeholder, setModalOpenStakeholder] = React.useState(false);
@@ -67,7 +67,7 @@ export default function TabProfil({}) {
      />
     }
    >
-    {isEmpty ? (
+    {isEmpty || project === "4" ? (
      <EmptyState
       dense
       icon={<IconEmptyData width={100} />}
@@ -106,37 +106,42 @@ export default function TabProfil({}) {
      />
     }
    >
-    {/* <EmptyState
-     dense
-     icon={<IconEmptyData width={100} />}
-     title="Data Kosong"
-     description="Silahkan isi konten halaman ini"
-    /> */}
-    <TableProfilOutput />
-    <DialogComponent
-     dialogOpen={modalOpenProfilRo}
-     dialogClose={handleModalClose}
-     title="Tambah Profil RO"
-     dialogFooter={
-      <DialogActions sx={{ p: 2, px: 3 }}>
-       <Button variant="outlined" onClick={handleModalClose}>
-        Batal
-       </Button>
-       <Button variant="contained" type="submit">
-        Simpan
-       </Button>
-      </DialogActions>
-     }
-    >
-     <FormProfilRo mode="add" />
-    </DialogComponent>
+    {isEmpty || project === "4" ? (
+     <EmptyState
+      dense
+      icon={<IconEmptyData width={100} />}
+      title="Data Kosong"
+      description="Silahkan isi konten halaman ini"
+     />
+    ) : (
+     <>
+      <TableProfilOutput />
+      <DialogComponent
+       dialogOpen={modalOpenProfilRo}
+       dialogClose={handleModalClose}
+       title="Tambah Profil RO"
+       dialogFooter={
+        <DialogActions sx={{ p: 2, px: 3 }}>
+         <Button variant="outlined" onClick={handleModalClose}>
+          Batal
+         </Button>
+         <Button variant="contained" type="submit">
+          Simpan
+         </Button>
+        </DialogActions>
+       }
+      >
+       <FormProfilRo mode="add" />
+      </DialogComponent>
+     </>
+    )}
    </CardItem>
    <CardItem
     title="Stakeholder Mapping"
     setting
     settingEditOnclick={handleModalOpenStakeholder}
    >
-    {isEmpty ? (
+    {isEmpty || project === "4" ? (
      <EmptyState
       dense
       icon={<IconEmptyData width={100} />}

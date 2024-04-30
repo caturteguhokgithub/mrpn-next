@@ -72,7 +72,7 @@ const FundSource = ({
  );
 };
 
-export default function TabPolicy({}) {
+export default function TabPolicy({ project }: { project: string }) {
  const [modalOpenProfilRoKunci, setModalOpenProfilRoKunci] =
   React.useState(false);
  const [modalOpenProfilRoKunciProject, setModalOpenProfilRoKunciProject] =
@@ -82,11 +82,11 @@ export default function TabPolicy({}) {
  const [value, setValue] = React.useState("");
  const [modalOpenImgRoadmap, setModalOpenImgRoadmap] = React.useState(false);
  const [modalOpenImgCritical, setModalOpenImgCritical] = React.useState(false);
- const [project, setProject] = React.useState("");
+ const [projectKL, setProjectKL] = React.useState("");
  const [modalOpenPendanaan, setModalOpenPendanaan] = React.useState(false);
 
  const handleChangeProject = (event: SelectChangeEvent) => {
-  setProject(event.target.value);
+  setProjectKL(event.target.value);
  };
 
  const handleModalOpenProfilRoKunci = () => {
@@ -132,7 +132,7 @@ export default function TabPolicy({}) {
     setting
     settingEditOnclick={handleModalOpenRoadmap}
    >
-    {isEmpty ? (
+    {isEmpty || project === "4" ? (
      <EmptyState
       dense
       icon={<IconEmptyData width={100} />}
@@ -221,7 +221,7 @@ export default function TabPolicy({}) {
      </>
     }
    >
-    {isEmpty ? (
+    {isEmpty || project === "4" ? (
      <EmptyState
       dense
       icon={<IconEmptyData width={100} />}
@@ -241,7 +241,7 @@ export default function TabPolicy({}) {
       <SelectCustomTheme
        small
        anchorRight
-       value={project}
+       value={projectKL}
        onChange={handleChangeProject}
       >
        <MenuItem value="" disabled>
@@ -293,7 +293,7 @@ export default function TabPolicy({}) {
     setting
     settingEditOnclick={handleModalOpenCritical}
    >
-    {isEmpty ? (
+    {isEmpty || project === "4" ? (
      <EmptyState
       dense
       icon={<IconEmptyData width={100} />}
@@ -368,7 +368,7 @@ export default function TabPolicy({}) {
     setting
     settingEditOnclick={handleModalOpenPendanaan}
    >
-    {isEmpty ? (
+    {isEmpty || project === "4" ? (
      <EmptyState
       dense
       icon={<IconEmptyData width={100} />}

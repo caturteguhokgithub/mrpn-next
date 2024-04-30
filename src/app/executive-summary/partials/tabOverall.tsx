@@ -5,13 +5,13 @@ import { IconEmptyData } from "@/app/components/icons";
 import CardItem from "@/app/components/cardTabItem";
 import TableOverall from "./table-overall";
 
-export default function TabOverall({}) {
+export default function TabOverall({ project }: { project: string }) {
  const isEmpty = false;
 
  return (
   <Stack gap={1}>
    <CardItem title="Overall Risk">
-    {isEmpty ? (
+    {isEmpty || project === "4" ? (
      <EmptyState
       dense
       icon={<IconEmptyData width={100} />}

@@ -28,6 +28,7 @@ import TabPolicy from "./partials/tabPolicy";
 import TabOverall from "./partials/tabOverall";
 import SelectCustomTheme from "../components/select";
 import { listSelectKp } from "./data";
+import { includes } from "lodash";
 
 interface TabPanelProps {
  children?: React.ReactNode;
@@ -75,6 +76,7 @@ function CustomTabPanel(props: TabPanelProps) {
 export default function PageExecutiveSummary({}) {
  const [value, setValue] = React.useState(0);
  const [project, setProject] = React.useState("");
+ const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
  const handleChangeProject = (event: SelectChangeEvent) => {
   setProject(event.target.value);
@@ -83,9 +85,6 @@ export default function PageExecutiveSummary({}) {
  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
   setValue(newValue);
  };
- const isEmpty = false;
-
- const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
   setAnchorEl(event.currentTarget);
@@ -97,12 +96,19 @@ export default function PageExecutiveSummary({}) {
 
  const open = Boolean(anchorEl);
 
+ const flagProjectNoCard = [
+  project === "",
+  project === "2",
+  project === "3",
+  project === "5",
+ ].includes(true);
+
  return (
   <DashboardLayout>
    <ContentPage
     title="Executive Summary"
     overflowHidden
-    withCard={project !== "1"}
+    withCard={flagProjectNoCard}
     chooseProjectPage={
      <FormControl size="small">
       <SelectCustomTheme
@@ -161,14 +167,14 @@ export default function PageExecutiveSummary({}) {
      </FormControl>
     }
    >
-    {project !== "1" ? (
+    {flagProjectNoCard ? (
      <EmptyState
       icon={<IconEmptyPage />}
       title="Halaman Executive Summary Kosong"
       description="Silahkan isi konten halaman ini"
      />
     ) : null}
-    <Collapse in={project === "1"}>
+    <Collapse in={!flagProjectNoCard}>
      <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
        <Tabs
@@ -222,21 +228,21 @@ export default function PageExecutiveSummary({}) {
        </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-       <TabLatarBelakang />
+       <TabLatarBelakang project={project} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
        {/* <TabDeskripsi /> */}
-       <TabProfil />
+       <TabProfil project={project} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
        {/* <TabPendanaan /> */}
-       <TabPolicy />
+       <TabPolicy project={project} />
       </CustomTabPanel>
       {/* <CustomTabPanel value={value} index={3}>
       <TabDampak />
      </CustomTabPanel> */}
       <CustomTabPanel value={value} index={3}>
-       <TabOverall />
+       <TabOverall project={project} />
       </CustomTabPanel>
      </Box>
     </Collapse>
