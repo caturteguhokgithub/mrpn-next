@@ -174,48 +174,50 @@ export default function Header({}) {
      open={open}
      onClose={handleClose}
      onClick={handleClose}
-     PaperProps={{
-      elevation: 0,
-      sx: {
-       overflow: "visible",
-       filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-       mt: 1.5,
-       "& .MuiAvatar-root": {
-        width: 32,
-        height: 32,
-        ml: -0.5,
-        mr: 1,
-       },
-       "&::before": {
-        content: '""',
-        display: "block",
-        position: "absolute",
-        top: 0,
-        right: 14,
-        width: 10,
-        height: 10,
-        bgcolor: "background.paper",
-        transform: "translateY(-50%) rotate(45deg)",
-        zIndex: 0,
-       },
-       //
-       "&.MuiPaper-root": {
-        left: "auto !important",
-        right: 44,
-        width: 300,
-        borderRadius: 3,
-        ".MuiList-root": {
-         py: 0,
+     slotProps={{
+      paper: {
+       elevation: 0,
+       sx: {
+        overflow: "visible",
+        filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+        mt: 1.5,
+        "& .MuiAvatar-root": {
+         width: 32,
+         height: 32,
+         ml: -0.5,
+         mr: 1,
         },
-       },
-       ".MuiMenuItem-root": {
-        py: "10px",
-        "&:first-of-type, &:last-of-type": {
-         py: 2,
+        "&::before": {
+         content: '""',
+         display: "block",
+         position: "absolute",
+         top: 0,
+         right: 14,
+         width: 10,
+         height: 10,
+         bgcolor: "background.paper",
+         transform: "translateY(-50%) rotate(45deg)",
+         zIndex: 0,
         },
-        "&:last-of-type": {
-         borderBottomLeftRadius: 12,
-         borderBottomRightRadius: 12,
+        //
+        "&.MuiPaper-root": {
+         left: "auto !important",
+         right: 44,
+         width: 300,
+         borderRadius: 3,
+         ".MuiList-root": {
+          py: 0,
+         },
+        },
+        ".MuiMenuItem-root": {
+         py: "10px",
+         "&:first-of-type, &:last-of-type": {
+          py: 2,
+         },
+         "&:last-of-type": {
+          borderBottomLeftRadius: 12,
+          borderBottomRightRadius: 12,
+         },
         },
        },
       },

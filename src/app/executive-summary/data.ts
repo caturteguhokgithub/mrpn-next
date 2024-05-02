@@ -200,16 +200,21 @@ export const listSelectKp = [
  {
   id: "1",
   value: "1",
-  nama_kp: "KP.01.01.02 - Penurunan stunting",
+  nama_kp: "KP.01.01.01 - Penurunan Stunting",
  },
  {
   id: "2",
   value: "2",
-  nama_kp: "KP.01.01.03 - Peningkatan pelayanan kesehatan bagi manusia",
+  nama_kp: "KP.01.01.02 - Penyelesaian Destinasi Pariwisata",
  },
  {
   id: "3",
   value: "3",
-  nama_kp: "KP.01.01.04 - Penyediaan Akses Terhadap Rumah Tinggal Layak Huni",
+  nama_kp: "KP.01.01.03 - Kawasan Sentra Produksi Pangan Kalimantan Tengah",
+ },
+ {
+  id: "7",
+  value: "7",
+  nama_kp: "KP.01.01.04 - Reformasi Tata Kelola Persampahan",
  },
 ];

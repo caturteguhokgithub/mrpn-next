@@ -1,11 +1,14 @@
 import React from "react";
 import {
  Button,
+ Card,
+ CardContent,
  Dialog,
  DialogActions,
  DialogContent,
  DialogTitle,
  Stack,
+ Typography,
 } from "@mui/material";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
@@ -17,6 +20,8 @@ import DialogComponent from "@/app/components/dialog";
 import FormTagging from "./form-tagging";
 import CardStakeholder from "@/app/components/cardStakeholder";
 import TableUraian from "./table-uraian";
+import { dataTema } from "../dataTema";
+import { title } from "process";
 
 export default function TabLatarBelakang({ project }: { project: string }) {
  const [modalOpenFact, setModalOpenFact] = React.useState(false);
@@ -67,7 +72,51 @@ export default function TabLatarBelakang({ project }: { project: string }) {
     ) : (
      <>
       <Stack direction="row" flexWrap="wrap" gap={2}>
-       <CardStakeholder
+       {dataTema.map((itemSwot) => (
+        <>
+         {project === itemSwot.temaId && (
+          <>
+           {itemSwot.swot.map((detailSwot, index) => (
+            <Card sx={{ maxWidth: 345 }} variant="outlined" key={index}>
+             {itemSwot.temaId ? (
+              <CardContent>
+               <Typography
+                gutterBottom
+                variant="h6"
+                component="div"
+                lineHeight={1.3}
+                textTransform="capitalize"
+               >
+                {detailSwot.label}
+               </Typography>
+              </CardContent>
+             ) : null}
+             <CardContent sx={{ pt: 0 }}>
+              {detailSwot.item.length > 1 ? (
+               <ul>
+                {detailSwot.item.map((itemSwot, index) => (
+                 <li key={index}>
+                  <Typography variant="body1">{itemSwot}</Typography>
+                 </li>
+                ))}
+               </ul>
+              ) : (
+               <>
+                {detailSwot.item.map((itemSwot, index) => (
+                 <Typography variant="body1" key={index}>
+                  {itemSwot}
+                 </Typography>
+                ))}
+               </>
+              )}
+             </CardContent>
+            </Card>
+           ))}
+          </>
+         )}
+        </>
+       ))}
+       {/* <CardStakeholder
         title="Strength"
         img=""
         description={
@@ -148,7 +197,7 @@ export default function TabLatarBelakang({ project }: { project: string }) {
           </li>
          </ul>
         }
-       />
+       /> */}
       </Stack>
      </>
     )}
@@ -183,16 +232,37 @@ export default function TabLatarBelakang({ project }: { project: string }) {
       description="Silahkan isi konten halaman ini"
      />
     ) : (
-     <ol type="1">
-      <li>
-       Menurunkan Prevalensi wasting (kurus dan sangat kurus) pada balita hingga
-       3% pada tahun 2029
-      </li>
-      <li>
-       Menurunkan Persentase bayi dengan berat badan lahir rendah hingga 3,8%
-       pada tahun 2029
-      </li>
-     </ol>
+     <>
+      {dataTema.map((itemGoals) => (
+       <>
+        {project === itemGoals.temaId && (
+         <>
+          {itemGoals.goals.length > 1 ? (
+           <ol type="1">
+            {itemGoals.goals.map((detailGoals, index) => (
+             <li key={index}>
+              <Typography variant="body1">{detailGoals}</Typography>
+             </li>
+            ))}
+           </ol>
+          ) : (
+           <Typography variant="body1">{itemGoals.goals}</Typography>
+          )}
+         </>
+        )}
+       </>
+      ))}
+      {/* <ol type="1">
+       <li>
+        Menurunkan Prevalensi wasting (kurus dan sangat kurus) pada balita
+        hingga 3% pada tahun 2029
+       </li>
+       <li>
+        Menurunkan Persentase bayi dengan berat badan lahir rendah hingga 3,8%
+        pada tahun 2029
+       </li>
+      </ol> */}
+     </>
     )}
     <DialogComponent
      dialogOpen={modalOpenGoal}
@@ -231,7 +301,7 @@ export default function TabLatarBelakang({ project }: { project: string }) {
       description="Silahkan isi konten halaman ini"
      />
     ) : (
-     <TableUraian />
+     <TableUraian project={project} />
     )}
     <DialogComponent
      dialogOpen={modalOpenTag}
@@ -270,7 +340,7 @@ export default function TabLatarBelakang({ project }: { project: string }) {
       description="Silahkan isi konten halaman ini"
      />
     ) : (
-     <TableTagging />
+     <TableTagging project={project} />
     )}
     <DialogComponent
      dialogOpen={modalOpenTag}
@@ -303,13 +373,35 @@ export default function TabLatarBelakang({ project }: { project: string }) {
       description="Silahkan isi konten halaman ini"
      />
     ) : (
-     <ul>
-      <li>Fasilitas kesehatan pemerintah dan swasta</li>
-      <li>
-       Remaja putri, calon pengantin, ibu hamil, ibu nifas, ibu menyusui; anak
-       berusia 0 (nol) - 59 (lima puluh sembilan) bulan
-      </li>
-     </ul>
+     <>
+      {dataTema.map((itemSegment) => (
+       <>
+        {project === itemSegment.temaId && (
+         <>
+          {itemSegment.segment.length > 1 ? (
+           <ul>
+            {itemSegment.segment.map((detailSegment, index) => (
+             <li key={index}>
+              <Typography variant="body1">{detailSegment}</Typography>
+             </li>
+            ))}
+           </ul>
+          ) : (
+           <Typography variant="body1">{itemSegment.segment}</Typography>
+          )}
+         </>
+        )}
+       </>
+      ))}
+
+      {/* <ul>
+       <li>Fasilitas kesehatan pemerintah dan swasta</li>
+       <li>
+        Remaja putri, calon pengantin, ibu hamil, ibu nifas, ibu menyusui; anak
+        berusia 0 (nol) - 59 (lima puluh sembilan) bulan
+       </li>
+      </ul> */}
+     </>
     )}
     <DialogComponent
      dialogOpen={modalOpenSegment}
@@ -329,37 +421,6 @@ export default function TabLatarBelakang({ project }: { project: string }) {
      <ReactQuill theme="snow" value={value} onChange={setValue} />
     </DialogComponent>
    </CardItem>
-   {/* <CardItem title="Intisari" setting>
-    <Typography variant="body2" color="text.secondary">
-     Implementasi Industri 4.0 pada 6 subsektor prioritas tersebut dapat
-     meningkatkan pertumbuhan PDB manufaktue dan kontribusi manufaktur terhadap
-     PDB, serta menciptakan lapangan kerja dengan didukung oleh peran
-     masing-masing dari Kementerian/Lembaga
-    </Typography>
-   </CardItem>
-   <CardItem title="Keterkaitan dengan Arahan Presiden" setting>
-    <EmptyState
-     dense
-     icon={<IconEmptyData width={100} />}
-     title="Data Kosong"
-     description="Silahkan isi konten halaman ini"
-    />
-   </CardItem>
-   <CardItem title="Keterkaitan dengan SDG's" setting>
-    <Typography variant="body2" color="text.secondary">
-     This impressive paella is a perfect party dish and a fun meal to cook
-     together with your guests. Add 1 cup of frozen peas along with the mussels,
-     if you like.
-    </Typography>
-   </CardItem>
-   <CardItem title="Catatan PJ KP" setting>
-    <EmptyState
-     dense
-     icon={<IconEmptyData width={100} />}
-     title="Data Kosong"
-     description="Silahkan isi konten halaman ini"
-    />
-   </CardItem> */}
   </Stack>
  );
 }

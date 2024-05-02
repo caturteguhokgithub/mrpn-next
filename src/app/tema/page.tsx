@@ -131,24 +131,24 @@ export default function PageTema({}) {
         <CustomToggleButton
          //  code="01.01.02"
          value="penurunan-stunting"
-         label="Tema Stunting"
+         label="Penurunan Stunting"
         />
         <CustomToggleButton
          //  code="01.01.03"
          value="penurunan-kemiskinan"
-         label="Tema Pariwisata"
+         label="Penurunan Kemiskinan"
         />
         <CustomToggleButton
          //  code="01.01.04"
          value="percepatan-transisi-energi"
-         label="Tema Ketahanan Pangan"
+         label="Percepatan Transisi Energi"
         />
         <CustomToggleButton
          //  code="01.01.05"
          value="peningkatan-pariwisata"
-         label="Tema Persampahan"
+         label="Peningkatan Pariwisata"
         />
-        {/* <CustomToggleButton
+        <CustomToggleButton
          //  code="01.01.06"
          value="ketahanan-pangan"
          label="Ketahanan Pangan"
@@ -157,7 +157,7 @@ export default function PageTema({}) {
          //  code="01.01.07"
          value="sistem-persampahan"
          label="Sistem Persampahan"
-        /> */}
+        />
        </ToggleButtonGroup>
        <Collapse in={activeTab === "penurunan-stunting"}>
         <SearchKP

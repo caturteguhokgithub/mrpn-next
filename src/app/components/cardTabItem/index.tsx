@@ -56,27 +56,29 @@ export default function CardItem({
     open={open}
     onClose={handleClose}
     onClick={handleClose}
-    PaperProps={{
-     elevation: 0,
-     sx: {
-      overflow: "visible",
-      filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-      "&.MuiPaper-root": {
-       mt: "30px",
-       left: "auto !important",
-       right: 54,
-       minWidth: 150,
-       borderRadius: 3,
-       ".MuiList-root": {
-        py: 0,
+    slotProps={{
+     paper: {
+      elevation: 0,
+      sx: {
+       overflow: "visible",
+       filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+       "&.MuiPaper-root": {
+        mt: "30px",
+        left: "auto !important",
+        right: 54,
+        minWidth: 150,
+        borderRadius: 3,
+        ".MuiList-root": {
+         py: 0,
+        },
        },
-      },
-      ".MuiMenuItem-root": {
-       py: "10px",
-       gap: 1,
-       "&:last-of-type": {
-        borderBottomLeftRadius: 12,
-        borderBottomRightRadius: 12,
+       ".MuiMenuItem-root": {
+        py: "10px",
+        gap: 1,
+        "&:last-of-type": {
+         borderBottomLeftRadius: 12,
+         borderBottomRightRadius: 12,
+        },
        },
       },
      },

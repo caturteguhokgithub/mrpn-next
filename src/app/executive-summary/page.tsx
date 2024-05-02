@@ -98,8 +98,8 @@ export default function PageExecutiveSummary({}) {
 
  const flagProjectNoCard = [
   project === "",
-  project === "2",
-  project === "3",
+  //   project === "2",
+  //   project === "3",
   project === "5",
  ].includes(true);
 
@@ -133,7 +133,7 @@ export default function PageExecutiveSummary({}) {
             onMouseLeave={handlePopoverClose}
             sx={{ fontSize: 14 }}
            >
-            {nama_kp.substr(0, 48) + "..."}
+            {nama_kp.substring(0, 48) + "..."}
            </Typography>
            <Popover
             id="mouse-over-popover"

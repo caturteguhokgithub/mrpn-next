@@ -7,46 +7,12 @@ import {
  TableContainer,
  TableHead,
  TableRow,
+ Typography,
 } from "@mui/material";
 import theme from "@/theme";
+import { dataTema } from "../dataTema";
 
-export default function TableUraian() {
- function createData(id: number, kebijakan: string, note: React.ReactNode) {
-  return {
-   id,
-   kebijakan,
-   note,
-  };
- }
-
- const rows = [
-  createData(
-   1,
-   "Risiko Lingkungan",
-   "Risiko yang meliputi bahaya terhadap kesehatan manusia, tumbuhan, dan hewan serta kemungkinan berkurangnya sumber daya alam."
-  ),
-  createData(
-   2,
-   "Risiko Sosial",
-   "Risiko yang dapat mengancam kesehatan manusia dan kehidupan sosial masyarakat."
-  ),
-  createData(
-   3,
-   "Risiko Geopolitik",
-   "Risiko yang berfokus pada peluang dan ketidakstabilan yang muncul dari hubungan antar negara."
-  ),
-  createData(
-   4,
-   "Risiko Ekonomi",
-   "Risiko yang mencakup berbagai isu dalam sistem keuangan dan moneter yang berpotensi mempengaruhi perdagangan, manufaktur dan rantai pasok."
-  ),
-  createData(
-   5,
-   "Risiko Teknologi",
-   "Risiko yang mempertimbangkan konsekuensi terhadap pemerintah dan organisasi yang mungkin timbul akibat rumitnya penerapan sistem baru, kegagalan teknis, data yang disusupi, kesalahan pengelolaan sumber daya, dan serangan siber."
-  ),
- ];
-
+export default function TableUraian({ project }: { project: string }) {
  return (
   <TableContainer component={Paper} elevation={0}>
    <Table sx={{ minWidth: 650 }} size="small">
@@ -57,14 +23,36 @@ export default function TableUraian() {
      </TableRow>
     </TableHead>
     <TableBody>
-     {rows.map((row) => (
-      <TableRow
-       key={row.id}
-       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-      >
-       <TableCell>{row.kebijakan}</TableCell>
-       <TableCell>{row.note}</TableCell>
-      </TableRow>
+     {dataTema.map((itemRow) => (
+      <>
+       {project === itemRow.temaId && (
+        <>
+         {itemRow.typeOfRisk.map((detailRisk, index) => (
+          <TableRow
+           key={index}
+           sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+          >
+           <TableCell>
+            <Typography variant="body1">{detailRisk.type}</Typography>
+           </TableCell>
+           <TableCell>
+            {detailRisk.description.length > 1 ? (
+             <ul>
+              {detailRisk.description.map((itemDesc, index) => (
+               <li key={index}>
+                <Typography variant="body1">{itemDesc}</Typography>
+               </li>
+              ))}
+             </ul>
+            ) : (
+             <Typography variant="body1">{detailRisk.description}</Typography>
+            )}
+           </TableCell>
+          </TableRow>
+         ))}
+        </>
+       )}
+      </>
      ))}
     </TableBody>
    </Table>

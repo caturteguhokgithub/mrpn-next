@@ -7,10 +7,12 @@ import {
  TableContainer,
  TableHead,
  TableRow,
+ Typography,
 } from "@mui/material";
 import theme from "@/theme";
+import { dataTema } from "../dataTema";
 
-export default function TableTagging() {
+export default function TableTagging({ project }: { project: string }) {
  function createData(id: number, kebijakan: string, note: React.ReactNode) {
   return {
    id,
@@ -49,14 +51,36 @@ export default function TableTagging() {
      </TableRow>
     </TableHead>
     <TableBody>
-     {rows.map((row) => (
-      <TableRow
-       key={row.id}
-       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-      >
-       <TableCell>{row.kebijakan}</TableCell>
-       <TableCell>{row.note}</TableCell>
-      </TableRow>
+     {dataTema.map((itemRow) => (
+      <>
+       {project === itemRow.temaId && (
+        <>
+         {itemRow.tags.map((detailRisk, index) => (
+          <TableRow
+           key={index}
+           sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+          >
+           <TableCell>
+            <Typography variant="body1">{detailRisk.policy}</Typography>
+           </TableCell>
+           <TableCell>
+            {detailRisk.description.length > 1 ? (
+             <ul>
+              {detailRisk.description.map((itemDesc, index) => (
+               <li key={index}>
+                <Typography variant="body1">{itemDesc}</Typography>
+               </li>
+              ))}
+             </ul>
+            ) : (
+             <Typography variant="body1">{detailRisk.description}</Typography>
+            )}
+           </TableCell>
+          </TableRow>
+         ))}
+        </>
+       )}
+      </>
      ))}
     </TableBody>
    </Table>
