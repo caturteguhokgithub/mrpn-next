@@ -8,9 +8,6 @@ import { IconEmptyPage } from "@/components/icons";
 import {
  Box,
  Collapse,
- FormControl,
- MenuItem,
- Popover,
  SelectChangeEvent,
  Tab,
  Tabs,
@@ -20,15 +17,10 @@ import theme from "@/theme";
 import { grey } from "@mui/material/colors";
 import { IconFA } from "@/components/icons/icon-fa";
 import TabLatarBelakang from "./partials/tabLatarBelakang";
-import TabDeskripsi from "./partials/tabDeskripsi";
-import TabPendanaan from "./partials/tabPendanaan";
-import TabDampak from "./partials/tabDampak";
 import TabProfil from "./partials/tabProfil";
 import TabPolicy from "./partials/tabPolicy";
 import TabOverall from "./partials/tabOverall";
-import SelectCustomTheme from "../components/select";
-import { listSelectKp } from "./data";
-import { includes } from "lodash";
+import DropdownKp from "../components/dropdownKp";
 
 interface TabPanelProps {
  children?: React.ReactNode;
@@ -76,7 +68,6 @@ function CustomTabPanel(props: TabPanelProps) {
 export default function PageExecutiveSummary({}) {
  const [value, setValue] = React.useState(0);
  const [project, setProject] = React.useState("");
- const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
  const handleChangeProject = (event: SelectChangeEvent) => {
   setProject(event.target.value);
@@ -85,16 +76,6 @@ export default function PageExecutiveSummary({}) {
  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
   setValue(newValue);
  };
-
- const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
-  setAnchorEl(event.currentTarget);
- };
-
- const handlePopoverClose = () => {
-  setAnchorEl(null);
- };
-
- const open = Boolean(anchorEl);
 
  const flagProjectNoCard = [
   project === "",
@@ -109,63 +90,9 @@ export default function PageExecutiveSummary({}) {
     title="Executive Summary"
     overflowHidden
     withCard={flagProjectNoCard}
-    chooseProjectPage={
-     <FormControl size="small">
-      <SelectCustomTheme
-       small
-       anchorRight
-       value={project}
-       onChange={handleChangeProject}
-      >
-       <MenuItem value="" disabled>
-        <Typography fontSize={14} fontStyle="italic">
-         Pilih Kegiatan Pembangunan (KP)
-        </Typography>
-       </MenuItem>
-       {listSelectKp.map(({ id, value, nama_kp }) => (
-        <MenuItem key={id} value={value}>
-         {nama_kp.length >= 48 ? (
-          <>
-           <Typography
-            aria-owns={open ? "mouse-over-popover" : undefined}
-            aria-haspopup="true"
-            onMouseEnter={handlePopoverOpen}
-            onMouseLeave={handlePopoverClose}
-            sx={{ fontSize: 14 }}
-           >
-            {nama_kp.substring(0, 48) + "..."}
-           </Typography>
-           <Popover
-            id="mouse-over-popover"
-            sx={{
-             pointerEvents: "none",
-            }}
-            open={open}
-            anchorEl={anchorEl}
-            anchorOrigin={{
-             vertical: "bottom",
-             horizontal: "right",
-            }}
-            transformOrigin={{
-             vertical: "top",
-             horizontal: "right",
-            }}
-            onClose={handlePopoverClose}
-            disableRestoreFocus
-           >
-            <Typography sx={{ fontSize: 14, px: 2, py: 1 }}>
-             {nama_kp}
-            </Typography>
-           </Popover>
-          </>
-         ) : (
-          nama_kp
-         )}
-        </MenuItem>
-       ))}
-      </SelectCustomTheme>
-     </FormControl>
-    }
+    chooseProject
+    project={project}
+    handleChangeProject={handleChangeProject}
    >
     {flagProjectNoCard ? (
      <EmptyState

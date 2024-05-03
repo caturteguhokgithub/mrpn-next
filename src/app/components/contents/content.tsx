@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import theme from "@/theme";
 import SelectCustomTheme from "../select";
+import DropdownKp from "../dropdownKp";
 
 export default function ContentPage({
  title,
@@ -26,6 +27,8 @@ export default function ContentPage({
  heightTitleBreadcrumb,
  overflowHidden,
  addButton,
+ project,
+ handleChangeProject,
 }: {
  children: React.ReactNode;
  title: string;
@@ -39,13 +42,11 @@ export default function ContentPage({
  breadcrumb?: React.ReactNode;
  overflowHidden?: boolean;
  addButton?: React.ReactNode;
+ project?: any;
+ handleChangeProject?: any;
 }) {
- const [project, setProject] = React.useState("");
  const [konteks, setKonteks] = React.useState("");
 
- const handleChangeProject = (event: SelectChangeEvent) => {
-  setProject(event.target.value);
- };
  const handleChangeKonteks = (event: SelectChangeEvent) => {
   setKonteks(event.target.value);
  };
@@ -82,6 +83,11 @@ export default function ContentPage({
      {chooseProjectPage}
      {chooseProject && (
       <>
+       <DropdownKp
+        project={project}
+        handleChangeProject={handleChangeProject}
+       />
+
        {/* <Chip
         color="primary"
         // variant="outlined"
@@ -94,7 +100,7 @@ export default function ContentPage({
          px: 1,
         }}
        /> */}
-       <FormControl size="small">
+       {/* <FormControl size="small">
         <SelectCustomTheme small value={project} onChange={handleChangeProject}>
          <MenuItem value="" disabled>
           <Typography fontSize={14} fontStyle="italic">
@@ -111,7 +117,7 @@ export default function ContentPage({
           KP.04 - Penyediaan Akses Terhadap Rumah...
          </MenuItem>
         </SelectCustomTheme>
-       </FormControl>
+       </FormControl> */}
       </>
      )}
      {chooseKonteks && (

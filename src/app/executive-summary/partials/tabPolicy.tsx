@@ -11,6 +11,7 @@ import {
  MenuItem,
  SelectChangeEvent,
  Grid,
+ Zoom,
 } from "@mui/material";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
@@ -26,6 +27,7 @@ import FormProfilRoProject from "./form-profil-ro-project";
 import SelectCustomTheme from "@/app/components/select";
 import { grey, green, red } from "@mui/material/colors";
 import FormPendanaan from "./form-pendanaan";
+import { dataTema } from "../dataTema";
 
 const FundSource = ({
  label,
@@ -142,42 +144,71 @@ export default function TabPolicy({ project }: { project: string }) {
     ) : (
      <>
       <Box width="100%" textAlign="center">
-       <Tooltip title="Klik untuk perbesar gambar" placement="right">
-        <Image
-         alt="project-roadmap"
-         src="https://res.cloudinary.com/caturteguh/image/upload/v1711265069/mrpn/project-roadmap_oleiip.png"
-         width={0}
-         height={0}
-         sizes="100vw"
-         style={{
-          width: "70%",
-          height: "auto",
-          margin: "0 auto",
-          cursor: "pointer",
-         }}
-         onClick={handleModalImgRoadmap}
-        />
-       </Tooltip>
+       {dataTema.map((itemRoadmap) => (
+        <>
+         {project === itemRoadmap.temaId && (
+          <>
+           {itemRoadmap.projectRoadmap.length < 1 ? (
+            <EmptyState
+             dense
+             icon={<IconEmptyData width={100} />}
+             title="Data Kosong"
+             description="Silahkan isi konten halaman ini"
+            />
+           ) : (
+            <>
+             {itemRoadmap.projectRoadmap.map((detailRoadmap, index) => (
+              <>
+               <Tooltip
+                key={index}
+                title="Klik untuk perbesar gambar"
+                placement="right"
+                followCursor
+                TransitionComponent={Zoom}
+               >
+                <Image
+                 alt="project-roadmap"
+                 src={detailRoadmap}
+                 width={0}
+                 height={0}
+                 sizes="100vw"
+                 style={{
+                  width: "70%",
+                  height: "auto",
+                  margin: "0 auto",
+                  cursor: "pointer",
+                 }}
+                 onClick={handleModalImgRoadmap}
+                />
+               </Tooltip>
+               <DialogComponent
+                width="80%"
+                dialogOpen={modalOpenImgRoadmap}
+                dialogClose={handleModalClose}
+               >
+                <Image
+                 alt="project-roadmap"
+                 src={detailRoadmap}
+                 width={0}
+                 height={0}
+                 sizes="100vw"
+                 style={{
+                  width: "100%",
+                  height: "auto",
+                  margin: "0 auto",
+                 }}
+                 onClick={handleModalImgRoadmap}
+                />
+               </DialogComponent>
+              </>
+             ))}
+            </>
+           )}
+          </>
+         )}
+        </>
+       ))}
       </Box>
-      <DialogComponent
-       width="80%"
-       dialogOpen={modalOpenImgRoadmap}
-       dialogClose={handleModalClose}
-      >
-       <Image
-        alt="project-roadmap"
-        src="https://res.cloudinary.com/caturteguh/image/upload/v1711265069/mrpn/project-roadmap_oleiip.png"
-        width={0}
-        height={0}
-        sizes="100vw"
-        style={{
-         width: "100%",
-         height: "auto",
-         margin: "0 auto",
-        }}
-        onClick={handleModalImgRoadmap}
-       />
-      </DialogComponent>
      </>
     )}
     <DialogComponent
@@ -303,42 +334,70 @@ export default function TabPolicy({ project }: { project: string }) {
     ) : (
      <>
       <Box width="100%" textAlign="center">
-       <Tooltip title="Klik untuk perbesar gambar" placement="right">
-        <Image
-         alt="Critical Path Prioritas Proyek"
-         src="https://res.cloudinary.com/caturteguh/image/upload/v1711267538/mrpn/critical-path_rgszyv.png"
-         width={0}
-         height={0}
-         sizes="100vw"
-         style={{
-          width: "70%",
-          height: "auto",
-          margin: "0 auto",
-          cursor: "pointer",
-         }}
-         onClick={handleModalImgCritical}
-        />
-       </Tooltip>
+       {dataTema.map((itemCritical) => (
+        <>
+         {project === itemCritical.temaId && (
+          <>
+           {itemCritical.criticalPath.length < 1 ? (
+            <EmptyState
+             dense
+             icon={<IconEmptyData width={100} />}
+             title="Data Kosong"
+             description="Silahkan isi konten halaman ini"
+            />
+           ) : (
+            <>
+             {itemCritical.criticalPath.map((detailCritical, index) => (
+              <>
+               <Tooltip
+                key={index}
+                title="Klik untuk perbesar gambar"
+                placement="right"
+                followCursor
+                TransitionComponent={Zoom}
+               >
+                <Image
+                 alt="Critical Path Prioritas Proyek"
+                 src={detailCritical}
+                 width={0}
+                 height={0}
+                 sizes="100vw"
+                 style={{
+                  width: "70%",
+                  height: "auto",
+                  margin: "0 auto",
+                  cursor: "pointer",
+                 }}
+                 onClick={handleModalImgCritical}
+                />
+               </Tooltip>
+               <DialogComponent
+                width="80%"
+                dialogOpen={modalOpenImgCritical}
+                dialogClose={handleModalClose}
+               >
+                <Image
+                 alt="Critical Path Prioritas Proyek"
+                 src={detailCritical}
+                 width={0}
+                 height={0}
+                 sizes="100vw"
+                 style={{
+                  width: "100%",
+                  height: "auto",
+                  margin: "0 auto",
+                 }}
+                />
+               </DialogComponent>
+              </>
+             ))}
+            </>
+           )}
+          </>
+         )}
+        </>
+       ))}
       </Box>
-      <DialogComponent
-       width="80%"
-       dialogOpen={modalOpenImgCritical}
-       dialogClose={handleModalClose}
-      >
-       <Image
-        alt="Critical Path Prioritas Proyek"
-        src="https://res.cloudinary.com/caturteguh/image/upload/v1711267538/mrpn/critical-path_rgszyv.png"
-        width={0}
-        height={0}
-        sizes="100vw"
-        style={{
-         width: "100%",
-         height: "auto",
-         margin: "0 auto",
-        }}
-        onClick={handleModalImgRoadmap}
-       />
-      </DialogComponent>
      </>
     )}
     <DialogComponent

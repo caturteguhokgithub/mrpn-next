@@ -1,4 +1,5 @@
 export const dataTema = [
+ //  STUNTING
  {
   temaId: "1",
   tema: "Penurunan Stunting",
@@ -70,7 +71,14 @@ export const dataTema = [
   segment: [
    "Ibu hamil; ibu menyusui; anak berusia 0 (nol) - 59 (lima puluh sembilan) bulan; remaja putri; calon pengantin.",
   ],
+  projectRoadmap: [
+   "https://res.cloudinary.com/caturteguh/image/upload/v1714699664/mrpn/executive_summary/project_roadmap/project_roadmap_stunting_g5bsrd.jpg",
+  ],
+  criticalPath: [
+   "https://res.cloudinary.com/caturteguh/image/upload/v1714700142/mrpn/executive_summary/critical_path/critical_path_stunting_gtqclk.jpg",
+  ],
  },
+ //  PARIWISATA
  {
   temaId: "2",
   tema: "Penyelesaian Destinasi Pariwisata",
@@ -150,7 +158,14 @@ export const dataTema = [
    "Penduduk di destinasi",
    "Pemerintah dan pemerintah daerah",
   ],
+  projectRoadmap: [
+   "https://res.cloudinary.com/caturteguh/image/upload/v1714697746/mrpn/executive_summary/project_roadmap/project_roadmap_pariwisata_adttjv.jpg",
+  ],
+  criticalPath: [
+   "https://res.cloudinary.com/caturteguh/image/upload/v1714700143/mrpn/executive_summary/critical_path/critical_path_pariwisata_c19tiz.jpg",
+  ],
  },
+ //  PANGAN
  {
   temaId: "3",
   tema: "Kawasan Sentra Produksi Pangan Kalimantan Tengah",
@@ -224,7 +239,10 @@ export const dataTema = [
    },
   ],
   segment: ["Petani (Poktan, Gapoktan, P3A, dan Lembaga Pertanian lainnya)"],
+  projectRoadmap: [],
+  criticalPath: [],
  },
+ //  SAMPAH
  {
   temaId: "7",
   tema: "Reformasi Tata Kelola Persampahan",
@@ -297,5 +315,11 @@ export const dataTema = [
    },
   ],
   segment: ["Seluruh Masyarakat"],
+  projectRoadmap: [
+   "https://res.cloudinary.com/caturteguh/image/upload/v1714697748/mrpn/executive_summary/project_roadmap/project_roadmap_sampah_owtibv.jpg",
+  ],
+  criticalPath: [
+   "https://res.cloudinary.com/caturteguh/image/upload/v1714700143/mrpn/executive_summary/critical_path/critical_path_sampah_tcofc9.jpg",
+  ],
  },
 ];

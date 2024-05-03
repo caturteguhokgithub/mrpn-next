@@ -6,6 +6,7 @@ import DashboardLayout from "@/app/components/layouts/layout";
 import {
  Box,
  Collapse,
+ SelectChangeEvent,
  Stack,
  ToggleButtonGroup,
  Typography,
@@ -48,6 +49,11 @@ const LabelRadio = ({
 export default function PageSeleraRisiko({}) {
  const [value, setValue] = React.useState("");
  const [valueTheme, setValueTheme] = React.useState<string | null>("");
+ const [project, setProject] = React.useState("");
+
+ const handleChangeProject = (event: SelectChangeEvent) => {
+  setProject(event.target.value);
+ };
 
  const handleAlignment = (
   event: React.MouseEvent<HTMLElement>,
@@ -62,7 +68,13 @@ export default function PageSeleraRisiko({}) {
 
  return (
   <DashboardLayout>
-   <ContentPage title="Selera Risiko" withCard chooseProject>
+   <ContentPage
+    title="Selera Risiko"
+    withCard
+    chooseProject
+    project={project}
+    handleChangeProject={handleChangeProject}
+   >
     <Box mb={2} p={2} bgcolor={theme.palette.primary.light} borderRadius={3}>
      <Typography component="p">
       Selera risiko adalah jenis/jumlah (nilai absolut) dari risiko yang siap
