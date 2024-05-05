@@ -1,8 +1,9 @@
 import React from "react";
 import {
+ Box,
+ Chip,
  FormControl,
  Grid,
- InputLabel,
  MenuItem,
  Select,
  SelectChangeEvent,
@@ -10,14 +11,84 @@ import {
  Typography,
 } from "@mui/material";
 import TextareaComponent from "@/app/components/textarea";
-import SelectCustomTheme from "@/app/components/select";
+import dynamic from "next/dynamic";
 
 export default function FormTagging({ mode }: { mode?: string }) {
- const [age, setAge] = React.useState("");
+ const [value, setValue] = React.useState("");
+ const [policyName, setPolicyName] = React.useState<string[]>([]);
 
- const handleChange = (event: SelectChangeEvent) => {
-  setAge(event.target.value as string);
+ const handleChangeMultiSelect = (
+  event: SelectChangeEvent<typeof policyName>
+ ) => {
+  const {
+   target: { value },
+  } = event;
+  setPolicyName(
+   // On autofill we get a stringified value.
+   typeof value === "string" ? value.split(",") : value
+  );
  };
+
+ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+
+ const policyItem = [
+  "Janpres",
+  "SDGs",
+  "Dekon",
+  "DAK",
+  "PEN",
+  "RPJPN",
+  "RPJMN",
+  "RKP",
+  "Major Project",
+  "Nawacita",
+ ];
+
+ const selectMultipleTag = (
+  <Select
+   size="small"
+   multiple
+   displayEmpty
+   inputProps={{ "aria-label": "Without label" }}
+   value={policyName}
+   onChange={handleChangeMultiSelect}
+   renderValue={(selected) => (
+    <Box sx={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
+     {selected.map((value) => (
+      <Chip
+       key={value}
+       label={value}
+       sx={{
+        height: 28,
+        lineHeight: 1,
+        borderRadius: "50px",
+        px: "4px",
+       }}
+      />
+     ))}
+    </Box>
+   )}
+   MenuProps={{
+    PaperProps: {
+     style: {
+      maxHeight: 48 * 4.5 + 8,
+      width: 250,
+     },
+    },
+   }}
+  >
+   <MenuItem value="" disabled>
+    <Typography fontSize={14} fontStyle="italic">
+     Pilih Kode KL
+    </Typography>
+   </MenuItem>
+   {policyItem.map((item) => (
+    <MenuItem key={item} value={item}>
+     {item}
+    </MenuItem>
+   ))}
+  </Select>
+ );
 
  return (
   <>
@@ -26,34 +97,9 @@ export default function FormTagging({ mode }: { mode?: string }) {
      <FormControl fullWidth>
       <Typography>Kebijakan</Typography>
       {mode === "add" ? (
-       <>
-        <SelectCustomTheme defaultStyle value={age} onChange={handleChange}>
-         <MenuItem value="" disabled>
-          <Typography fontStyle="italic">Pilih Kebijakan</Typography>
-         </MenuItem>
-         <MenuItem value="1" defaultChecked>
-          Janpres
-         </MenuItem>
-         <MenuItem value="2">SDGs</MenuItem>
-         <MenuItem value="3">Dekon</MenuItem>
-         <MenuItem value="4">DAK</MenuItem>
-         <MenuItem value="5">PEN</MenuItem>
-         <MenuItem value="6">RPJPN</MenuItem>
-         <MenuItem value="7">RPJMN</MenuItem>
-         <MenuItem value="8">RKP</MenuItem>
-         <MenuItem value="9">Major Project</MenuItem>
-         <MenuItem value="10">Nawacita</MenuItem>
-        </SelectCustomTheme>
-       </>
+       selectMultipleTag
       ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+       selectMultipleTag
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}
@@ -63,7 +109,12 @@ export default function FormTagging({ mode }: { mode?: string }) {
      <FormControl fullWidth>
       <Typography>Keterangan</Typography>
       {mode === "add" ? (
-       <TextareaComponent label="Keterangan" placeholder="Keterangan" />
+       <ReactQuill
+        theme="snow"
+        value={value}
+        onChange={setValue}
+        style={{ maxHeight: "300px" }}
+       />
       ) : mode === "edit" ? (
        <TextareaComponent
         label="Keterangan"

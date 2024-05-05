@@ -25,7 +25,7 @@ export default function SelectCustomTheme({
    onChange={onChange}
    displayEmpty
    inputProps={{
-    PaperProps: {
+    paperprops: {
      sx: {
       "& .MuiMenuItem-root": {
        padding: 2,

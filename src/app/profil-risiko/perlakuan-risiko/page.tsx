@@ -169,6 +169,7 @@ export default function PagePerlakuanRisiko({}) {
     <ContentPage
      title="Perlakuan Risiko"
      chooseProject
+     chooseKonteks
      project={project}
      handleChangeProject={handleChangeProject}
     >

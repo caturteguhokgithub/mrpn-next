@@ -116,95 +116,13 @@ export default function TabLatarBelakang({ project }: { project: string }) {
          )}
         </>
        ))}
-       {/* <CardStakeholder
-        title="Strength"
-        img=""
-        description={
-         <ul>
-          <li>
-           Sumber daya manusia yang terlatih dalam bidang kesehatan dan gizi.
-          </li>
-          <li>
-           Program-program pemerintah yang telah ada untuk mempromosikan gizi
-           seimbang.
-          </li>
-          <li>Kolaborasi lintas sektor (Kesehatan, Pendidikan, dan social)</li>
-          <li>
-           Ketersediaan teknologi dan inovasi dalam pemantauan dan evaluasi
-           status gizi anak
-          </li>
-         </ul>
-        }
-       />
-       <CardStakeholder
-        title="Weakness"
-        img=""
-        description={
-         <ul>
-          <li>
-           Akses terbatas ke layanan kesehatan dan gizi, terutama di daerah
-           pedesaan.
-          </li>
-          <li>
-           Kurangnya kesadaran masyarakat tentang pentingnya gizi seimbang.
-          </li>
-          <li>
-           Keterbatasan anggaran untuk program-program penanggulangan stunting.
-          </li>
-          <li>
-           Kurangnya infrastruktur yang memadai untuk mendukung distribusi
-           makanan bergizi ke daerah-daerah yang terpencil.
-          </li>
-         </ul>
-        }
-       />
-       <CardStakeholder
-        title="Opportunity"
-        img=""
-        description={
-         <ol type="1">
-          <li>
-           Peningkatan pendapatan per kapita dapat memungkinkan akses yang lebih
-           baik ke makanan bergizi.
-          </li>
-          <li>
-           Kerjasama antara pemerintah, lembaga swadaya masyarakat, dan sektor
-           swasta untuk meningkatkan akses terhadap layanan kesehatan dan gizi
-          </li>
-          <li>
-           Dukungan dari organisasi internasional dan Lembaga nirlaba yang
-           berpengalaman dalam masalah gizi dan Kesehatan anak
-          </li>
-         </ol>
-        }
-       />
-       <CardStakeholder
-        title="Threat"
-        img=""
-        description={
-         <ul>
-          <li>
-           Perubahan iklim dan bencana alam dapat mempengaruhi ketersediaan dan
-           akses terhadap makanan bergizi.
-          </li>
-          <li>
-           Konflik dan ketidakstabilan politik dapat mengganggu implementasi
-           program-program penanggulangan stunting.
-          </li>
-          <li>
-           Peningkatan harga makanan dan inflasi dapat membuat makanan bergizi
-           menjadi tidak terjangkau bagi masyarakat berpenghasilan rendah.
-          </li>
-         </ul>
-        }
-       /> */}
       </Stack>
      </>
     )}
     <DialogComponent
      dialogOpen={modalOpenFact}
      dialogClose={handleModalClose}
-     title="Fakta & Data (Struktur Masalah yang Dihadapi)"
+     title="Kondisi Saat Ini/Latar Belakang Proyek (SWOT)"
      dialogFooter={
       <DialogActions sx={{ p: 2, px: 3 }}>
        <Button variant="outlined" onClick={handleModalClose}>
@@ -252,16 +170,6 @@ export default function TabLatarBelakang({ project }: { project: string }) {
         )}
        </>
       ))}
-      {/* <ol type="1">
-       <li>
-        Menurunkan Prevalensi wasting (kurus dan sangat kurus) pada balita
-        hingga 3% pada tahun 2029
-       </li>
-       <li>
-        Menurunkan Persentase bayi dengan berat badan lahir rendah hingga 3,8%
-        pada tahun 2029
-       </li>
-      </ol> */}
      </>
     )}
     <DialogComponent
@@ -393,14 +301,6 @@ export default function TabLatarBelakang({ project }: { project: string }) {
         )}
        </>
       ))}
-
-      {/* <ul>
-       <li>Fasilitas kesehatan pemerintah dan swasta</li>
-       <li>
-        Remaja putri, calon pengantin, ibu hamil, ibu nifas, ibu menyusui; anak
-        berusia 0 (nol) - 59 (lima puluh sembilan) bulan
-       </li>
-      </ul> */}
      </>
     )}
     <DialogComponent

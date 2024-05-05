@@ -3,11 +3,13 @@ import {
  Box,
  Chip,
  FormControl,
+ Grow,
  MenuItem,
  Paper,
  Select,
  SelectChangeEvent,
  Stack,
+ Tooltip,
  Typography,
 } from "@mui/material";
 import theme from "@/theme";
@@ -29,6 +31,7 @@ export default function ContentPage({
  addButton,
  project,
  handleChangeProject,
+ dowloadAttachmentFile,
 }: {
  children: React.ReactNode;
  title: string;
@@ -44,12 +47,26 @@ export default function ContentPage({
  addButton?: React.ReactNode;
  project?: any;
  handleChangeProject?: any;
+ dowloadAttachmentFile?: React.ReactNode;
 }) {
  const [konteks, setKonteks] = React.useState("");
+ const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
+ const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
+  setAnchorEl(event.currentTarget);
+ };
+
+ const handlePopoverClose = () => {
+  setAnchorEl(null);
+ };
+
+ const open = Boolean(anchorEl);
  const handleChangeKonteks = (event: SelectChangeEvent) => {
   setKonteks(event.target.value);
  };
+
+ const konteksLabel =
+  "Penguatan Kebijakan Perlindungan Akses Pasar Dalam Negeri";
 
  return (
   <Box>
@@ -79,8 +96,9 @@ export default function ContentPage({
      </Stack>
      {titleChild}
     </Stack>
-    <Stack direction="row" gap={1}>
+    <Stack direction="row" alignItems="center" gap={1}>
      {chooseProjectPage}
+     {dowloadAttachmentFile}
      {chooseProject && (
       <>
        <DropdownKp
@@ -122,8 +140,29 @@ export default function ContentPage({
      )}
      {chooseKonteks && (
       <FormControl size="small">
-       <SelectCustomTheme value={konteks} onChange={handleChangeKonteks}>
-        <MenuItem value="">Pilih konteks strategis</MenuItem>
+       <SelectCustomTheme small value={konteks} onChange={handleChangeKonteks}>
+        <MenuItem value="" disabled>
+         <Typography fontSize={14} fontStyle="italic">
+          Pilih Konteks Strategis
+         </Typography>
+        </MenuItem>
+        <MenuItem value="1" defaultChecked>
+         {konteksLabel.length >= 40 ? (
+          <Tooltip title={konteksLabel} followCursor TransitionComponent={Grow}>
+           <Typography
+            aria-owns={open ? "mouse-over-popover" : undefined}
+            aria-haspopup="true"
+            onMouseEnter={handlePopoverOpen}
+            onMouseLeave={handlePopoverClose}
+            sx={{ fontSize: 14 }}
+           >
+            {konteksLabel.substring(0, 40) + "..."}
+           </Typography>
+          </Tooltip>
+         ) : (
+          konteksLabel
+         )}
+        </MenuItem>
        </SelectCustomTheme>
       </FormControl>
      )}

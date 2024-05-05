@@ -7,8 +7,10 @@ import EmptyState from "@/components/empty";
 import { IconEmptyPage } from "@/components/icons";
 import {
  Box,
+ Chip,
  Collapse,
  SelectChangeEvent,
+ Stack,
  Tab,
  Tabs,
  Typography,
@@ -93,6 +95,35 @@ export default function PageExecutiveSummary({}) {
     chooseProject
     project={project}
     handleChangeProject={handleChangeProject}
+    dowloadAttachmentFile={
+     <>
+      {project && (
+       <Chip
+        color="primary"
+        variant="outlined"
+        label={
+         <Stack direction="row" gap={1}>
+          <IconFA
+           size={14}
+           name="download"
+           color={theme.palette.primary.main}
+          />
+          Download Lampiran
+         </Stack>
+        }
+        sx={{
+         bgcolor: "white",
+         fontWeight: 600,
+         lineHeight: 1,
+         cursor: "pointer",
+         height: 38,
+         px: 1,
+         borderRadius: "50px",
+        }}
+       />
+      )}
+     </>
+    }
    >
     {flagProjectNoCard ? (
      <EmptyState

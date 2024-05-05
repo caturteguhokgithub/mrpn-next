@@ -142,21 +142,25 @@ export default function PageTema({}) {
          //  code="01.01.04"
          value="percepatan-transisi-energi"
          label="Percepatan Transisi Energi"
+         disabled
         />
         <CustomToggleButton
          //  code="01.01.05"
          value="peningkatan-pariwisata"
          label="Peningkatan Pariwisata"
+         disabled
         />
         <CustomToggleButton
          //  code="01.01.06"
          value="ketahanan-pangan"
          label="Ketahanan Pangan"
+         disabled
         />
         <CustomToggleButton
          //  code="01.01.07"
          value="sistem-persampahan"
          label="Sistem Persampahan"
+         disabled
         />
        </ToggleButtonGroup>
        <Collapse in={activeTab === "penurunan-stunting"}>

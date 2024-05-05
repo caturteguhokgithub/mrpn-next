@@ -23,7 +23,7 @@ export const MenuGroup = ({ label, children, isExpanded }: IMenu & ILayout) => {
       {isExpanded ? (
        label
       ) : (
-       <>{label.length >= 5 ? label.substr(0, 5) + "..." : label}</>
+       <>{label.length >= 5 ? label.substring(0, 5) + "..." : label}</>
       )}
      </Typography>
     </ListSubheader>

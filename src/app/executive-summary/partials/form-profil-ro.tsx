@@ -4,6 +4,7 @@ import {
  Grid,
  MenuItem,
  SelectChangeEvent,
+ Stack,
  TextField,
  Typography,
 } from "@mui/material";
@@ -154,23 +155,43 @@ export default function FormProfilRo({ mode }: { mode?: string }) {
      <FormControl fullWidth>
       <Typography>Target</Typography>
       {mode === "add" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Target"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+       <Stack direction="row" gap={1}>
+        <TextField
+         variant="outlined"
+         size="small"
+         placeholder="Nilai"
+         InputLabelProps={{
+          shrink: true,
+         }}
+        />
+        <TextField
+         variant="outlined"
+         size="small"
+         placeholder="Satuan"
+         InputLabelProps={{
+          shrink: true,
+         }}
+        />
+       </Stack>
       ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+       <Stack direction="row" gap={1}>
+        <TextField
+         variant="outlined"
+         size="small"
+         value="2000"
+         InputLabelProps={{
+          shrink: true,
+         }}
+        />
+        <TextField
+         variant="outlined"
+         size="small"
+         value="Orang"
+         InputLabelProps={{
+          shrink: true,
+         }}
+        />
+       </Stack>
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}

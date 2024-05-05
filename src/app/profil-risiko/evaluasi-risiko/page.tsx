@@ -20,6 +20,7 @@ export default function PageEvaluasiRisiko({}) {
     title="Evaluasi Risiko"
     withCard
     chooseProject
+    chooseKonteks
     project={project}
     handleChangeProject={handleChangeProject}
    >

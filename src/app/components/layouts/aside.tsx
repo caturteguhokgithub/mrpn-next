@@ -92,12 +92,12 @@ export default function Aside({
    <Stack gap="40px" direction="column">
     <MenuGroup isExpanded={isExpanded} label="menu">
      <Stack direction="column" gap={1}>
-      <MenuItem
+      {/* <MenuItem
        isExpanded={isExpanded}
        label="dashboard"
        icon={<IconDashboard />}
        url=""
-      />
+      /> */}
       <MenuItem
        isExpanded={isExpanded}
        label="Tema"

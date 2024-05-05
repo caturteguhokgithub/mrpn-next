@@ -4,6 +4,7 @@ import {
  Grid,
  MenuItem,
  SelectChangeEvent,
+ Stack,
  TextField,
  Typography,
 } from "@mui/material";
@@ -60,10 +61,10 @@ export default function FormProfilRoProject({ mode }: { mode?: string }) {
         </Typography>
        </MenuItem>
        <MenuItem value="1" defaultChecked>
-        -
+        Kementerian Kesehatan
        </MenuItem>
-       <MenuItem value="2">-</MenuItem>
-       <MenuItem value="3">-</MenuItem>
+       <MenuItem value="2">Kementerian PUPR</MenuItem>
+       <MenuItem value="3">Kementerian Perindustrian</MenuItem>
       </SelectCustomTheme>
      ) : mode === "edit" ? (
       <SelectCustomTheme
@@ -77,10 +78,10 @@ export default function FormProfilRoProject({ mode }: { mode?: string }) {
         </Typography>
        </MenuItem>
        <MenuItem value="1" defaultChecked>
-        -
+        Kementerian Kesehatan
        </MenuItem>
-       <MenuItem value="2">-</MenuItem>
-       <MenuItem value="3">-</MenuItem>
+       <MenuItem value="2">Kementerian PUPR</MenuItem>
+       <MenuItem value="3">Kementerian Perindustrian</MenuItem>
       </SelectCustomTheme>
      ) : (
       <Typography fontWeight={600}>-</Typography>
@@ -103,10 +104,10 @@ export default function FormProfilRoProject({ mode }: { mode?: string }) {
         </Typography>
        </MenuItem>
        <MenuItem value="1" defaultChecked>
-        -
+        Kementerian Pertanian
        </MenuItem>
-       <MenuItem value="2">-</MenuItem>
-       <MenuItem value="3">-</MenuItem>
+       <MenuItem value="2">BPOM</MenuItem>
+       <MenuItem value="3">Simas</MenuItem>
       </SelectCustomTheme>
      ) : mode === "edit" ? (
       <SelectCustomTheme
@@ -120,10 +121,10 @@ export default function FormProfilRoProject({ mode }: { mode?: string }) {
         </Typography>
        </MenuItem>
        <MenuItem value="1" defaultChecked>
-        -
+        Kementerian Pertanian
        </MenuItem>
-       <MenuItem value="2">-</MenuItem>
-       <MenuItem value="3">-</MenuItem>
+       <MenuItem value="2">BPOM</MenuItem>
+       <MenuItem value="3">Simas</MenuItem>
       </SelectCustomTheme>
      ) : (
       <Typography fontWeight={600}>-</Typography>
@@ -177,23 +178,43 @@ export default function FormProfilRoProject({ mode }: { mode?: string }) {
     <FormControl fullWidth>
      <Typography>Target</Typography>
      {mode === "add" ? (
-      <TextField
-       variant="outlined"
-       size="small"
-       placeholder="Target"
-       InputLabelProps={{
-        shrink: true,
-       }}
-      />
+      <Stack direction="row" gap={1}>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Nilai"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Satuan"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </Stack>
      ) : mode === "edit" ? (
-      <TextField
-       variant="outlined"
-       size="small"
-       value="-"
-       InputLabelProps={{
-        shrink: true,
-       }}
-      />
+      <Stack direction="row" gap={1}>
+       <TextField
+        variant="outlined"
+        size="small"
+        value="2000"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+       <TextField
+        variant="outlined"
+        size="small"
+        value="Orang"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </Stack>
      ) : (
       <Typography fontWeight={600}>-</Typography>
      )}

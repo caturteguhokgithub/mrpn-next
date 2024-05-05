@@ -14,43 +14,7 @@ import Image from "next/image";
 import theme from "@/theme";
 import { IconFA } from "@/app/components/icons/icon-fa";
 import { grey } from "@mui/material/colors";
-import {
- stakeholderKoordinasi,
- stakeholderMonitoring,
- stakeholderPendukung,
- stakeholderUtama,
-} from "../data";
-
-const CardStakeholderForm = ({
- title,
- img,
- description,
- label,
-}: {
- title: string;
- img: React.ReactNode;
- description: React.ReactNode;
- label: string;
-}) => {
- return (
-  <Paper
-   elevation={0}
-   variant="outlined"
-   sx={{ minWidth: "0 !important", p: 2, height: "100%" }}
-  >
-   <Stack direction="column">
-    <Typography gutterBottom variant="h6" component="div" lineHeight={1.3}>
-     {title}
-    </Typography>
-    {img}
-    <Typography variant="body2" mb={1}>
-     <strong>{label}</strong>
-    </Typography>
-    {description}
-   </Stack>
-  </Paper>
- );
-};
+import { dataTema } from "../dataTema";
 
 const ToggleButtonLogo = ({
  value,
@@ -60,19 +24,19 @@ const ToggleButtonLogo = ({
  imgSrc: string;
 }) => {
  return (
-  <ToggleButton
-   value={value}
-   aria-label={value}
-   sx={{
-    position: "relative",
-    ".MuiIcon-root": {
-     position: "absolute",
-     top: -5,
-     right: -5,
-    },
-   }}
-  >
-   <Tooltip title={value} arrow>
+  <Tooltip title={value} arrow>
+   <ToggleButton
+    value={value}
+    aria-label={value}
+    sx={{
+     position: "relative",
+     ".MuiIcon-root": {
+      position: "absolute",
+      top: -5,
+      right: -5,
+     },
+    }}
+   >
     <Image
      alt={value}
      src={imgSrc}
@@ -81,13 +45,19 @@ const ToggleButtonLogo = ({
      sizes="100vw"
      style={{ width: "auto", height: "50px" }}
     />
-   </Tooltip>
-   <IconFA name="circle-check" size={20} color={theme.palette.primary.main} />
-  </ToggleButton>
+    <IconFA name="circle-check" size={20} color={theme.palette.primary.main} />
+   </ToggleButton>
+  </Tooltip>
  );
 };
 
-export default function FormStakeholder({ mode }: { mode?: string }) {
+export default function FormStakeholder({
+ mode,
+ project,
+}: {
+ mode?: string;
+ project: string;
+}) {
  const [formats, setFormats] = React.useState(() => [""]);
 
  const handleFormat = (
@@ -103,6 +73,11 @@ export default function FormStakeholder({ mode }: { mode?: string }) {
   gap: 1,
   maxWidth: "100%",
   overflow: "auto",
+  minHeight: 90,
+  "&::-webkit-scrollbar": {
+   height: "6px",
+   cursor: "pointer",
+  },
   button: {
    border: `1px solid ${grey[400]}`,
    borderLeft: `1px solid ${grey[400]} !important`,
@@ -129,82 +104,57 @@ export default function FormStakeholder({ mode }: { mode?: string }) {
 
  return (
   <Grid container spacing={2}>
-   <Grid item lg={6}>
-    <CardStakeholderForm
-     title="Entitas Pendukung"
-     label="Keep Satisfied"
-     description={
-      <TextareaComponent
-       label="Deskripsi Entitas Pendukung"
-       placeholder="Deskripsi Entitas Pendukung"
-      />
-     }
-     img={
-      <ToggleButtonGroup value={formats} onChange={handleFormat} sx={styles}>
-       {stakeholderPendukung.map(({ value, imgUrl, id }) => (
-        <ToggleButtonLogo key={id} value={value} imgSrc={imgUrl} />
+   {dataTema.map((itemStakeholder) => (
+    <>
+     {project === itemStakeholder.temaId && (
+      <>
+       {itemStakeholder.stakeholder?.map((detailStakeholder, index) => (
+        <>
+         <Grid item lg={6} key={index}>
+          <Paper
+           elevation={0}
+           variant="outlined"
+           sx={{ minWidth: "0 !important", p: 2, height: "100%" }}
+          >
+           <Stack direction="column">
+            <Typography
+             gutterBottom
+             variant="h6"
+             component="div"
+             lineHeight={1.3}
+             sx={{ minHeight: 54 }}
+            >
+             {detailStakeholder.label}
+            </Typography>
+            <ToggleButtonGroup
+             value={formats}
+             onChange={handleFormat}
+             sx={styles}
+            >
+             {detailStakeholder.instance.map((itemSh, index) => (
+              <ToggleButtonLogo
+               key={index}
+               value={itemSh.name}
+               imgSrc={itemSh.logo}
+              />
+             ))}
+            </ToggleButtonGroup>
+            <Typography variant="body2" mb={1}>
+             <strong>{detailStakeholder.tag}</strong>
+            </Typography>
+            <TextareaComponent
+             label={`Deskripsi ${detailStakeholder.label}`}
+             placeholder={`Deskripsi ${detailStakeholder.label}`}
+            />
+           </Stack>
+          </Paper>
+         </Grid>
+        </>
        ))}
-      </ToggleButtonGroup>
-     }
-    />
-   </Grid>
-   <Grid item lg={6}>
-    <CardStakeholderForm
-     title="Entitas Utama"
-     label="Manage Closely"
-     description={
-      <TextareaComponent
-       label="Deskripsi Entitas Utama"
-       placeholder="Deskripsi Entitas Utama"
-      />
-     }
-     img={
-      <ToggleButtonGroup value={formats} onChange={handleFormat} sx={styles}>
-       {stakeholderUtama.map(({ value, imgUrl, id }) => (
-        <ToggleButtonLogo key={id} value={value} imgSrc={imgUrl} />
-       ))}
-      </ToggleButtonGroup>
-     }
-    />
-   </Grid>
-   <Grid item lg={6}>
-    <CardStakeholderForm
-     title="Monitoring dan Pengawasan"
-     label="Monitor"
-     description={
-      <TextareaComponent
-       label="Deskripsi Monitoring dan Pengawasan"
-       placeholder="Deskripsi Monitoring dan Pengawasan"
-      />
-     }
-     img={
-      <ToggleButtonGroup value={formats} onChange={handleFormat} sx={styles}>
-       {stakeholderMonitoring.map(({ value, imgUrl, id }) => (
-        <ToggleButtonLogo key={id} value={value} imgSrc={imgUrl} />
-       ))}
-      </ToggleButtonGroup>
-     }
-    />
-   </Grid>
-   <Grid item lg={6}>
-    <CardStakeholderForm
-     title="Koordinasi, Informasi, Sosialisasi Berkala"
-     label="Keep Informed"
-     description={
-      <TextareaComponent
-       label="Deskripsi Koordinasi, Informasi, Sosialisasi Berkala"
-       placeholder="Deskripsi Koordinasi, Informasi, Sosialisasi Berkala"
-      />
-     }
-     img={
-      <ToggleButtonGroup value={formats} onChange={handleFormat} sx={styles}>
-       {stakeholderKoordinasi.map(({ value, imgUrl, id }) => (
-        <ToggleButtonLogo key={id} value={value} imgSrc={imgUrl} />
-       ))}
-      </ToggleButtonGroup>
-     }
-    />
-   </Grid>
+      </>
+     )}
+    </>
+   ))}
   </Grid>
  );
 }

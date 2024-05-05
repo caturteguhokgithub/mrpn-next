@@ -17,15 +17,15 @@ export default function TableDampak() {
   id: number,
   outcome: string,
   kode: string,
-  sasaran: string,
-  highlight: boolean
+  sasaran: string
+  //   highlight: boolean
  ) {
   return {
    id,
    outcome,
    kode,
    sasaran,
-   highlight,
+   //    highlight,
   };
  }
 
@@ -34,8 +34,8 @@ export default function TableDampak() {
    1,
    "Menurunnya prevalensi stunting pada balita",
    "-",
-   "Kesehatan untuk Semua",
-   true
+   "Kesehatan untuk Semua"
+   //    true
   ),
  ];
 
@@ -47,7 +47,7 @@ export default function TableDampak() {
       <TableCell>Outcome/Dampak</TableCell>
       <TableCell>Kode Sasaran AP</TableCell>
       <TableCell>Sasaran AP</TableCell>
-      <TableCell width="150px">Highlight</TableCell>
+      {/* <TableCell width="150px">Highlight</TableCell> */}
      </TableRow>
     </TableHead>
     <TableBody>
@@ -59,13 +59,13 @@ export default function TableDampak() {
        <TableCell>{row.outcome}</TableCell>
        <TableCell>{row.kode}</TableCell>
        <TableCell>{row.sasaran}</TableCell>
-       <TableCell align="center">
+       {/* <TableCell align="center">
         {row.highlight ? (
          <IconFA color={green[500]} name="check" size={16} />
         ) : (
          <IconFA color={red[500]} name="xmark" size={16} />
         )}
-       </TableCell>
+       </TableCell> */}
       </TableRow>
      ))}
     </TableBody>

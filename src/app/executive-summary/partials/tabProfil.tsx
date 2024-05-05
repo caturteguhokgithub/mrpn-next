@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
  Typography,
  Stack,
@@ -11,6 +11,8 @@ import {
  CardActions,
  CardContent,
  CardMedia,
+ Grow,
+ Tooltip,
 } from "@mui/material";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
@@ -27,12 +29,13 @@ import FormPendanaan from "./form-pendanaan";
 import Image from "next/image";
 import FormStakeholder from "./form-stakeholder";
 import CardStakeholder from "@/app/components/cardStakeholder";
+import { dataTema } from "../dataTema";
+import { useDragScroll } from "@/app/utils/useDragScroll";
 
 export default function TabProfil({ project }: { project: string }) {
  const [modalOpenSasaran, setModalOpenSasaran] = React.useState(false);
  const [modalOpenProfilRo, setModalOpenProfilRo] = React.useState(false);
  const [modalOpenStakeholder, setModalOpenStakeholder] = React.useState(false);
- const [value, setValue] = React.useState("");
 
  const handleModalOpenSasaran = () => {
   setModalOpenSasaran(true);
@@ -53,6 +56,8 @@ export default function TabProfil({ project }: { project: string }) {
  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
  const isEmpty = false;
+ const refDrag = useRef([]);
+ const [ref] = useDragScroll();
 
  return (
   <Stack gap={1}>
@@ -150,46 +155,71 @@ export default function TabProfil({ project }: { project: string }) {
      />
     ) : (
      <Stack direction="row" flexWrap="wrap" gap={2}>
-      <CardStakeholder
-       title="Entitas Pendukung"
-       img="https://res.cloudinary.com/caturteguh/image/upload/v1711255729/mrpn/stakeholder-entitas-pendukung_e0fimb.png"
-       description={
-        <>
-         <strong>Keep Satisfied</strong>. Penyediaan gizi sesuai dengan standar.
-        </>
-       }
-      />
-      <CardStakeholder
-       title="Entitas Utama"
-       img="https://res.cloudinary.com/caturteguh/image/upload/v1711255595/mrpn/stakeholder-entitas-utama_zsyvn4.png"
-       description={
-        <>
-         <strong>Manage Closely</strong>. Meningkatkan asupan gizi dan
-         menyediakan sarana dan prasarana dasar.
-        </>
-       }
-      />
-      <CardStakeholder
-       title="Monitoring dan Pengawasan"
-       img="https://res.cloudinary.com/caturteguh/image/upload/v1711255600/mrpn/stakeholder-monitoring_ztxfek.png"
-       description={
-        <>
-         <strong>Monitor</strong>. Melakukan proses pengawasan atas penyaluran
-         asupan gizi dan penyediaan sarpras secara berkelanjutan kepada
-         masyarakat.
-        </>
-       }
-      />
-      <CardStakeholder
-       title="Koordinasi, Informasi, sosialisasi berkala"
-       img="https://res.cloudinary.com/caturteguh/image/upload/v1711255598/mrpn/stakeholder-koordinasi_bjgmuu.png"
-       description={
-        <>
-         <strong>Keep Informed</strong>. Keterlibatan pemerintah daerah dalam
-         pelaksanaan penurunan stunting yang diagendakan pada beberapa daerah.
-        </>
-       }
-      />
+      {dataTema.map((itemStakeholder) => (
+       <>
+        {project === itemStakeholder.temaId && (
+         <>
+          {itemStakeholder.stakeholder?.map((detailStakeholder, index) => (
+           <Card sx={{ maxWidth: 345 }} variant="outlined" key={index}>
+            <CardContent sx={{ pb: 1, minHeight: 84 }}>
+             <Typography
+              gutterBottom
+              variant="h6"
+              component="div"
+              lineHeight={1.3}
+             >
+              {detailStakeholder.label}
+             </Typography>
+            </CardContent>
+            <CardContent
+             ref={ref}
+             sx={{
+              display: "flex",
+              gap: 2,
+              maxWidth: "100%",
+              overflowX: "auto",
+              "&::-webkit-scrollbar": {
+               height: "3px",
+              },
+             }}
+            >
+             {detailStakeholder.instance.map((itemSh, index) => (
+              <>
+               <Tooltip
+                title={itemSh.name}
+                followCursor
+                TransitionComponent={Grow}
+               >
+                <Image
+                 key={index}
+                 alt={detailStakeholder.label}
+                 src={itemSh.logo}
+                 width={0}
+                 height={0}
+                 sizes="100vw"
+                 style={{
+                  width: "auto",
+                  height: "60px",
+                  userSelect: "none",
+                  touchAction: "none",
+                 }}
+                />
+               </Tooltip>
+              </>
+             ))}
+            </CardContent>
+            <CardContent>
+             <Typography variant="body2">
+              <strong>{detailStakeholder.tag}</strong>. {detailStakeholder.desc}
+              .
+             </Typography>
+            </CardContent>
+           </Card>
+          ))}
+         </>
+        )}
+       </>
+      ))}
      </Stack>
     )}
 
@@ -208,7 +238,7 @@ export default function TabProfil({ project }: { project: string }) {
       </DialogActions>
      }
     >
-     <FormStakeholder mode="add" />
+     <FormStakeholder mode="add" project={project} />
     </DialogComponent>
    </CardItem>
   </Stack>

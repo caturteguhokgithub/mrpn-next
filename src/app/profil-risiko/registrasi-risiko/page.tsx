@@ -184,6 +184,7 @@ export default function PageRegistrasiRisiko({}) {
     <ContentPage
      title="Registrasi Risiko"
      chooseProject
+     chooseKonteks
      project={project}
      handleChangeProject={handleChangeProject}
     >

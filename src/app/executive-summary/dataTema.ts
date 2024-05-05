@@ -77,7 +77,261 @@ export const dataTema = [
   criticalPath: [
    "https://res.cloudinary.com/caturteguh/image/upload/v1714700142/mrpn/executive_summary/critical_path/critical_path_stunting_gtqclk.jpg",
   ],
+  stakeholder: [
+   {
+    label: "Entitas Utama",
+    tag: "Manage Closely",
+    desc: "Meningkatkan asupan gizi dan menyediakan sarana dan prasarana dasar",
+    instance: [
+     {
+      name: "Kementerian Kesehatan",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711956185/mrpn/company_logo/logo_kemenkes_k99chv.png",
+     },
+     {
+      name: "Kementerian Pekerjaan Umum & Perumahan Rakyat",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711725384/mrpn/company_logo/logo_pu_iz386d.png",
+     },
+    ],
+   },
+   {
+    label: "Entitas Pendukung",
+    tag: "Keep Satisfied",
+    desc: "Penyediaan gizi sesuai dengan standar",
+    instance: [
+     {
+      name: "BPOM",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955901/mrpn/company_logo/logo_bpom_ktik6o.png",
+     },
+     {
+      name: "Kementerian Pertanian",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711956186/mrpn/company_logo/logo_kementan_de8q7e.png",
+     },
+     {
+      name: "Kementerian Kehutanan & Lingkungan Hidup",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955830/mrpn/company_logo/logo_klhk_wplagd.png",
+     },
+     {
+      name: "Kementerian Perhubungan",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955963/mrpn/company_logo/logo_kemenhub_ivgjzh.png",
+     },
+     {
+      name: "BPOM",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955901/mrpn/company_logo/logo_bpom_ktik6o.png",
+     },
+     {
+      name: "Kementerian Pertanian",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711956186/mrpn/company_logo/logo_kementan_de8q7e.png",
+     },
+     {
+      name: "Kementerian Kehutanan & Lingkungan Hidup",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955830/mrpn/company_logo/logo_klhk_wplagd.png",
+     },
+     {
+      name: "Kementerian Perhubungan",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955963/mrpn/company_logo/logo_kemenhub_ivgjzh.png",
+     },
+    ],
+   },
+   {
+    label: "Monitoring dan Pengawasan",
+    tag: "Monitor",
+    desc:
+     "Melakukan proses pengawasan atas penyaluran asupan gizi dan penyediaan sarpras secara berkelanjutan kepada masyarakat",
+    instance: [
+     {
+      name: "Kementerian PPN",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711964917/mrpn/company_logo/logo_bappenas_gwhnut.png",
+     },
+     {
+      name: "Puskesmas",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711956111/mrpn/company_logo/logo_puskesmas_ckdzmi.png",
+     },
+    ],
+   },
+   {
+    label: "Koordinasi, Informasi, sosialisasi berkala",
+    tag: "Keep Informed",
+    desc:
+     "Keterlibatan pemerintah daerah dalam pelaksanaan penurunan stunting yang diagendakan pada beberapa daerah",
+    instance: [
+     {
+      name: "Pemerintahan Jawa Barat",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711725536/mrpn/company_logo/logo_gemah_ueqink.png",
+     },
+     {
+      name: "Pemerintahan DKI Jakarta",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711725384/mrpn/company_logo/logo_jaya_p7hnyk.png",
+     },
+     {
+      name: "Pemerintahan Kabupaten Bekasi",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711725384/mrpn/company_logo/logo_swatantra_jq1s4e.png",
+     },
+     {
+      name: "Pemerintahan Kabupaten Badung",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1714801748/mrpn/company_logo/logo_kab_badung_s4tmhb.png",
+     },
+     {
+      name: "Pemerintahan Kabupaten Bogor",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1714801748/mrpn/company_logo/logo_kab_bogor_ygigaw.png",
+     },
+     {
+      name: "Pemerintahan Kabupaten Kediri",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1714802050/mrpn/company_logo/logo_kab_kediri_q6yfnp.png",
+     },
+    ],
+   },
+  ],
+  roadmap: [
+   {
+    outputBase: [
+     {
+      year: "2025",
+      output:
+       "Menurunnya Prevalensi wasting balita, % Ibu hamil KEK, % anemia pada bumil",
+      roPendukung: [
+       "Suplementasi gizi mikro pada balita ",
+       "Penyediaan PMT bagi balita bermasalah gizi (termasuk balita dengan BB tidak bertambah sesuai usia (weight faltering)",
+       "Tata laksana balita gizi buruk",
+       "Penanggulangan kurang energi kronik (KEK) pada ibu hamil",
+       "Pendampingan pada setiap keluarga 1000 HPK",
+       "Infrakstruktur air minum berbasis Masyarakat",
+       "Bantuan pangan bagi keluarga 1000 HPK",
+       "Pendampingan terhadap Ibu hamil dan Ibu Pasca melahirkan",
+      ],
+      note: [],
+     },
+     {
+      year: "2026",
+      output:
+       "Menurunnya Prevalensi wasting balita, % Ibu hamil KEK, % anemia pada bumil",
+      roPendukung: [
+       "Suplementasi gizi mikro pada balita ",
+       "Penyediaan PMT bagi balita bermasalah gizi (termasuk balita dengan BB tidak bertambah sesuai usia (weight faltering)",
+       "Tata laksana balita gizi buruk",
+       "Penanggulangan kurang energi kronik (KEK) pada ibu hamil",
+       "Pendampingan pada setiap keluarga 1000 HPK",
+       "Infrakstruktur air minum berbasis Masyarakat",
+       "Bantuan pangan bagi keluarga 1000 HPK",
+       "Pendampingan terhadap Ibu hamil dan Ibu Pasca melahirkan",
+      ],
+      note: [],
+     },
+     {
+      year: "2027",
+      output:
+       "Menurunnya Prevalensi wasting balita, % Ibu hamil KEK, % anemia pada bumil",
+      roPendukung: [
+       "Suplementasi gizi mikro pada balita ",
+       "Penyediaan PMT bagi balita bermasalah gizi (termasuk balita dengan BB tidak bertambah sesuai usia (weight faltering)",
+       "Tata laksana balita gizi buruk",
+       "Penanggulangan kurang energi kronik (KEK) pada ibu hamil",
+       "Pendampingan pada setiap keluarga 1000 HPK",
+       "Infrakstruktur air minum berbasis Masyarakat",
+       "Bantuan pangan bagi keluarga 1000 HPK",
+       "Pendampingan terhadap Ibu hamil dan Ibu Pasca melahirkan",
+      ],
+      note: [],
+     },
+     {
+      year: "2028",
+      output:
+       "Menurunnya Prevalensi wasting balita, % Ibu hamil KEK, % anemia pada bumil",
+      roPendukung: [
+       "Suplementasi gizi mikro pada balita ",
+       "Penyediaan PMT bagi balita bermasalah gizi (termasuk balita dengan BB tidak bertambah sesuai usia (weight faltering)",
+       "Tata laksana balita gizi buruk",
+       "Penanggulangan kurang energi kronik (KEK) pada ibu hamil",
+       "Pendampingan pada setiap keluarga 1000 HPK",
+       "Infrakstruktur air minum berbasis Masyarakat",
+       "Bantuan pangan bagi keluarga 1000 HPK",
+       "Pendampingan terhadap Ibu hamil dan Ibu Pasca melahirkan",
+      ],
+      note: [],
+     },
+     {
+      year: "2029",
+      output:
+       "Menurunnya Prevalensi wasting balita, % Ibu hamil KEK, % anemia pada bumil",
+      roPendukung: [
+       "Suplementasi gizi mikro pada balita ",
+       "Penyediaan PMT bagi balita bermasalah gizi (termasuk balita dengan BB tidak bertambah sesuai usia (weight faltering)",
+       "Tata laksana balita gizi buruk",
+       "Penanggulangan kurang energi kronik (KEK) pada ibu hamil",
+       "Pendampingan pada setiap keluarga 1000 HPK",
+       "Infrakstruktur air minum berbasis Masyarakat",
+       "Bantuan pangan bagi keluarga 1000 HPK",
+       "Pendampingan terhadap Ibu hamil dan Ibu Pasca melahirkan",
+      ],
+      note: [],
+     },
+    ],
+    businessBase: [
+     {
+      year: "2025",
+      output: "",
+      roPendukung: [],
+      note: ["Revisi Perpres 72 2021"],
+     },
+     {
+      year: "2026",
+      output: "",
+      roPendukung: [],
+      note: [
+       "Proses bisnis, tata kelola, kelembagaan sesuai dengan hasil revisi Perpres 72/2021",
+      ],
+     },
+     {
+      year: "2027",
+      output: "",
+      roPendukung: [],
+      note: [
+       "Proses bisnis, tata kelola, kelembagaan sesuai dengan hasil revisi Perpres 72/2021",
+      ],
+     },
+     {
+      year: "2028",
+      output: "",
+      roPendukung: [],
+      note: [
+       "Proses bisnis, tata kelola, kelembagaan sesuai dengan hasil revisi Perpres 72/2021",
+      ],
+     },
+     {
+      year: "2029",
+      output: "",
+      roPendukung: [],
+      note: [
+       "Proses bisnis, tata kelola, kelembagaan sesuai dengan hasil revisi Perpres 72/2021",
+      ],
+     },
+     //  { year: "2025", output: "", roPendukung: [],note: [""] },
+     //  { year: "2026", output: "", roPendukung: [],note: [""] },
+     //  { year: "2027", output: "", roPendukung: [],note: [""] },
+     //  { year: "2028", output: "", roPendukung: [],note: [""] },
+     //  { year: "2029", output: "", roPendukung: [],note: [""] },
+    ],
+   },
+  ],
  },
+
  //  PARIWISATA
  {
   temaId: "2",
@@ -164,7 +418,96 @@ export const dataTema = [
   criticalPath: [
    "https://res.cloudinary.com/caturteguh/image/upload/v1714700143/mrpn/executive_summary/critical_path/critical_path_pariwisata_c19tiz.jpg",
   ],
+  roadmap: [
+   {
+    outputBase: [
+     {
+      year: "2025",
+      output: "Meningkatkan tenaga kerja pariwisata",
+      roPendukung: [
+       "Pelatihan dan sertifikasi SDM industri pariwisata (Kemenparekraf)",
+      ],
+      note: [],
+     },
+     {
+      year: "2026",
+      output: "Meningkatkan tenaga kerja pariwisata",
+      roPendukung: [
+       "Pelatihan dan sertifikasi SDM industri pariwisata (Kemenparekraf)",
+      ],
+      note: [],
+     },
+     {
+      year: "2027",
+      output: "Meningkatkan tenaga kerja pariwisata",
+      roPendukung: [
+       "Pelatihan dan sertifikasi SDM industri pariwisata (Kemenparekraf)",
+      ],
+      note: [],
+     },
+     {
+      year: "2028",
+      output: "Meningkatkan tenaga kerja pariwisata",
+      roPendukung: [
+       "Pelatihan dan sertifikasi SDM industri pariwisata (Kemenparekraf)",
+      ],
+      note: [],
+     },
+     {
+      year: "2029",
+      output: "Meningkatkan tenaga kerja pariwisata",
+      roPendukung: [
+       "Pelatihan dan sertifikasi SDM industri pariwisata (Kemenparekraf)",
+      ],
+      note: [],
+     },
+    ],
+    businessBase: [
+     {
+      year: "2025",
+      output: "Meningkatkan investasi di destinasi pariwisata",
+      roPendukung: [
+       "Penyusunan IPRO dan Identifikasi Peluang Investasi (Kemeninvestasi/BKPM)",
+      ],
+      note: [],
+     },
+     {
+      year: "2026",
+      output: "Meningkatkan investasi di destinasi pariwisata",
+      roPendukung: [
+       "Pengembangan Strategi Promosi Investasi (Kemeninvestasi/BKPM)",
+      ],
+      note: [],
+     },
+     {
+      year: "2027",
+      output: "Meningkatkan investasi di destinasi pariwisata",
+      roPendukung: [
+       "Penguatan infrastruktur pariwisata di destinasi prioritas (KemenPUPR)",
+      ],
+      note: [],
+     },
+     {
+      year: "2028",
+      output: "Meningkatkan investasi di destinasi pariwisata",
+      roPendukung: [
+       "Pengembangan produk pariwisata unggulan dan diversifikasi pengalaman wisata (Kemenparekraf)",
+      ],
+      note: [],
+     },
+     {
+      year: "2029",
+      output: "Meningkatkan investasi di destinasi pariwisata",
+      roPendukung: [
+       "Evaluasi dan Peningkatan Berkelanjutan (Kemeninvestasi/BKPM dan Kemenparekraf)",
+      ],
+      note: [],
+     },
+    ],
+   },
+  ],
  },
+
  //  PANGAN
  {
   temaId: "3",
@@ -241,7 +584,9 @@ export const dataTema = [
   segment: ["Petani (Poktan, Gapoktan, P3A, dan Lembaga Pertanian lainnya)"],
   projectRoadmap: [],
   criticalPath: [],
+  roadmap: [],
  },
+
  //  SAMPAH
  {
   temaId: "7",
@@ -320,6 +665,98 @@ export const dataTema = [
   ],
   criticalPath: [
    "https://res.cloudinary.com/caturteguh/image/upload/v1714700143/mrpn/executive_summary/critical_path/critical_path_sampah_tcofc9.jpg",
+  ],
+  roadmap: [
+   {
+    outputBase: [
+     {
+      year: "2025",
+      output: "",
+      roPendukung: [],
+      note: [
+       "Pemda memahami reformasi tata kelola sampah yang diperlukan",
+       "Stocktaking isu penguatan tata kelola sampah nasional",
+      ],
+     },
+     {
+      year: "2026",
+      output: "",
+      roPendukung: [],
+      note: [
+       "Pemda memiliki perencanaan, pendanaan, dan kelembagaan sampah yang optimal",
+       "Revisi regulasi persampahan",
+      ],
+     },
+     {
+      year: "2027",
+      output: "",
+      roPendukung: [],
+      note: [
+       "Mayoritas sarana prasarana sampah beroperasi optimal",
+       "Peningkatan kapasitas mitra 3R persampahan",
+      ],
+     },
+     {
+      year: "2028",
+      output: "",
+      roPendukung: [],
+      note: [
+       "Masyarakat memilah sampah dari sumber",
+       "Kontribusi mitra 3R persampahan untuk pengurangan sampah",
+      ],
+     },
+     {
+      year: "2029",
+      output: "",
+      roPendukung: [],
+      note: ["Berkurangnya sampah ke TPA", "Peningkatan pengurangan sampah"],
+     },
+    ],
+    businessBase: [
+     {
+      year: "2025",
+      output: "",
+      roPendukung: [],
+      note: [
+       "Pembinaan dan pendampingan Pemda terkait tata kelola persampahan",
+       "Kajian penguatan tata kelola persampahan tingkat nasional",
+      ],
+     },
+     {
+      year: "2026",
+      output: "",
+      roPendukung: [],
+      note: [
+       "Pengembangan dan penetapan struktur tata kelola persampahan daerah",
+       "Revisi regulasi persampahan tingkat nasional",
+      ],
+     },
+     {
+      year: "2027",
+      output: "",
+      roPendukung: [],
+      note: [
+       "Optimalisasi sarana dan prasarana pengelolaan sampah",
+       "Pelatihan dan pelibatan mitra 3R persampahan",
+      ],
+     },
+     {
+      year: "2028",
+      output: "",
+      roPendukung: [],
+      note: ["Penguatan aspek pengurangan sampah"],
+     },
+     {
+      year: "2029",
+      output: "",
+      roPendukung: [],
+      note: [
+       "Operasionalisasi TPA hanya untuk sampah residu",
+       "Peningkatan sampah terkelola di fasilitas sebelum TPA",
+      ],
+     },
+    ],
+   },
   ],
  },
 ];

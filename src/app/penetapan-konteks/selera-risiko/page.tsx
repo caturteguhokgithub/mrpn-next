@@ -128,13 +128,13 @@ export default function PageSeleraRisiko({}) {
       label="4 - 5"
      />
      <CustomToggleButton
-      variant="primary"
+      variant="success"
       code="Nilai"
       value="3"
       label="6 - 7"
      />
      <CustomToggleButton
-      variant="success"
+      variant="primary"
       code="Nilai"
       value="4"
       label="8 - 9"
