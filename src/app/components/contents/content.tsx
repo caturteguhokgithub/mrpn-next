@@ -140,7 +140,12 @@ export default function ContentPage({
      )}
      {chooseKonteks && (
       <FormControl size="small">
-       <SelectCustomTheme small value={konteks} onChange={handleChangeKonteks}>
+       <SelectCustomTheme
+        small
+        anchorRight
+        value={konteks}
+        onChange={handleChangeKonteks}
+       >
         <MenuItem value="" disabled>
          <Typography fontSize={14} fontStyle="italic">
           Pilih Konteks Strategis

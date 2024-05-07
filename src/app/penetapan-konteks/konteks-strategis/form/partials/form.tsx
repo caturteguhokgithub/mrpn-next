@@ -25,7 +25,9 @@ import TextareaComponent from "@/app/components/textarea";
 import { DateRange } from "react-date-range";
 import moment from "moment";
 import { listSelectKp } from "@/app/executive-summary/data";
-import { grey } from "@mui/material/colors";
+import { blue, grey } from "@mui/material/colors";
+import MultiSelect from "@/app/components/multiSelect";
+import { Option } from "@/app/components/multiSelect";
 
 export default function FormKonstra({ mode }: { mode?: string }) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -190,14 +192,43 @@ export default function FormKonstra({ mode }: { mode?: string }) {
          />
         </>
        ) : mode === "edit" ? (
-        <TextField
-         variant="outlined"
-         size="small"
-         value="-"
-         InputLabelProps={{
-          shrink: true,
-         }}
-        />
+        <>
+         <Popover
+          id={id}
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          anchorOrigin={{
+           vertical: "bottom",
+           horizontal: "left",
+          }}
+         >
+          <DateRange
+           editableDateInputs={true}
+           onChange={(item: any) => setState([item.selection])}
+           moveRangeOnFirstSelection={false}
+           ranges={state}
+           months={2}
+           direction="horizontal"
+           minDate={minDate}
+           maxDate={maxDate}
+          />
+         </Popover>
+         <TextField
+          onClick={handleClick}
+          variant="outlined"
+          size="small"
+          placeholder="Periode Penerapan"
+          InputLabelProps={{
+           shrink: true,
+          }}
+          value={`${moment
+           .utc(state[0].startDate)
+           .format("D MMM YYYY")} - ${moment
+           .utc(state[0].endDate)
+           .format("D MMM YYYY")}`}
+         />
+        </>
        ) : (
         <Typography fontWeight={600}>-</Typography>
        )}
@@ -251,14 +282,13 @@ export default function FormKonstra({ mode }: { mode?: string }) {
       <FormControl fullWidth>
        <Typography>Lokasi</Typography>
        {mode === "add" ? (
-        <TextField
-         variant="outlined"
-         size="small"
-         placeholder="Lokasi"
-         InputLabelProps={{
-          shrink: true,
-         }}
-        />
+        <MultiSelect defaultValue={[10, 20]}>
+         <Option value={10}>Ten</Option>
+         <Option value={20}>Twenty</Option>
+         <Option value={30}>Thirty</Option>
+         <Option value={40}>Forty</Option>
+         <Option value={50}>Fifty</Option>
+        </MultiSelect>
        ) : mode === "edit" ? (
         <TextField
          variant="outlined"

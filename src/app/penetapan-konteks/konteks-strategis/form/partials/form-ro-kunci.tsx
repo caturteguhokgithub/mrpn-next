@@ -3,28 +3,51 @@ import {
  Chip,
  Divider,
  FormControl,
- FormControlLabel,
- FormLabel,
  Grid,
- Radio,
- RadioGroup,
+ Stack,
  TextField,
  Typography,
 } from "@mui/material";
 import TextareaComponent from "@/app/components/textarea";
 
-export default function FormTable({ mode }: { mode?: string }) {
+export default function FormROKunci({ mode }: { mode?: string }) {
  return (
   <>
    <Grid container spacing={2}>
-    <Grid item lg={12}>
+    <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography>Peristiwa Risiko</Typography>
+      <Typography>Kode RO</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
         size="small"
-        placeholder="Peristiwa Risiko"
+        placeholder="Kode RO"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      ) : mode === "edit" ? (
+       <TextField
+        variant="outlined"
+        size="small"
+        value="-"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      ) : (
+       <Typography fontWeight={600}>-</Typography>
+      )}
+     </FormControl>
+    </Grid>
+    <Grid item lg={6}>
+     <FormControl fullWidth>
+      <Typography>Nama RO</Typography>
+      {mode === "add" ? (
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Nama RO"
         InputLabelProps={{
          shrink: true,
         }}
@@ -45,17 +68,29 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={12}>
      <Divider>
-      <Chip label="Tingkat Risiko" size="small" />
+      <Chip label="Indikator Sasaran" size="small" />
      </Divider>
     </Grid>
-    <Grid item lg={6}>
+    <Grid item lg={12}>
      <FormControl fullWidth>
-      <Typography>Kemungkinan</Typography>
+      <Typography>Uraian</Typography>
+      {mode === "add" ? (
+       <TextareaComponent label="Uraian" placeholder="Uraian" />
+      ) : mode === "edit" ? (
+       <TextareaComponent label="Uraian" placeholder="Uraian" value="-" />
+      ) : (
+       <Typography fontWeight={600}>-</Typography>
+      )}
+     </FormControl>
+    </Grid>
+    <Grid item lg={4}>
+     <FormControl fullWidth>
+      <Typography>Satuan</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
         size="small"
-        placeholder="Kemungkinan"
+        placeholder="Satuan"
         InputLabelProps={{
          shrink: true,
         }}
@@ -74,14 +109,14 @@ export default function FormTable({ mode }: { mode?: string }) {
       )}
      </FormControl>
     </Grid>
-    <Grid item lg={6}>
+    <Grid item lg={4}>
      <FormControl fullWidth>
-      <Typography>Dampak</Typography>
+      <Typography>Target Fisik</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
         size="small"
-        placeholder="Dampak"
+        placeholder="Target Fisik"
         InputLabelProps={{
          shrink: true,
         }}
@@ -100,14 +135,14 @@ export default function FormTable({ mode }: { mode?: string }) {
       )}
      </FormControl>
     </Grid>
-    <Grid item lg={6}>
+    <Grid item lg={4}>
      <FormControl fullWidth>
-      <Typography>Nilai Risiko</Typography>
+      <Typography>Keuangan</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
         size="small"
-        placeholder="Nilai Risiko"
+        placeholder="Keuangan"
         InputLabelProps={{
          shrink: true,
         }}
@@ -126,66 +161,17 @@ export default function FormTable({ mode }: { mode?: string }) {
       )}
      </FormControl>
     </Grid>
-    <Grid item lg={6}>
-     <FormControl fullWidth>
-      <Typography>Tingkat Risiko</Typography>
-      {mode === "add" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Tingkat Risiko"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
-      ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
-      ) : (
-       <Typography fontWeight={600}>-</Typography>
-      )}
-     </FormControl>
-    </Grid>
-    <Grid item lg={6}>
-     <FormControl fullWidth>
-      <Typography>Pengendalian yang ada</Typography>
-      {mode === "add" ? (
-       <RadioGroup row>
-        <FormControlLabel value="ada" control={<Radio />} label="Ada" />
-        <FormControlLabel value="tidak" control={<Radio />} label="Tidak" />
-       </RadioGroup>
-      ) : mode === "edit" ? (
-       <RadioGroup row>
-        <FormControlLabel value="ada" control={<Radio />} label="Ada" />
-        <FormControlLabel value="tidak" control={<Radio />} label="Tidak" />
-       </RadioGroup>
-      ) : (
-       <Typography fontWeight={600}>-</Typography>
-      )}
-     </FormControl>
-    </Grid>
-    {/* <Grid item lg={12}>
+    <Grid item lg={12}>
      <Divider />
     </Grid>
-     <Grid item lg={12}>
-     <Divider>
-      <Chip label="Perlakuan Risiko" size="small" />
-     </Divider>
-    </Grid>
-    <Grid item lg={4}>
+    <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography>Deskripsi Rencana Mitigasi</Typography>
+      <Typography>Kementerian</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
         size="small"
-        placeholder="Deskripsi Rencana Mitigasi"
+        placeholder="Kementerian"
         InputLabelProps={{
          shrink: true,
         }}
@@ -204,14 +190,14 @@ export default function FormTable({ mode }: { mode?: string }) {
       )}
      </FormControl>
     </Grid>
-    <Grid item lg={4}>
+    <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography>Waktu Rencana Mitigasi</Typography>
+      <Typography>Kode</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
         size="small"
-        placeholder="Waktu Rencana Mitigasi"
+        placeholder="Kode"
         InputLabelProps={{
          shrink: true,
         }}
@@ -230,32 +216,6 @@ export default function FormTable({ mode }: { mode?: string }) {
       )}
      </FormControl>
     </Grid>
-    <Grid item lg={4}>
-     <FormControl fullWidth>
-      <Typography>Penanggung Jawab</Typography>
-      {mode === "add" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Penanggung Jawab"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
-      ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
-      ) : (
-       <Typography fontWeight={600}>-</Typography>
-      )}
-     </FormControl>
-    </Grid> */}
    </Grid>
   </>
  );

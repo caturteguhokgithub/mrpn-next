@@ -15,6 +15,11 @@ import SelectCustomTheme from "@/app/components/select";
 
 export default function FormTable({ mode }: { mode?: string }) {
  const [konteks, setKonteks] = React.useState("");
+ const [project, setProject] = React.useState("");
+
+ const handleChangeProject = (event: SelectChangeEvent) => {
+  setProject(event.target.value);
+ };
 
  const handleChangeKonteks = (event: SelectChangeEvent) => {
   setKonteks(event.target.value);
@@ -175,23 +180,41 @@ export default function FormTable({ mode }: { mode?: string }) {
      <FormControl fullWidth>
       <Typography>Kategori Risiko MRPN Linsek</Typography>
       {mode === "add" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Kategori Risiko MRPN Linsek"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+       <SelectCustomTheme
+        small
+        defaultStyle
+        value={project}
+        onChange={handleChangeProject}
+       >
+        <MenuItem value="" disabled>
+         <Typography fontSize={14} fontStyle="italic">
+          Pilih Kategori Risiko MRPN Linsek
+         </Typography>
+        </MenuItem>
+        <MenuItem value="1" defaultChecked>
+         -
+        </MenuItem>
+        <MenuItem value="2">-</MenuItem>
+        <MenuItem value="3">-</MenuItem>
+       </SelectCustomTheme>
       ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+       <SelectCustomTheme
+        small
+        defaultStyle
+        value={project}
+        onChange={handleChangeProject}
+       >
+        <MenuItem value="" disabled>
+         <Typography fontSize={14} fontStyle="italic">
+          Pilih Kategori Risiko MRPN Linsek
+         </Typography>
+        </MenuItem>
+        <MenuItem value="1" defaultChecked>
+         -
+        </MenuItem>
+        <MenuItem value="2">-</MenuItem>
+        <MenuItem value="3">-</MenuItem>
+       </SelectCustomTheme>
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}

@@ -203,14 +203,16 @@ export default function PageRegistrasiRisiko({}) {
    <DialogComponent
     dialogOpen={modalOpenAdd}
     dialogClose={handleModalClose}
-    title="Detail Registrasi Risiko"
+    title="Tambah Registrasi Risiko"
+    dialogFooter={dialogActionFooter}
    >
     <FormTable mode="add" />
    </DialogComponent>
    <DialogComponent
     dialogOpen={modalOpenEdit}
     dialogClose={handleModalClose}
-    title="Detail Registrasi Risiko"
+    title="Ubah Registrasi Risiko"
+    dialogFooter={dialogActionFooter}
    >
     <FormTable mode="edit" />
    </DialogComponent>
