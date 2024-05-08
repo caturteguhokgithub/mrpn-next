@@ -15,8 +15,11 @@ import { IconFA } from "@/app/components/icons/icon-fa";
 import { blue } from "@mui/material/colors";
 import ModalKl from "./modal-kl";
 import ModalAction from "./modal-action";
+import { dataTema } from "../../dataTema";
+import EmptyState from "@/app/components/empty";
+import { IconEmptyData } from "@/app/components/icons";
 
-export default function TableOverall() {
+export default function TableOverall({ project }: { project: string }) {
  const [modalKlOpen, setModalKlOpen] = React.useState(false);
  const [modalActionOpen, setModalActionOpen] = React.useState(false);
 
@@ -110,74 +113,134 @@ export default function TableOverall() {
 
  return (
   <>
-   <TableContainer component={Paper} elevation={0}>
-    <Table size="small">
-     <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
-      <TableRow>
-       <TableCell width={150}>Entitas Utama</TableCell>
-       <TableCell>Intervensi Kunci</TableCell>
-       <TableCell>Target</TableCell>
-       <TableCell>Capaian</TableCell>
-       <TableCell>Progress</TableCell>
-       <TableCell>Realisasi Anggaran (%)</TableCell>
-       <TableCell>Nilai Risiko</TableCell>
-       <TableCell>Evaluasi Risiko</TableCell>
-       <TableCell width="100px"></TableCell>
-      </TableRow>
-     </TableHead>
-     <TableBody>
-      {rows.map((item) => (
-       <>
-        {item.detail.map((detailItem, index) => (
-         <TableRow key={index}>
-          {index === 0 ? (
-           <TableCell rowSpan={item.detail.length}>
-            <Typography
-             fontWeight={600}
-             color={theme.palette.primary.main}
-             component="a"
-             onClick={handleModalKlOpen}
-             sx={{
-              cursor: "pointer",
-              "&:hover": {
-               color: blue[800],
-              },
-             }}
-            >
-             {item.name}
-            </Typography>
-           </TableCell>
-          ) : null}
-          <TableCell>{detailItem.RO}</TableCell>
-          <TableCell>{detailItem.alokasi}</TableCell>
-          <TableCell>{detailItem.alokasi}</TableCell>
-          <TableCell>{detailItem.realisasi}</TableCell>
-          <TableCell>{detailItem.progress}</TableCell>
-          <TableCell>{detailItem.nilaiRisiko}</TableCell>
-          <TableCell>{detailItem.evaluasiRisiko}</TableCell>
-          {index === 0 ? (
-           <TableCell rowSpan={item.detail.length} sx={{ textAlign: "center" }}>
-            <>
-             <IconButton onClick={handleModalActionOpen}>
-              {item.options.view}
-             </IconButton>
-             {/* <button role="link">{item.options.delete}</button>
+   {dataTema.map((itemRow) => (
+    <>
+     {project === itemRow.temaId && (
+      <>
+       {itemRow.overallRisk.length < 1 ? (
+        <EmptyState
+         dense
+         icon={<IconEmptyData width={100} />}
+         title="Data Kosong"
+         description="Silahkan isi konten halaman ini"
+        />
+       ) : (
+        <>
+         <TableContainer component={Paper} elevation={0}>
+          <Table size="small">
+           <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
+            <TableRow>
+             <TableCell width={150}>Entitas Utama</TableCell>
+             <TableCell>Intervensi Kunci</TableCell>
+             <TableCell>Target</TableCell>
+             <TableCell>Capaian</TableCell>
+             <TableCell>Progress</TableCell>
+             <TableCell>Realisasi Anggaran (%)</TableCell>
+             <TableCell>Nilai Risiko</TableCell>
+             <TableCell>Evaluasi Risiko</TableCell>
+             <TableCell width="100px"></TableCell>
+            </TableRow>
+           </TableHead>
+           <TableBody>
+            {dataTema.map((itemRow) => (
+             <>
+              {project === itemRow.temaId && (
+               <>
+                {itemRow.overallRisk?.map((itemOr) => (
+                 <>
+                  {itemOr.item?.map((detailItem, index) => (
+                   <TableRow key={index}>
+                    {index === 0 ? (
+                     <TableCell rowSpan={itemOr.item.length}>
+                      <Typography
+                       fontWeight={600}
+                       color={theme.palette.primary.main}
+                       component="a"
+                       onClick={handleModalKlOpen}
+                       sx={{
+                        cursor: "pointer",
+                        "&:hover": {
+                         color: blue[800],
+                        },
+                       }}
+                      >
+                       {itemOr.entUtama}
+                      </Typography>
+                     </TableCell>
+                    ) : null}
+                    <TableCell>
+                     <Typography variant="body1">
+                      {detailItem.rincianOutput === ""
+                       ? "-"
+                       : detailItem.rincianOutput}
+                     </Typography>
+                    </TableCell>
+                    <TableCell>
+                     <Typography variant="body1">
+                      {detailItem.target === "" ? "-" : detailItem.target}
+                     </Typography>
+                    </TableCell>
+                    <TableCell>
+                     <Typography variant="body1">
+                      {detailItem.capaian === "" ? "-" : detailItem.capaian}
+                     </Typography>
+                    </TableCell>
+                    <TableCell>
+                     <Typography variant="body1">
+                      {detailItem.progress === "" ? "-" : detailItem.progress}
+                     </Typography>
+                    </TableCell>
+                    <TableCell>
+                     <Typography variant="body1">
+                      {detailItem.realisasi === "" ? "-" : detailItem.realisasi}
+                     </Typography>
+                    </TableCell>
+                    <TableCell>
+                     <Typography variant="body1">
+                      {detailItem.nilai === "" ? "-" : detailItem.nilai}
+                     </Typography>
+                    </TableCell>
+                    <TableCell>
+                     <Typography variant="body1">
+                      {detailItem.evaluasi === "" ? "-" : detailItem.evaluasi}
+                     </Typography>
+                    </TableCell>
+                    {index === 0 ? (
+                     <TableCell
+                      rowSpan={itemOr.item.length}
+                      sx={{ textAlign: "center" }}
+                     >
+                      <>
+                       {/* <IconButton onClick={handleModalActionOpen}>
+                  {item.options.view}
+                 </IconButton> */}
+                       {/* <button role="link">{item.options.delete}</button>
             <button role="link">{item.options.edit}</button> */}
-            </>
-           </TableCell>
-          ) : null}
-         </TableRow>
-        ))}
-       </>
-      ))}
-     </TableBody>
-    </Table>
-   </TableContainer>
-   <ModalKl modalOpen={modalKlOpen} handleModalClose={handleModalClose} />
-   <ModalAction
-    modalOpen={modalActionOpen}
-    handleModalClose={handleModalClose}
-   />
+                      </>
+                     </TableCell>
+                    ) : null}
+                   </TableRow>
+                  ))}
+                 </>
+                ))}
+               </>
+              )}
+             </>
+            ))}
+           </TableBody>
+          </Table>
+         </TableContainer>
+         <ModalKl modalOpen={modalKlOpen} handleModalClose={handleModalClose} />
+         <ModalAction
+          modalOpen={modalActionOpen}
+          handleModalClose={handleModalClose}
+         />
+        </>
+       )}
+      </>
+     )}
+    </>
+   ))}
   </>
  );
 }

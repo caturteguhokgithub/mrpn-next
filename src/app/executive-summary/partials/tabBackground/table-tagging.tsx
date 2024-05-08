@@ -46,8 +46,16 @@ export default function TableTagging({ project }: { project: string }) {
    <Table sx={{ minWidth: 650 }} size="small">
     <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
      <TableRow>
-      <TableCell sx={{ width: 200 }}>Kebijakan</TableCell>
-      <TableCell>Keterangan</TableCell>
+      <TableCell sx={{ width: 200 }}>
+       <Typography variant="body1" fontWeight={600}>
+        Kebijakan
+       </Typography>
+      </TableCell>
+      <TableCell>
+       <Typography variant="body1" fontWeight={600}>
+        Keterangan
+       </Typography>
+      </TableCell>
      </TableRow>
     </TableHead>
     <TableBody>

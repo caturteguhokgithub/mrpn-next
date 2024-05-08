@@ -42,7 +42,7 @@ export default function CardProfilRo({ project }: { project: string }) {
     />
    ) : (
     <>
-     <TableProfilOutput />
+     <TableProfilOutput project={project} />
      <DialogComponent
       dialogOpen={modalOpenProfilRo}
       dialogClose={handleModalClose}

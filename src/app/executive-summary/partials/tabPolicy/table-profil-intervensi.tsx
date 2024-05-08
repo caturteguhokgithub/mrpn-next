@@ -1,113 +1,212 @@
 import React from "react";
 import {
+ Grow,
  Paper,
  Table,
  TableBody,
  TableCell,
  TableContainer,
  TableHead,
+ TablePagination,
  TableRow,
+ Tooltip,
+ Typography,
 } from "@mui/material";
 import theme from "@/theme";
 import { CheckBox } from "@mui/icons-material";
+import { dataTema } from "../../dataTema";
+import page from "../../page";
+import EmptyState from "@/app/components/empty";
+import { IconEmptyData } from "@/app/components/icons";
 
-export default function TableProfilIntervensi() {
- function createData(
-  id: number,
-  kode: string,
-  klUtama: string,
-  klKontributor: string,
-  nomenklatur: string,
-  target: string,
-  anggaran: string,
-  sumberAnggaran: string
- ) {
-  return {
-   id,
-   kode,
-   klUtama,
-   klKontributor,
-   nomenklatur,
-   target,
-   anggaran,
-   sumberAnggaran,
-  };
- }
+export default function TableProfilIntervensi({
+ project,
+}: {
+ project: string;
+}) {
+ const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
- const rows = [
-  createData(
-   1,
-   "-",
-   "Kementerian Kesehatan",
-   "-",
-   "Pendampingan terkait Kesehatan dan gizi bagi ibu hamil di Daerah XXXX",
-   "-",
-   "-",
-   "APBN"
-  ),
-  createData(
-   2,
-   "-",
-   "Kementerian Kesehatan",
-   "-",
-   "Ibu Hamil yang melahirkan di faskes Daerah XXXX",
-   "-",
-   "-",
-   "APBN"
-  ),
-  createData(
-   3,
-   "-",
-   "Kementerian Kesehatan",
-   "-",
-   "Ibu Hamil yang mengkonsumsi PMT di Daerah XXXX",
-   "-",
-   "-",
-   "APBN"
-  ),
-  createData(
-   4,
-   "-",
-   "Kementerian Kesehatan",
-   "-",
-   "Pembinaan pendampingan Ibu pascapersalinan di Daerahh XXXX",
-   "-",
-   "-",
-   "APBN"
-  ),
- ];
+ const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
+  setAnchorEl(event.currentTarget);
+ };
+
+ const handlePopoverClose = () => {
+  setAnchorEl(null);
+ };
+
+ const open = Boolean(anchorEl);
+
+ const [page, setPage] = React.useState(0);
+ const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+ const handleChangePage = (
+  event: React.MouseEvent<HTMLButtonElement> | null,
+  newPage: number
+ ) => {
+  setPage(newPage);
+ };
+
+ const handleChangeRowsPerPage = (
+  event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+ ) => {
+  setRowsPerPage(parseInt(event.target.value, 10));
+  setPage(0);
+ };
 
  return (
-  <TableContainer component={Paper} elevation={0}>
-   <Table sx={{ minWidth: 650 }} size="small">
-    <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
-     <TableRow>
-      <TableCell>Format Kode</TableCell>
-      <TableCell>Entitas Utama</TableCell>
-      <TableCell>Entitas Kontributor</TableCell>
-      <TableCell>Nomenklatur RO/Project</TableCell>
-      <TableCell>Target</TableCell>
-      <TableCell>Anggaran</TableCell>
-      <TableCell>Sumber Anggaran</TableCell>
-     </TableRow>
-    </TableHead>
-    <TableBody>
-     {rows.map((row) => (
-      <TableRow
-       key={row.id}
-       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-      >
-       <TableCell>{row.kode}</TableCell>
-       <TableCell>{row.klUtama}</TableCell>
-       <TableCell>{row.klKontributor}</TableCell>
-       <TableCell>{row.nomenklatur}</TableCell>
-       <TableCell>{row.target}</TableCell>
-       <TableCell>{row.anggaran}</TableCell>
-       <TableCell>{row.sumberAnggaran}</TableCell>
-      </TableRow>
-     ))}
-    </TableBody>
-   </Table>
-  </TableContainer>
+  <>
+   {dataTema.map((itemRow) => (
+    <>
+     {project === itemRow.temaId && (
+      <>
+       {itemRow.profilIntervensi.length < 1 ? (
+        <EmptyState
+         dense
+         icon={<IconEmptyData width={100} />}
+         title="Data Kosong"
+         description="Silahkan isi konten halaman ini"
+        />
+       ) : (
+        <>
+         <TableContainer component={Paper} elevation={0}>
+          <Table sx={{ minWidth: 650 }} size="small">
+           <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
+            <TableRow>
+             <TableCell>
+              <Typography variant="body1" fontWeight={600}>
+               Format Kode
+              </Typography>
+             </TableCell>
+             <TableCell>
+              <Typography variant="body1" fontWeight={600}>
+               Entitas Utama
+              </Typography>
+             </TableCell>
+             <TableCell>
+              <Typography variant="body1" fontWeight={600}>
+               Entitas Kontributor
+              </Typography>
+             </TableCell>
+             <TableCell>
+              <Typography variant="body1" fontWeight={600}>
+               Nomenklatur RO/Project
+              </Typography>
+             </TableCell>
+             <TableCell>
+              <Typography variant="body1" fontWeight={600}>
+               Target
+              </Typography>
+             </TableCell>
+             <TableCell>
+              <Typography variant="body1" fontWeight={600}>
+               Anggaran
+              </Typography>
+             </TableCell>
+             <TableCell>
+              <Typography variant="body1" fontWeight={600}>
+               Sumber Anggaran
+              </Typography>
+             </TableCell>
+            </TableRow>
+           </TableHead>
+           <TableBody>
+            {dataTema.map((itemRow) => (
+             <>
+              {project === itemRow.temaId && (
+               <>
+                {itemRow.profilIntervensi
+                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                 .map((detailProfil, index) => (
+                  <TableRow
+                   key={index}
+                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                   <TableCell>
+                    <Typography variant="body1">
+                     {detailProfil.format === "" ? "-" : detailProfil.format}
+                    </Typography>
+                   </TableCell>
+                   <TableCell>
+                    <Typography variant="body1">
+                     {detailProfil.entUtama === ""
+                      ? "-"
+                      : detailProfil.entUtama}
+                    </Typography>
+                   </TableCell>
+                   <TableCell>
+                    <Typography variant="body1">
+                     {detailProfil.entKontributor === ""
+                      ? "-"
+                      : detailProfil.entKontributor}
+                    </Typography>
+                   </TableCell>
+                   <TableCell>
+                    <Typography variant="body1">
+                     {detailProfil.rincianOutput.length >= 60 ? (
+                      <Tooltip
+                       title={detailProfil.rincianOutput}
+                       followCursor
+                       TransitionComponent={Grow}
+                      >
+                       <Typography
+                        variant="body1"
+                        aria-owns={open ? "mouse-over-popover" : undefined}
+                        aria-haspopup="true"
+                        onMouseEnter={handlePopoverOpen}
+                        onMouseLeave={handlePopoverClose}
+                        sx={{ cursor: "pointer" }}
+                       >
+                        {detailProfil.rincianOutput.substring(0, 60) + "..."}
+                       </Typography>
+                      </Tooltip>
+                     ) : (
+                      <Typography variant="body1">
+                       {detailProfil.rincianOutput}
+                      </Typography>
+                     )}
+                    </Typography>
+                   </TableCell>
+                   <TableCell>
+                    <Typography variant="body1">
+                     {detailProfil.target === "" ? "-" : detailProfil.target}
+                    </Typography>
+                   </TableCell>
+                   <TableCell>
+                    <Typography variant="body1">
+                     {detailProfil.anggaran === ""
+                      ? "-"
+                      : detailProfil.anggaran}
+                    </Typography>
+                   </TableCell>
+                   <TableCell>
+                    <Typography variant="body1">
+                     {detailProfil.sumber === "" ? "-" : detailProfil.sumber}
+                    </Typography>
+                   </TableCell>
+                  </TableRow>
+                 ))}
+               </>
+              )}
+             </>
+            ))}
+           </TableBody>
+          </Table>
+         </TableContainer>
+         <TablePagination
+          component="div"
+          count={8}
+          // count={dataTema.map((itemRow) => itemRow.profilRincianOutput.length)}
+          page={page}
+          onPageChange={handleChangePage}
+          rowsPerPage={rowsPerPage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+         />
+        </>
+       )}
+      </>
+     )}
+    </>
+   ))}
+  </>
  );
 }

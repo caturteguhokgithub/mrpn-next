@@ -47,9 +47,21 @@ export default function TableDampak({ project }: { project?: string }) {
    <Table sx={{ minWidth: 650 }} size="small">
     <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
      <TableRow>
-      <TableCell>Outcome/Dampak</TableCell>
-      <TableCell width={200}>Kode Sasaran AP</TableCell>
-      <TableCell width="50%">Sasaran AP</TableCell>
+      <TableCell>
+       <Typography variant="body1" fontWeight={600}>
+        Outcome/Dampak
+       </Typography>
+      </TableCell>
+      <TableCell width={200}>
+       <Typography variant="body1" fontWeight={600}>
+        Kode Sasaran AP
+       </Typography>
+      </TableCell>
+      <TableCell width="50%">
+       <Typography variant="body1" fontWeight={600}>
+        Sasaran AP
+       </Typography>
+      </TableCell>
       {/* <TableCell width="150px">Highlight</TableCell> */}
      </TableRow>
     </TableHead>
@@ -64,24 +76,26 @@ export default function TableDampak({ project }: { project?: string }) {
            sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
           >
            <TableCell sx={{ verticalAlign: "top" }}>
-            {rowCascading.outcome}
+            <Typography variant="body1">{rowCascading.outcome}</Typography>
            </TableCell>
            <TableCell sx={{ verticalAlign: "top" }}>
-            {rowCascading.code === "" ? "-" : <>{rowCascading.code}</>}
+            <Typography variant="body1">
+             {rowCascading.code === "" ? "-" : <>{rowCascading.code}</>}
+            </Typography>
            </TableCell>
            <TableCell sx={{ verticalAlign: "top" }}>
             {rowCascading.sasaran.length > 1 ? (
              <Box component="ul" pl="20px !important">
               {rowCascading.sasaran.map((itemSasaran, index) => (
                <Box component="li" key={index} textAlign="left">
-                <Typography fontSize={14} key={index}>
+                <Typography variant="body1" key={index}>
                  {itemSasaran}
                 </Typography>
                </Box>
               ))}
              </Box>
             ) : (
-             <Typography component="p" fontSize={14} textAlign="left">
+             <Typography component="p" variant="body1" textAlign="left">
               {rowCascading.sasaran}
              </Typography>
             )}

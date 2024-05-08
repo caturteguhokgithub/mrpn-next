@@ -7,35 +7,17 @@ import {
  TableCell,
  TableContainer,
  TableHead,
+ TablePagination,
  TableRow,
  Tooltip,
  Typography,
 } from "@mui/material";
 import theme from "@/theme";
+import { dataTema } from "../../dataTema";
+import EmptyState from "@/app/components/empty";
+import { IconEmptyData } from "@/app/components/icons";
 
-export default function TableProfilOutput() {
- function createData(
-  id: number,
-  kode_kl: string,
-  kl: string,
-  kode_pkkr: string,
-  ro: string,
-  target: string,
-  anggaran: string,
-  sumberAnggaran: string
- ) {
-  return {
-   id,
-   kode_kl,
-   kl,
-   kode_pkkr,
-   ro,
-   target,
-   anggaran,
-   sumberAnggaran,
-  };
- }
-
+export default function TableProfilOutput({ project }: { project: string }) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -48,119 +30,185 @@ export default function TableProfilOutput() {
 
  const open = Boolean(anchorEl);
 
- const rows = [
-  createData(
-   1,
-   "-",
-   "Kementerian PUPR",
-   "-",
-   "Studi Kelayakan Pengembangan SPAM dari Bendungan di daerah Boolang Mangandau, Kalimantan Selatan (target 1000 SR)",
-   "-",
-   "-",
-   "APBN"
-  ),
-  createData(
-   2,
-   "-",
-   "Kementerian Kesehatan",
-   "-",
-   "Diseminasi Informasi Mengenai Stunting",
-   "-",
-   "-",
-   "APBN"
-  ),
-  createData(
-   3,
-   "-",
-   "Kementerian PUPR",
-   "-",
-   "Pembebasan Lahan di Daerah XXXX (pembangunan SPAM)",
-   "-",
-   "-",
-   "APBN"
-  ),
-  createData(
-   4,
-   "-",
-   "Kementerian Kesehatan",
-   "-",
-   "Pengembangan SPAM di Daerah XXXX (300 SR Kumulatif)",
-   "-",
-   "-",
-   "APBN"
-  ),
-  createData(
-   5,
-   "-",
-   "Kementerian Kesehatan",
-   "-",
-   "Pengembangan SPAM di Daerah XXXX (400 SR Kumulatif)",
-   "-",
-   "-",
-   "APBN"
-  ),
-  createData(
-   6,
-   "-",
-   "Kementerian Kesehatan",
-   "-",
-   "Pengembangan SPAM di Daerah XXXX (300 SR Kumulatif)",
-   "-",
-   "-",
-   "APBN"
-  ),
- ];
+ const [page, setPage] = React.useState(0);
+ const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+ const handleChangePage = (
+  event: React.MouseEvent<HTMLButtonElement> | null,
+  newPage: number
+ ) => {
+  setPage(newPage);
+ };
+
+ const handleChangeRowsPerPage = (
+  event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+ ) => {
+  setRowsPerPage(parseInt(event.target.value, 10));
+  setPage(0);
+ };
 
  return (
-  <TableContainer component={Paper} elevation={0}>
-   <Table sx={{ minWidth: 650 }} size="small">
-    <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
-     <TableRow>
-      <TableCell>Kode KL</TableCell>
-      <TableCell>KL</TableCell>
-      <TableCell>Kode PKKR</TableCell>
-      <TableCell>RO</TableCell>
-      <TableCell>Target</TableCell>
-      <TableCell>Anggaran</TableCell>
-      <TableCell>Sumber Anggaran</TableCell>
-     </TableRow>
-    </TableHead>
-    <TableBody>
-     {rows.map((row) => (
-      <TableRow
-       key={row.id}
-       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-      >
-       <TableCell>{row.kode_kl}</TableCell>
-       <TableCell>{row.kl}</TableCell>
-       <TableCell>{row.kode_pkkr}</TableCell>
-       <TableCell>
+  <>
+   {dataTema.map((itemRow) => (
+    <>
+     {project === itemRow.temaId && (
+      <>
+       {itemRow.profilRincianOutput.length < 1 ? (
+        <EmptyState
+         dense
+         icon={<IconEmptyData width={100} />}
+         title="Data Kosong"
+         description="Silahkan isi konten halaman ini"
+        />
+       ) : (
         <>
-         {row.ro.length >= 60 ? (
-          <Tooltip title={row.ro} followCursor TransitionComponent={Grow}>
-           <Typography
-            aria-owns={open ? "mouse-over-popover" : undefined}
-            aria-haspopup="true"
-            onMouseEnter={handlePopoverOpen}
-            onMouseLeave={handlePopoverClose}
-            sx={{ fontSize: 14, cursor: "pointer" }}
-           >
-            {row.ro.substring(0, 60) + "..."}
-           </Typography>
-          </Tooltip>
-         ) : (
-          row.ro
-         )}
+         <TableContainer component={Paper} elevation={0}>
+          <Table sx={{ minWidth: 650 }} size="small">
+           <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
+            <TableRow>
+             <TableCell>
+              <Typography variant="body1" fontWeight={600}>
+               Kode KL
+              </Typography>
+             </TableCell>
+             <TableCell>
+              <Typography variant="body1" fontWeight={600}>
+               KL
+              </Typography>
+             </TableCell>
+             <TableCell>
+              <Typography variant="body1" fontWeight={600}>
+               Kode PKKR
+              </Typography>
+             </TableCell>
+             <TableCell>
+              <Typography variant="body1" fontWeight={600}>
+               RO
+              </Typography>
+             </TableCell>
+             <TableCell>
+              <Typography variant="body1" fontWeight={600}>
+               Target
+              </Typography>
+             </TableCell>
+             <TableCell>
+              <Typography variant="body1" fontWeight={600}>
+               Anggaran
+              </Typography>
+             </TableCell>
+             <TableCell>
+              <Typography variant="body1" fontWeight={600}>
+               Sumber Anggaran
+              </Typography>
+             </TableCell>
+            </TableRow>
+           </TableHead>
+           <TableBody>
+            {dataTema.map((itemRow) => (
+             <>
+              {project === itemRow.temaId && (
+               <>
+                {itemRow.profilRincianOutput
+                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                 .map((detailProfil, index) => (
+                  <TableRow
+                   key={index}
+                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                   <TableCell>
+                    <Typography variant="body1">
+                     {detailProfil.kodeKL === "" ? "-" : detailProfil.kodeKL}
+                    </Typography>
+                   </TableCell>
+                   <TableCell>
+                    <Typography variant="body1">
+                     {detailProfil.kl === "" ? "-" : detailProfil.kl}
+                    </Typography>
+                   </TableCell>
+                   <TableCell>
+                    <Typography variant="body1">
+                     {detailProfil.kodePKKR === ""
+                      ? "-"
+                      : detailProfil.kodePKKR}
+                    </Typography>
+                   </TableCell>
+                   <TableCell>
+                    <Typography variant="body1">
+                     {detailProfil.rincianOutput.length >= 60 ? (
+                      <Tooltip
+                       title={detailProfil.rincianOutput}
+                       followCursor
+                       TransitionComponent={Grow}
+                      >
+                       <Typography
+                        variant="body1"
+                        aria-owns={open ? "mouse-over-popover" : undefined}
+                        aria-haspopup="true"
+                        onMouseEnter={handlePopoverOpen}
+                        onMouseLeave={handlePopoverClose}
+                        sx={{ cursor: "pointer" }}
+                       >
+                        {detailProfil.rincianOutput.substring(0, 60) + "..."}
+                       </Typography>
+                      </Tooltip>
+                     ) : (
+                      <Typography variant="body1">
+                       {detailProfil.rincianOutput}
+                      </Typography>
+                     )}
+                    </Typography>
+                   </TableCell>
+                   <TableCell>
+                    <Typography variant="body1">
+                     {detailProfil.target === "" ? "-" : detailProfil.target}
+                    </Typography>
+                   </TableCell>
+                   <TableCell>
+                    <Typography variant="body1">
+                     {detailProfil.anggaran === ""
+                      ? "-"
+                      : detailProfil.anggaran}
+                    </Typography>
+                   </TableCell>
+                   <TableCell>
+                    <Typography variant="body1">
+                     {detailProfil.sumber === "" ? "-" : detailProfil.sumber}
+                    </Typography>
+                   </TableCell>
+                  </TableRow>
+                 ))}
+               </>
+              )}
+             </>
+            ))}
+           </TableBody>
+          </Table>
+         </TableContainer>
+         {/* <TablePagination
+        rowsPerPageOptions={[5, 10, 15, 20, 25, 50, 100]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onChangePage={handleChangePage}
+        onChangeRowsPerPage={handleChangeRowsPerPage}
+       /> */}
+         <TablePagination
+          component="div"
+          count={100}
+          // count={dataTema.map((itemRow) => itemRow.profilRincianOutput.length)}
+          page={page}
+          onPageChange={handleChangePage}
+          rowsPerPage={rowsPerPage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+         />
         </>
-       </TableCell>
-       <TableCell>{row.target}</TableCell>
-       <TableCell>{row.anggaran}</TableCell>
-       <TableCell>{row.sumberAnggaran}</TableCell>
-      </TableRow>
-     ))}
-    </TableBody>
-   </Table>
-  </TableContainer>
+       )}
+      </>
+     )}
+    </>
+   ))}
+  </>
  );
 }
 
@@ -376,7 +424,7 @@ export default function TableProfilOutput() {
 //      </TableBody>
 //     </Table>
 //    </TableContainer>
-//    <TablePagination
+//    {/* <TablePagination
 //     rowsPerPageOptions={[5, 10, 15, 20, 25, 50, 100]}
 //     component="div"
 //     count={rows.length}
@@ -384,6 +432,14 @@ export default function TableProfilOutput() {
 //     page={page}
 //     onChangePage={handleChangePage}
 //     onChangeRowsPerPage={handleChangeRowsPerPage}
+//    /> */}
+//    <TablePagination
+//     component="div"
+//     count={100}
+//     page={page}
+//     onPageChange={handleChangePage}
+//     rowsPerPage={rowsPerPage}
+//     onRowsPerPageChange={handleChangeRowsPerPage}
 //    />
 //   </Paper>
 //  );

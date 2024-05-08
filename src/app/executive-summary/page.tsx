@@ -72,7 +72,6 @@ export default function PageExecutiveSummary({}) {
  const [project, setProject] = React.useState("");
 
  const handleChangeProject = (value: any) => {
-  console.log(value, "value");
   setProject(value);
  };
 
@@ -86,8 +85,6 @@ export default function PageExecutiveSummary({}) {
   //   project === "3",
   project === "5",
  ].includes(true);
-
- console.log({ project });
 
  return (
   <DashboardLayout>

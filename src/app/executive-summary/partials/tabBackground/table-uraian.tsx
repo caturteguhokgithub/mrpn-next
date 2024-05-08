@@ -19,10 +19,14 @@ export default function TableUraian({ project }: { project: string }) {
     <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
      <TableRow>
       <TableCell sx={{ width: 200 }}>
-       <Typography variant="body1">Jenis Risiko</Typography>
+       <Typography variant="body1" fontWeight={600}>
+        Jenis Risiko
+       </Typography>
       </TableCell>
       <TableCell>
-       <Typography variant="body1">Uraian</Typography>
+       <Typography variant="body1" fontWeight={600}>
+        Uraian
+       </Typography>
       </TableCell>
      </TableRow>
     </TableHead>

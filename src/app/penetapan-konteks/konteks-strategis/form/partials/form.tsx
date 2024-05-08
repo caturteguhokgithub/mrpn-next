@@ -72,7 +72,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
  minDate.setFullYear(currentDate.getFullYear() - 10);
  maxDate.setFullYear(currentDate.getFullYear() + 20);
 
- const nameOfKp = listSelectKp[4].nama_kp;
+ const nameOfKp = listSelectKp[4].name;
 
  return (
   <DashboardLayout>

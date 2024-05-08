@@ -148,7 +148,7 @@ export default function CardFund({ project }: { project: string }) {
                     />
                    ) : (
                     <>
-                     {listFund.yearly.map((itemSource, index) => (
+                     {listFund.yearly.map((itemSource: any, index) => (
                       <FundSource
                        isYear
                        color={grey[600]}
@@ -222,14 +222,14 @@ export default function CardFund({ project }: { project: string }) {
                      <Box component="ul" pl="20px !important">
                       {listFund.ready.map((itemReady, index) => (
                        <Box component="li" key={index} textAlign="left">
-                        <Typography fontSize={14} key={index}>
+                        <Typography variant="body1" key={index}>
                          {itemReady}
                         </Typography>
                        </Box>
                       ))}
                      </Box>
                     ) : (
-                     <Typography component="p" fontSize={14} textAlign="left">
+                     <Typography component="p" variant="body1" textAlign="left">
                       {listFund.ready}
                      </Typography>
                     )}

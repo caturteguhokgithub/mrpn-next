@@ -74,7 +74,7 @@ export default function CardRoKunci({ project }: { project: string }) {
      description="Silahkan isi konten halaman ini"
     />
    ) : (
-    <TableProfilIntervensi />
+    <TableProfilIntervensi project={project} />
    )}
    <DialogComponent
     tableMode

@@ -8,8 +8,7 @@ import {
  Autocomplete,
  TextField,
 } from "@mui/material";
-import { listSelectKp, newListSelectKp } from "@/app/executive-summary/data";
-import SelectCustomTheme from "../select";
+import { listSelectKp } from "@/app/executive-summary/data";
 import theme from "@/theme";
 
 const options = ["Option 1", "Option 2"];
@@ -21,22 +20,10 @@ export default function DropdownKp({
  project?: any;
  handleChangeProject?: any;
 }) {
- const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
-
- const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
-  setAnchorEl(event.currentTarget);
- };
-
- const handlePopoverClose = () => {
-  setAnchorEl(null);
- };
-
- const open = Boolean(anchorEl);
-
  const [value, setValue] = React.useState<string | null>("");
  const [inputValue, setInputValue] = React.useState("");
 
- const optionsListKp = newListSelectKp.map((item) => {
+ const optionsListKp = listSelectKp.map((item) => {
   return item["name"];
  });
 
@@ -52,7 +39,7 @@ export default function DropdownKp({
     onInputChange={(event, newInputValue) => {
      setInputValue(newInputValue);
 
-     const optionVal = newListSelectKp.find((res: any) => {
+     const optionVal = listSelectKp.find((res: any) => {
       return res.name === newInputValue;
      });
 
@@ -67,17 +54,17 @@ export default function DropdownKp({
         shrink: true,
        }}
        placeholder="Pilih Kegiatan Pembangunan (KP)"
-       //    label={
-       //     <Typography fontSize={14} fontStyle="italic">
-       //      Pilih Kegiatan Pembangunan (KP)
-       //     </Typography>
-       //    }
+       sx={{
+        "input::-webkit-input-placeholder": {
+         color: "white",
+         opacity: 1,
+        },
+       }}
       />
      </Tooltip>
     )}
     sx={{
      minWidth: 300,
-
      ".MuiInputBase-root": {
       fontSize: 14,
       py: 0,

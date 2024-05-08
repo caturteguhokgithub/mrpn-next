@@ -20,7 +20,7 @@ export default function TabOverall({ project }: { project: string }) {
      />
     ) : (
      <>
-      <TableOverall />
+      <TableOverall project={project} />
      </>
     )}
    </CardItem>
