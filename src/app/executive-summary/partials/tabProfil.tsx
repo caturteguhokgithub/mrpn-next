@@ -2,58 +2,35 @@ import React, { useRef } from "react";
 import {
  Typography,
  Stack,
- Paper,
- Grid,
- Box,
  Button,
  DialogActions,
  Card,
- CardActions,
  CardContent,
- CardMedia,
  Grow,
  Tooltip,
 } from "@mui/material";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
 import CardItem from "@/app/components/cardTabItem";
-import { green, grey, red } from "@mui/material/colors";
-import TableDampak from "./table-dampak";
-import AddButton from "@/app/components/buttonAdd";
-import TableProfilOutput from "./table-profil-output";
 import DialogComponent from "@/app/components/dialog";
-import FormSasaran from "./form-sasaran";
-import FormProfilRo from "./form-profil-ro";
-import dynamic from "next/dynamic";
-import FormPendanaan from "./form-pendanaan";
 import Image from "next/image";
-import FormStakeholder from "./form-stakeholder";
-import CardStakeholder from "@/app/components/cardStakeholder";
+import FormStakeholder from "./tabProfil/form-stakeholder";
 import { dataTema } from "../dataTema";
 import { useDragScroll } from "@/app/utils/useDragScroll";
+import CardCascading from "./tabProfil/cardCascading";
+import CardProfilRo from "./tabProfil/cardProfilRo";
+import CardStakeholder from "./tabProfil/cardStakeholder";
 
 export default function TabProfil({ project }: { project: string }) {
- const [modalOpenSasaran, setModalOpenSasaran] = React.useState(false);
- const [modalOpenProfilRo, setModalOpenProfilRo] = React.useState(false);
  const [modalOpenStakeholder, setModalOpenStakeholder] = React.useState(false);
 
- const handleModalOpenSasaran = () => {
-  setModalOpenSasaran(true);
- };
- const handleModalOpenProfilRo = () => {
-  setModalOpenProfilRo(true);
- };
  const handleModalOpenStakeholder = () => {
   setModalOpenStakeholder(true);
  };
 
  const handleModalClose = () => {
-  setModalOpenSasaran(false);
-  setModalOpenProfilRo(false);
   setModalOpenStakeholder(false);
  };
-
- const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
  const isEmpty = false;
  const refDrag = useRef([]);
@@ -61,86 +38,9 @@ export default function TabProfil({ project }: { project: string }) {
 
  return (
   <Stack gap={1}>
-   <CardItem
-    title="Cascading Sasaran, Indikator, Target RO"
-    addButton={
-     <AddButton
-      filled
-      small
-      title="Tambah Sasaran"
-      onclick={handleModalOpenSasaran}
-     />
-    }
-   >
-    {isEmpty || project === "4" ? (
-     <EmptyState
-      dense
-      icon={<IconEmptyData width={100} />}
-      title="Data Kosong"
-      description="Silahkan isi konten halaman ini"
-     />
-    ) : (
-     <TableDampak project={project} />
-    )}
-    <DialogComponent
-     dialogOpen={modalOpenSasaran}
-     dialogClose={handleModalClose}
-     title="Tambah Sasaran"
-     dialogFooter={
-      <DialogActions sx={{ p: 2, px: 3 }}>
-       <Button variant="outlined" onClick={handleModalClose}>
-        Batal
-       </Button>
-       <Button variant="contained" type="submit">
-        Simpan
-       </Button>
-      </DialogActions>
-     }
-    >
-     <FormSasaran mode="add" />
-    </DialogComponent>
-   </CardItem>
-   <CardItem
-    title="Profil Rincian Output"
-    addButton={
-     <AddButton
-      filled
-      small
-      title="Tambah Profil RO"
-      onclick={handleModalOpenProfilRo}
-     />
-    }
-   >
-    {isEmpty || project === "4" ? (
-     <EmptyState
-      dense
-      icon={<IconEmptyData width={100} />}
-      title="Data Kosong"
-      description="Silahkan isi konten halaman ini"
-     />
-    ) : (
-     <>
-      <TableProfilOutput />
-      <DialogComponent
-       dialogOpen={modalOpenProfilRo}
-       dialogClose={handleModalClose}
-       title="Tambah Profil RO"
-       dialogFooter={
-        <DialogActions sx={{ p: 2, px: 3 }}>
-         <Button variant="outlined" onClick={handleModalClose}>
-          Batal
-         </Button>
-         <Button variant="contained" type="submit">
-          Simpan
-         </Button>
-        </DialogActions>
-       }
-      >
-       <FormProfilRo mode="add" />
-      </DialogComponent>
-     </>
-    )}
-   </CardItem>
+   <CardCascading project={project} />
+   <CardProfilRo project={project} />
+   <CardStakeholder project={project} />
    <CardItem
     title="Stakeholder Mapping"
     setting

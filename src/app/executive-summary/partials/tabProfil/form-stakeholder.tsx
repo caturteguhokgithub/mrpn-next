@@ -14,7 +14,7 @@ import Image from "next/image";
 import theme from "@/theme";
 import { IconFA } from "@/app/components/icons/icon-fa";
 import { grey } from "@mui/material/colors";
-import { dataTema } from "../dataTema";
+import { dataTema } from "../../dataTema";
 
 const ToggleButtonLogo = ({
  value,

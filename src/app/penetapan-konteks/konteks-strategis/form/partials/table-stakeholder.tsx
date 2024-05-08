@@ -20,7 +20,7 @@ import { AddCircle } from "@mui/icons-material";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
 import DialogComponent from "@/app/components/dialog";
-import FormStakeholder from "@/app/executive-summary/partials/form-stakeholder";
+import FormStakeholder from "@/app/executive-summary/partials/tabProfil/form-stakeholder";
 
 export default function TableStakeholder({ mode }: { mode?: string }) {
  const [modalOpenAdd, setModalOpenAdd] = React.useState(false);

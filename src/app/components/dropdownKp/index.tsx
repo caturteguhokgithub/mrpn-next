@@ -63,16 +63,21 @@ export default function DropdownKp({
      <Tooltip title={optionsListKp} followCursor TransitionComponent={Grow}>
       <TextField
        {...params}
-       label={
-        <Typography fontSize={14} fontStyle="italic">
-         Pilih Kegiatan Pembangunan (KP)
-        </Typography>
-       }
+       InputLabelProps={{
+        shrink: true,
+       }}
+       placeholder="Pilih Kegiatan Pembangunan (KP)"
+       //    label={
+       //     <Typography fontSize={14} fontStyle="italic">
+       //      Pilih Kegiatan Pembangunan (KP)
+       //     </Typography>
+       //    }
       />
      </Tooltip>
     )}
     sx={{
      minWidth: 300,
+
      ".MuiInputBase-root": {
       fontSize: 14,
       py: 0,
@@ -81,28 +86,8 @@ export default function DropdownKp({
       bgcolor: theme.palette.primary.main,
       color: theme.palette.primary.light,
      },
-     ".MuiInputLabel-root": {
-      color: "white",
-      "&.Mui-focused": {
-       color: "black",
-       top: -10,
-      },
-     },
      ".MuiSvgIcon-root": {
       fill: "white",
-     },
-     "&.MuiAutocomplete-hasClearIcon": {
-      ".MuiInputLabel-root": {
-       //    color: "white",
-       color: "black",
-       top: -10,
-      },
-      //   "&.Mui-focused": {
-      //    ".MuiInputLabel-root": {
-      //     color: "black",
-      //     top: -10,
-      //    },
-      //   },
      },
     }}
    />

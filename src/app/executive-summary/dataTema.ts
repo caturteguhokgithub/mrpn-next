@@ -968,13 +968,7 @@ export const dataTema = [
   criticalPath: [
    "https://res.cloudinary.com/caturteguh/image/upload/v1714700143/mrpn/executive_summary/critical_path/critical_path_sampah_tcofc9.jpg",
   ],
-  pendanaan: [
-   {
-    yearly: [],
-    source: [],
-    ready: [],
-   },
-  ],
+  pendanaan: [],
   stakeholder: [
    {
     label: "Entitas Utama",

@@ -11,7 +11,7 @@ import TextareaComponent from "@/app/components/textarea";
 import Image from "next/image";
 import theme from "@/theme";
 import { IconFA } from "@/app/components/icons/icon-fa";
-import { dataTema } from "../dataTema";
+import { dataTema } from "../../dataTema";
 
 export default function FormSwot({
  mode,

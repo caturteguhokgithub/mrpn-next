@@ -13,7 +13,7 @@ import {
 import theme from "@/theme";
 import { IconFA } from "@/app/components/icons/icon-fa";
 import { green, red } from "@mui/material/colors";
-import { dataTema } from "../dataTema";
+import { dataTema } from "../../dataTema";
 
 export default function TableDampak({ project }: { project?: string }) {
  function createData(
