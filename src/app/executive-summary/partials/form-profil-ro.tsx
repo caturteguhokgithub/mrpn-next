@@ -23,7 +23,7 @@ export default function FormProfilRo({ mode }: { mode?: string }) {
    <Grid container spacing={2}>
     <Grid item lg={4}>
      <FormControl fullWidth>
-      <Typography>Kode KL</Typography>
+      <Typography gutterBottom>Kode KL</Typography>
       {mode === "add" ? (
        <SelectCustomTheme
         defaultStyle
@@ -66,7 +66,7 @@ export default function FormProfilRo({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={4}>
      <FormControl fullWidth>
-      <Typography>KL</Typography>
+      <Typography gutterBottom>KL</Typography>
       {mode === "add" ? (
        <SelectCustomTheme
         defaultStyle
@@ -109,7 +109,7 @@ export default function FormProfilRo({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={4}>
      <FormControl fullWidth>
-      <Typography>Kode PKKR</Typography>
+      <Typography gutterBottom>Kode PKKR</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
@@ -135,7 +135,7 @@ export default function FormProfilRo({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={12}>
      <FormControl fullWidth>
-      <Typography>Rincian Output (RO)</Typography>
+      <Typography gutterBottom>Rincian Output (RO)</Typography>
       {mode === "add" ? (
        <TextareaComponent
         label="Rincian Output (RO)"
@@ -154,7 +154,7 @@ export default function FormProfilRo({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography>Target</Typography>
+      <Typography gutterBottom>Target</Typography>
       {mode === "add" ? (
        <Stack direction="row" gap={1}>
         <TextField
@@ -200,7 +200,7 @@ export default function FormProfilRo({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography>Anggaran</Typography>
+      <Typography gutterBottom>Anggaran</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"

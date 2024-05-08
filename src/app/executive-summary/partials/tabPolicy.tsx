@@ -32,6 +32,7 @@ import { grey, green, red, blue, orange } from "@mui/material/colors";
 import FormPendanaan from "./form-pendanaan";
 import { dataTema } from "../dataTema";
 import theme from "@/theme";
+import FormRoadmap from "./form-roadmap";
 
 const FundSource = ({
  label,
@@ -78,6 +79,36 @@ const FundSource = ({
  );
 };
 
+const GridItemSource = ({
+ title,
+ children,
+}: {
+ title: string;
+ children?: React.ReactNode;
+}) => {
+ return (
+  <Grid item lg={4}>
+   <Paper
+    variant="outlined"
+    sx={{
+     p: 2,
+     borderRadius: 2,
+     display: "flex",
+     alignItems: "flex-start",
+     height: "100%",
+    }}
+   >
+    <Stack width="100%">
+     <Typography fontWeight={500} mb={2}>
+      {title}
+     </Typography>
+     {children}
+    </Stack>
+   </Paper>
+  </Grid>
+ );
+};
+
 export default function TabPolicy({ project }: { project: string }) {
  const [modalOpenProfilRoKunci, setModalOpenProfilRoKunci] =
   React.useState(false);
@@ -86,7 +117,6 @@ export default function TabPolicy({ project }: { project: string }) {
  const [modalOpenRoadmap, setModalOpenRoadmap] = React.useState(false);
  const [modalOpenCritical, setModalOpenCritical] = React.useState(false);
  const [value, setValue] = React.useState("");
- const [modalOpenImgRoadmap, setModalOpenImgRoadmap] = React.useState(false);
  const [modalOpenImgCritical, setModalOpenImgCritical] = React.useState(false);
  const [projectMain, setProjectMain] = React.useState("");
  const [projectSupport, setProjectSupport] = React.useState("");
@@ -108,9 +138,6 @@ export default function TabPolicy({ project }: { project: string }) {
  const handleModalOpenCritical = () => {
   setModalOpenCritical(true);
  };
- const handleModalImgRoadmap = () => {
-  setModalOpenImgRoadmap(true);
- };
  const handleModalImgCritical = () => {
   setModalOpenImgCritical(true);
  };
@@ -126,7 +153,6 @@ export default function TabPolicy({ project }: { project: string }) {
   setModalOpenProfilRoKunci(false);
   setModalOpenRoadmap(false);
   setModalOpenCritical(false);
-  setModalOpenImgRoadmap(false);
   setModalOpenImgCritical(false);
   setModalOpenProfilRoKunciProject(false);
   setModalOpenPendanaan(false);
@@ -434,11 +460,7 @@ export default function TabPolicy({ project }: { project: string }) {
       </DialogActions>
      }
     >
-     <Typography variant="caption" component="div" mb={2}>
-      Format gambar: <strong>.png / .jpg / .jpeg</strong>. Ukuran gambar{" "}
-      <strong>max. 200kb</strong>
-     </Typography>
-     <ReactQuill theme="snow" value={value} onChange={setValue} />
+     <FormRoadmap mode="add" />
     </DialogComponent>
    </CardItem>
    <CardItem
@@ -662,41 +684,141 @@ export default function TabPolicy({ project }: { project: string }) {
       description="Silahkan isi konten halaman ini"
      />
     ) : (
-     <Grid container spacing={2}>
-      <Grid item lg={4}>
-       <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-        <Typography fontWeight={500} mb={2}>
-         Jumlah per Tahun
-        </Typography>
-        <Stack gap={1} mt={1}>
-         <FundSource isYear color={grey[600]} label="2023" value="Rp. -" />
-         <FundSource isYear color={grey[600]} label="2024" value="Rp. -" />
-        </Stack>
-       </Paper>
-      </Grid>
-      <Grid item lg={4}>
-       <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-        <Typography fontWeight={500} mb={2}>
-         Sumber Pendanaan
-        </Typography>
-        <Stack gap={1} mt={1}>
-         <FundSource color={green[400]} label="APBN" value="Rp. -" />
-         <FundSource color={red[400]} label="Non-APBN" value="Rp. -" />
-        </Stack>
-       </Paper>
-      </Grid>
-      <Grid item lg={4}>
-       <Paper variant="outlined" sx={{ p: 2, borderRadius: 2 }}>
-        <Typography fontWeight={500} mb={2}>
-         Kesiapan Pendanaan
-        </Typography>
-        <ul>
-         <li>Menyebutkan posisi saat ini dalam proses pemenuhan pendanaan</li>
-         <li>Menyebutkan persen nominal pendanaan yang sudah didapatkan</li>
-        </ul>
-       </Paper>
-      </Grid>
-     </Grid>
+     <>
+      {dataTema.map((itemFund) => (
+       <>
+        {project === itemFund.temaId && (
+         <>
+          {itemFund.pendanaan.length < 1 ? (
+           <EmptyState
+            dense
+            icon={<IconEmptyData width={100} />}
+            title="Data Kosong"
+            description="Silahkan isi konten halaman ini"
+           />
+          ) : (
+           <Grid container spacing={2}>
+            <GridItemSource title="Jumlah per Tahun">
+             <Stack gap={1}>
+              {dataTema.map((itemFund) => (
+               <>
+                {project === itemFund.temaId && (
+                 <>
+                  {itemFund.pendanaan.map((listFund) => (
+                   <>
+                    {listFund.yearly.length < 1 ? (
+                     <EmptyState
+                      dense
+                      icon={<IconEmptyData width={70} />}
+                      title="Data Kosong"
+                     />
+                    ) : (
+                     <>
+                      {listFund.yearly.map((itemSource, index) => (
+                       <FundSource
+                        isYear
+                        color={grey[600]}
+                        key={index}
+                        label={itemSource.year}
+                        value={`Rp. ${itemSource.value}`}
+                       />
+                      ))}
+                     </>
+                    )}
+                   </>
+                  ))}
+                 </>
+                )}
+               </>
+              ))}
+             </Stack>
+             {/* <Stack gap={1}>
+              <FundSource isYear color={grey[600]} label="2023" value="Rp. -" />
+              <FundSource isYear color={grey[600]} label="2024" value="Rp. -" />
+             </Stack> */}
+            </GridItemSource>
+            <GridItemSource title="Jumlah per Tahun">
+             <Stack gap={1}>
+              {dataTema.map((itemFund) => (
+               <>
+                {project === itemFund.temaId && (
+                 <>
+                  {itemFund.pendanaan.map((listFund) => (
+                   <>
+                    {listFund.source.length < 1 ? (
+                     <EmptyState
+                      dense
+                      icon={<IconEmptyData width={70} />}
+                      title="Data Kosong"
+                     />
+                    ) : (
+                     <>
+                      {listFund.source.map((itemSource, index) => (
+                       <FundSource
+                        key={index}
+                        color={
+                         itemSource.from === "APBN" ? green[400] : red[400]
+                        }
+                        label={itemSource.from}
+                        value={`Rp. ${itemSource.value}`}
+                       />
+                      ))}
+                     </>
+                    )}
+                   </>
+                  ))}
+                 </>
+                )}
+               </>
+              ))}
+             </Stack>
+            </GridItemSource>
+            <GridItemSource title="Jumlah per Tahun">
+             {dataTema.map((itemFund) => (
+              <>
+               {project === itemFund.temaId && (
+                <>
+                 {itemFund.pendanaan.map((listFund) => (
+                  <>
+                   {listFund.ready.length < 1 ? (
+                    <EmptyState
+                     dense
+                     icon={<IconEmptyData width={70} />}
+                     title="Data Kosong"
+                    />
+                   ) : (
+                    <>
+                     {listFund.ready.length > 1 ? (
+                      <Box component="ul" pl="20px !important">
+                       {listFund.ready.map((itemReady, index) => (
+                        <Box component="li" key={index} textAlign="left">
+                         <Typography fontSize={14} key={index}>
+                          {itemReady}
+                         </Typography>
+                        </Box>
+                       ))}
+                      </Box>
+                     ) : (
+                      <Typography component="p" fontSize={14} textAlign="left">
+                       {listFund.ready}
+                      </Typography>
+                     )}
+                    </>
+                   )}
+                  </>
+                 ))}
+                </>
+               )}
+              </>
+             ))}
+            </GridItemSource>
+           </Grid>
+          )}
+         </>
+        )}
+       </>
+      ))}
+     </>
     )}
     <DialogComponent
      dialogOpen={modalOpenPendanaan}

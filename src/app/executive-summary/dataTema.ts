@@ -71,11 +71,28 @@ export const dataTema = [
   segment: [
    "Ibu hamil; ibu menyusui; anak berusia 0 (nol) - 59 (lima puluh sembilan) bulan; remaja putri; calon pengantin.",
   ],
+  cascading: [
+   {
+    outcome: "Menurunnya prevalensi stunting pada balita",
+    code: "",
+    sasaran: ["Kesehatan untuk Semua"],
+   },
+  ],
   projectRoadmap: [
    "https://res.cloudinary.com/caturteguh/image/upload/v1714699664/mrpn/executive_summary/project_roadmap/project_roadmap_stunting_g5bsrd.jpg",
   ],
   criticalPath: [
    "https://res.cloudinary.com/caturteguh/image/upload/v1714700142/mrpn/executive_summary/critical_path/critical_path_stunting_gtqclk.jpg",
+  ],
+  pendanaan: [
+   {
+    yearly: [{ year: "-", value: "-" }],
+    source: [
+     { from: "APBN", value: "30 T" },
+     { from: "NON-APBN", value: "-" },
+    ],
+    ready: ["Anggaran 2023 sebesar 30 T (pagu awal)"],
+   },
   ],
   stakeholder: [
    {
@@ -412,11 +429,152 @@ export const dataTema = [
    "Penduduk di destinasi",
    "Pemerintah dan pemerintah daerah",
   ],
+  cascading: [
+   {
+    outcome: "Meningkatnya rasio PDB pariwisata dan Devisa pariwisata",
+    code: "",
+    sasaran: [
+     "Transformasi Ekonomi - IE 4. IPTEK, Inovasi, dan Produktivitas Ekonomi",
+    ],
+   },
+  ],
   projectRoadmap: [
    "https://res.cloudinary.com/caturteguh/image/upload/v1714697746/mrpn/executive_summary/project_roadmap/project_roadmap_pariwisata_adttjv.jpg",
   ],
   criticalPath: [
    "https://res.cloudinary.com/caturteguh/image/upload/v1714700143/mrpn/executive_summary/critical_path/critical_path_pariwisata_c19tiz.jpg",
+  ],
+  pendanaan: [
+   {
+    yearly: [],
+    source: [],
+    ready: [
+     "Menyebutkan posisi saat ini dalam proses pemenuhan pendanaan",
+     "Menyebutkan persen nominal pendanaan yang sudah didapatkan",
+    ],
+   },
+  ],
+  stakeholder: [
+   {
+    label: "Entitas Utama",
+    tag: "Manage Closely",
+    desc: "Meningkatkan asupan gizi dan menyediakan sarana dan prasarana dasar",
+    instance: [
+     {
+      name: "Kementerian Kesehatan",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711956185/mrpn/company_logo/logo_kemenkes_k99chv.png",
+     },
+     {
+      name: "Kementerian Pekerjaan Umum & Perumahan Rakyat",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711725384/mrpn/company_logo/logo_pu_iz386d.png",
+     },
+    ],
+   },
+   {
+    label: "Entitas Pendukung",
+    tag: "Keep Satisfied",
+    desc: "Penyediaan gizi sesuai dengan standar",
+    instance: [
+     {
+      name: "BPOM",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955901/mrpn/company_logo/logo_bpom_ktik6o.png",
+     },
+     {
+      name: "Kementerian Pertanian",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711956186/mrpn/company_logo/logo_kementan_de8q7e.png",
+     },
+     {
+      name: "Kementerian Kehutanan & Lingkungan Hidup",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955830/mrpn/company_logo/logo_klhk_wplagd.png",
+     },
+     {
+      name: "Kementerian Perhubungan",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955963/mrpn/company_logo/logo_kemenhub_ivgjzh.png",
+     },
+     {
+      name: "BPOM",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955901/mrpn/company_logo/logo_bpom_ktik6o.png",
+     },
+     {
+      name: "Kementerian Pertanian",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711956186/mrpn/company_logo/logo_kementan_de8q7e.png",
+     },
+     {
+      name: "Kementerian Kehutanan & Lingkungan Hidup",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955830/mrpn/company_logo/logo_klhk_wplagd.png",
+     },
+     {
+      name: "Kementerian Perhubungan",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955963/mrpn/company_logo/logo_kemenhub_ivgjzh.png",
+     },
+    ],
+   },
+   {
+    label: "Monitoring dan Pengawasan",
+    tag: "Monitor",
+    desc:
+     "Melakukan proses pengawasan atas penyaluran asupan gizi dan penyediaan sarpras secara berkelanjutan kepada masyarakat",
+    instance: [
+     {
+      name: "Kementerian PPN",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711964917/mrpn/company_logo/logo_bappenas_gwhnut.png",
+     },
+     {
+      name: "Puskesmas",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711956111/mrpn/company_logo/logo_puskesmas_ckdzmi.png",
+     },
+    ],
+   },
+   {
+    label: "Koordinasi, Informasi, sosialisasi berkala",
+    tag: "Keep Informed",
+    desc:
+     "Keterlibatan pemerintah daerah dalam pelaksanaan penurunan stunting yang diagendakan pada beberapa daerah",
+    instance: [
+     {
+      name: "Pemerintahan Jawa Barat",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711725536/mrpn/company_logo/logo_gemah_ueqink.png",
+     },
+     {
+      name: "Pemerintahan DKI Jakarta",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711725384/mrpn/company_logo/logo_jaya_p7hnyk.png",
+     },
+     {
+      name: "Pemerintahan Kabupaten Bekasi",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711725384/mrpn/company_logo/logo_swatantra_jq1s4e.png",
+     },
+     {
+      name: "Pemerintahan Kabupaten Badung",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1714801748/mrpn/company_logo/logo_kab_badung_s4tmhb.png",
+     },
+     {
+      name: "Pemerintahan Kabupaten Bogor",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1714801748/mrpn/company_logo/logo_kab_bogor_ygigaw.png",
+     },
+     {
+      name: "Pemerintahan Kabupaten Kediri",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1714802050/mrpn/company_logo/logo_kab_kediri_q6yfnp.png",
+     },
+    ],
+   },
   ],
   roadmap: [
    {
@@ -582,8 +740,143 @@ export const dataTema = [
    },
   ],
   segment: ["Petani (Poktan, Gapoktan, P3A, dan Lembaga Pertanian lainnya)"],
+  cascading: [
+   {
+    outcome:
+     "Meningkatnya ketersediaan pangan nasional sesuai Pola Pangan Harapan",
+    code: "",
+    sasaran: [
+     "Ketahanan Sosial Budaya dan Ekologi",
+     "Mewujudkan Ketahanan Energi, Air, dan Kemandirian Pangan",
+     "Prevalensi Ketidakcukupan Konsumsi Pangan (PoU)",
+    ],
+   },
+  ],
   projectRoadmap: [],
   criticalPath: [],
+  pendanaan: [],
+  stakeholder: [
+   {
+    label: "Entitas Utama",
+    tag: "Manage Closely",
+    desc: "Meningkatkan asupan gizi dan menyediakan sarana dan prasarana dasar",
+    instance: [
+     {
+      name: "Kementerian Kesehatan",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711956185/mrpn/company_logo/logo_kemenkes_k99chv.png",
+     },
+     {
+      name: "Kementerian Pekerjaan Umum & Perumahan Rakyat",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711725384/mrpn/company_logo/logo_pu_iz386d.png",
+     },
+    ],
+   },
+   {
+    label: "Entitas Pendukung",
+    tag: "Keep Satisfied",
+    desc: "Penyediaan gizi sesuai dengan standar",
+    instance: [
+     {
+      name: "BPOM",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955901/mrpn/company_logo/logo_bpom_ktik6o.png",
+     },
+     {
+      name: "Kementerian Pertanian",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711956186/mrpn/company_logo/logo_kementan_de8q7e.png",
+     },
+     {
+      name: "Kementerian Kehutanan & Lingkungan Hidup",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955830/mrpn/company_logo/logo_klhk_wplagd.png",
+     },
+     {
+      name: "Kementerian Perhubungan",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955963/mrpn/company_logo/logo_kemenhub_ivgjzh.png",
+     },
+     {
+      name: "BPOM",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955901/mrpn/company_logo/logo_bpom_ktik6o.png",
+     },
+     {
+      name: "Kementerian Pertanian",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711956186/mrpn/company_logo/logo_kementan_de8q7e.png",
+     },
+     {
+      name: "Kementerian Kehutanan & Lingkungan Hidup",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955830/mrpn/company_logo/logo_klhk_wplagd.png",
+     },
+     {
+      name: "Kementerian Perhubungan",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955963/mrpn/company_logo/logo_kemenhub_ivgjzh.png",
+     },
+    ],
+   },
+   {
+    label: "Monitoring dan Pengawasan",
+    tag: "Monitor",
+    desc:
+     "Melakukan proses pengawasan atas penyaluran asupan gizi dan penyediaan sarpras secara berkelanjutan kepada masyarakat",
+    instance: [
+     {
+      name: "Kementerian PPN",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711964917/mrpn/company_logo/logo_bappenas_gwhnut.png",
+     },
+     {
+      name: "Puskesmas",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711956111/mrpn/company_logo/logo_puskesmas_ckdzmi.png",
+     },
+    ],
+   },
+   {
+    label: "Koordinasi, Informasi, sosialisasi berkala",
+    tag: "Keep Informed",
+    desc:
+     "Keterlibatan pemerintah daerah dalam pelaksanaan penurunan stunting yang diagendakan pada beberapa daerah",
+    instance: [
+     {
+      name: "Pemerintahan Jawa Barat",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711725536/mrpn/company_logo/logo_gemah_ueqink.png",
+     },
+     {
+      name: "Pemerintahan DKI Jakarta",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711725384/mrpn/company_logo/logo_jaya_p7hnyk.png",
+     },
+     {
+      name: "Pemerintahan Kabupaten Bekasi",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711725384/mrpn/company_logo/logo_swatantra_jq1s4e.png",
+     },
+     {
+      name: "Pemerintahan Kabupaten Badung",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1714801748/mrpn/company_logo/logo_kab_badung_s4tmhb.png",
+     },
+     {
+      name: "Pemerintahan Kabupaten Bogor",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1714801748/mrpn/company_logo/logo_kab_bogor_ygigaw.png",
+     },
+     {
+      name: "Pemerintahan Kabupaten Kediri",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1714802050/mrpn/company_logo/logo_kab_kediri_q6yfnp.png",
+     },
+    ],
+   },
+  ],
   roadmap: [],
  },
 
@@ -660,11 +953,149 @@ export const dataTema = [
    },
   ],
   segment: ["Seluruh Masyarakat"],
+  cascading: [
+   {
+    outcome: "Berkurangnya jumlah sampah yang diangkut ke TPA",
+    code: "",
+    sasaran: [
+     "Meningkatnya timbulan sampah terolah di fasilitas pengolahan sampah",
+    ],
+   },
+  ],
   projectRoadmap: [
    "https://res.cloudinary.com/caturteguh/image/upload/v1714697748/mrpn/executive_summary/project_roadmap/project_roadmap_sampah_owtibv.jpg",
   ],
   criticalPath: [
    "https://res.cloudinary.com/caturteguh/image/upload/v1714700143/mrpn/executive_summary/critical_path/critical_path_sampah_tcofc9.jpg",
+  ],
+  pendanaan: [
+   {
+    yearly: [],
+    source: [],
+    ready: [],
+   },
+  ],
+  stakeholder: [
+   {
+    label: "Entitas Utama",
+    tag: "Manage Closely",
+    desc: "Meningkatkan asupan gizi dan menyediakan sarana dan prasarana dasar",
+    instance: [
+     {
+      name: "Kementerian Kesehatan",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711956185/mrpn/company_logo/logo_kemenkes_k99chv.png",
+     },
+     {
+      name: "Kementerian Pekerjaan Umum & Perumahan Rakyat",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711725384/mrpn/company_logo/logo_pu_iz386d.png",
+     },
+    ],
+   },
+   {
+    label: "Entitas Pendukung",
+    tag: "Keep Satisfied",
+    desc: "Penyediaan gizi sesuai dengan standar",
+    instance: [
+     {
+      name: "BPOM",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955901/mrpn/company_logo/logo_bpom_ktik6o.png",
+     },
+     {
+      name: "Kementerian Pertanian",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711956186/mrpn/company_logo/logo_kementan_de8q7e.png",
+     },
+     {
+      name: "Kementerian Kehutanan & Lingkungan Hidup",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955830/mrpn/company_logo/logo_klhk_wplagd.png",
+     },
+     {
+      name: "Kementerian Perhubungan",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955963/mrpn/company_logo/logo_kemenhub_ivgjzh.png",
+     },
+     {
+      name: "BPOM",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955901/mrpn/company_logo/logo_bpom_ktik6o.png",
+     },
+     {
+      name: "Kementerian Pertanian",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711956186/mrpn/company_logo/logo_kementan_de8q7e.png",
+     },
+     {
+      name: "Kementerian Kehutanan & Lingkungan Hidup",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955830/mrpn/company_logo/logo_klhk_wplagd.png",
+     },
+     {
+      name: "Kementerian Perhubungan",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711955963/mrpn/company_logo/logo_kemenhub_ivgjzh.png",
+     },
+    ],
+   },
+   {
+    label: "Monitoring dan Pengawasan",
+    tag: "Monitor",
+    desc:
+     "Melakukan proses pengawasan atas penyaluran asupan gizi dan penyediaan sarpras secara berkelanjutan kepada masyarakat",
+    instance: [
+     {
+      name: "Kementerian PPN",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711964917/mrpn/company_logo/logo_bappenas_gwhnut.png",
+     },
+     {
+      name: "Puskesmas",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711956111/mrpn/company_logo/logo_puskesmas_ckdzmi.png",
+     },
+    ],
+   },
+   {
+    label: "Koordinasi, Informasi, sosialisasi berkala",
+    tag: "Keep Informed",
+    desc:
+     "Keterlibatan pemerintah daerah dalam pelaksanaan penurunan stunting yang diagendakan pada beberapa daerah",
+    instance: [
+     {
+      name: "Pemerintahan Jawa Barat",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711725536/mrpn/company_logo/logo_gemah_ueqink.png",
+     },
+     {
+      name: "Pemerintahan DKI Jakarta",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711725384/mrpn/company_logo/logo_jaya_p7hnyk.png",
+     },
+     {
+      name: "Pemerintahan Kabupaten Bekasi",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1711725384/mrpn/company_logo/logo_swatantra_jq1s4e.png",
+     },
+     {
+      name: "Pemerintahan Kabupaten Badung",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1714801748/mrpn/company_logo/logo_kab_badung_s4tmhb.png",
+     },
+     {
+      name: "Pemerintahan Kabupaten Bogor",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1714801748/mrpn/company_logo/logo_kab_bogor_ygigaw.png",
+     },
+     {
+      name: "Pemerintahan Kabupaten Kediri",
+      logo:
+       "https://res.cloudinary.com/caturteguh/image/upload/v1714802050/mrpn/company_logo/logo_kab_kediri_q6yfnp.png",
+     },
+    ],
+   },
   ],
   roadmap: [
    {

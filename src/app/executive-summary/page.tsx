@@ -71,8 +71,9 @@ export default function PageExecutiveSummary({}) {
  const [value, setValue] = React.useState(0);
  const [project, setProject] = React.useState("");
 
- const handleChangeProject = (event: SelectChangeEvent) => {
-  setProject(event.target.value);
+ const handleChangeProject = (value: any) => {
+  console.log(value, "value");
+  setProject(value);
  };
 
  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -85,6 +86,8 @@ export default function PageExecutiveSummary({}) {
   //   project === "3",
   project === "5",
  ].includes(true);
+
+ console.log({ project });
 
  return (
   <DashboardLayout>

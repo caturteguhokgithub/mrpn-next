@@ -80,7 +80,7 @@ export default function TabProfil({ project }: { project: string }) {
       description="Silahkan isi konten halaman ini"
      />
     ) : (
-     <TableDampak />
+     <TableDampak project={project} />
     )}
     <DialogComponent
      dialogOpen={modalOpenSasaran}

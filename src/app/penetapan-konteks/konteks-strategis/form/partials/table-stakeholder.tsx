@@ -20,8 +20,7 @@ import { AddCircle } from "@mui/icons-material";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
 import DialogComponent from "@/app/components/dialog";
-import FormROKunci from "./form-ro-kunci";
-import FormStakeholder from "./form-stakeholder";
+import FormStakeholder from "@/app/executive-summary/partials/form-stakeholder";
 
 export default function TableStakeholder({ mode }: { mode?: string }) {
  const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
@@ -136,13 +135,12 @@ export default function TableStakeholder({ mode }: { mode?: string }) {
     </TableContainer>
    )}
    <DialogComponent
-    width={320}
     dialogOpen={modalOpenAdd}
     dialogClose={handleModalClose}
     title="Tambah Pemangku Kepentingan"
     dialogFooter={dialogActionFooter}
    >
-    <FormStakeholder mode="add" />
+    <FormStakeholder mode="add" project="1" />
    </DialogComponent>
   </>
  );

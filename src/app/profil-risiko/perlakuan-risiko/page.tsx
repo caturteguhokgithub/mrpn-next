@@ -194,14 +194,16 @@ export default function PagePerlakuanRisiko({}) {
    <DialogComponent
     dialogOpen={modalOpenAdd}
     dialogClose={handleModalClose}
-    title="Detail Perlakuan Risiko"
+    title="Tambah Perlakuan Risiko"
+    dialogFooter={dialogActionFooter}
    >
     <FormTable mode="add" />
    </DialogComponent>
    <DialogComponent
     dialogOpen={modalOpenEdit}
     dialogClose={handleModalClose}
-    title="Detail Perlakuan Risiko"
+    title="Ubah Perlakuan Risiko"
+    dialogFooter={dialogActionFooter}
    >
     <FormTable mode="edit" />
    </DialogComponent>

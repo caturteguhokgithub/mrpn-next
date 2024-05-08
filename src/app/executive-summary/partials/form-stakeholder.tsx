@@ -56,7 +56,7 @@ export default function FormStakeholder({
  project,
 }: {
  mode?: string;
- project: string;
+ project?: string;
 }) {
  const [formats, setFormats] = React.useState(() => [""]);
 

@@ -22,12 +22,16 @@ import CardStakeholder from "@/app/components/cardStakeholder";
 import TableUraian from "./table-uraian";
 import { dataTema } from "../dataTema";
 import { title } from "process";
+import FormUraian from "./form-uraian";
+import FormSwot from "./form-swot";
 
 export default function TabLatarBelakang({ project }: { project: string }) {
  const [modalOpenFact, setModalOpenFact] = React.useState(false);
  const [modalOpenGoal, setModalOpenGoal] = React.useState(false);
  const [modalOpenSegment, setModalOpenSegment] = React.useState(false);
  const [modalOpenTag, setModalOpenTag] = React.useState(false);
+ const [modalOpenUraian, setModalOpenUraian] = React.useState(false);
+
  const [value, setValue] = React.useState("");
 
  const handleModalOpenFact = () => {
@@ -42,12 +46,16 @@ export default function TabLatarBelakang({ project }: { project: string }) {
  const handleModalOpenTag = () => {
   setModalOpenTag(true);
  };
+ const handleModalOpenUraian = () => {
+  setModalOpenUraian(true);
+ };
 
  const handleModalClose = () => {
   setModalOpenFact(false);
   setModalOpenGoal(false);
   setModalOpenSegment(false);
   setModalOpenTag(false);
+  setModalOpenUraian(false);
  };
 
  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -134,7 +142,7 @@ export default function TabLatarBelakang({ project }: { project: string }) {
       </DialogActions>
      }
     >
-     <ReactQuill theme="snow" value={value} onChange={setValue} />
+     <FormSwot mode="add" project={project} />
     </DialogComponent>
    </CardItem>
    <CardItem
@@ -192,14 +200,14 @@ export default function TabLatarBelakang({ project }: { project: string }) {
    </CardItem>
    <CardItem
     title="Uraian Risiko Strategis"
-    // addButton={
-    //  <AddButton
-    //   filled
-    //   small
-    //   title="Tambah Tagging"
-    //   onclick={handleModalOpenTag}
-    //  />
-    // }
+    addButton={
+     <AddButton
+      filled
+      small
+      title="Tambah Uraian"
+      onclick={handleModalOpenUraian}
+     />
+    }
    >
     {isEmpty || project === "4" ? (
      <EmptyState
@@ -212,9 +220,9 @@ export default function TabLatarBelakang({ project }: { project: string }) {
      <TableUraian project={project} />
     )}
     <DialogComponent
-     dialogOpen={modalOpenTag}
+     dialogOpen={modalOpenUraian}
      dialogClose={handleModalClose}
-     title="Tambah Tagging"
+     title="Tambah Uraian"
      dialogFooter={
       <DialogActions sx={{ p: 2, px: 3 }}>
        <Button variant="outlined" onClick={handleModalClose}>
@@ -226,7 +234,7 @@ export default function TabLatarBelakang({ project }: { project: string }) {
       </DialogActions>
      }
     >
-     <FormTagging mode="add" />
+     <FormUraian mode="add" />
     </DialogComponent>
    </CardItem>
    <CardItem

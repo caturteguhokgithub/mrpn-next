@@ -95,7 +95,7 @@ export default function FormTagging({ mode }: { mode?: string }) {
    <Grid container spacing={2}>
     <Grid item lg={12}>
      <FormControl fullWidth>
-      <Typography>Kebijakan</Typography>
+      <Typography gutterBottom>Kebijakan</Typography>
       {mode === "add" ? (
        selectMultipleTag
       ) : mode === "edit" ? (
@@ -107,7 +107,7 @@ export default function FormTagging({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={12}>
      <FormControl fullWidth>
-      <Typography>Keterangan</Typography>
+      <Typography gutterBottom>Keterangan</Typography>
       {mode === "add" ? (
        <ReactQuill
         theme="snow"

@@ -21,7 +21,7 @@ export default function FormProfilRoProject({ mode }: { mode?: string }) {
   <Grid container spacing={2}>
    <Grid item lg={4}>
     <FormControl fullWidth>
-     <Typography>Format Kode</Typography>
+     <Typography gutterBottom>Format Kode</Typography>
      {mode === "add" ? (
       <TextField
        variant="outlined"
@@ -47,7 +47,7 @@ export default function FormProfilRoProject({ mode }: { mode?: string }) {
    </Grid>
    <Grid item lg={4}>
     <FormControl fullWidth>
-     <Typography>Entitas Utama</Typography>
+     <Typography gutterBottom>Entitas Utama</Typography>
      {mode === "add" ? (
       <SelectCustomTheme
        defaultStyle
@@ -90,7 +90,7 @@ export default function FormProfilRoProject({ mode }: { mode?: string }) {
    </Grid>
    <Grid item lg={4}>
     <FormControl fullWidth>
-     <Typography>Entitas Kontributor</Typography>
+     <Typography gutterBottom>Entitas Kontributor</Typography>
      {mode === "add" ? (
       <SelectCustomTheme
        defaultStyle
@@ -133,7 +133,7 @@ export default function FormProfilRoProject({ mode }: { mode?: string }) {
    </Grid>
    <Grid item lg={12}>
     <FormControl fullWidth>
-     <Typography>Nomenklatur RO/Project</Typography>
+     <Typography gutterBottom>Nomenklatur RO/Project</Typography>
      {mode === "add" ? (
       <SelectCustomTheme
        defaultStyle
@@ -176,7 +176,7 @@ export default function FormProfilRoProject({ mode }: { mode?: string }) {
    </Grid>
    <Grid item lg={4}>
     <FormControl fullWidth>
-     <Typography>Target</Typography>
+     <Typography gutterBottom>Target</Typography>
      {mode === "add" ? (
       <Stack direction="row" gap={1}>
        <TextField
@@ -222,7 +222,7 @@ export default function FormProfilRoProject({ mode }: { mode?: string }) {
    </Grid>
    <Grid item lg={4}>
     <FormControl fullWidth>
-     <Typography>Anggaran</Typography>
+     <Typography gutterBottom>Anggaran</Typography>
      {mode === "add" ? (
       <TextField
        variant="outlined"
@@ -248,7 +248,7 @@ export default function FormProfilRoProject({ mode }: { mode?: string }) {
    </Grid>
    <Grid item lg={4}>
     <FormControl fullWidth>
-     <Typography>Sumber Anggaran</Typography>
+     <Typography gutterBottom>Sumber Anggaran</Typography>
      {mode === "add" ? (
       <TextField
        variant="outlined"

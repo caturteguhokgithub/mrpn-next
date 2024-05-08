@@ -8,8 +8,11 @@ import {
  Autocomplete,
  TextField,
 } from "@mui/material";
-import { listSelectKp } from "@/app/executive-summary/data";
+import { listSelectKp, newListSelectKp } from "@/app/executive-summary/data";
 import SelectCustomTheme from "../select";
+import theme from "@/theme";
+
+const options = ["Option 1", "Option 2"];
 
 export default function DropdownKp({
  project,
@@ -30,37 +33,81 @@ export default function DropdownKp({
 
  const open = Boolean(anchorEl);
 
+ const [value, setValue] = React.useState<string | null>("");
+ const [inputValue, setInputValue] = React.useState("");
+
+ const optionsListKp = newListSelectKp.map((item) => {
+  return item["name"];
+ });
+
  return (
   <FormControl size="small">
-   {/* <Autocomplete
-    id="free-solo-demo"
-    freeSolo
-    // value={project}
-    onChange={handleChangeProject}
-    options={listSelectKp.map((option) => option.nama_kp)}
-    renderInput={(params) => <TextField {...params} label="freeSolo" />}
-   />
    <Autocomplete
-    // freeSolo
-    sx={{ width: 300 }}
-    options={listSelectKp.map((option) => option.nama_kp)}
-    value={project}
-    onChange={handleChangeProject}
-    getOptionLabel={(option) => option.nama_kp}
-    // defaultValue={[listSelectKp[1]]}
+    size="small"
+    value={value}
+    onChange={(event: any, newValue: string | null) => {
+     setValue(newValue);
+    }}
+    inputValue={inputValue}
+    onInputChange={(event, newInputValue) => {
+     setInputValue(newInputValue);
+
+     const optionVal = newListSelectKp.find((res: any) => {
+      return res.name === newInputValue;
+     });
+
+     handleChangeProject(optionVal?.value || "");
+    }}
+    options={optionsListKp}
     renderInput={(params) => (
-     <TextField
-      {...params}
-      placeholder="Pilih Kegiatan Pembangunan (KP)"
-      variant="outlined"
-      size="small"
-      InputLabelProps={{
-       shrink: true,
-      }}
-     />
+     <Tooltip title={optionsListKp} followCursor TransitionComponent={Grow}>
+      <TextField
+       {...params}
+       label={
+        <Typography fontSize={14} fontStyle="italic">
+         Pilih Kegiatan Pembangunan (KP)
+        </Typography>
+       }
+      />
+     </Tooltip>
     )}
-   /> */}
-   <SelectCustomTheme
+    sx={{
+     minWidth: 300,
+     ".MuiInputBase-root": {
+      fontSize: 14,
+      py: 0,
+      borderRadius: 6,
+      border: 0,
+      bgcolor: theme.palette.primary.main,
+      color: theme.palette.primary.light,
+     },
+     ".MuiInputLabel-root": {
+      color: "white",
+      "&.Mui-focused": {
+       color: "black",
+       top: -10,
+      },
+     },
+     ".MuiSvgIcon-root": {
+      fill: "white",
+     },
+     "&.MuiAutocomplete-hasClearIcon": {
+      ".MuiInputLabel-root": {
+       //    color: "white",
+       color: "black",
+       top: -10,
+      },
+      //   "&.Mui-focused": {
+      //    ".MuiInputLabel-root": {
+      //     color: "black",
+      //     top: -10,
+      //    },
+      //   },
+     },
+    }}
+   />
+   {/*  */}
+   {/* <SelectCustomTheme
     small
     anchorRight
     value={project}
@@ -90,7 +137,7 @@ export default function DropdownKp({
       )}
      </MenuItem>
     ))}
-   </SelectCustomTheme>
+   </SelectCustomTheme> */}
   </FormControl>
  );
 }

@@ -186,8 +186,10 @@ export default function FormKonstra({ mode }: { mode?: string }) {
           }}
           value={`${moment
            .utc(state[0].startDate)
+           .utcOffset(7)
            .format("D MMM YYYY")} - ${moment
            .utc(state[0].endDate)
+           .utcOffset(7)
            .format("D MMM YYYY")}`}
          />
         </>
@@ -224,8 +226,10 @@ export default function FormKonstra({ mode }: { mode?: string }) {
           }}
           value={`${moment
            .utc(state[0].startDate)
+           .utcOffset(7)
            .format("D MMM YYYY")} - ${moment
            .utc(state[0].endDate)
+           .utcOffset(7)
            .format("D MMM YYYY")}`}
          />
         </>

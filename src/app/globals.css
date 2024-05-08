@@ -40,3 +40,7 @@ a:active {
 .MuiTooltip-tooltip {
  font-size: 0.8rem !important;
 }
+
+.mui-vcku06-MuiModal-root-MuiDialog-root {
+ max-height: 100vh;
+}
