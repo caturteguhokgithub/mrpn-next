@@ -47,6 +47,10 @@ export default function TableProfilOutput({ project }: { project: string }) {
   setPage(0);
  };
 
+ const tablePaginate = dataTema.find((res: any) => {
+  return res.temaId === project;
+ });
+
  return (
   <>
    {dataTema.map((itemRow) => (
@@ -184,19 +188,9 @@ export default function TableProfilOutput({ project }: { project: string }) {
            </TableBody>
           </Table>
          </TableContainer>
-         {/* <TablePagination
-        rowsPerPageOptions={[5, 10, 15, 20, 25, 50, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-       /> */}
          <TablePagination
           component="div"
-          count={100}
-          // count={dataTema.map((itemRow) => itemRow.profilRincianOutput.length)}
+          count={tablePaginate?.profilRincianOutput?.length || 0}
           page={page}
           onPageChange={handleChangePage}
           rowsPerPage={rowsPerPage}

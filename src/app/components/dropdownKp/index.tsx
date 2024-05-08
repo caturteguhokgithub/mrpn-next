@@ -47,7 +47,7 @@ export default function DropdownKp({
     }}
     options={optionsListKp}
     renderInput={(params) => (
-     <Tooltip title={optionsListKp} followCursor TransitionComponent={Grow}>
+     <Tooltip title={value} followCursor TransitionComponent={Grow}>
       <TextField
        {...params}
        InputLabelProps={{

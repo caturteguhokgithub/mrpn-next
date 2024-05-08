@@ -6,8 +6,11 @@ import DashboardLayout from "@/components/layouts/layout";
 import EmptyState from "@/components/empty";
 import { IconEmptyPage } from "@/components/icons";
 import {
+ Backdrop,
  Box,
+ Button,
  Chip,
+ CircularProgress,
  Collapse,
  SelectChangeEvent,
  Stack,
@@ -23,6 +26,7 @@ import TabProfil from "./partials/tabProfil";
 import TabPolicy from "./partials/tabPolicy";
 import TabOverall from "./partials/tabOverall";
 import DropdownKp from "../components/dropdownKp";
+import LoadingPage from "../components/loadingPage";
 
 interface TabPanelProps {
  children?: React.ReactNode;
@@ -86,8 +90,19 @@ export default function PageExecutiveSummary({}) {
   project === "5",
  ].includes(true);
 
+ const [show, setShow] = React.useState(true);
+
+ React.useEffect(() => {
+  let timer1 = setTimeout(() => setShow(false), 3 * 1000);
+
+  return () => {
+   clearTimeout(timer1);
+  };
+ });
+
  return (
   <DashboardLayout>
+   <LoadingPage />
    <ContentPage
     title="Executive Summary"
     overflowHidden

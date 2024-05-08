@@ -27,6 +27,7 @@ import DialogComponent from "../components/dialog";
 import FormTable from "./partials/form-table";
 import SearchKP from "./partials/search";
 import useThemes from "./hooks/useTheme";
+import LoadingPage from "../components/loadingPage";
 
 export default function PageTema({}) {
  const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
@@ -62,6 +63,7 @@ export default function PageTema({}) {
  return (
   <>
    <DashboardLayout>
+    <LoadingPage />
     <ContentPage
      title="Tema"
      withCard

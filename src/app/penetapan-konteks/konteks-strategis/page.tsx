@@ -16,6 +16,7 @@ import AddButton from "@/app/components/buttonAdd";
 import DialogComponent from "@/app/components/dialog";
 import FormTable from "./form/partials/form-table";
 import { addUrl, editUrl } from "@/app/utils/constant";
+import LoadingPage from "@/app/components/loadingPage";
 
 type ColumnsType = {};
 
@@ -167,6 +168,7 @@ export default function PageKonteksStrategis({}) {
 
  return (
   <>
+   <LoadingPage />
    <DashboardLayout>
     <ContentPage
      title="Konteks Strategis"
