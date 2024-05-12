@@ -290,7 +290,13 @@ export default function PageTema({}) {
         />
         <Button
          variant="contained"
-         sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
+         sx={{
+          minWidth: 160,
+          mt: 2,
+          borderRadius: 50,
+          color: "white !important",
+         }}
+         href="/executive-summary"
         >
          Simpan
         </Button>
@@ -304,7 +310,13 @@ export default function PageTema({}) {
         />
         <Button
          variant="contained"
-         sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
+         sx={{
+          minWidth: 160,
+          mt: 2,
+          borderRadius: 50,
+          color: "white !important",
+         }}
+         href="/executive-summary"
         >
          Simpan
         </Button>

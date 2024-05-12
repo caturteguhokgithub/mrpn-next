@@ -44,6 +44,7 @@ export default function ThemeToggleButton({
     backgroundSize: "105%",
     // backgroundSize: "cover",
     backgroundPosition: "left top",
+    boxShadow: "1px 16px 13px -15px rgba(0,0,0,0.4);",
     "&.Mui-selected": {
      bgcolor: conditionColor,
      border: `1px solid ${conditionColor}`,
@@ -53,6 +54,7 @@ export default function ThemeToggleButton({
     },
     "&.Mui-disabled": {
      borderLeftColor: "#0000001f !important",
+     cursor: "not-allowed",
     },
    }}
   >
