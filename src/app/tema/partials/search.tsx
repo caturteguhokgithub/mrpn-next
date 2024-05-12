@@ -86,7 +86,8 @@ export default function SearchKP({
    <Box
     mt={2}
     sx={{
-     maxHeight: "30vh",
+     //  maxHeight: "30vh",
+     maxHeight: "15vh",
      overflow: "auto",
      "&::-webkit-scrollbar": {
       width: "3px",

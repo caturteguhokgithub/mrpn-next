@@ -3,55 +3,28 @@ import {
  Button,
  Card,
  CardContent,
- Dialog,
  DialogActions,
- DialogContent,
- DialogTitle,
  Stack,
  Typography,
 } from "@mui/material";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
 import CardItem from "@/app/components/cardTabItem";
-import dynamic from "next/dynamic";
 import DialogComponent from "@/app/components/dialog";
 import { dataTema } from "../../dataTema";
 import FormSwot from "./form-swot";
+import theme from "@/theme";
 
 export default function CardSwot({ project }: { project: string }) {
  const [modalOpenFact, setModalOpenFact] = React.useState(false);
- const [modalOpenGoal, setModalOpenGoal] = React.useState(false);
- const [modalOpenSegment, setModalOpenSegment] = React.useState(false);
- const [modalOpenTag, setModalOpenTag] = React.useState(false);
- const [modalOpenUraian, setModalOpenUraian] = React.useState(false);
-
- const [value, setValue] = React.useState("");
 
  const handleModalOpenFact = () => {
   setModalOpenFact(true);
  };
- const handleModalOpenGoal = () => {
-  setModalOpenGoal(true);
- };
- const handleModalOpenSegment = () => {
-  setModalOpenSegment(true);
- };
- const handleModalOpenTag = () => {
-  setModalOpenTag(true);
- };
- const handleModalOpenUraian = () => {
-  setModalOpenUraian(true);
- };
 
  const handleModalClose = () => {
   setModalOpenFact(false);
-  setModalOpenGoal(false);
-  setModalOpenSegment(false);
-  setModalOpenTag(false);
-  setModalOpenUraian(false);
  };
-
- const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
  const isEmpty = false;
 
@@ -77,7 +50,22 @@ export default function CardSwot({ project }: { project: string }) {
         {project === itemSwot.temaId && (
          <>
           {itemSwot.swot.map((detailSwot, index) => (
-           <Card sx={{ maxWidth: 345 }} variant="outlined" key={index}>
+           <Card
+            sx={{
+             maxWidth: 345,
+             flex: "0 0 calc(25% - 12px)",
+             borderRadius: "10px 10px 0 0",
+             [theme.breakpoints.down("lg")]: {
+              flex: "0 0 calc(50% - 12px)",
+             },
+             [theme.breakpoints.down("sm")]: {
+              flex: "0 0 100%",
+              maxWidth: "100%",
+             },
+            }}
+            variant="outlined"
+            key={index}
+           >
             {itemSwot.temaId ? (
              <CardContent>
               <Typography

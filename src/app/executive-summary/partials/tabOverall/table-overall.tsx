@@ -211,9 +211,9 @@ export default function TableOverall({ project }: { project: string }) {
                       sx={{ textAlign: "center" }}
                      >
                       <>
-                       {/* <IconButton onClick={handleModalActionOpen}>
-                  {item.options.view}
-                 </IconButton> */}
+                       <IconButton onClick={handleModalActionOpen}>
+                        {options.view}
+                       </IconButton>
                        {/* <button role="link">{item.options.delete}</button>
             <button role="link">{item.options.edit}</button> */}
                       </>

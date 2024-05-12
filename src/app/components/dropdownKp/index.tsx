@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { listSelectKp } from "@/app/executive-summary/data";
 import theme from "@/theme";
+import { grey } from "@mui/material/colors";
 
 const options = ["Option 1", "Option 2"];
 
@@ -56,8 +57,11 @@ export default function DropdownKp({
        placeholder="Pilih Kegiatan Pembangunan (KP)"
        sx={{
         "input::-webkit-input-placeholder": {
-         color: "white",
+         //  color: "white",
+         color: grey[600],
          opacity: 1,
+         fontStyle: "italic",
+         //  fontSize: 13,
         },
        }}
       />
@@ -65,16 +69,24 @@ export default function DropdownKp({
     )}
     sx={{
      minWidth: 300,
+     color: theme.palette.primary.dark,
      ".MuiInputBase-root": {
+      fontWeight: 600,
       fontSize: 14,
       py: 0,
       borderRadius: 6,
-      border: 0,
-      bgcolor: theme.palette.primary.main,
-      color: theme.palette.primary.light,
+      bgcolor: "white",
+      //   bgcolor: theme.palette.primary.main,
+      [theme.breakpoints.down("md")]: {
+       fontSize: 12,
+      },
      },
      ".MuiSvgIcon-root": {
-      fill: "white",
+      //   fill: "white",
+      fill: grey[600],
+     },
+     [theme.breakpoints.down("md")]: {
+      minWidth: 200,
      },
     }}
    />

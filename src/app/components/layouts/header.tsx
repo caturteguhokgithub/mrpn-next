@@ -19,6 +19,7 @@ import { IconKeluar } from "../icons";
 import { IconFA } from "../icons/icon-fa";
 import Image from "next/image";
 import Aside from "./aside";
+import { usePathname } from "next/navigation";
 
 export default function Header({}) {
  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -35,6 +36,11 @@ export default function Header({}) {
  const toggleDrawerMobile = (newOpen: boolean) => () => {
   setOpenDrawerMobile(newOpen);
  };
+
+ const pathname = usePathname();
+ const flagPathnameTheme = [pathname === "/", pathname === "/tema"].includes(
+  true
+ );
 
  return (
   <Box
@@ -70,71 +76,76 @@ export default function Header({}) {
      >
       MRPN 2024
      </Typography> */}
-     <Box
-      component="img"
-      src="https://res.cloudinary.com/caturteguh/image/upload/v1708049745/mrpn/logo-2024_ne4yaj.png"
-      alt="MRPN 2024"
-      sx={{
-       display: "flex",
-       alignItems: "center",
-       width: "40px",
-       [theme.breakpoints.up("md")]: {
-        display: "none",
-       },
-      }}
-     >
-      {/* <Image
+     {flagPathnameTheme ? null : (
+      <>
+       <Box
+        component="img"
+        src="https://res.cloudinary.com/caturteguh/image/upload/v1708049745/mrpn/logo-2024_ne4yaj.png"
+        alt="MRPN 2024"
+        sx={{
+         display: "flex",
+         alignItems: "center",
+         width: "40px",
+         [theme.breakpoints.up("md")]: {
+          display: "none",
+         },
+        }}
+       >
+        {/* <Image
        width={50}
        height={53}
        src="https://res.cloudinary.com/caturteguh/image/upload/v1708049745/mrpn/logo-2024_ne4yaj.png"
        alt="MRPN 2024"
        priority
       /> */}
-     </Box>
-     <Typography
-      component="p"
-      fontWeight="700"
-      fontSize="20px"
-      letterSpacing="0.5px"
-      //   lineHeight={1.3}
-      sx={{
-       [theme.breakpoints.down("md")]: {
-        fontSize: "1em",
-        lineHeight: 1.2,
-       },
-      }}
-     >
-      <Box component="span" color={orange[500]} textTransform="uppercase">
-       Na
-      </Box>
-      tional{" "}
-      <Box component="span" color={orange[500]} textTransform="uppercase">
-       R
-      </Box>
-      i
-      <Box component="span" color={orange[500]} textTransform="uppercase">
-       s
-      </Box>
-      k{" "}
-      <Box
-       component="span"
-       sx={{
-        [theme.breakpoints.up("md")]: {
-         display: "none",
-        },
-       }}
-      >
-       <br />
-      </Box>
-      <Box component="span" color={orange[500]} textTransform="uppercase">
-       I
-      </Box>
-      nformation{" "}
-      <Box component="span" color={orange[500]} textTransform="uppercase">
-       S
-      </Box>
-      ystem
-     </Typography>
+       </Box>
+       <Typography
+        component="p"
+        fontWeight="700"
+        fontSize="20px"
+        letterSpacing="0.5px"
+        //   lineHeight={1.3}
+        sx={{
+         [theme.breakpoints.down("md")]: {
+          fontSize: "1em",
+          lineHeight: 1.2,
+         },
+        }}
+       >
+        <Box component="span" color={orange[500]} textTransform="uppercase">
+         Na
+        </Box>
+        tional{" "}
+        <Box component="span" color={orange[500]} textTransform="uppercase">
+         R
+        </Box>
+        i
+        <Box component="span" color={orange[500]} textTransform="uppercase">
+         s
+        </Box>
+        k{" "}
+        <Box
+         component="span"
+         sx={{
+          [theme.breakpoints.up("md")]: {
+           display: "none",
+          },
+         }}
+        >
+         <br />
+        </Box>
+        <Box component="span" color={orange[500]} textTransform="uppercase">
+         I
+        </Box>
+        nformation{" "}
+        <Box component="span" color={orange[500]} textTransform="uppercase">
+         S
+        </Box>
+        ystem
+       </Typography>
+      </>
+     )}
+
      {/* <Typography
       component="h1"
       letterSpacing={4}
@@ -272,7 +283,8 @@ export default function Header({}) {
     onClose={toggleDrawerMobile(false)}
     sx={{
      ".MuiPaper-elevation": {
-      bgcolor: theme.palette.primary.main,
+      //   bgcolor: theme.palette.primary.main,
+      bgcolor: theme.palette.secondary.dark,
      },
     }}
    >

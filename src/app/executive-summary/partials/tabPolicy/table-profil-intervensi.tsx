@@ -53,6 +53,10 @@ export default function TableProfilIntervensi({
   setPage(0);
  };
 
+ const tablePaginate = dataTema.find((res: any) => {
+  return res.temaId === project;
+ });
+
  return (
   <>
    {dataTema.map((itemRow) => (
@@ -192,15 +196,18 @@ export default function TableProfilIntervensi({
            </TableBody>
           </Table>
          </TableContainer>
-         <TablePagination
-          component="div"
-          count={8}
-          // count={dataTema.map((itemRow) => itemRow.profilRincianOutput.length)}
-          page={page}
-          onPageChange={handleChangePage}
-          rowsPerPage={rowsPerPage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-         />
+         {(tablePaginate?.profilIntervensi?.length || 0) > 10 ? (
+          <TablePagination
+           component="div"
+           count={tablePaginate?.profilIntervensi.length || 0}
+           page={page}
+           onPageChange={handleChangePage}
+           rowsPerPage={rowsPerPage}
+           onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+         ) : (
+          ""
+         )}
         </>
        )}
       </>

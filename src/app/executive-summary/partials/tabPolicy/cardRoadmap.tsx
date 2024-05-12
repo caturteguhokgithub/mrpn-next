@@ -63,8 +63,8 @@ export default function CardRoadmap({ project }: { project: string }) {
              <>
               <Typography
                component="h2"
-               fontSize="1.2em"
-               fontWeight={500}
+               fontSize="1em"
+               fontWeight={600}
                textAlign="left"
               >
                Berbasis Output
@@ -107,6 +107,7 @@ export default function CardRoadmap({ project }: { project: string }) {
                     lineHeight={1}
                     textTransform="capitalize"
                     fontWeight={600}
+                    fontSize="1.1em"
                    >
                     {itemOutput.year}
                    </Typography>
@@ -184,8 +185,8 @@ export default function CardRoadmap({ project }: { project: string }) {
                 <Box mt={4}>
                  <Typography
                   component="h2"
-                  fontSize="1.2em"
-                  fontWeight={500}
+                  fontSize="1em"
+                  fontWeight={600}
                   textAlign="left"
                  >
                   Berbasis Bisnis
@@ -229,6 +230,7 @@ export default function CardRoadmap({ project }: { project: string }) {
                      lineHeight={1}
                      textTransform="capitalize"
                      fontWeight={600}
+                     fontSize="1.1em"
                     >
                      {itemOutput.year}
                     </Typography>

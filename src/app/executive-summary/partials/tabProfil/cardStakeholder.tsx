@@ -17,6 +17,7 @@ import Image from "next/image";
 import { useDragScroll } from "@/app/utils/useDragScroll";
 import { dataTema } from "../../dataTema";
 import FormStakeholder from "./form-stakeholder";
+import theme from "@/theme";
 
 export default function CardStakeholder({ project }: { project: string }) {
  const [modalOpenStakeholder, setModalOpenStakeholder] = React.useState(false);
@@ -52,13 +53,29 @@ export default function CardStakeholder({ project }: { project: string }) {
        {project === itemStakeholder.temaId && (
         <>
          {itemStakeholder.stakeholder?.map((detailStakeholder, index) => (
-          <Card sx={{ maxWidth: 345 }} variant="outlined" key={index}>
+          <Card
+           sx={{
+            maxWidth: 345,
+            flex: "0 0 calc(25% - 12px)",
+            borderRadius: "10px 10px 0 0",
+            [theme.breakpoints.down("lg")]: {
+             flex: "0 0 calc(50% - 12px)",
+            },
+            [theme.breakpoints.down("sm")]: {
+             flex: "0 0 100%",
+             maxWidth: "100%",
+            },
+           }}
+           variant="outlined"
+           key={index}
+          >
            <CardContent sx={{ pb: 1, minHeight: 84 }}>
             <Typography
              gutterBottom
              variant="h6"
              component="div"
              lineHeight={1.3}
+             fontSize="1.1em"
             >
              {detailStakeholder.label}
             </Typography>

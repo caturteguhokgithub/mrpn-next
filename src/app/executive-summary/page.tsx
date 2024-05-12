@@ -12,11 +12,15 @@ import {
  Chip,
  CircularProgress,
  Collapse,
+ Grow,
  SelectChangeEvent,
  Stack,
  Tab,
  Tabs,
+ Tooltip,
  Typography,
+ useMediaQuery,
+ useTheme,
 } from "@mui/material";
 import theme from "@/theme";
 import { grey } from "@mui/material/colors";
@@ -62,6 +66,9 @@ function CustomTabPanel(props: TabPanelProps) {
       "&::-webkit-scrollbar": {
        width: "3px",
       },
+      [theme.breakpoints.down("sm")]: {
+       height: "calc(100vh - 366px)",
+      },
      }}
     >
      <Typography>{children}</Typography>
@@ -100,6 +107,32 @@ export default function PageExecutiveSummary({}) {
   };
  });
 
+ const usetheme = useTheme();
+ const breakpointDownLg = useMediaQuery(usetheme.breakpoints.down("lg"));
+ const breakpointDownMd = useMediaQuery(usetheme.breakpoints.down("md"));
+
+ const downloadAttachment = (
+  <Chip
+   color="primary"
+   variant="outlined"
+   label={
+    <Stack direction="row" gap={1}>
+     <IconFA size={14} name="download" color={theme.palette.primary.main} />
+     {breakpointDownMd ? null : "Download Lampiran"}
+    </Stack>
+   }
+   sx={{
+    bgcolor: "white",
+    fontWeight: 600,
+    lineHeight: 1,
+    cursor: "pointer",
+    height: 38,
+    px: 1,
+    borderRadius: "50px",
+   }}
+  />
+ );
+
  return (
   <DashboardLayout>
    <LoadingPage />
@@ -111,33 +144,21 @@ export default function PageExecutiveSummary({}) {
     project={project}
     handleChangeProject={handleChangeProject}
     dowloadAttachmentFile={
-     <>
-      {project && (
-       <Chip
-        color="primary"
-        variant="outlined"
-        label={
-         <Stack direction="row" gap={1}>
-          <IconFA
-           size={14}
-           name="download"
-           color={theme.palette.primary.main}
-          />
-          Download Lampiran
-         </Stack>
-        }
-        sx={{
-         bgcolor: "white",
-         fontWeight: 600,
-         lineHeight: 1,
-         cursor: "pointer",
-         height: 38,
-         px: 1,
-         borderRadius: "50px",
-        }}
-       />
-      )}
-     </>
+     project && (
+      <>
+       {breakpointDownMd ? (
+        <Tooltip
+         title="Download Lampiran"
+         followCursor
+         TransitionComponent={Grow}
+        >
+         {downloadAttachment}
+        </Tooltip>
+       ) : (
+        downloadAttachment
+       )}
+      </>
+     )
     }
    >
     {flagProjectNoCard ? (
