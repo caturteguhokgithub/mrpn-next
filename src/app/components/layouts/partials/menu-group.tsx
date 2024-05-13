@@ -34,6 +34,14 @@ export const MenuGroup = ({ label, children, isExpanded }: IMenu & ILayout) => {
          <>{label.length >= 5 ? label.substring(0, 5) + "..." : label}</>
         )}
        </>
+      ) : !flagPathnameTheme ? (
+       <>
+        {isExpanded ? (
+         label
+        ) : (
+         <>{label.length >= 5 ? label.substring(0, 5) + "..." : label}</>
+        )}
+       </>
       ) : null}
      </Typography>
     </ListSubheader>

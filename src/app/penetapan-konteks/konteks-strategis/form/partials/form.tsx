@@ -28,6 +28,7 @@ import { listSelectKp } from "@/app/executive-summary/data";
 import { blue, grey } from "@mui/material/colors";
 import MultiSelect from "@/app/components/multiSelect";
 import { Option } from "@/app/components/multiSelect";
+import DropdownKp from "@/app/components/dropdownKp";
 
 export default function FormKonstra({ mode }: { mode?: string }) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -74,6 +75,12 @@ export default function FormKonstra({ mode }: { mode?: string }) {
 
  const nameOfKp = listSelectKp[4].name;
 
+ const [project, setProject] = React.useState("");
+
+ const handleChangeProject = (value: any) => {
+  setProject(value);
+ };
+
  return (
   <DashboardLayout>
    <ContentPage
@@ -81,29 +88,31 @@ export default function FormKonstra({ mode }: { mode?: string }) {
     withCard
     heightTitleBreadcrumb
     titleChild={
-     <Chip
-      color="primary"
-      variant="outlined"
-      label={
-       <Tooltip title={nameOfKp} followCursor TransitionComponent={Grow}>
-        <Box
-         aria-owns={openTooltip ? "mouse-over-popover" : undefined}
-         aria-haspopup="true"
-         onMouseEnter={handlePopoverOpen}
-         onMouseLeave={handlePopoverClose}
-        >
-         {nameOfKp.substring(0, 48) + "..."}
-         {/* {nameOfKp} */}
-        </Box>
-       </Tooltip>
-      }
-      sx={{
-       bgcolor: "white",
-       fontWeight: 600,
-       lineHeight: 1,
-       cursor: "default",
-      }}
-     />
+     <>
+      {/* <Chip
+       color="primary"
+       variant="outlined"
+       label={
+        <Tooltip title={nameOfKp} followCursor TransitionComponent={Grow}>
+         <Box
+          aria-owns={openTooltip ? "mouse-over-popover" : undefined}
+          aria-haspopup="true"
+          onMouseEnter={handlePopoverOpen}
+          onMouseLeave={handlePopoverClose}
+         >
+          {nameOfKp.substring(0, 48) + "..."}
+         </Box>
+        </Tooltip>
+       }
+       sx={{
+        bgcolor: "white",
+        fontWeight: 600,
+        lineHeight: 1,
+        cursor: "default",
+       }}
+      /> */}
+      <DropdownKp project={project} handleChangeProject={handleChangeProject} />
+     </>
     }
     breadcrumb={
      <Breadcrumbs aria-label="breadcrumb">

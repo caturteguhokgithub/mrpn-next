@@ -19,13 +19,19 @@ import { dataTema } from "../../dataTema";
 import FormRoadmap from "./form-roadmap";
 
 export default function CardRoadmap({ project }: { project: string }) {
- const [modalOpenRoadmap, setModalOpenRoadmap] = React.useState(false);
- const handleModalOpenRoadmap = () => {
-  setModalOpenRoadmap(true);
+ const [modalOpenOutput, setModalOpenOutput] = React.useState(false);
+ const [modalOpenBisnis, setModalOpenBisnis] = React.useState(false);
+
+ const handleModalOpenOutput = () => {
+  setModalOpenOutput(true);
+ };
+ const handleModalOpenBisnis = () => {
+  setModalOpenBisnis(true);
  };
 
  const handleModalClose = () => {
-  setModalOpenRoadmap(false);
+  setModalOpenOutput(false);
+  setModalOpenBisnis(false);
  };
 
  const isEmpty = false;
@@ -34,7 +40,9 @@ export default function CardRoadmap({ project }: { project: string }) {
   <CardItem
    title="Project Roadmap"
    setting
-   settingEditOnclick={handleModalOpenRoadmap}
+   multiEdit
+   settingEditOutputClick={handleModalOpenOutput}
+   settingEditBisnisClick={handleModalOpenBisnis}
   >
    {isEmpty || project === "4" ? (
     <EmptyState
@@ -316,9 +324,28 @@ export default function CardRoadmap({ project }: { project: string }) {
     </>
    )}
    <DialogComponent
-    dialogOpen={modalOpenRoadmap}
+    width={800}
+    dialogOpen={modalOpenOutput}
     dialogClose={handleModalClose}
-    title="Project Roadmap"
+    title="Project Roadmap Berbasis Output"
+    dialogFooter={
+     <DialogActions sx={{ p: 2, px: 3 }}>
+      <Button variant="outlined" onClick={handleModalClose}>
+       Batal
+      </Button>
+      <Button variant="contained" type="submit">
+       Simpan
+      </Button>
+     </DialogActions>
+    }
+   >
+    <FormRoadmap mode="add" />
+   </DialogComponent>
+   <DialogComponent
+    width={800}
+    dialogOpen={modalOpenBisnis}
+    dialogClose={handleModalClose}
+    title="Project Roadmap Berbasis Bisnis"
     dialogFooter={
      <DialogActions sx={{ p: 2, px: 3 }}>
       <Button variant="outlined" onClick={handleModalClose}>

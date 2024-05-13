@@ -349,7 +349,11 @@ export default function ContentPage({
     {withCard ? (
      <Paper
       elevation={2}
-      sx={{ borderRadius: "1.25rem", p: noPadding ? 0 : "1.5rem", m: 1 }}
+      sx={{
+       borderRadius: "1.25rem",
+       p: noPadding ? 0 : "1.5rem",
+       m: 1,
+      }}
      >
       {children}
      </Paper>
