@@ -293,18 +293,24 @@ export default function ContentPage({
      {chooseKonteks && (
       <FormControl size="small">
        <SelectCustomTheme
+        rounded
         small
         anchorRight
         value={konteks}
         onChange={handleChangeKonteks}
        >
         <MenuItem value="" disabled>
-         <Typography fontSize={14} fontStyle="italic">
+         <Typography
+          fontSize={14}
+          fontStyle="italic"
+          color={grey[600]}
+          fontWeight={600}
+         >
           Pilih Konteks Strategis
          </Typography>
         </MenuItem>
         <MenuItem value="1" defaultChecked>
-         {konteksLabel.length >= 40 ? (
+         {konteksLabel.length >= 30 ? (
           <Tooltip title={konteksLabel} followCursor TransitionComponent={Grow}>
            <Typography
             aria-owns={open ? "mouse-over-popover" : undefined}
@@ -313,7 +319,7 @@ export default function ContentPage({
             onMouseLeave={handlePopoverClose}
             sx={{ fontSize: 14 }}
            >
-            {konteksLabel.substring(0, 40) + "..."}
+            {konteksLabel.substring(0, 30) + "..."}
            </Typography>
           </Tooltip>
          ) : (

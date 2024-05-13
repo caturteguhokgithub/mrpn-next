@@ -32,7 +32,12 @@ export default function FormTable({ mode }: { mode?: string }) {
      <FormControl fullWidth>
       <Typography>Konteks</Typography>
       {mode === "add" ? (
-       <SelectCustomTheme small value={konteks} onChange={handleChangeKonteks}>
+       <SelectCustomTheme
+        defaultStyle
+        small
+        value={konteks}
+        onChange={handleChangeKonteks}
+       >
         <MenuItem value="" disabled>
          <Typography fontSize={14} fontStyle="italic">
           Pilih Konteks Strategis
