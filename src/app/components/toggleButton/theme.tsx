@@ -9,12 +9,14 @@ export default function ThemeToggleButton({
  code,
  variant,
  disabled,
+ onClick,
 }: {
- value: string;
+ value?: string | any;
  label: string;
  code?: string;
  variant?: string;
  disabled?: boolean;
+ onClick?: () => void;
 }) {
  const conditionColor =
   variant === "danger"
@@ -27,6 +29,7 @@ export default function ThemeToggleButton({
 
  return (
   <ToggleButton
+   onClick={onClick}
    disabled={disabled}
    value={value}
    aria-label={label}

@@ -60,7 +60,14 @@ export default function PageTema({}) {
  const dialogActionFooter = (
   <DialogActions sx={{ p: 2, px: 3 }}>
    <Button onClick={handleModalClose}>Batal</Button>
-   <Button variant="contained" type="submit">
+   <Button
+    variant="contained"
+    type="submit"
+    href="/executive-summary"
+    sx={{
+     color: "white !important",
+    }}
+   >
     Simpan
    </Button>
   </DialogActions>
@@ -171,11 +178,13 @@ export default function PageTema({}) {
           // code="01.01.02"
           value="penurunan-stunting"
           label="Penurunan Stunting"
+          onClick={handleModalOpenCollapse}
          />
          <ThemeToggleButton
           //  code="01.01.03"
           value="penurunan-kemiskinan"
           label="Penurunan Kemiskinan"
+          onClick={handleModalOpenCollapse}
          />
          <ThemeToggleButton
           //  code="01.01.04"
@@ -281,7 +290,7 @@ export default function PageTema({}) {
          disabled
         />
        </ToggleButtonGroup> */}
-       <Collapse in={activeTab === "penurunan-stunting"}>
+       {/* <Collapse in={activeTab === "penurunan-stunting"}>
         <SearchKP
          activeTab="penurunan-stunting"
          listData={listData}
@@ -300,7 +309,7 @@ export default function PageTema({}) {
         >
          Simpan
         </Button>
-       </Collapse>
+       </Collapse> 
        <Collapse in={activeTab === "penurunan-kemiskinan"}>
         <SearchKP
          activeTab="penurunan-kemiskinan"
@@ -320,43 +329,7 @@ export default function PageTema({}) {
         >
          Simpan
         </Button>
-       </Collapse>
-       <Collapse in={activeTab === "percepatan-transisi-energi"}>
-        {/* <SearchKP activeTab="percepatan-transisi-energi" /> */}
-        <Button
-         variant="contained"
-         sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
-        >
-         Simpan
-        </Button>
-       </Collapse>
-       <Collapse in={activeTab === "peningkatan-pariwisata"}>
-        {/* <SearchKP activeTab="peningkatan-pariwisata" /> */}
-        <Button
-         variant="contained"
-         sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
-        >
-         Simpan
-        </Button>
-       </Collapse>
-       <Collapse in={activeTab === "ketahanan-pangan"}>
-        {/* <SearchKP activeTab="ketahanan-pangan" /> */}
-        <Button
-         variant="contained"
-         sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
-        >
-         Simpan
-        </Button>
-       </Collapse>
-       <Collapse in={activeTab === "sistem-persampahan"}>
-        {/* <SearchKP activeTab="sistem-persampahan" /> */}
-        <Button
-         variant="contained"
-         sx={{ minWidth: 160, mt: 2, borderRadius: 50 }}
-        >
-         Simpan
-        </Button>
-       </Collapse>
+       </Collapse> */}
       </>
      )}
     </ContentPage>
@@ -369,6 +342,20 @@ export default function PageTema({}) {
     dialogFooter={dialogActionFooter}
    >
     <FormTable />
+   </DialogComponent>
+   <DialogComponent
+    noDivider={true}
+    width={1000}
+    dialogOpen={modalOpenCollapse}
+    dialogClose={handleModalClose}
+    dialogFooter={dialogActionFooter}
+   >
+    <SearchKP
+     activeTab={activeTab}
+     listData={listData}
+     handleSearchTermUpdate={handleSearchTermUpdate}
+     searchTerm={searchTab}
+    />
    </DialogComponent>
   </>
  );

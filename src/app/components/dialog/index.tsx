@@ -12,7 +12,7 @@ export default function DialogComponent({
  headerAction,
  noDivider,
 }: {
- title?: string;
+ title?: React.ReactNode;
  dialogOpen: boolean;
  dialogClose?: () => void;
  children?: React.ReactNode;
