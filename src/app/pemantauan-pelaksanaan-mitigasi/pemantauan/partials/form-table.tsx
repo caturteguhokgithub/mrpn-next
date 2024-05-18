@@ -3,28 +3,143 @@ import {
  Chip,
  Divider,
  FormControl,
- FormControlLabel,
- FormLabel,
  Grid,
- Radio,
- RadioGroup,
+ Grow,
+ MenuItem,
+ SelectChangeEvent,
  TextField,
+ Tooltip,
  Typography,
 } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import TextareaComponent from "@/app/components/textarea";
+import SelectCustomTheme from "@/app/components/select";
+import { listPeristiwaRisiko } from "@/app/profil-risiko/perlakuan-risiko/setting";
+import { grey } from "@mui/material/colors";
 
 export default function FormTable({ mode }: { mode?: string }) {
+ const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+ const [prDropdown, setPrDropdown] = React.useState("");
+
+ const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
+  setAnchorEl(event.currentTarget);
+ };
+ const handlePopoverClose = () => {
+  setAnchorEl(null);
+ };
+
+ const handleChangePr = (event: SelectChangeEvent) => {
+  setPrDropdown(event.target.value);
+ };
+
+ const open = Boolean(anchorEl);
+
  return (
   <>
    <Grid container spacing={2}>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography>Peristiwa Risiko</Typography>
+      <Typography gutterBottom>Peristiwa Risiko</Typography>
+
+      {mode === "add" ? (
+       <SelectCustomTheme
+        defaultStyle
+        small
+        anchorRight
+        value={prDropdown}
+        onChange={handleChangePr}
+       >
+        <MenuItem value="" disabled>
+         <Typography
+          fontSize={14}
+          fontStyle="italic"
+          color={grey[600]}
+          fontWeight={600}
+         >
+          Pilih peristiwa risiko
+         </Typography>
+        </MenuItem>
+        {listPeristiwaRisiko.map((prLabel) => (
+         <MenuItem key={prLabel.id} value={prLabel.value}>
+          {prLabel.label.length >= 35 ? (
+           <Tooltip
+            title={prLabel.label}
+            followCursor
+            TransitionComponent={Grow}
+           >
+            <Typography
+             aria-owns={open ? "mouse-over-popover" : undefined}
+             aria-haspopup="true"
+             onMouseEnter={handlePopoverOpen}
+             onMouseLeave={handlePopoverClose}
+             sx={{ fontSize: 14 }}
+            >
+             {prLabel.label.substring(0, 35) + "..."}
+            </Typography>
+           </Tooltip>
+          ) : (
+           prLabel.label
+          )}
+         </MenuItem>
+        ))}
+       </SelectCustomTheme>
+      ) : mode === "edit" ? (
+       <SelectCustomTheme
+        rounded
+        small
+        anchorRight
+        value={prDropdown}
+        onChange={handleChangePr}
+       >
+        <MenuItem value="" disabled>
+         <Typography
+          fontSize={14}
+          fontStyle="italic"
+          color={grey[600]}
+          fontWeight={600}
+         >
+          Pilih peristiwa risiko
+         </Typography>
+        </MenuItem>
+        {listPeristiwaRisiko.map((prLabel) => (
+         <MenuItem key={prLabel.id} value={prLabel.value}>
+          {prLabel.label.length >= 35 ? (
+           <Tooltip
+            title={prLabel.label}
+            followCursor
+            TransitionComponent={Grow}
+           >
+            <Typography
+             aria-owns={open ? "mouse-over-popover" : undefined}
+             aria-haspopup="true"
+             onMouseEnter={handlePopoverOpen}
+             onMouseLeave={handlePopoverClose}
+             sx={{ fontSize: 14 }}
+            >
+             {prLabel.label.substring(0, 35) + "..."}
+            </Typography>
+           </Tooltip>
+          ) : (
+           prLabel.label
+          )}
+         </MenuItem>
+        ))}
+       </SelectCustomTheme>
+      ) : (
+       <Typography fontWeight={600}>-</Typography>
+      )}
+     </FormControl>
+    </Grid>
+    <Grid item lg={6}>
+     <FormControl fullWidth>
+      <Typography gutterBottom>Pemilik Risiko (PJ Sasaran)</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
         size="small"
-        placeholder="Peristiwa Risiko"
+        placeholder="Pemilik Risiko (PJ Sasaran)"
         InputLabelProps={{
          shrink: true,
         }}
@@ -45,7 +160,33 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography>Kategori Risiko</Typography>
+      <Typography gutterBottom>Kode Risiko</Typography>
+      {mode === "add" ? (
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Kode Risiko"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      ) : mode === "edit" ? (
+       <TextField
+        variant="outlined"
+        size="small"
+        value="-"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      ) : (
+       <Typography fontWeight={600}>-</Typography>
+      )}
+     </FormControl>
+    </Grid>
+    <Grid item lg={6}>
+     <FormControl fullWidth>
+      <Typography gutterBottom>Kategori Risiko</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
@@ -71,12 +212,12 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={12}>
      <Divider>
-      <Chip label="Nilai Target Risiko Sebelum Perlakuan" size="small" />
+      <Chip label="Nilai Risiko Sebelum Perlakuan Risiko" size="small" />
      </Divider>
     </Grid>
     <Grid item lg={4}>
      <FormControl fullWidth>
-      <Typography>Kemungkinan</Typography>
+      <Typography gutterBottom>Kemungkinan</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
@@ -102,7 +243,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={4}>
      <FormControl fullWidth>
-      <Typography>Dampak</Typography>
+      <Typography gutterBottom>Dampak</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
@@ -128,7 +269,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={4}>
      <FormControl fullWidth>
-      <Typography>Tingkat Risiko</Typography>
+      <Typography gutterBottom>Tingkat Risiko</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
@@ -154,12 +295,36 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={12}>
      <Divider>
+      <Chip label="Perlakuan Risiko" size="small" />
+     </Divider>
+    </Grid>
+    <Grid item lg={12}>
+     <FormControl fullWidth>
+      <Typography gutterBottom>Realisasi Tindakan Perlakuan Risiko</Typography>
+      {mode === "add" ? (
+       <TextareaComponent
+        label="Keterangan"
+        placeholder="Realisasi Tindakan Perlakuan Risiko"
+       />
+      ) : mode === "edit" ? (
+       <TextareaComponent
+        label="Keterangan"
+        placeholder="Keterangan"
+        value="-"
+       />
+      ) : (
+       <Typography fontWeight={600}>-</Typography>
+      )}
+     </FormControl>
+    </Grid>
+    {/* <Grid item lg={12}>
+     <Divider>
       <Chip label="Nilai Target Risiko Setelah Perlakuan" size="small" />
      </Divider>
     </Grid>
     <Grid item lg={4}>
      <FormControl fullWidth>
-      <Typography>Kemungkinan</Typography>
+      <Typography gutterBottom>Kemungkinan</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
@@ -185,7 +350,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={4}>
      <FormControl fullWidth>
-      <Typography>Dampak</Typography>
+      <Typography gutterBottom>Dampak</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
@@ -211,7 +376,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={4}>
      <FormControl fullWidth>
-      <Typography>Tingkat Risiko</Typography>
+      <Typography gutterBottom>Tingkat Risiko</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
@@ -234,13 +399,13 @@ export default function FormTable({ mode }: { mode?: string }) {
        <Typography fontWeight={600}>-</Typography>
       )}
      </FormControl>
-    </Grid>
-    <Grid item lg={12}>
+    </Grid> */}
+    {/* <Grid item lg={12}>
      <Divider />
     </Grid>
     <Grid item lg={12}>
      <FormControl fullWidth>
-      <Typography>Perlakuan Risiko</Typography>
+      <Typography gutterBottom>Perlakuan Risiko</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
@@ -263,33 +428,37 @@ export default function FormTable({ mode }: { mode?: string }) {
        <Typography fontWeight={600}>-</Typography>
       )}
      </FormControl>
-    </Grid>
+    </Grid> */}
     <Grid item lg={12}>
      <Divider>
-      <Chip label="Waktu Rencana dan Realisasi Mitigasi" size="small" />
+      <Chip label="Waktu Rencana dan Realisasi Perlakuan Risiko" size="small" />
      </Divider>
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography>Tanggal Rencana</Typography>
+      <Typography gutterBottom>Tanggal Rencana</Typography>
       {mode === "add" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Tanggal Rencana"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+       <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DatePicker
+         sx={{
+          ".MuiInputBase-root": {
+           height: 40,
+          },
+         }}
+         format="D MMM YYYY"
+        />
+       </LocalizationProvider>
       ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+       <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DatePicker
+         sx={{
+          ".MuiInputBase-root": {
+           height: 40,
+          },
+         }}
+         format="D MMM YYYY"
+        />
+       </LocalizationProvider>
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}
@@ -297,25 +466,29 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography>Tanggal Realisasi</Typography>
+      <Typography gutterBottom>Tanggal Realisasi</Typography>
       {mode === "add" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Tanggal Realisasi"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+       <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DatePicker
+         sx={{
+          ".MuiInputBase-root": {
+           height: 40,
+          },
+         }}
+         format="D MMM YYYY"
+        />
+       </LocalizationProvider>
       ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+       <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DatePicker
+         sx={{
+          ".MuiInputBase-root": {
+           height: 40,
+          },
+         }}
+         format="D MMM YYYY"
+        />
+       </LocalizationProvider>
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}
@@ -323,15 +496,12 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={12}>
      <Divider>
-      <Chip
-       label="Nilai Penurunan Target Risiko Setelah Mitigasi"
-       size="small"
-      />
+      <Chip label="Nilai Risiko Setelah Perlakuan Risiko" size="small" />
      </Divider>
     </Grid>
     <Grid item lg={4}>
      <FormControl fullWidth>
-      <Typography>Kemungkinan</Typography>
+      <Typography gutterBottom>Kemungkinan</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
@@ -357,7 +527,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={4}>
      <FormControl fullWidth>
-      <Typography>Dampak</Typography>
+      <Typography gutterBottom>Dampak</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
@@ -383,7 +553,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={4}>
      <FormControl fullWidth>
-      <Typography>Tingkat Risiko</Typography>
+      <Typography gutterBottom>Tingkat Risiko</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
@@ -412,24 +582,21 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={12}>
      <FormControl fullWidth>
-      <Typography>Keterangan Perlakuan Risiko</Typography>
+      <Typography gutterBottom>
+       Rencana Perlakuan Risiko yang akan Dilaksanakan pada Periode yang akan
+       Datang
+      </Typography>
       {mode === "add" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Keterangan Perlakuan Risiko"
-        InputLabelProps={{
-         shrink: true,
-        }}
+       <TextareaComponent
+        label="Keterangan"
+        placeholder="Rencana Perlakuan Risiko yang akan Dilaksanakan pada Periode yang akan
+        Datang"
        />
       ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
+       <TextareaComponent
+        label="Keterangan"
+        placeholder="Keterangan"
         value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
        />
       ) : (
        <Typography fontWeight={600}>-</Typography>

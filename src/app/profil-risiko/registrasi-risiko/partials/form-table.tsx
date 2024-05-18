@@ -28,9 +28,9 @@ export default function FormTable({ mode }: { mode?: string }) {
  return (
   <>
    <Grid container spacing={2}>
-    <Grid item lg={6}>
+    {/* <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography>Konteks</Typography>
+      <Typography gutterBottom>Konteks</Typography>
       {mode === "add" ? (
        <SelectCustomTheme
         defaultStyle
@@ -40,7 +40,7 @@ export default function FormTable({ mode }: { mode?: string }) {
        >
         <MenuItem value="" disabled>
          <Typography fontSize={14} fontStyle="italic">
-          Pilih Konteks Strategis
+          Pilih konteks strategis
          </Typography>
         </MenuItem>
         <MenuItem value="1" defaultChecked>
@@ -51,7 +51,7 @@ export default function FormTable({ mode }: { mode?: string }) {
        <SelectCustomTheme small value={konteks} onChange={handleChangeKonteks}>
         <MenuItem value="" disabled>
          <Typography fontSize={14} fontStyle="italic">
-          Pilih Konteks Strategis
+          Pilih konteks strategis
          </Typography>
         </MenuItem>
         <MenuItem value="1" defaultChecked>
@@ -62,10 +62,10 @@ export default function FormTable({ mode }: { mode?: string }) {
        <Typography fontWeight={600}>-</Typography>
       )}
      </FormControl>
-    </Grid>
-    <Grid item lg={6}>
+    </Grid> */}
+    <Grid item lg={12}>
      <FormControl fullWidth>
-      <Typography>Sasaran</Typography>
+      <Typography gutterBottom>Sasaran</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
@@ -96,7 +96,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={12}>
      <FormControl fullWidth>
-      <Typography>Uraian</Typography>
+      <Typography gutterBottom>Uraian</Typography>
       {mode === "add" ? (
        <TextareaComponent label="Uraian" placeholder="Uraian" />
       ) : mode === "edit" ? (
@@ -108,7 +108,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography>Target</Typography>
+      <Typography gutterBottom>Target</Typography>
       {mode === "add" ? (
        <Stack direction="row" gap={1}>
         <TextField
@@ -154,7 +154,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography>Fisik</Typography>
+      <Typography gutterBottom>Fisik</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
@@ -183,7 +183,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography>Kategori Risiko MRPN Linsek</Typography>
+      <Typography gutterBottom>Kategori Risiko MRPN Linsek</Typography>
       {mode === "add" ? (
        <SelectCustomTheme
         small
@@ -197,10 +197,12 @@ export default function FormTable({ mode }: { mode?: string }) {
          </Typography>
         </MenuItem>
         <MenuItem value="1" defaultChecked>
-         -
+         Risiko Lingkungan
         </MenuItem>
-        <MenuItem value="2">-</MenuItem>
-        <MenuItem value="3">-</MenuItem>
+        <MenuItem value="2">Risiko Sosial</MenuItem>
+        <MenuItem value="3">Risiko Geopolitik</MenuItem>
+        <MenuItem value="4">Risiko Ekonomi</MenuItem>
+        <MenuItem value="5">Risiko Teknologi</MenuItem>
        </SelectCustomTheme>
       ) : mode === "edit" ? (
        <SelectCustomTheme
@@ -227,7 +229,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography>Pemilik Risiko MRPN Linsek</Typography>
+      <Typography gutterBottom>Pemilik Risiko MRPN Linsek</Typography>
       {mode === "add" ? (
        <TextField
         variant="outlined"
@@ -253,7 +255,9 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={12}>
      <FormControl fullWidth>
-      <Typography>Peristiwa Risiko Strategis MRPN Linsek</Typography>
+      <Typography gutterBottom>
+       Peristiwa Risiko Strategis MRPN Linsek
+      </Typography>
       {mode === "add" ? (
        <TextareaComponent
         label="Peristiwa Risiko Strategis MRPN Linsek"
@@ -272,7 +276,9 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={12}>
      <FormControl fullWidth>
-      <Typography>Penyebab/Faktor Risiko Strategis MRPN Linsek</Typography>
+      <Typography gutterBottom>
+       Penyebab/Faktor Risiko Strategis MRPN Linsek
+      </Typography>
       {mode === "add" ? (
        <TextareaComponent
         label="Penyebab/Faktor Risiko Strategis MRPN Linsek"
@@ -291,7 +297,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={12}>
      <FormControl fullWidth>
-      <Typography>Dampak Strategis MRPN Linsek</Typography>
+      <Typography gutterBottom>Dampak Strategis MRPN Linsek</Typography>
       {mode === "add" ? (
        <TextareaComponent
         label="Dampak Strategis MRPN Linsek"

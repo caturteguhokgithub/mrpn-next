@@ -73,6 +73,21 @@ export default function PageTema({}) {
   </DialogActions>
  );
 
+ const dialogActionFooterAdd = (
+  <DialogActions sx={{ p: 2, px: 3 }}>
+   <Button onClick={handleModalClose}>Batal</Button>
+   <Button
+    variant="contained"
+    onClick={handleModalClose}
+    sx={{
+     color: "white !important",
+    }}
+   >
+    Simpan
+   </Button>
+  </DialogActions>
+ );
+
  const isEmpty = false;
 
  const pathname = usePathname();
@@ -339,7 +354,7 @@ export default function PageTema({}) {
     dialogOpen={modalOpenAdd}
     dialogClose={handleModalClose}
     title="Tambah Tema"
-    dialogFooter={dialogActionFooter}
+    dialogFooter={dialogActionFooterAdd}
    >
     <FormTable />
    </DialogComponent>

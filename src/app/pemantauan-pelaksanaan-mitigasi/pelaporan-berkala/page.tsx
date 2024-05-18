@@ -9,7 +9,7 @@ import { IconEmptyPage } from "@/app/components/icons";
 export default function PagePelaporanBerkala({}) {
  return (
   <DashboardLayout>
-   <ContentPage title="Pelaporan Berkala" withCard>
+   <ContentPage title="Pelaporan Berkala" withCard chooseRo triWulan>
     <EmptyState
      icon={<IconEmptyPage />}
      title="Halaman Pelaporan Berkala Kosong"

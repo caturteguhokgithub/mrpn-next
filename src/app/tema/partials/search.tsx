@@ -3,17 +3,20 @@ import SearchField from "./search-bar";
 import { Box, Divider, FormGroup, Stack, Typography } from "@mui/material";
 import { grey, yellow } from "@mui/material/colors";
 import SearchResult from "./search-result";
+import TreeView from "./tree-view";
 
 export default function SearchKP({
  activeTab,
  listData,
  searchTerm,
  handleSearchTermUpdate,
+ addTheme,
 }: {
  activeTab: string;
  listData: any[];
  searchTerm: string;
  handleSearchTermUpdate: any;
+ addTheme?: boolean;
 }) {
  //  const [searchTerm, setSearchTerm] = useState("");
 
@@ -38,16 +41,13 @@ export default function SearchKP({
  const filterRegex = new RegExp(filterRegexString, "igm");
 
  const highlightedPosts = listData.map((post) => {
-  const bodyHighlighted = post.nama_kp.replace(replaceRegex, function (a: any) {
+  const bodyHighlighted = post.nama.replace(replaceRegex, function (a: any) {
    return `<span style="background-color:rgb(255, 203, 127); font-weight: 500;">${a}</span>`;
   });
 
-  const titleHighlighted = post.kode_kp.replace(
-   replaceRegex,
-   function (a: any) {
-    return `<span style="background-color:rgb(255, 203, 127); font-weight: 500;">${a}</span>`;
-   }
-  );
+  const titleHighlighted = post.kode.replace(replaceRegex, function (a: any) {
+   return `<span style="background-color:rgb(255, 203, 127); font-weight: 500;">${a}</span>`;
+  });
 
   return {
    id: post.id,
@@ -67,7 +67,7 @@ export default function SearchKP({
    >
     {/* <Typography color={grey[600]} fontSize={14} fontStyle="italic"></Typography> */}
     <Typography>
-     Pilih KP/AP/PP dari tema{" "}
+     {addTheme ? "Pilih AP" : "Pilih KP/AP/PP dari tema"}{" "}
      <Typography fontWeight={600} fontSize={14} component="span">
       {activeTab === "penurunan-stunting"
        ? "Penurunan Stunting"
@@ -79,7 +79,9 @@ export default function SearchKP({
        ? "Peningkatan Pariwisata"
        : activeTab === "ketahanan-pangan"
        ? "Ketahanan Pangan"
-       : "Sistem Persampahan"}
+       : activeTab === "sistem-persampahan"
+       ? "Sistem Persampahan"
+       : ""}
      </Typography>
     </Typography>
     <SearchField handleSearchTermUpdate={handleSearchTermUpdate} />
@@ -95,11 +97,12 @@ export default function SearchKP({
      },
     }}
    >
-    <FormGroup>
+    {/* <FormGroup>
      {highlightedPosts.map((post) => {
       return <SearchResult key={post.id} {...post} />;
      })}
-    </FormGroup>
+    </FormGroup> */}
+    <TreeView />
    </Box>
   </>
  );
