@@ -18,6 +18,8 @@ import { useDragScroll } from "@/app/utils/useDragScroll";
 import { dataTema } from "../../dataTema";
 import FormStakeholder from "./form-stakeholder";
 import theme from "@/theme";
+import SearchStakeholder from "./searchStakeholder/search";
+import useThemes from "@/app/tema/hooks/useTheme";
 
 export default function CardStakeholder({ project }: { project: string }) {
  const [modalOpenStakeholder, setModalOpenStakeholder] = React.useState(false);
@@ -32,6 +34,15 @@ export default function CardStakeholder({ project }: { project: string }) {
  const isEmpty = false;
  const refDrag = useRef([]);
  const [ref] = useDragScroll();
+
+ const {
+  activeTab,
+  listKp,
+  handleAlignment,
+  listData,
+  handleSearchTermUpdate,
+  searchTab,
+ } = useThemes();
 
  return (
   <CardItem
@@ -92,6 +103,12 @@ export default function CardStakeholder({ project }: { project: string }) {
              },
             }}
            >
+            {/* <SearchStakeholder
+             activeTab={activeTab}
+             listData={listData}
+             handleSearchTermUpdate={handleSearchTermUpdate}
+             searchTerm={searchTab}
+            /> */}
             {detailStakeholder.instance.map((itemSh, index) => (
              <>
               <Tooltip
@@ -130,7 +147,6 @@ export default function CardStakeholder({ project }: { project: string }) {
      ))}
     </Stack>
    )}
-
    <DialogComponent
     dialogOpen={modalOpenStakeholder}
     dialogClose={handleModalClose}

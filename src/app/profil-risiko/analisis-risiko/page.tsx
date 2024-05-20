@@ -74,6 +74,7 @@ export default function PageAnalisisRisiko({}) {
     noPadding
     // chooseProject
     // chooseKonteks
+    chooseKonteks
     chooseRo
     project={project}
     handleChangeProject={handleChangeProject}

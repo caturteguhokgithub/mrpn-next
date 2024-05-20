@@ -1,6 +1,7 @@
 import React from "react";
 import {
  Autocomplete,
+ Collapse,
  FormControl,
  Grid,
  MenuItem,
@@ -18,12 +19,18 @@ import {
 } from "@/app/components/dropdownKp";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyPage } from "@/app/components/icons";
+import { grey } from "@mui/material/colors";
+
 export default function FormProfilRo({ mode }: { mode?: string }) {
  const [project, setProject] = React.useState("");
  const [pkkrCode, setPkkrCode] = React.useState("");
+ const [klCode, setKlCode] = React.useState("");
+ const [collapsePkkr, setCollapsePkkr] = React.useState(false);
 
  const [valuePkkr, setValuePkkr] = React.useState<string | null>("");
  const [inputValue, setInputValue] = React.useState("");
+ const [valueKl, setValueKl] = React.useState<string | null>("");
+ const [inputValueKl, setInputValueKl] = React.useState("");
 
  const handleChangeProject = (event: SelectChangeEvent) => {
   setProject(event.target.value);
@@ -31,30 +38,45 @@ export default function FormProfilRo({ mode }: { mode?: string }) {
 
  const handleChangePkkr = (value: any) => {
   setPkkrCode(value);
+  setCollapsePkkr(!collapsePkkr);
  };
+
+ const handleChangeKl = (value: any) => {
+  setKlCode(value);
+ };
+
+ console.log({ collapsePkkr });
 
  const listKodeKl = [
   {
    id: "1",
+   value: "1",
    code: "KL-001.001",
-   name: "KL Name 1",
+   name: "Kementerian Kesehatan",
   },
   {
    id: "2",
+   value: "2",
    code: "KL-001.002",
-   name: "KL Name 2",
+   name: "Kementerian Pertanian",
   },
   {
    id: "3",
+   value: "3",
    code: "KL-002.001",
-   name: "KL Name 3",
+   name: "Kementerian PUPR",
   },
   {
    id: "4",
+   value: "4",
    code: "KL-002.002",
-   name: "KL Name 4",
+   name: "Kementerian Perindustrian",
   },
  ];
+
+ const optionsListKl = listKodeKl.map((item) => {
+  return item["code"];
+ });
 
  const listKodePKKR = [
   {
@@ -87,19 +109,17 @@ export default function FormProfilRo({ mode }: { mode?: string }) {
   return item["name"];
  });
 
- console.log({ inputValue });
-
  return (
   <>
    <Grid container spacing={2}>
     <Grid item lg={4}>
      <FormControl fullWidth>
       <Typography gutterBottom>Kode KL</Typography>
-      {mode === "add" ? (
+      {mode === "add" || mode === "edit" ? (
        <Autocomplete
         size="small"
-        options={listKodeKl}
-        getOptionLabel={(option) => option.code}
+        options={optionsListKl}
+        // getOptionLabel={(option) => option.code}
         renderInput={(params) => (
          <TextField
           {...params}
@@ -110,28 +130,22 @@ export default function FormProfilRo({ mode }: { mode?: string }) {
           sx={SxAutocompleteTextField}
          />
         )}
-        sx={{
-         ...SxAutocomplete,
-         ".MuiInputBase-root": {
-          borderRadius: 1,
-         },
+        //
+        value={valueKl}
+        onChange={(event: any, newValue: string | null) => {
+         setValueKl(newValue);
         }}
-       />
-      ) : mode === "edit" ? (
-       <Autocomplete
-        size="small"
-        options={listKodeKl}
-        getOptionLabel={(option) => option.code}
-        renderInput={(params) => (
-         <TextField
-          {...params}
-          InputLabelProps={{
-           shrink: true,
-          }}
-          placeholder="Pilih kode KL"
-          sx={SxAutocompleteTextField}
-         />
-        )}
+        inputValue={inputValueKl}
+        onInputChange={(event, newInputValue) => {
+         setInputValueKl(newInputValue);
+
+         const optionVal = listKodeKl.find((res: any) => {
+          return res.code === newInputValue;
+         });
+
+         handleChangeKl(optionVal?.value || "");
+        }}
+        //
         sx={{
          ...SxAutocomplete,
          ".MuiInputBase-root": {
@@ -147,42 +161,26 @@ export default function FormProfilRo({ mode }: { mode?: string }) {
     <Grid item lg={4}>
      <FormControl fullWidth>
       <Typography gutterBottom>KL</Typography>
-      {mode === "add" ? (
-       <SelectCustomTheme
-        defaultStyle
-        small
-        value={project}
-        onChange={handleChangeProject}
-       >
-        <MenuItem value="" disabled>
-         <Typography fontSize={14} fontStyle="italic">
-          Pilih KL
-         </Typography>
-        </MenuItem>
-        <MenuItem value="1" defaultChecked>
-         Kemenenterian Kesehatan
-        </MenuItem>
-        <MenuItem value="2">Kementerian PUPR</MenuItem>
-        <MenuItem value="3">Kementerian Pertanian</MenuItem>
-       </SelectCustomTheme>
-      ) : mode === "edit" ? (
-       <SelectCustomTheme
-        defaultStyle
-        small
-        value={project}
-        onChange={handleChangeProject}
-       >
-        <MenuItem value="" disabled>
-         <Typography fontSize={14} fontStyle="italic">
-          Pilih KL
-         </Typography>
-        </MenuItem>
-        <MenuItem value="1" defaultChecked>
-         Kemenenterian Kesehatan
-        </MenuItem>
-        <MenuItem value="2">Kementerian PUPR</MenuItem>
-        <MenuItem value="3">Kementerian Pertanian</MenuItem>
-       </SelectCustomTheme>
+      {mode === "add" || mode === "edit" ? (
+       <TextField
+        size="small"
+        disabled
+        InputLabelProps={{
+         shrink: true,
+        }}
+        sx={{ input: { WebkitTextFillColor: `${grey[600]} !important` } }}
+        value={
+         klCode === "1"
+          ? listKodeKl[0].name
+          : klCode === "2"
+          ? listKodeKl[1].name
+          : klCode === "3"
+          ? listKodeKl[2].name
+          : klCode === "4"
+          ? listKodeKl[3].name
+          : "-"
+        }
+       />
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}
@@ -245,7 +243,6 @@ export default function FormProfilRo({ mode }: { mode?: string }) {
      </Grid>
     ) : (
      <>
-      {" "}
       <Grid item lg={12}>
        <FormControl fullWidth>
         <Typography gutterBottom>Rincian Output (RO)</Typography>

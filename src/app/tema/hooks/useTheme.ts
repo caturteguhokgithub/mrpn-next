@@ -67,7 +67,7 @@ export function useThemes() {
   return {
    listDataAp,
   };
- }, [listKp, activeTab, searchTab]);
+ }, [listAp, activeTab, searchTab]);
 
  return {
   activeTab,

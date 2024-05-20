@@ -24,9 +24,11 @@ import DialogComponent from "@/app/components/dialog";
 const LabelRadio = ({
  heading,
  description,
+ value,
 }: {
  heading: string;
  description: any;
+ value: string;
 }) => {
  return (
   <Stack direction="column" justifyContent="flex-start">
@@ -36,7 +38,7 @@ const LabelRadio = ({
     fontWeight={600}
     textTransform="none"
    >
-    {heading}
+    {heading} (Nilai: {value})
    </Typography>
    <Typography
     component="p"
@@ -151,24 +153,28 @@ export default function PageSeleraRisiko({}) {
        variant="danger"
        code="Nilai"
        value="1"
+       valueLabel="1-2"
        label="Tidak memberikan toleransi"
       />
       <CustomToggleButton
        variant="warning"
        code="Nilai"
        value="2"
+       valueLabel="3-4"
        label="Konservatif"
       />
       <CustomToggleButton
        variant="success"
        code="Nilai"
        value="3"
+       valueLabel="5-6"
        label="Moderat"
       />
       <CustomToggleButton
        variant="primary"
        code="Nilai"
        value="4"
+       valueLabel="7-9"
        label="Agresif"
       />
      </ToggleButtonGroup>
@@ -176,6 +182,7 @@ export default function PageSeleraRisiko({}) {
       <Box mt={2}>
        <LabelRadio
         heading="Tidak memberikan toleransi"
+        value="1-2"
         description={
          <Stack gap={1}>
           <Box component="p" maxWidth={800}>
@@ -203,6 +210,7 @@ export default function PageSeleraRisiko({}) {
       <Box mt={2}>
        <LabelRadio
         heading="KONSERVATIF"
+        value="3-4"
         description={
          <Stack gap={1}>
           <Box component="p" maxWidth={800}>
@@ -236,6 +244,7 @@ export default function PageSeleraRisiko({}) {
       <Box mt={2}>
        <LabelRadio
         heading="MODERAT"
+        value="5-6"
         description={
          <Stack gap={1}>
           <Box component="p" maxWidth={800}>
@@ -268,6 +277,7 @@ export default function PageSeleraRisiko({}) {
       <Box mt={2}>
        <LabelRadio
         heading="AGRESIF"
+        value="7-9"
         description={
          <Stack gap={1}>
           <Box component="p" maxWidth={800}>

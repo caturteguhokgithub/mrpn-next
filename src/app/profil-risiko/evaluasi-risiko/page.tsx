@@ -176,6 +176,7 @@ export default function PageEvaluasiRisiko({}) {
      title="Evaluasi Risiko"
      // chooseProject
      // chooseKonteks
+     chooseKonteks
      chooseRo
      project={project}
      handleChangeProject={handleChangeProject}

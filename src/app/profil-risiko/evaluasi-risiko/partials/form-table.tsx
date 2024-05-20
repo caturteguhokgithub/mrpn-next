@@ -16,10 +16,11 @@ import {
 import moment from "moment";
 import { DateRange } from "react-date-range";
 import SelectCustomTheme from "@/app/components/select";
-import { grey } from "@mui/material/colors";
+import { green, grey, red, yellow } from "@mui/material/colors";
 import { IconFA } from "@/app/components/icons/icon-fa";
 import { listPeristiwaRisiko } from "../../perlakuan-risiko/setting";
 import { listAppetiteRisiko, listNilaiRisiko } from "../setting";
+import theme from "@/theme";
 
 export default function FormTable({ mode }: { mode?: string }) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -164,26 +165,32 @@ export default function FormTable({ mode }: { mode?: string }) {
       <Typography gutterBottom>Tingkat</Typography>
       {mode === "add" || mode === "edit" ? (
        <Stack height="40px" direction="row" alignItems="center">
-        {valueDropdown === "1" ? (
+        {valueDropdown === "1" || valueDropdown === "2" ? (
          <Chip
           variant="filled"
-          color="error"
           label={listNilaiRisiko[0].label}
-          sx={{ px: 1 }}
+          sx={{ px: 1, bgcolor: green[500], color: "white" }}
          />
-        ) : valueDropdown === "2" ? (
+        ) : valueDropdown === "3" ||
+          valueDropdown === "4" ||
+          valueDropdown === "5" ||
+          valueDropdown === "6" ? (
          <Chip
           variant="filled"
-          color="warning"
-          label={listNilaiRisiko[1].label}
-          sx={{ px: 1 }}
-         />
-        ) : valueDropdown === "3" ? (
-         <Chip
-          variant="filled"
-          color="primary"
           label={listNilaiRisiko[2].label}
-          sx={{ px: 1 }}
+          sx={{
+           px: 1,
+           bgcolor: yellow[500],
+           color: theme.palette.primary.dark,
+          }}
+         />
+        ) : valueDropdown === "7" ||
+          valueDropdown === "8" ||
+          valueDropdown === "9" ? (
+         <Chip
+          variant="filled"
+          label={listNilaiRisiko[6].label}
+          sx={{ px: 1, bgcolor: red[500], color: "white" }}
          />
         ) : (
          "-"
@@ -202,26 +209,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     <Grid item lg={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Nilai</Typography>
-      {mode === "add" ? (
-       <SelectCustomTheme
-        defaultStyle
-        small
-        anchorRight
-        value={appetitteDropdown}
-        onChange={handleChangeAppetitte}
-       >
-        <MenuItem value="" disabled>
-         <Typography fontSize={14} fontStyle="italic" color={grey[600]}>
-          Pilih nilai risk appetitte
-         </Typography>
-        </MenuItem>
-        {listAppetiteRisiko.map((prLabel) => (
-         <MenuItem key={prLabel.id} value={prLabel.value}>
-          {prLabel.value}
-         </MenuItem>
-        ))}
-       </SelectCustomTheme>
-      ) : mode === "edit" ? (
+      {mode === "add" || mode === "edit" ? (
        <SelectCustomTheme
         defaultStyle
         small
@@ -249,33 +237,31 @@ export default function FormTable({ mode }: { mode?: string }) {
      <FormControl fullWidth>
       <Typography gutterBottom>Keterangan</Typography>
       <Stack height="40px" direction="row" alignItems="center">
-       {appetitteDropdown === "1" ? (
+       {appetitteDropdown === "1" || appetitteDropdown === "2" ? (
         <Chip
          variant="filled"
-         color="error"
          label={listAppetiteRisiko[0].label}
-         sx={{ px: 1 }}
+         sx={{ px: 1, bgcolor: red[700], color: "white" }}
         />
-       ) : appetitteDropdown === "2" ? (
+       ) : appetitteDropdown === "3" || appetitteDropdown === "4" ? (
         <Chip
          variant="filled"
-         color="warning"
-         label={listAppetiteRisiko[1].label}
-         sx={{ px: 1 }}
-        />
-       ) : appetitteDropdown === "3" ? (
-        <Chip
-         variant="filled"
-         color="success"
          label={listAppetiteRisiko[2].label}
-         sx={{ px: 1 }}
+         sx={{ px: 1, bgcolor: yellow[800], color: "white" }}
         />
-       ) : appetitteDropdown === "4" ? (
+       ) : appetitteDropdown === "5" || appetitteDropdown === "6" ? (
         <Chip
          variant="filled"
-         color="primary"
-         label={listAppetiteRisiko[3].label}
-         sx={{ px: 1 }}
+         label={listAppetiteRisiko[4].label}
+         sx={{ px: 1, bgcolor: green[700], color: "white" }}
+        />
+       ) : appetitteDropdown === "7" ||
+         appetitteDropdown === "8" ||
+         appetitteDropdown === "9" ? (
+        <Chip
+         variant="filled"
+         label={listAppetiteRisiko[6].label}
+         sx={{ px: 1, bgcolor: theme.palette.primary.main, color: "white" }}
         />
        ) : (
         "-"
@@ -320,26 +306,32 @@ export default function FormTable({ mode }: { mode?: string }) {
       <Typography gutterBottom>Tingkat</Typography>
       {mode === "add" || mode === "edit" ? (
        <Stack height="40px" direction="row" alignItems="center">
-        {residualDropdown === "1" ? (
+        {residualDropdown === "1" || residualDropdown === "2" ? (
          <Chip
           variant="filled"
-          color="error"
           label={listNilaiRisiko[0].label}
-          sx={{ px: 1 }}
+          sx={{ px: 1, bgcolor: green[500], color: "white" }}
          />
-        ) : residualDropdown === "2" ? (
+        ) : residualDropdown === "3" ||
+          residualDropdown === "4" ||
+          residualDropdown === "5" ||
+          residualDropdown === "6" ? (
          <Chip
           variant="filled"
-          color="warning"
-          label={listNilaiRisiko[1].label}
-          sx={{ px: 1 }}
-         />
-        ) : residualDropdown === "3" ? (
-         <Chip
-          variant="filled"
-          color="primary"
           label={listNilaiRisiko[2].label}
-          sx={{ px: 1 }}
+          sx={{
+           px: 1,
+           bgcolor: yellow[500],
+           color: theme.palette.primary.dark,
+          }}
+         />
+        ) : residualDropdown === "7" ||
+          residualDropdown === "8" ||
+          residualDropdown === "9" ? (
+         <Chip
+          variant="filled"
+          label={listNilaiRisiko[6].label}
+          sx={{ px: 1, bgcolor: red[500], color: "white" }}
          />
         ) : (
          "-"

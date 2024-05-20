@@ -305,45 +305,6 @@ export default function ContentPage({
        </FormControl> */}
       </>
      )}
-     {chooseKonteks && (
-      <FormControl size="small">
-       <SelectCustomTheme
-        rounded
-        small
-        anchorRight
-        value={konteks}
-        onChange={handleChangeKonteks}
-       >
-        <MenuItem value="" disabled>
-         <Typography
-          fontSize={14}
-          fontStyle="italic"
-          color={grey[600]}
-          fontWeight={600}
-         >
-          Pilih konteks strategis
-         </Typography>
-        </MenuItem>
-        <MenuItem value="1" defaultChecked>
-         {konteksLabel.length >= 35 ? (
-          <Tooltip title={konteksLabel} followCursor TransitionComponent={Grow}>
-           <Typography
-            aria-owns={open ? "mouse-over-popover" : undefined}
-            aria-haspopup="true"
-            onMouseEnter={handlePopoverOpen}
-            onMouseLeave={handlePopoverClose}
-            sx={{ fontSize: 14 }}
-           >
-            {konteksLabel.substring(0, 35) + "..."}
-           </Typography>
-          </Tooltip>
-         ) : (
-          konteksLabel
-         )}
-        </MenuItem>
-       </SelectCustomTheme>
-      </FormControl>
-     )}
      {chooseRo && (
       <FormControl size="small">
        <SelectCustomTheme
@@ -444,6 +405,45 @@ export default function ContentPage({
         },
        }}
       />
+     )}
+     {chooseKonteks && (
+      <FormControl size="small">
+       <SelectCustomTheme
+        rounded
+        small
+        anchorRight
+        value={konteks}
+        onChange={handleChangeKonteks}
+       >
+        <MenuItem value="" disabled>
+         <Typography
+          fontSize={14}
+          fontStyle="italic"
+          color={grey[600]}
+          fontWeight={600}
+         >
+          Pilih konteks strategis
+         </Typography>
+        </MenuItem>
+        <MenuItem value="1" defaultChecked>
+         {konteksLabel.length >= 35 ? (
+          <Tooltip title={konteksLabel} followCursor TransitionComponent={Grow}>
+           <Typography
+            aria-owns={open ? "mouse-over-popover" : undefined}
+            aria-haspopup="true"
+            onMouseEnter={handlePopoverOpen}
+            onMouseLeave={handlePopoverClose}
+            sx={{ fontSize: 14 }}
+           >
+            {konteksLabel.substring(0, 35) + "..."}
+           </Typography>
+          </Tooltip>
+         ) : (
+          konteksLabel
+         )}
+        </MenuItem>
+       </SelectCustomTheme>
+      </FormControl>
      )}
      {triWulan && (
       <FormControl size="small">

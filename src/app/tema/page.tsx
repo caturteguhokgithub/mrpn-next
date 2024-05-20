@@ -9,19 +9,12 @@ import {
  ToggleButtonGroup,
  Typography,
  alpha,
- Collapse,
  Box,
- Divider,
- Checkbox,
- FormControlLabel,
- FormGroup,
  Button,
  DialogActions,
- Chip,
 } from "@mui/material";
 import theme from "@/theme";
-import { blue, grey, orange } from "@mui/material/colors";
-import CustomToggleButton from "@/components/toggleButton";
+import { grey } from "@mui/material/colors";
 import AddButton from "../components/buttonAdd";
 import DialogComponent from "../components/dialog";
 import FormTable from "./partials/form-table";
@@ -37,7 +30,6 @@ export default function PageTema({}) {
 
  const {
   activeTab,
-  listKp,
   handleAlignment,
   listData,
   handleSearchTermUpdate,

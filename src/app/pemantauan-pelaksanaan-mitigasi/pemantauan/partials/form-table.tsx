@@ -18,10 +18,16 @@ import TextareaComponent from "@/app/components/textarea";
 import SelectCustomTheme from "@/app/components/select";
 import { listPeristiwaRisiko } from "@/app/profil-risiko/perlakuan-risiko/setting";
 import { grey } from "@mui/material/colors";
+import { riskCategory } from "@/app/profil-risiko/registrasi-risiko/setting";
 
 export default function FormTable({ mode }: { mode?: string }) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
  const [prDropdown, setPrDropdown] = React.useState("");
+ const [project, setProject] = React.useState("");
+
+ const handleChangeProject = (event: SelectChangeEvent) => {
+  setProject(event.target.value);
+ };
 
  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
   setAnchorEl(event.currentTarget);
@@ -43,51 +49,9 @@ export default function FormTable({ mode }: { mode?: string }) {
      <FormControl fullWidth>
       <Typography gutterBottom>Peristiwa Risiko</Typography>
 
-      {mode === "add" ? (
+      {mode === "add" || mode === "edit" ? (
        <SelectCustomTheme
         defaultStyle
-        small
-        anchorRight
-        value={prDropdown}
-        onChange={handleChangePr}
-       >
-        <MenuItem value="" disabled>
-         <Typography
-          fontSize={14}
-          fontStyle="italic"
-          color={grey[600]}
-          fontWeight={600}
-         >
-          Pilih peristiwa risiko
-         </Typography>
-        </MenuItem>
-        {listPeristiwaRisiko.map((prLabel) => (
-         <MenuItem key={prLabel.id} value={prLabel.value}>
-          {prLabel.label.length >= 35 ? (
-           <Tooltip
-            title={prLabel.label}
-            followCursor
-            TransitionComponent={Grow}
-           >
-            <Typography
-             aria-owns={open ? "mouse-over-popover" : undefined}
-             aria-haspopup="true"
-             onMouseEnter={handlePopoverOpen}
-             onMouseLeave={handlePopoverClose}
-             sx={{ fontSize: 14 }}
-            >
-             {prLabel.label.substring(0, 35) + "..."}
-            </Typography>
-           </Tooltip>
-          ) : (
-           prLabel.label
-          )}
-         </MenuItem>
-        ))}
-       </SelectCustomTheme>
-      ) : mode === "edit" ? (
-       <SelectCustomTheme
-        rounded
         small
         anchorRight
         value={prDropdown}
@@ -187,24 +151,24 @@ export default function FormTable({ mode }: { mode?: string }) {
     <Grid item lg={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Kategori Risiko</Typography>
-      {mode === "add" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Kategori Risiko"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
-      ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+      {mode === "add" || mode === "edit" ? (
+       <SelectCustomTheme
+        small
+        defaultStyle
+        value={project}
+        onChange={handleChangeProject}
+       >
+        <MenuItem value="" disabled>
+         <Typography fontSize={14} fontStyle="italic">
+          Pilih kategori risiko
+         </Typography>
+        </MenuItem>
+        {riskCategory.map((category, index) => (
+         <MenuItem key={index} value={index} defaultChecked>
+          {category}
+         </MenuItem>
+        ))}
+       </SelectCustomTheme>
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}

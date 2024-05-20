@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import TextareaComponent from "@/app/components/textarea";
 import SelectCustomTheme from "@/app/components/select";
+import { riskCategory } from "../setting";
 
 export default function FormTable({ mode }: { mode?: string }) {
  const [konteks, setKonteks] = React.useState("");
@@ -184,7 +185,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     <Grid item lg={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Kategori Risiko MRPN Linsek</Typography>
-      {mode === "add" ? (
+      {mode === "add" || mode === "edit" ? (
        <SelectCustomTheme
         small
         defaultStyle
@@ -193,34 +194,14 @@ export default function FormTable({ mode }: { mode?: string }) {
        >
         <MenuItem value="" disabled>
          <Typography fontSize={14} fontStyle="italic">
-          Pilih Kategori Risiko MRPN Linsek
+          Pilih kategori risiko MRPN Linsek
          </Typography>
         </MenuItem>
-        <MenuItem value="1" defaultChecked>
-         Risiko Lingkungan
-        </MenuItem>
-        <MenuItem value="2">Risiko Sosial</MenuItem>
-        <MenuItem value="3">Risiko Geopolitik</MenuItem>
-        <MenuItem value="4">Risiko Ekonomi</MenuItem>
-        <MenuItem value="5">Risiko Teknologi</MenuItem>
-       </SelectCustomTheme>
-      ) : mode === "edit" ? (
-       <SelectCustomTheme
-        small
-        defaultStyle
-        value={project}
-        onChange={handleChangeProject}
-       >
-        <MenuItem value="" disabled>
-         <Typography fontSize={14} fontStyle="italic">
-          Pilih Kategori Risiko MRPN Linsek
-         </Typography>
-        </MenuItem>
-        <MenuItem value="1" defaultChecked>
-         -
-        </MenuItem>
-        <MenuItem value="2">-</MenuItem>
-        <MenuItem value="3">-</MenuItem>
+        {riskCategory.map((category, index) => (
+         <MenuItem key={index} value={index} defaultChecked>
+          {category}
+         </MenuItem>
+        ))}
        </SelectCustomTheme>
       ) : (
        <Typography fontWeight={600}>-</Typography>
@@ -234,7 +215,7 @@ export default function FormTable({ mode }: { mode?: string }) {
        <TextField
         variant="outlined"
         size="small"
-        placeholder="Pemilik Risiko MRPN Linsek"
+        placeholder="Pemilik risiko MRPN Linsek"
         InputLabelProps={{
          shrink: true,
         }}
@@ -260,13 +241,13 @@ export default function FormTable({ mode }: { mode?: string }) {
       </Typography>
       {mode === "add" ? (
        <TextareaComponent
-        label="Peristiwa Risiko Strategis MRPN Linsek"
-        placeholder="Peristiwa Risiko Strategis MRPN Linsek"
+        label="Peristiwa risiko strategis MRPN Linsek"
+        placeholder="Peristiwa risiko strategis MRPN Linsek"
        />
       ) : mode === "edit" ? (
        <TextareaComponent
-        label="Peristiwa Risiko Strategis MRPN Linsek"
-        placeholder="Peristiwa Risiko Strategis MRPN Linsek"
+        label="Peristiwa risiko strategis MRPN Linsek"
+        placeholder="Peristiwa risiko strategis MRPN Linsek"
         value="-"
        />
       ) : (
@@ -281,13 +262,13 @@ export default function FormTable({ mode }: { mode?: string }) {
       </Typography>
       {mode === "add" ? (
        <TextareaComponent
-        label="Penyebab/Faktor Risiko Strategis MRPN Linsek"
-        placeholder="Penyebab/Faktor Risiko Strategis MRPN Linsek"
+        label="Penyebab/faktor risiko strategis MRPN Linsek"
+        placeholder="Penyebab/faktor risiko strategis MRPN Linsek"
        />
       ) : mode === "edit" ? (
        <TextareaComponent
-        label="Penyebab/Faktor Risiko Strategis MRPN Linsek"
-        placeholder="Penyebab/Faktor Risiko Strategis MRPN Linsek"
+        label="Penyebab/faktor risiko strategis MRPN Linsek"
+        placeholder="Penyebab/faktor risiko strategis MRPN Linsek"
         value="-"
        />
       ) : (
@@ -300,13 +281,13 @@ export default function FormTable({ mode }: { mode?: string }) {
       <Typography gutterBottom>Dampak Strategis MRPN Linsek</Typography>
       {mode === "add" ? (
        <TextareaComponent
-        label="Dampak Strategis MRPN Linsek"
-        placeholder="Dampak Strategis MRPN Linsek"
+        label="Dampak strategis MRPN Linsek"
+        placeholder="Dampak strategis MRPN Linsek"
        />
       ) : mode === "edit" ? (
        <TextareaComponent
-        label="Dampak Strategis MRPN Linsek"
-        placeholder="Dampak Strategis MRPN Linsek"
+        label="Dampak strategis MRPN Linsek"
+        placeholder="Dampak strategis MRPN Linsek"
         value="-"
        />
       ) : (
