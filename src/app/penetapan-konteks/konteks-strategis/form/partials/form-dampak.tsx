@@ -26,25 +26,7 @@ export default function FormDampak({ mode }: { mode?: string }) {
     <Grid item lg={12}>
      <FormControl fullWidth>
       <Typography gutterBottom>Level Kemungkinan</Typography>
-      {mode === "add" ? (
-       <SelectCustomTheme
-        defaultStyle
-        small
-        value={value}
-        onChange={handleChangeSelect}
-       >
-        <MenuItem value="" disabled>
-         <Typography fontSize={14} color={grey[700]} fontStyle="italic">
-          Pilih level kemungkinan
-         </Typography>
-        </MenuItem>
-        <MenuItem value="1" defaultChecked>
-         1 - Rendah
-        </MenuItem>
-        <MenuItem value="2">2 - Sedang</MenuItem>
-        <MenuItem value="3">3 - Tinggi</MenuItem>
-       </SelectCustomTheme>
-      ) : mode === "edit" ? (
+      {mode === "add" || mode === "edit" ? (
        <SelectCustomTheme
         defaultStyle
         small

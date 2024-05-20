@@ -45,8 +45,6 @@ export default function FormProfilRo({ mode }: { mode?: string }) {
   setKlCode(value);
  };
 
- console.log({ collapsePkkr });
-
  const listKodeKl = [
   {
    id: "1",
@@ -168,7 +166,12 @@ export default function FormProfilRo({ mode }: { mode?: string }) {
         InputLabelProps={{
          shrink: true,
         }}
-        sx={{ input: { WebkitTextFillColor: `${grey[600]} !important` } }}
+        sx={{
+         input: {
+          WebkitTextFillColor: `${grey[800]} !important`,
+          bgcolor: grey[200],
+         },
+        }}
         value={
          klCode === "1"
           ? listKodeKl[0].name

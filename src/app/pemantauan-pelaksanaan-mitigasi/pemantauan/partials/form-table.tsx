@@ -24,6 +24,26 @@ export default function FormTable({ mode }: { mode?: string }) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
  const [prDropdown, setPrDropdown] = React.useState("");
  const [project, setProject] = React.useState("");
+ const [probability, setProbability] = React.useState("");
+ const [impact, setImpact] = React.useState("");
+ const [probabilityAfter, setProbabilityAfter] = React.useState("");
+ const [impactAfter, setImpactAfter] = React.useState("");
+
+ const handleChangeProbability = (event: SelectChangeEvent) => {
+  setProbability(event.target.value);
+ };
+
+ const handleChangeImpact = (event: SelectChangeEvent) => {
+  setImpact(event.target.value);
+ };
+
+ const handleChangeProbabilityAfter = (event: SelectChangeEvent) => {
+  setProbabilityAfter(event.target.value);
+ };
+
+ const handleChangeImpactAfter = (event: SelectChangeEvent) => {
+  setImpactAfter(event.target.value);
+ };
 
  const handleChangeProject = (event: SelectChangeEvent) => {
   setProject(event.target.value);
@@ -182,24 +202,30 @@ export default function FormTable({ mode }: { mode?: string }) {
     <Grid item lg={4}>
      <FormControl fullWidth>
       <Typography gutterBottom>Kemungkinan</Typography>
-      {mode === "add" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Kemungkinan"
-        InputLabelProps={{
-         shrink: true,
+      {mode === "add" || mode === "edit" ? (
+       <SelectCustomTheme
+        small
+        defaultStyle
+        anchorRight
+        value={probability}
+        onChange={handleChangeProbability}
+        sx={{
+         ".MuiSelect-select": {
+          minHeight: 0,
+         },
         }}
-       />
-      ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+       >
+        <MenuItem value="" disabled>
+         <Typography fontSize={14} fontStyle="italic">
+          Pilih kemungkinan
+         </Typography>
+        </MenuItem>
+        <MenuItem value="1" defaultChecked>
+         Kemungkinan 1
+        </MenuItem>
+        <MenuItem value="2">Kemungkinan 2</MenuItem>
+        <MenuItem value="3">Kemungkinan 3</MenuItem>
+       </SelectCustomTheme>
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}
@@ -208,24 +234,30 @@ export default function FormTable({ mode }: { mode?: string }) {
     <Grid item lg={4}>
      <FormControl fullWidth>
       <Typography gutterBottom>Dampak</Typography>
-      {mode === "add" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Dampak"
-        InputLabelProps={{
-         shrink: true,
+      {mode === "add" || mode === "edit" ? (
+       <SelectCustomTheme
+        small
+        defaultStyle
+        anchorRight
+        value={impact}
+        onChange={handleChangeImpact}
+        sx={{
+         ".MuiSelect-select": {
+          minHeight: 0,
+         },
         }}
-       />
-      ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+       >
+        <MenuItem value="" disabled>
+         <Typography fontSize={14} fontStyle="italic">
+          Pilih dampak
+         </Typography>
+        </MenuItem>
+        <MenuItem value="1" defaultChecked>
+         Dampak 1
+        </MenuItem>
+        <MenuItem value="2">Dampak 2</MenuItem>
+        <MenuItem value="3">Dampak 3</MenuItem>
+       </SelectCustomTheme>
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}
@@ -234,22 +266,29 @@ export default function FormTable({ mode }: { mode?: string }) {
     <Grid item lg={4}>
      <FormControl fullWidth>
       <Typography gutterBottom>Tingkat Risiko</Typography>
-      {mode === "add" ? (
+      {mode === "add" || mode === "edit" ? (
        <TextField
         variant="outlined"
         size="small"
+        disabled
         placeholder="Tingkat Risiko"
         InputLabelProps={{
          shrink: true,
         }}
-       />
-      ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
+        value={
+         impact === "1"
+          ? "Rendah"
+          : impact === "2"
+          ? "Sedang"
+          : impact === "3"
+          ? "Tinggi"
+          : "Tingkat Risiko"
+        }
+        sx={{
+         input: {
+          WebkitTextFillColor: `${grey[800]} !important`,
+          bgcolor: grey[200],
+         },
         }}
        />
       ) : (
@@ -466,24 +505,30 @@ export default function FormTable({ mode }: { mode?: string }) {
     <Grid item lg={4}>
      <FormControl fullWidth>
       <Typography gutterBottom>Kemungkinan</Typography>
-      {mode === "add" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Kemungkinan"
-        InputLabelProps={{
-         shrink: true,
+      {mode === "add" || mode === "edit" ? (
+       <SelectCustomTheme
+        small
+        defaultStyle
+        anchorRight
+        value={probabilityAfter}
+        onChange={handleChangeProbabilityAfter}
+        sx={{
+         ".MuiSelect-select": {
+          minHeight: 0,
+         },
         }}
-       />
-      ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+       >
+        <MenuItem value="" disabled>
+         <Typography fontSize={14} fontStyle="italic">
+          Pilih kemungkinan
+         </Typography>
+        </MenuItem>
+        <MenuItem value="1" defaultChecked>
+         Kemungkinan 1
+        </MenuItem>
+        <MenuItem value="2">Kemungkinan 2</MenuItem>
+        <MenuItem value="3">Kemungkinan 3</MenuItem>
+       </SelectCustomTheme>
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}
@@ -492,24 +537,30 @@ export default function FormTable({ mode }: { mode?: string }) {
     <Grid item lg={4}>
      <FormControl fullWidth>
       <Typography gutterBottom>Dampak</Typography>
-      {mode === "add" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Dampak"
-        InputLabelProps={{
-         shrink: true,
+      {mode === "add" || mode === "edit" ? (
+       <SelectCustomTheme
+        small
+        defaultStyle
+        anchorRight
+        value={impactAfter}
+        onChange={handleChangeImpactAfter}
+        sx={{
+         ".MuiSelect-select": {
+          minHeight: 0,
+         },
         }}
-       />
-      ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+       >
+        <MenuItem value="" disabled>
+         <Typography fontSize={14} fontStyle="italic">
+          Pilih dampak
+         </Typography>
+        </MenuItem>
+        <MenuItem value="1" defaultChecked>
+         Dampak 1
+        </MenuItem>
+        <MenuItem value="2">Dampak 2</MenuItem>
+        <MenuItem value="3">Dampak 3</MenuItem>
+       </SelectCustomTheme>
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}
@@ -518,22 +569,29 @@ export default function FormTable({ mode }: { mode?: string }) {
     <Grid item lg={4}>
      <FormControl fullWidth>
       <Typography gutterBottom>Tingkat Risiko</Typography>
-      {mode === "add" ? (
+      {mode === "add" || mode === "edit" ? (
        <TextField
         variant="outlined"
         size="small"
+        disabled
         placeholder="Tingkat Risiko"
         InputLabelProps={{
          shrink: true,
         }}
-       />
-      ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
+        value={
+         impactAfter === "1"
+          ? "Rendah"
+          : impactAfter === "2"
+          ? "Sedang"
+          : impactAfter === "3"
+          ? "Tinggi"
+          : "Tingkat Risiko"
+        }
+        sx={{
+         input: {
+          WebkitTextFillColor: `${grey[800]} !important`,
+          bgcolor: grey[200],
+         },
         }}
        />
       ) : (

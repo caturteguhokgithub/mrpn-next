@@ -63,8 +63,6 @@ export default function DropdownKp({
   return item["name"];
  });
 
- console.log({ value });
-
  return (
   <FormControl size="small">
    <Autocomplete

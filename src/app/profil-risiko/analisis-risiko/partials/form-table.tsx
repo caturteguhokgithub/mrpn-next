@@ -66,31 +66,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     <Grid item lg={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Kemungkinan</Typography>
-      {mode === "add" ? (
-       <SelectCustomTheme
-        small
-        defaultStyle
-        anchorRight
-        value={probability}
-        onChange={handleChangeProbability}
-        sx={{
-         ".MuiSelect-select": {
-          minHeight: 0,
-         },
-        }}
-       >
-        <MenuItem value="" disabled>
-         <Typography fontSize={14} fontStyle="italic">
-          Pilih kemungkinan
-         </Typography>
-        </MenuItem>
-        <MenuItem value="1" defaultChecked>
-         Kemungkinan 1
-        </MenuItem>
-        <MenuItem value="2">Kemungkinan 2</MenuItem>
-        <MenuItem value="3">Kemungkinan 3</MenuItem>
-       </SelectCustomTheme>
-      ) : mode === "edit" ? (
+      {mode === "add" || mode === "edit" ? (
        <SelectCustomTheme
         small
         defaultStyle
@@ -122,31 +98,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     <Grid item lg={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Dampak</Typography>
-      {mode === "add" ? (
-       <SelectCustomTheme
-        small
-        defaultStyle
-        anchorRight
-        value={impact}
-        onChange={handleChangeImpact}
-        sx={{
-         ".MuiSelect-select": {
-          minHeight: 0,
-         },
-        }}
-       >
-        <MenuItem value="" disabled>
-         <Typography fontSize={14} fontStyle="italic">
-          Pilih dampak
-         </Typography>
-        </MenuItem>
-        <MenuItem value="1" defaultChecked>
-         Dampak 1
-        </MenuItem>
-        <MenuItem value="2">Dampak 2</MenuItem>
-        <MenuItem value="3">Dampak 3</MenuItem>
-       </SelectCustomTheme>
-      ) : mode === "edit" ? (
+      {mode === "add" || mode === "edit" ? (
        <SelectCustomTheme
         small
         defaultStyle
@@ -178,7 +130,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     <Grid item lg={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Nilai Risiko</Typography>
-      {mode === "add" ? (
+      {mode === "add" || mode === "edit" ? (
        <TextField
         variant="outlined"
         size="small"
@@ -195,26 +147,12 @@ export default function FormTable({ mode }: { mode?: string }) {
         InputLabelProps={{
          shrink: true,
         }}
-        sx={{ input: { WebkitTextFillColor: `${grey[600]} !important` } }}
-       />
-      ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        disabled
-        value={
-         probability === "1"
-          ? "1"
-          : probability === "2"
-          ? "2"
-          : probability === "3"
-          ? "3"
-          : "Nilai Risiko"
-        }
-        InputLabelProps={{
-         shrink: true,
+        sx={{
+         input: {
+          WebkitTextFillColor: `${grey[800]} !important`,
+          bgcolor: grey[200],
+         },
         }}
-        sx={{ input: { WebkitTextFillColor: `${grey[600]} !important` } }}
        />
       ) : (
        <Typography fontWeight={600}>-</Typography>
@@ -224,7 +162,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     <Grid item lg={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Tingkat Risiko</Typography>
-      {mode === "add" ? (
+      {mode === "add" || mode === "edit" ? (
        <TextField
         variant="outlined"
         size="small"
@@ -242,26 +180,12 @@ export default function FormTable({ mode }: { mode?: string }) {
           ? "Tinggi"
           : "Tingkat Risiko"
         }
-        sx={{ input: { WebkitTextFillColor: `${grey[600]} !important` } }}
-       />
-      ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        disabled
-        InputLabelProps={{
-         shrink: true,
+        sx={{
+         input: {
+          WebkitTextFillColor: `${grey[800]} !important`,
+          bgcolor: grey[200],
+         },
         }}
-        value={
-         impact === "1"
-          ? "Rendah"
-          : impact === "2"
-          ? "Sedang"
-          : impact === "3"
-          ? "Tinggi"
-          : "Tingkat Risiko"
-        }
-        sx={{ input: { WebkitTextFillColor: `${grey[600]} !important` } }}
        />
       ) : (
        <Typography fontWeight={600}>-</Typography>
