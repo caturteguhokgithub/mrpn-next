@@ -7,7 +7,7 @@ import { Stack, Typography, Tooltip, Grow, Chip, Icon } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import AddButton from "@/app/components/buttonAdd";
 
-export default function PagePelaporanBerkala({}) {
+export default function PageMaturitas({}) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -24,7 +24,7 @@ export default function PagePelaporanBerkala({}) {
 
  return (
   <DashboardLayout>
-   <ContentPage title="Pelaporan" withCard chipKp triWulan>
+   <ContentPage title="Maturitas" withCard chooseProject>
     {/* <EmptyState
      icon={<IconEmptyPage />}
      title="Halaman Pelaporan Berkala Kosong"

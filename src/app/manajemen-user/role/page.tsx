@@ -92,7 +92,7 @@ export default function PageUserManagement({}) {
      <SectionCheckbox menuLabel="Pemantauan Pelaksanaan Risiko" hasChild>
       <SectionCheckbox menuLabel="Peringatan Dini & Saran" />
       <SectionCheckbox menuLabel="Pemantauan" />
-      <SectionCheckbox menuLabel="Pelaporan Berkala" />
+      <SectionCheckbox menuLabel="Pelaporan" />
      </SectionCheckbox>
     </Stack>
     {/* </Paper> */}

@@ -176,8 +176,9 @@ export default function PageEvaluasiRisiko({}) {
      title="Evaluasi Risiko"
      // chooseProject
      // chooseKonteks
+     chipKp
      chooseKonteks
-     chooseRo
+     //  chooseRo
      project={project}
      handleChangeProject={handleChangeProject}
     >

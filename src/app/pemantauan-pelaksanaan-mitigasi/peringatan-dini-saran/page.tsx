@@ -161,8 +161,9 @@ export default function PagePeringatanDiniSaran({}) {
    <DashboardLayout>
     <ContentPage
      title="Peringatan Dini"
-     chooseKonteks
-     chooseRo
+     chipKp
+     //  chooseKonteks
+     //  chooseRo
      withCard={false}
      hasAlert={
       <Alert severity="warning" sx={{ mb: 2 }}>

@@ -20,6 +20,7 @@ import SelectCustomTheme from "../select";
 import DropdownKp from "../dropdownKp";
 import { grey } from "@mui/material/colors";
 import { usePathname } from "next/navigation";
+import { listSelectKp } from "@/app/executive-summary/data";
 
 export default function ContentPage({
  title,
@@ -41,6 +42,7 @@ export default function ContentPage({
  dowloadAttachmentFile,
  triWulan,
  hasAlert,
+ chipKp,
 }: {
  children: React.ReactNode;
  title?: string;
@@ -61,6 +63,7 @@ export default function ContentPage({
  dowloadAttachmentFile?: React.ReactNode;
  triWulan?: boolean;
  hasAlert?: React.ReactNode;
+ chipKp?: boolean;
 }) {
  const [konteks, setKonteks] = React.useState("");
  const [roDropdown, setRoDropdown] = React.useState("");
@@ -102,6 +105,8 @@ export default function ContentPage({
  const flagPathnameTheme = [pathname === "/", pathname === "/tema"].includes(
   true
  );
+
+ const nameOfKp = listSelectKp[4].name;
 
  return (
   <Box>
@@ -406,6 +411,64 @@ export default function ContentPage({
        }}
       />
      )}
+     {chipKp && (
+      <Chip
+       color="primary"
+       variant="outlined"
+       label={
+        <>
+         <Stack direction="row" alignItems="center">
+          <Stack
+           direction="row"
+           bgcolor={theme.palette.primary.main}
+           px={2}
+           alignItems="center"
+           height="34px"
+           sx={{
+            borderTopLeftRadius: 24,
+            borderBottomLeftRadius: 24,
+           }}
+          >
+           <Typography
+            fontSize={12}
+            color="white"
+            fontWeight={600}
+            lineHeight={1}
+           >
+            KP
+           </Typography>
+          </Stack>
+          <Tooltip title={nameOfKp} followCursor TransitionComponent={Grow}>
+           <Typography
+            aria-owns={open ? "mouse-over-popover" : undefined}
+            aria-haspopup="true"
+            onMouseEnter={handlePopoverOpen}
+            onMouseLeave={handlePopoverClose}
+            px={1.5}
+            fontSize={12}
+            fontWeight={600}
+           >
+            {nameOfKp.length >= 40
+             ? nameOfKp.substring(0, 40) + "..."
+             : nameOfKp}
+           </Typography>
+          </Tooltip>
+         </Stack>
+        </>
+       }
+       sx={{
+        height: "34px",
+        bgcolor: "white",
+        fontWeight: 600,
+        lineHeight: 1,
+        cursor: "default",
+
+        ".MuiChip-label": {
+         px: 0,
+        },
+       }}
+      />
+     )}
      {chooseKonteks && (
       <FormControl size="small">
        <SelectCustomTheme
@@ -461,7 +524,7 @@ export default function ContentPage({
           color={grey[600]}
           fontWeight={600}
          >
-          Pilih triwulan
+          Pilih periode
          </Typography>
         </MenuItem>
         <MenuItem value="1" defaultChecked>
@@ -470,6 +533,11 @@ export default function ContentPage({
         <MenuItem value="2">Triwulan 2 (Apr - Mei)</MenuItem>
         <MenuItem value="3">Triwulan 3 (Jul - Sep)</MenuItem>
         <MenuItem value="4">Triwulan 4 (Okt - Des)</MenuItem>
+        <MenuItem value="5">Tahun 2025</MenuItem>
+        <MenuItem value="6">Tahun 2026</MenuItem>
+        <MenuItem value="7">Tahun 2027</MenuItem>
+        <MenuItem value="8">Tahun 2028</MenuItem>
+        <MenuItem value="9">Tahun 2029</MenuItem>
        </SelectCustomTheme>
       </FormControl>
      )}

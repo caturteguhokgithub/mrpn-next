@@ -581,6 +581,49 @@ export const dataTema = [
     ],
    },
   ],
+  indication: [
+   {
+    jenis: "Risiko Strategis",
+    kejadian: "Penerima manfaat program penurunan stunting tidak tepat sasaran",
+    perlakuan: "Pemanfaatan satu data induk",
+    entitas:
+     "BKKBN (Entitas UTama), Kemenkes (Entitas Pendukung), Kemensos (Entitas Pendukung), dan Bapanas (Entitas Pendukung)",
+   },
+   {
+    jenis: "Risiko Kelembagaan",
+    kejadian:
+     "Kurangnya koordinasi antar stakeholder pemerintah pusat dan pemerintah daerah",
+    perlakuan:
+     "Memperkuat peran dan fungsi Tim Koordinasi Nasional Percepatan Penurunan Stunting",
+    entitas:
+     "BKKBN (Entitas Utama), Kemenko PMK (Koordinator), Kemenkes (Entitas Pendukung), PUPR (Entitas Pendukung) dan Kemendagri (Entitas Pendukung)",
+   },
+   {
+    jenis: "Risiko Regulasi",
+    kejadian:
+     "Belum adanya kebijakan turunan Perpres 72 Tahun 2021 tentang Percepatan Penurunan Stunting di level pemerintah daerah",
+    perlakuan:
+     "Penyusunan kebijakan Pemerintah Daerah yang mengatur Penurunan Stunting",
+    entitas: "Kemendagri (Entitas Pendukung)",
+   },
+   {
+    jenis: "Risiko Koordinasi",
+    kejadian:
+     "Kurangnya pemantauan dan pengawasan terhadap program penurunan stunting",
+    perlakuan:
+     "Penyusunan kebijakan Pemerintah Daerah yang mengatur Penurunan Stunting",
+    entitas: "Kemendagri (Entitas Pendukung) dan Kemensos (Entitas Pendukung)",
+   },
+   {
+    jenis: "Risiko Sosial",
+    kejadian:
+     "Angka prevalensi stunting Indonesia menempati urutan tertinggi ke-27 dari 154 negara di dunia dan urutan ke-5 diantara negara-negara di Asia (WHO, 2023)",
+    perlakuan:
+     "Penyusunan kebijakan penurunan stunting dan tata laksana gizi buruk akut berbasis fasilitas meliputi implementasi protokol WHO, serta sosialisasi terkait prioritas penerima bantuan program",
+    entitas:
+     "BKKBN (Entitas Utama), Kemenkes (Entitas Pendukung), Kemendagri (Entitas Pendukung), dan Kemensos (Entitas Sosial)",
+   },
+  ],
   stakeholder: [
    {
     label: "Entitas Utama",
@@ -1005,6 +1048,7 @@ export const dataTema = [
    //  },
   ],
   overallRisk: [],
+  indication: [],
   stakeholder: [
    {
     label: "Entitas Utama",
@@ -1329,6 +1373,7 @@ export const dataTema = [
    //  },
   ],
   overallRisk: [],
+  indication: [],
   stakeholder: [
    {
     label: "Entitas Utama",
@@ -1690,6 +1735,7 @@ export const dataTema = [
    //  },
   ],
   overallRisk: [],
+  indication: [],
   stakeholder: [
    {
     label: "Entitas Utama",

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
+ Box,
  Button,
  DialogActions,
  Icon,
@@ -22,6 +23,56 @@ import { IconEmptyData } from "@/app/components/icons";
 import DialogComponent from "@/app/components/dialog";
 import FormROKunci from "./form-ro-kunci";
 import FormMilestone from "./form-milestone";
+// import { FrappeGantt, Task, ViewMode } from "frappe-gantt-react";
+import GanttChart from "./gantt/gantt";
+import { Task } from "frappe-gantt";
+
+const tasks = [
+ {
+  id: "Task 1",
+  name: "Sistem penyediaan air minum, pengelolaan limbah",
+  start: "2025-12-28",
+  end: "2029-12-31",
+  progress: 10,
+  dependencies: "",
+ },
+ {
+  id: "Task 2",
+  name: "Redesign website",
+  start: "2025-12-28",
+  end: "2029-12-31",
+  progress: 90,
+  //   dependencies: "Task 1",
+  dependencies: "",
+ },
+ {
+  id: "Task 3",
+  name: "Redesign website",
+  start: "2025-12-28",
+  end: "2029-12-31",
+  progress: 50,
+  //   dependencies: "Task 2, Task 1",
+  dependencies: "",
+ },
+ {
+  id: "Task 4",
+  name: "Redesign website",
+  start: "2025-12-28",
+  end: "2029-12-31",
+  progress: 20,
+  //   dependencies: "Task 2, Task 1",
+  dependencies: "",
+ },
+ {
+  id: "Task 5",
+  name: "Redesign website",
+  start: "2025-12-28",
+  end: "2029-12-31",
+  progress: 70,
+  //   dependencies: "Task 2, Task 1",
+  dependencies: "",
+ },
+] as Task[];
 
 export default function TableMilestone({ mode }: { mode?: string }) {
  const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
@@ -117,7 +168,15 @@ export default function TableMilestone({ mode }: { mode?: string }) {
      </Button>
     ) : null}
    </Stack>
-   <TableContainer component={Paper} elevation={0} variant="outlined">
+   <Box
+    m="0 auto"
+    sx={{
+     m: "0 auto",
+    }}
+   >
+    <GanttChart tasks={tasks} />
+   </Box>
+   {/* <TableContainer component={Paper} elevation={0} variant="outlined">
     <Table sx={{ minWidth: 650 }} size="small">
      <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
       <TableRow>
@@ -181,7 +240,7 @@ export default function TableMilestone({ mode }: { mode?: string }) {
     dialogFooter={dialogActionFooter}
    >
     <FormMilestone mode="add" />
-   </DialogComponent>
+   </DialogComponent> */}
   </>
  );
 }

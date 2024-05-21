@@ -103,7 +103,8 @@ export default function PageSeleraRisiko({}) {
     <ContentPage
      title="Selera Risiko"
      withCard
-     chipRo
+     chipKp
+     //  chipRo
      //  chooseProject
 
      project={project}

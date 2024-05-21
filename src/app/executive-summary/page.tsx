@@ -25,6 +25,7 @@ import TabProfil from "./partials/tabProfil";
 import TabPolicy from "./partials/tabPolicy";
 import TabOverall from "./partials/tabOverall";
 import LoadingPage from "../components/loadingPage";
+import TabIndikasi from "./partials/tabIndikasi";
 
 interface TabPanelProps {
  children?: React.ReactNode;
@@ -102,7 +103,7 @@ export default function PageExecutiveSummary({}) {
  });
 
  const usetheme = useTheme();
- const breakpointDownLg = useMediaQuery(usetheme.breakpoints.down("lg"));
+ //  const breakpointDownLg = useMediaQuery(usetheme.breakpoints.down("lg"));
  const breakpointDownMd = useMediaQuery(usetheme.breakpoints.down("md"));
 
  const downloadAttachment = (
@@ -208,7 +209,7 @@ export default function PageExecutiveSummary({}) {
          icon={<IconFA size={16} name="file-shield" sx={{ width: "auto" }} />}
         />
         <Tab
-         label="Overall Risk"
+         label="Indikasi Risiko Strategis "
          {...a11yProps(3)}
          iconPosition="start"
          icon={<IconFA size={16} name="rotate" sx={{ width: "auto" }} />}
@@ -230,7 +231,7 @@ export default function PageExecutiveSummary({}) {
       <TabDampak />
      </CustomTabPanel> */}
       <CustomTabPanel value={value} index={3}>
-       <TabOverall project={project} />
+       <TabIndikasi project={project} />
       </CustomTabPanel>
      </Box>
     </Collapse>

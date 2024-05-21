@@ -147,7 +147,7 @@ export default function Aside({
        }
       >
        <SubmenuItem
-        label="Registrasi Risiko"
+        label="Identifikasi Risiko"
         url={subMenuProfil}
         urlLv2="registrasi-risiko"
        />
@@ -191,7 +191,12 @@ export default function Aside({
         urlLv2="pemantauan"
        />
        <SubmenuItem
-        label="Pelaporan Berkala"
+        label="Maturitas"
+        url={subMenuMitigasi}
+        urlLv2="maturitas"
+       />
+       <SubmenuItem
+        label="Pelaporan"
         url={subMenuMitigasi}
         urlLv2="pelaporan-berkala"
        />

@@ -244,7 +244,8 @@ export default function PagePemantauan({}) {
    <DashboardLayout>
     <ContentPage
      title="Pemantauan"
-     chooseRo
+     //  chooseRo
+     chipKp
      chooseKonteks
      project={project}
      handleChangeProject={handleChangeProject}

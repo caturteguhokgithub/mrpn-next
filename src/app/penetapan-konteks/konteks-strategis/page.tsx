@@ -173,7 +173,6 @@ export default function PageKonteksStrategis({}) {
     <ContentPage
      title="Konteks Strategis"
      chooseProject
-     chooseRo
      project={project}
      handleChangeProject={handleChangeProject}
     >

@@ -170,8 +170,9 @@ export default function PagePerlakuanRisiko({}) {
      title="Perlakuan Risiko"
      //  chooseProject
      //  chooseKonteks
+     chipKp
      chooseKonteks
-     chooseRo
+     //  chooseRo
      project={project}
      handleChangeProject={handleChangeProject}
     >

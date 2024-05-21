@@ -4,7 +4,9 @@ import {
  DialogActions,
  Icon,
  IconButton,
+ MenuItem,
  Paper,
+ SelectChangeEvent,
  Stack,
  Table,
  TableBody,
@@ -22,16 +24,35 @@ import { IconEmptyData } from "@/app/components/icons";
 import DialogComponent from "@/app/components/dialog";
 import FormSasaran from "./form-sasaran";
 import FormROKunci from "./form-ro-kunci";
+import FormProfilRoProject from "@/app/executive-summary/partials/tabPolicy/form-profil-ro-project";
+import SelectCustomTheme from "@/app/components/select";
+import TableProfilRoKunci from "@/app/executive-summary/partials/tabPolicy/table-profil-ro-kunci";
 
 export default function TableRincianOutput({ mode }: { mode?: string }) {
- const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
+ const [modalOpenProfilRoKunci, setModalOpenProfilRoKunci] =
+  React.useState(false);
+ const [modalOpenProfilRoKunciProject, setModalOpenProfilRoKunciProject] =
+  React.useState(false);
+ const [projectMain, setProjectMain] = React.useState("");
+ const [projectSupport, setProjectSupport] = React.useState("");
 
- const handleModalOpenAdd = () => {
-  setModalOpenAdd(true);
+ const handleChangeProjectMain = (event: SelectChangeEvent) => {
+  setProjectMain(event.target.value);
+ };
+ const handleChangeProjectSupport = (event: SelectChangeEvent) => {
+  setProjectSupport(event.target.value);
+ };
+
+ const handleModalOpenProfilRoKunci = () => {
+  setModalOpenProfilRoKunci(true);
+ };
+ const handleModalOpenProfilRoKunciProject = () => {
+  setModalOpenProfilRoKunciProject(true);
  };
 
  const handleModalClose = () => {
-  setModalOpenAdd(false);
+  setModalOpenProfilRoKunci(false);
+  setModalOpenProfilRoKunciProject(false);
  };
 
  function createData(
@@ -100,17 +121,28 @@ export default function TableRincianOutput({ mode }: { mode?: string }) {
     justifyContent="space-between"
     alignItems="center"
    >
-    <Typography fontWeight={600}>Rincian Output (RO) Kunci</Typography>
+    <Typography fontWeight={600}>Profil Intervensi Kunci</Typography>
     {mode === "add" || mode === "edit" ? (
-     <Button
-      variant="outlined"
-      size="small"
-      startIcon={<AddCircle />}
-      sx={{ lineHeight: 1, py: 1, borderRadius: 24 }}
-      onClick={handleModalOpenAdd}
-     >
-      Tambah RO Kunci
-     </Button>
+     <Stack direction="row" gap={1}>
+      <Button
+       variant="outlined"
+       size="small"
+       startIcon={<AddCircle />}
+       sx={{ lineHeight: 1, py: 1, borderRadius: 24 }}
+       onClick={handleModalOpenProfilRoKunciProject}
+      >
+       Tambah Project
+      </Button>
+      <Button
+       variant="outlined"
+       size="small"
+       startIcon={<AddCircle />}
+       sx={{ lineHeight: 1, py: 1, borderRadius: 24 }}
+       onClick={handleModalOpenProfilRoKunci}
+      >
+       Tambah Profil RO
+      </Button>
+     </Stack>
     ) : null}
    </Stack>
    <TableContainer component={Paper} elevation={0} variant="outlined">
@@ -183,12 +215,91 @@ export default function TableRincianOutput({ mode }: { mode?: string }) {
     </Table>
    </TableContainer>
    <DialogComponent
-    dialogOpen={modalOpenAdd}
+    width={1000}
+    dialogOpen={modalOpenProfilRoKunciProject}
     dialogClose={handleModalClose}
-    title="Tambah Rincian Output Kunci"
-    dialogFooter={dialogActionFooter}
+    title="Tambah Nomenklatur RO/Project"
+    dialogFooter={
+     <DialogActions sx={{ p: 2, px: 3 }}>
+      <Button variant="outlined" onClick={handleModalClose}>
+       Batal
+      </Button>
+      <Button variant="contained" type="submit">
+       Simpan
+      </Button>
+     </DialogActions>
+    }
    >
-    <FormROKunci mode="add" />
+    <FormProfilRoProject mode="add" />
+   </DialogComponent>
+   <DialogComponent
+    tableMode
+    width={1000}
+    dialogOpen={modalOpenProfilRoKunci}
+    dialogClose={handleModalClose}
+    title="Tambah Profil RO Kunci"
+    headerAction={
+     <Stack direction="row" gap={1}>
+      <SelectCustomTheme
+       rounded
+       small
+       anchorRight
+       value={projectMain}
+       onChange={handleChangeProjectMain}
+       sx={{
+        ".MuiSelect-select": {
+         minHeight: 0,
+        },
+       }}
+      >
+       <MenuItem value="" disabled>
+        <Typography fontSize={14} fontStyle="italic">
+         Pilih Entitas Utama
+        </Typography>
+       </MenuItem>
+       <MenuItem value="1" defaultChecked>
+        Kementerian Kesehatan
+       </MenuItem>
+       <MenuItem value="2">Kementerian PUPR</MenuItem>
+       <MenuItem value="3">Kementerian Perindustrian</MenuItem>
+      </SelectCustomTheme>
+      <SelectCustomTheme
+       rounded
+       small
+       anchorRight
+       value={projectSupport}
+       onChange={handleChangeProjectSupport}
+       sx={{
+        ".MuiSelect-select": {
+         minHeight: 0,
+        },
+       }}
+      >
+       <MenuItem value="" disabled>
+        <Typography fontSize={14} fontStyle="italic">
+         Pilih Entitas Pendukung
+        </Typography>
+       </MenuItem>
+       <MenuItem value="1" defaultChecked>
+        Kementerian Pertanian
+       </MenuItem>
+       <MenuItem value="2">BPOM</MenuItem>
+       <MenuItem value="3">Simas</MenuItem>
+      </SelectCustomTheme>
+     </Stack>
+    }
+    dialogFooter={
+     <DialogActions sx={{ p: 2, px: 3 }}>
+      <Button variant="outlined" onClick={handleModalClose}>
+       Batal
+      </Button>
+      <Button variant="contained" type="submit">
+       Simpan
+      </Button>
+     </DialogActions>
+    }
+   >
+    <TableProfilRoKunci />
    </DialogComponent>
   </>
  );

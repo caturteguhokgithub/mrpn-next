@@ -11,6 +11,7 @@ import {
  Grid,
  Grow,
  Popover,
+ Stack,
  TextField,
  Tooltip,
  Typography,
@@ -95,31 +96,62 @@ export default function FormKonstra({ mode }: { mode?: string }) {
     withCard
     heightTitleBreadcrumb
     titleChild={
-     <>
-      {/* <Chip
-       color="primary"
-       variant="outlined"
-       label={
-        <Tooltip title={nameOfKp} followCursor TransitionComponent={Grow}>
-         <Box
-          aria-owns={openTooltip ? "mouse-over-popover" : undefined}
-          aria-haspopup="true"
-          onMouseEnter={handlePopoverOpen}
-          onMouseLeave={handlePopoverClose}
+     <Chip
+      color="primary"
+      variant="outlined"
+      label={
+       <>
+        <Stack direction="row" alignItems="center">
+         <Stack
+          direction="row"
+          bgcolor={theme.palette.primary.main}
+          px={2}
+          alignItems="center"
+          height="34px"
+          sx={{
+           borderTopLeftRadius: 24,
+           borderBottomLeftRadius: 24,
+          }}
          >
-          {nameOfKp.substring(0, 48) + "..."}
-         </Box>
-        </Tooltip>
-       }
-       sx={{
-        bgcolor: "white",
-        fontWeight: 600,
-        lineHeight: 1,
-        cursor: "default",
-       }}
-      /> */}
-      <DropdownKp handleChangeProject={handleChangeProject} />
-     </>
+          <Typography
+           fontSize={12}
+           color="white"
+           fontWeight={600}
+           lineHeight={1}
+          >
+           KP
+          </Typography>
+         </Stack>
+         <Tooltip title={nameOfKp} followCursor TransitionComponent={Grow}>
+          <Typography
+           aria-owns={open ? "mouse-over-popover" : undefined}
+           aria-haspopup="true"
+           onMouseEnter={handlePopoverOpen}
+           onMouseLeave={handlePopoverClose}
+           px={1.5}
+           fontSize={12}
+           fontWeight={600}
+          >
+           {nameOfKp.length >= 40
+            ? nameOfKp.substring(0, 40) + "..."
+            : nameOfKp}
+          </Typography>
+         </Tooltip>
+        </Stack>
+       </>
+      }
+      sx={{
+       height: "34px",
+       bgcolor: "white",
+       fontWeight: 600,
+       lineHeight: 1,
+       cursor: "default",
+
+       ".MuiChip-label": {
+        px: 0,
+       },
+      }}
+     />
     }
     breadcrumb={
      <Breadcrumbs aria-label="breadcrumb">
