@@ -6,19 +6,14 @@ import DashboardLayout from "@/components/layouts/layout";
 import EmptyState from "@/components/empty";
 import { IconEmptyPage } from "@/components/icons";
 import {
- Backdrop,
  Box,
- Button,
  Chip,
- CircularProgress,
  Collapse,
  Grow,
- SelectChangeEvent,
  Stack,
  Tab,
  Tabs,
  Tooltip,
- Typography,
  useMediaQuery,
  useTheme,
 } from "@mui/material";
@@ -29,7 +24,6 @@ import TabLatarBelakang from "./partials/tabLatarBelakang";
 import TabProfil from "./partials/tabProfil";
 import TabPolicy from "./partials/tabPolicy";
 import TabOverall from "./partials/tabOverall";
-import DropdownKp from "../components/dropdownKp";
 import LoadingPage from "../components/loadingPage";
 
 interface TabPanelProps {
