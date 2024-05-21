@@ -117,6 +117,7 @@ export default function FormProfilRo({ mode }: { mode?: string }) {
        <Autocomplete
         size="small"
         options={optionsListKl}
+        // isOptionEqualToValue={(value: any) => value.value}
         // getOptionLabel={(option) => option.code}
         renderInput={(params) => (
          <TextField
