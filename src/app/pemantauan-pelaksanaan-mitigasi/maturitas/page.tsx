@@ -1,150 +1,203 @@
 "use client";
 
 import ContentPage from "@/app/components/contents/content";
-import React from "react";
+import React, { useMemo } from "react";
 import DashboardLayout from "@/app/components/layouts/layout";
-import { Stack, Typography, Tooltip, Grow, Chip, Icon } from "@mui/material";
-import { grey } from "@mui/material/colors";
+import EmptyState from "@/app/components/empty";
+import { IconEmptyPage } from "@/app/components/icons";
+import ActionColumn from "@/app/components/actions/action";
 import AddButton from "@/app/components/buttonAdd";
+import { advancedTable } from "@/app/components/table";
+import {
+ DialogActions,
+ Button,
+ SelectChangeEvent,
+ Alert,
+ AlertTitle,
+} from "@mui/material";
+import {
+ useMaterialReactTable,
+ MaterialReactTable,
+} from "material-react-table";
+import { data } from "../pemantauan/setting";
+import DialogComponent from "@/app/components/dialog";
+import FormTable from "./partials/form-table";
 
-export default function PageMaturitas({}) {
- const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+export default function PagePeringatanDiniSaran({}) {
+ const [modalOpenView, setModalOpenView] = React.useState(false);
+ const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
+ const [modalOpenEdit, setModalOpenEdit] = React.useState(false);
+ const [modalOpenDelete, setModalOpenDelete] = React.useState(false);
 
- const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
-  setAnchorEl(event.currentTarget);
+ const handleModalOpenView = () => {
+  setModalOpenView(true);
+ };
+ const handleModalOpenDelete = () => {
+  setModalOpenDelete(true);
+ };
+ const handleModalOpenAdd = () => {
+  setModalOpenAdd(true);
+ };
+ const handleModalOpenEdit = () => {
+  setModalOpenEdit(true);
  };
 
- const handlePopoverClose = () => {
-  setAnchorEl(null);
+ const handleModalClose = () => {
+  setModalOpenView(false);
+  setModalOpenDelete(false);
+  setModalOpenAdd(false);
+  setModalOpenEdit(false);
  };
 
- const open = Boolean(anchorEl);
+ const columns = useMemo(
+  () => [
+   {
+    accessorKey: "peristiwa",
+    header: "Peristiwa Risiko",
+    size: 300,
+    enableColumnActions: false,
+    enableSorting: false,
+   },
+   {
+    accessorKey: "kl_utama",
+    header: "K/L Utama",
+    size: 300,
+    enableColumnActions: false,
+    enableSorting: false,
+   },
+   {
+    id: "nilai_risiko",
+    header: "Nilai Risiko",
+    columns: [
+     {
+      accessorKey: "nr_sebelum",
+      header: "Sebelum",
+      size: 120,
+      enableColumnActions: false,
+     },
+     {
+      accessorKey: "nr_sesudah",
+      header: "Sesudah",
+      size: 120,
+      enableColumnActions: false,
+     },
+    ],
+   },
+   {
+    accessorKey: "maturitas",
+    header: "Maturitas MRPN",
+    size: 150,
+    enableColumnActions: false,
+    enableSorting: false,
+   },
+   {
+    accessorKey: "saran",
+    header: "Saran/Masukan",
+    size: 150,
+    enableColumnActions: false,
+    enableSorting: false,
+   },
+  ],
+  []
+ );
 
- const labelChipRo = "Peningkatan ketersediaan pangan keluarga 1000 HPK";
+ type ColumnsType = {};
+
+ const renderTopToolbar: ColumnsType = {
+  renderTopToolbarCustomActions: () => null,
+ };
+
+ const table = useMaterialReactTable({
+  columns,
+  data,
+  ...renderTopToolbar,
+  ...advancedTable,
+  //   enableRowActions: false,
+  //   muiTableContainerProps: {
+  //    sx: {
+  //     maxWidth: "calc(100vw - 364px)",
+  //     "&::-webkit-scrollbar": {
+  //      height: "10px",
+  //     },
+  //    },
+  //   },
+  //   renderEmptyRowsFallback: ({ table }) => (
+  //    <EmptyState
+  //     icon={<IconEmptyData />}
+  //     title="Data Kosong"
+  //     description="Silahkan isi konten halaman ini"
+  //    />
+  //   ),
+  displayColumnDefOptions: {
+   "mrt-row-actions": {
+    header: "",
+    size: 140,
+    Cell: () => (
+     <ActionColumn
+      viewClick={handleModalOpenView}
+      editClick={handleModalOpenEdit}
+      deleteClick={handleModalOpenDelete}
+     />
+    ),
+   },
+  },
+ });
+
+ const dialogActionFooter = (
+  <DialogActions sx={{ p: 2, px: 3 }}>
+   <Button onClick={handleModalClose}>Batal</Button>
+   <Button variant="contained" type="submit">
+    Simpan
+   </Button>
+  </DialogActions>
+ );
+
+ const dialogActionDeleteFooter = (
+  <DialogActions sx={{ p: 2, px: 3 }}>
+   <Button onClick={handleModalClose}>Batal</Button>
+   <Button variant="contained" color="error" type="submit">
+    Hapus
+   </Button>
+  </DialogActions>
+ );
 
  return (
-  <DashboardLayout>
-   <ContentPage title="Maturitas" withCard chooseProject>
-    {/* <EmptyState
+  <>
+   <DashboardLayout>
+    <ContentPage title="Maturitas" chooseProject withCard={false}>
+     {/* <EmptyState
      icon={<IconEmptyPage />}
-     title="Halaman Pelaporan Berkala Kosong"
+     title="Halaman Peringatan Dini & Saran Kosong"
      description="Silahkan isi konten halaman ini"
     /> */}
-    <Stack direction="row" gap={2}>
-     <Chip
-      variant="outlined"
-      label={
-       labelChipRo.length >= 40 ? (
-        <>
-         <Stack direction="row" alignItems="center">
-          <Stack
-           direction="row"
-           bgcolor={grey[800]}
-           px={2}
-           alignItems="center"
-           height="34px"
-           sx={{
-            borderTopLeftRadius: 24,
-            borderBottomLeftRadius: 24,
-           }}
-          >
-           <Typography
-            fontSize={14}
-            color="white"
-            fontWeight={600}
-            lineHeight={1}
-           >
-            Rincian Output
-           </Typography>
-          </Stack>
-          <Tooltip title={labelChipRo} followCursor TransitionComponent={Grow}>
-           <Typography
-            aria-owns={open ? "mouse-over-popover" : undefined}
-            aria-haspopup="true"
-            onMouseEnter={handlePopoverOpen}
-            onMouseLeave={handlePopoverClose}
-            px={1.5}
-            fontSize={14}
-            fontWeight={600}
-           >
-            {labelChipRo.substring(0, 40) + "..."}
-           </Typography>
-          </Tooltip>
-         </Stack>
-        </>
-       ) : (
-        labelChipRo
-       )
-      }
-      sx={{
-       height: "34px",
-       bgcolor: "white",
-       fontWeight: 600,
-       lineHeight: 1,
-       cursor: "default",
 
-       ".MuiChip-label": {
-        px: 0,
-       },
-      }}
-     />
-     <Chip
-      variant="outlined"
-      label={
-       <Stack direction="row" alignItems="center">
-        <Stack
-         direction="row"
-         bgcolor={grey[800]}
-         px={2}
-         alignItems="center"
-         height="34px"
-         sx={{
-          borderTopLeftRadius: 24,
-          borderBottomLeftRadius: 24,
-         }}
-        >
-         <Typography
-          fontSize={14}
-          color="white"
-          fontWeight={600}
-          lineHeight={1}
-         >
-          Periode
-         </Typography>
-        </Stack>
-        <Typography px={1.5} fontSize={14} fontWeight={600}>
-         Triwulan 1: Januari s/d Maret
-        </Typography>
-       </Stack>
-      }
-      sx={{
-       height: "34px",
-       bgcolor: "white",
-       fontWeight: 600,
-       lineHeight: 1,
-       cursor: "default",
-       ".MuiChip-label": {
-        px: 0,
-       },
-      }}
-     />
-     <AddButton
-      noMargin
-      filled
-      title="Download PDF & Excel"
-      startIcon={
-       <Icon
-        baseClassName="fas"
-        className={`fa-download`}
-        sx={{
-         fontSize: "12px !important",
-        }}
-       />
-      }
-      sx={{ padding: "0 20px", height: 34 }}
-     />
-    </Stack>
-   </ContentPage>
-  </DashboardLayout>
+     <MaterialReactTable table={table} />
+    </ContentPage>
+   </DashboardLayout>
+   <DialogComponent
+    dialogOpen={modalOpenView}
+    dialogClose={handleModalClose}
+    title="Detail Maturitas"
+   >
+    <FormTable mode="view" />
+   </DialogComponent>
+   <DialogComponent
+    dialogOpen={modalOpenEdit}
+    dialogClose={handleModalClose}
+    title="Ubah Maturitas"
+    dialogFooter={dialogActionFooter}
+   >
+    <FormTable mode="edit" />
+   </DialogComponent>
+   <DialogComponent
+    width={240}
+    dialogOpen={modalOpenDelete}
+    dialogClose={handleModalClose}
+    title="Hapus Data"
+    dialogFooter={dialogActionDeleteFooter}
+   >
+    Anda yakin akan menghapus data ini?
+   </DialogComponent>
+  </>
  );
 }

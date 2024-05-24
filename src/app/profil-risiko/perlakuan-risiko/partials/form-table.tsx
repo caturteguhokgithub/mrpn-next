@@ -22,6 +22,7 @@ import SelectCustomTheme from "@/app/components/select";
 import { grey } from "@mui/material/colors";
 import { listPeristiwaRisiko } from "../setting";
 import { IconFA } from "@/app/components/icons/icon-fa";
+import TextareaComponent from "@/app/components/textarea";
 
 export default function FormTable({ mode }: { mode?: string }) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -205,36 +206,26 @@ export default function FormTable({ mode }: { mode?: string }) {
       <Chip label="Perlakuan Risiko" size="small" />
      </Divider>
     </Grid>
-    <Grid item lg={4}>
+    <Grid item lg={12}>
      <FormControl fullWidth>
       <Typography gutterBottom>Deskripsi Rencana Mitigasi</Typography>
       {mode === "add" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Deskripsi Rencana Mitigasi"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+       <TextareaComponent label="Keterangan" placeholder="Keterangan" />
       ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
+       <TextareaComponent
+        label="Keterangan"
+        placeholder="Keterangan"
         value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
        />
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}
      </FormControl>
     </Grid>
-    <Grid item lg={4}>
+    <Grid item lg={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Waktu Rencana Mitigasi</Typography>
-      {mode === "add" ? (
+      {mode === "add" || mode === "edit" ? (
        <>
         <Popover
          id={id}
@@ -274,52 +265,12 @@ export default function FormTable({ mode }: { mode?: string }) {
           .format("D MMM YYYY")}`}
         />
        </>
-      ) : mode === "edit" ? (
-       <>
-        <Popover
-         id={id}
-         open={open}
-         anchorEl={anchorEl}
-         onClose={handleClose}
-         anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-         }}
-        >
-         <DateRange
-          editableDateInputs={true}
-          onChange={(item: any) => setState([item.selection])}
-          moveRangeOnFirstSelection={false}
-          ranges={state}
-          months={2}
-          direction="horizontal"
-          minDate={minDate}
-          maxDate={maxDate}
-         />
-        </Popover>
-        <TextField
-         onClick={handleClick}
-         variant="outlined"
-         size="small"
-         placeholder="Periode Penerapan"
-         InputLabelProps={{
-          shrink: true,
-         }}
-         value={`${moment
-          .utc(state[0].startDate)
-          .utcOffset(7)
-          .format("D MMM YYYY")} - ${moment
-          .utc(state[0].endDate)
-          .utcOffset(7)
-          .format("D MMM YYYY")}`}
-        />
-       </>
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}
      </FormControl>
     </Grid>
-    <Grid item lg={4}>
+    <Grid item lg={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Penanggung Jawab</Typography>
       {mode === "add" ? (

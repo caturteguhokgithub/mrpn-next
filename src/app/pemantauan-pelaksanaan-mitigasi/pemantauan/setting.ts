@@ -1,23 +1,19 @@
 export type PemantauanType = {
  peristiwa: string;
- kategori: string;
- before_kemungkinan: string;
- before_dampak: string;
- before_tingkat_risiko: string;
- after_kemungkinan: string;
- after_dampak: string;
- after_tingkat_risiko: string;
+ kl_utama: string;
+ nr_sebelum: string;
+ nr_sesudah: string;
+ maturitas: string;
+ saran: string;
 };
 
 export const data: PemantauanType[] = [
  {
-  peristiwa: "-",
-  kategori: "-",
-  before_kemungkinan: "-",
-  before_dampak: "-",
-  before_tingkat_risiko: "-",
-  after_kemungkinan: "-",
-  after_dampak: "-",
-  after_tingkat_risiko: "-",
+  peristiwa: "Peristiwa risiko 1",
+  kl_utama: "Kementerian PPN",
+  nr_sebelum: "1",
+  nr_sesudah: "3",
+  maturitas: "Tingkat 4 - Budaya sadar risiko tercipta",
+  saran: "-",
  },
 ];

@@ -201,47 +201,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
      <Grid item lg={6}>
       <FormControl fullWidth>
        <Typography gutterBottom>Periode Penerapan</Typography>
-       {mode === "add" ? (
-        <>
-         <Popover
-          id={id}
-          open={open}
-          anchorEl={anchorEl}
-          onClose={handleClose}
-          anchorOrigin={{
-           vertical: "bottom",
-           horizontal: "left",
-          }}
-         >
-          <DateRange
-           editableDateInputs={true}
-           onChange={(item: any) => setState([item.selection])}
-           moveRangeOnFirstSelection={false}
-           ranges={state}
-           months={2}
-           direction="horizontal"
-           minDate={minDate}
-           maxDate={maxDate}
-          />
-         </Popover>
-         <TextField
-          onClick={handleClick}
-          variant="outlined"
-          size="small"
-          placeholder="Periode Penerapan"
-          InputLabelProps={{
-           shrink: true,
-          }}
-          value={`${moment
-           .utc(state[0].startDate)
-           .utcOffset(7)
-           .format("D MMM YYYY")} - ${moment
-           .utc(state[0].endDate)
-           .utcOffset(7)
-           .format("D MMM YYYY")}`}
-         />
-        </>
-       ) : mode === "edit" ? (
+       {mode === "add" || mode === "edit" ? (
         <>
          <Popover
           id={id}

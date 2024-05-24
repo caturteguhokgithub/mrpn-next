@@ -14,6 +14,9 @@ import CardItem from "@/app/components/cardTabItem";
 import DialogComponent from "@/app/components/dialog";
 import dynamic from "next/dynamic";
 import { dataTema } from "../../dataTema";
+import GanttChart from "@/app/penetapan-konteks/konteks-strategis/form/partials/gantt/gantt";
+import { tasks } from "@/app/penetapan-konteks/konteks-strategis/setting";
+import FormMilestone from "@/app/penetapan-konteks/konteks-strategis/form/partials/form-milestone";
 
 export default function CardCritical({ project }: { project: string }) {
  const [modalOpenCritical, setModalOpenCritical] = React.useState(false);
@@ -50,7 +53,8 @@ export default function CardCritical({ project }: { project: string }) {
    ) : (
     <>
      <Box width="100%" textAlign="center">
-      {dataTema.map((itemCritical) => (
+      <GanttChart tasks={tasks} />
+      {/* {dataTema.map((itemCritical) => (
        <>
         {project === itemCritical.temaId && (
          <>
@@ -112,7 +116,7 @@ export default function CardCritical({ project }: { project: string }) {
          </>
         )}
        </>
-      ))}
+      ))} */}
      </Box>
     </>
    )}
@@ -131,11 +135,7 @@ export default function CardCritical({ project }: { project: string }) {
      </DialogActions>
     }
    >
-    <Typography variant="caption" component="div" mb={2}>
-     Format gambar: <strong>.png / .jpg / .jpeg</strong>. Ukuran gambar{" "}
-     <strong>max. 200kb</strong>
-    </Typography>
-    <ReactQuill theme="snow" value={value} onChange={setValue} />
+    <FormMilestone mode="edit" />
    </DialogComponent>
   </CardItem>
  );

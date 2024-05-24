@@ -25,54 +25,7 @@ import FormROKunci from "./form-ro-kunci";
 import FormMilestone from "./form-milestone";
 // import { FrappeGantt, Task, ViewMode } from "frappe-gantt-react";
 import GanttChart from "./gantt/gantt";
-import { Task } from "frappe-gantt";
-
-const tasks = [
- {
-  id: "Task 1",
-  name: "Sistem penyediaan air minum, pengelolaan limbah",
-  start: "2025-12-28",
-  end: "2029-12-31",
-  progress: 10,
-  dependencies: "",
- },
- {
-  id: "Task 2",
-  name: "Redesign website",
-  start: "2025-12-28",
-  end: "2029-12-31",
-  progress: 90,
-  //   dependencies: "Task 1",
-  dependencies: "",
- },
- {
-  id: "Task 3",
-  name: "Redesign website",
-  start: "2025-12-28",
-  end: "2029-12-31",
-  progress: 50,
-  //   dependencies: "Task 2, Task 1",
-  dependencies: "",
- },
- {
-  id: "Task 4",
-  name: "Redesign website",
-  start: "2025-12-28",
-  end: "2029-12-31",
-  progress: 20,
-  //   dependencies: "Task 2, Task 1",
-  dependencies: "",
- },
- {
-  id: "Task 5",
-  name: "Redesign website",
-  start: "2025-12-28",
-  end: "2029-12-31",
-  progress: 70,
-  //   dependencies: "Task 2, Task 1",
-  dependencies: "",
- },
-] as Task[];
+import { tasks } from "../../setting";
 
 export default function TableMilestone({ mode }: { mode?: string }) {
  const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
@@ -232,15 +185,15 @@ export default function TableMilestone({ mode }: { mode?: string }) {
       )}
      </TableBody>
     </Table>
-   </TableContainer>
+   </TableContainer> */}
    <DialogComponent
     dialogOpen={modalOpenAdd}
     dialogClose={handleModalClose}
-    title="Tambah Rincian Output Kunci"
+    title="Tambah Milestone"
     dialogFooter={dialogActionFooter}
    >
     <FormMilestone mode="add" />
-   </DialogComponent> */}
+   </DialogComponent>
   </>
  );
 }

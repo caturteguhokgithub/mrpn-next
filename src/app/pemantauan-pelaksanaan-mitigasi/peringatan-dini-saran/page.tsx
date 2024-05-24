@@ -54,27 +54,41 @@ export default function PagePeringatanDiniSaran({}) {
    {
     accessorKey: "peristiwa",
     header: "Peristiwa Risiko",
-    size: 300,
+    size: 200,
+    enableColumnActions: false,
+    enableSorting: false,
+   },
+   //    {
+   //     id: "nilai_residual",
+   //     header: "Nilai Residual Risiko",
+   //     columns: [
+   //      {
+   //       accessorKey: "nilai",
+   //       header: "Nilai",
+   //       size: 120,
+   //       enableColumnActions: false,
+   //      },
+   //      {
+   //       accessorKey: "tingkat",
+   //       header: "Tingkat",
+   //       size: 120,
+   //       enableColumnActions: false,
+   //      },
+   //     ],
+   //    },
+   {
+    accessorKey: "konteks_strategis",
+    header: "Konteks Strategis",
+    size: 200,
     enableColumnActions: false,
     enableSorting: false,
    },
    {
-    id: "nilai_residual",
-    header: "Nilai Residual Risiko",
-    columns: [
-     {
-      accessorKey: "nilai",
-      header: "Nilai",
-      size: 120,
-      enableColumnActions: false,
-     },
-     {
-      accessorKey: "tingkat",
-      header: "Tingkat",
-      size: 120,
-      enableColumnActions: false,
-     },
-    ],
+    accessorKey: "nilai_risiko",
+    header: "Nilai Risiko",
+    size: 100,
+    enableColumnActions: false,
+    enableSorting: false,
    },
    {
     accessorKey: "pengendalian",
@@ -83,13 +97,13 @@ export default function PagePeringatanDiniSaran({}) {
     enableColumnActions: false,
     enableSorting: false,
    },
-   {
-    accessorKey: "tindak_lanjut",
-    header: "Tindak Lanjut",
-    size: 150,
-    enableColumnActions: false,
-    enableSorting: false,
-   },
+   //    {
+   //     accessorKey: "tindak_lanjut",
+   //     header: "Tindak Lanjut",
+   //     size: 150,
+   //     enableColumnActions: false,
+   //     enableSorting: false,
+   //    },
   ],
   []
  );
@@ -125,13 +139,13 @@ export default function PagePeringatanDiniSaran({}) {
   //   ),
   displayColumnDefOptions: {
    "mrt-row-actions": {
-    header: "",
+    header: "Tindak Lanjut",
     size: 140,
     Cell: () => (
      <ActionColumn
       viewClick={handleModalOpenView}
       editClick={handleModalOpenEdit}
-      deleteClick={handleModalOpenDelete}
+      //   deleteClick={handleModalOpenDelete}
      />
     ),
    },

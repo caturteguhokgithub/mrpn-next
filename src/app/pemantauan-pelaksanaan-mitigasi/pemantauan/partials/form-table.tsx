@@ -6,6 +6,7 @@ import {
  Grid,
  Grow,
  MenuItem,
+ Popover,
  SelectChangeEvent,
  TextField,
  Tooltip,
@@ -19,22 +20,29 @@ import SelectCustomTheme from "@/app/components/select";
 import { listPeristiwaRisiko } from "@/app/profil-risiko/perlakuan-risiko/setting";
 import { grey } from "@mui/material/colors";
 import { riskCategory } from "@/app/profil-risiko/registrasi-risiko/setting";
+import { listDampak, listKemungkinan } from "@/app/utils/data";
+import { id } from "date-fns/locale";
+import moment from "moment";
+import { DateRange } from "react-date-range";
 
 export default function FormTable({ mode }: { mode?: string }) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
  const [prDropdown, setPrDropdown] = React.useState("");
- const [project, setProject] = React.useState("");
- const [probability, setProbability] = React.useState("");
- const [impact, setImpact] = React.useState("");
  const [probabilityAfter, setProbabilityAfter] = React.useState("");
  const [impactAfter, setImpactAfter] = React.useState("");
-
- const handleChangeProbability = (event: SelectChangeEvent) => {
-  setProbability(event.target.value);
+ const [state, setState] = React.useState([
+  {
+   startDate: new Date(),
+   endDate: new Date(),
+   key: "selection",
+  },
+ ]);
+ const handleClick = (event: any) => {
+  setAnchorEl(event.currentTarget);
  };
 
- const handleChangeImpact = (event: SelectChangeEvent) => {
-  setImpact(event.target.value);
+ const handleClose = () => {
+  setAnchorEl(null);
  };
 
  const handleChangeProbabilityAfter = (event: SelectChangeEvent) => {
@@ -43,10 +51,6 @@ export default function FormTable({ mode }: { mode?: string }) {
 
  const handleChangeImpactAfter = (event: SelectChangeEvent) => {
   setImpactAfter(event.target.value);
- };
-
- const handleChangeProject = (event: SelectChangeEvent) => {
-  setProject(event.target.value);
  };
 
  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -61,6 +65,14 @@ export default function FormTable({ mode }: { mode?: string }) {
  };
 
  const open = Boolean(anchorEl);
+ const id = open ? "simple-popover" : undefined;
+ const currentDate = new Date();
+
+ const minDate = new Date();
+ const maxDate = new Date();
+
+ minDate.setFullYear(currentDate.getFullYear() - 10);
+ maxDate.setFullYear(currentDate.getFullYear() + 20);
 
  return (
   <>
@@ -68,7 +80,6 @@ export default function FormTable({ mode }: { mode?: string }) {
     <Grid item lg={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Peristiwa Risiko</Typography>
-
       {mode === "add" || mode === "edit" ? (
        <SelectCustomTheme
         defaultStyle
@@ -119,22 +130,29 @@ export default function FormTable({ mode }: { mode?: string }) {
     <Grid item lg={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Pemilik Risiko (PJ Sasaran)</Typography>
-      {mode === "add" ? (
+      {mode === "add" || mode === "edit" ? (
        <TextField
         variant="outlined"
         size="small"
+        disabled
         placeholder="Pemilik Risiko (PJ Sasaran)"
         InputLabelProps={{
          shrink: true,
         }}
-       />
-      ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
+        value={
+         prDropdown === "1"
+          ? "Kementerian Kesehatan"
+          : prDropdown === "2"
+          ? "Kementerian PUPR"
+          : prDropdown === "3"
+          ? "Kementerian Perindustrian"
+          : "Pemilik Risiko (PJ Sasaran)"
+        }
+        sx={{
+         input: {
+          WebkitTextFillColor: `${grey[800]} !important`,
+          bgcolor: grey[200],
+         },
         }}
        />
       ) : (
@@ -145,22 +163,29 @@ export default function FormTable({ mode }: { mode?: string }) {
     <Grid item lg={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Kode Risiko</Typography>
-      {mode === "add" ? (
+      {mode === "add" || mode === "edit" ? (
        <TextField
         variant="outlined"
         size="small"
+        disabled
         placeholder="Kode Risiko"
         InputLabelProps={{
          shrink: true,
         }}
-       />
-      ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
+        value={
+         prDropdown === "1"
+          ? "KR-111.111"
+          : prDropdown === "2"
+          ? "KR-222.222"
+          : prDropdown === "3"
+          ? "KR-333.333"
+          : "Kode Risiko"
+        }
+        sx={{
+         input: {
+          WebkitTextFillColor: `${grey[800]} !important`,
+          bgcolor: grey[200],
+         },
         }}
        />
       ) : (
@@ -172,23 +197,34 @@ export default function FormTable({ mode }: { mode?: string }) {
      <FormControl fullWidth>
       <Typography gutterBottom>Kategori Risiko</Typography>
       {mode === "add" || mode === "edit" ? (
-       <SelectCustomTheme
-        small
-        defaultStyle
-        value={project}
-        onChange={handleChangeProject}
-       >
-        <MenuItem value="" disabled>
-         <Typography fontSize={14} fontStyle="italic">
-          Pilih kategori risiko
-         </Typography>
-        </MenuItem>
-        {riskCategory.map((category, index) => (
-         <MenuItem key={index} value={index} defaultChecked>
-          {category}
-         </MenuItem>
-        ))}
-       </SelectCustomTheme>
+       <TextField
+        variant="outlined"
+        size="small"
+        disabled
+        placeholder="Kategori Risiko"
+        InputLabelProps={{
+         shrink: true,
+        }}
+        value={
+         prDropdown === "1"
+          ? "Risiko Lingkungan"
+          : prDropdown === "2"
+          ? "Risiko Sosial"
+          : prDropdown === "3"
+          ? "Risiko Geopolitik"
+          : prDropdown === "4"
+          ? "Risiko Ekonomi"
+          : prDropdown === "5"
+          ? "Risiko Teknologi"
+          : "Kategori Risiko"
+        }
+        sx={{
+         input: {
+          WebkitTextFillColor: `${grey[800]} !important`,
+          bgcolor: grey[200],
+         },
+        }}
+       />
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}
@@ -203,29 +239,34 @@ export default function FormTable({ mode }: { mode?: string }) {
      <FormControl fullWidth>
       <Typography gutterBottom>Kemungkinan</Typography>
       {mode === "add" || mode === "edit" ? (
-       <SelectCustomTheme
-        small
-        defaultStyle
-        anchorRight
-        value={probability}
-        onChange={handleChangeProbability}
+       <TextField
+        variant="outlined"
+        size="small"
+        disabled
+        placeholder="Kemungkinan"
+        InputLabelProps={{
+         shrink: true,
+        }}
+        value={
+         prDropdown === "1"
+          ? "Kemungkinan 1"
+          : prDropdown === "2"
+          ? "Kemungkinan 2"
+          : prDropdown === "3"
+          ? "Kemungkinan 3"
+          : prDropdown === "4"
+          ? "Kemungkinan 4"
+          : prDropdown === "5"
+          ? "Kemungkinan 5"
+          : "Kemungkinan"
+        }
         sx={{
-         ".MuiSelect-select": {
-          minHeight: 0,
+         input: {
+          WebkitTextFillColor: `${grey[800]} !important`,
+          bgcolor: grey[200],
          },
         }}
-       >
-        <MenuItem value="" disabled>
-         <Typography fontSize={14} fontStyle="italic">
-          Pilih kemungkinan
-         </Typography>
-        </MenuItem>
-        <MenuItem value="1" defaultChecked>
-         Kemungkinan 1
-        </MenuItem>
-        <MenuItem value="2">Kemungkinan 2</MenuItem>
-        <MenuItem value="3">Kemungkinan 3</MenuItem>
-       </SelectCustomTheme>
+       />
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}
@@ -235,29 +276,34 @@ export default function FormTable({ mode }: { mode?: string }) {
      <FormControl fullWidth>
       <Typography gutterBottom>Dampak</Typography>
       {mode === "add" || mode === "edit" ? (
-       <SelectCustomTheme
-        small
-        defaultStyle
-        anchorRight
-        value={impact}
-        onChange={handleChangeImpact}
+       <TextField
+        variant="outlined"
+        size="small"
+        disabled
+        placeholder="Dampak"
+        InputLabelProps={{
+         shrink: true,
+        }}
+        value={
+         prDropdown === "1"
+          ? "Dampak 1"
+          : prDropdown === "2"
+          ? "Dampak 2"
+          : prDropdown === "3"
+          ? "Dampak 3"
+          : prDropdown === "4"
+          ? "Dampak 4"
+          : prDropdown === "5"
+          ? "Dampak 5"
+          : "Dampak"
+        }
         sx={{
-         ".MuiSelect-select": {
-          minHeight: 0,
+         input: {
+          WebkitTextFillColor: `${grey[800]} !important`,
+          bgcolor: grey[200],
          },
         }}
-       >
-        <MenuItem value="" disabled>
-         <Typography fontSize={14} fontStyle="italic">
-          Pilih dampak
-         </Typography>
-        </MenuItem>
-        <MenuItem value="1" defaultChecked>
-         Dampak 1
-        </MenuItem>
-        <MenuItem value="2">Dampak 2</MenuItem>
-        <MenuItem value="3">Dampak 3</MenuItem>
-       </SelectCustomTheme>
+       />
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}
@@ -276,11 +322,11 @@ export default function FormTable({ mode }: { mode?: string }) {
          shrink: true,
         }}
         value={
-         impact === "1"
+         prDropdown === "1"
           ? "Rendah"
-          : impact === "2"
+          : prDropdown === "2"
           ? "Sedang"
-          : impact === "3"
+          : prDropdown === "3"
           ? "Tinggi"
           : "Tingkat Risiko"
         }
@@ -298,7 +344,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={12}>
      <Divider>
-      <Chip label="Perlakuan Risiko" size="small" />
+      <Chip label="Realisasi Perlakuan Risiko" size="small" />
      </Divider>
     </Grid>
     <Grid item lg={12}>
@@ -440,28 +486,35 @@ export default function FormTable({ mode }: { mode?: string }) {
     <Grid item lg={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Tanggal Rencana</Typography>
-      {mode === "add" ? (
-       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DatePicker
-         sx={{
-          ".MuiInputBase-root": {
-           height: 40,
-          },
-         }}
-         format="D MMM YYYY"
-        />
-       </LocalizationProvider>
-      ) : mode === "edit" ? (
-       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DatePicker
-         sx={{
-          ".MuiInputBase-root": {
-           height: 40,
-          },
-         }}
-         format="D MMM YYYY"
-        />
-       </LocalizationProvider>
+      {mode === "add" || mode === "edit" ? (
+       <TextField
+        variant="outlined"
+        size="small"
+        disabled
+        placeholder="Tanggal Rencana"
+        InputLabelProps={{
+         shrink: true,
+        }}
+        value={
+         prDropdown === "1"
+          ? "25 Agustus 2026"
+          : prDropdown === "2"
+          ? "25 Februari 2026"
+          : prDropdown === "3"
+          ? "25 Mei 2026"
+          : prDropdown === "4"
+          ? "25 Oktober 2026"
+          : prDropdown === "5"
+          ? "25 Desember 2026"
+          : "Tanggal Rencana"
+        }
+        sx={{
+         input: {
+          WebkitTextFillColor: `${grey[800]} !important`,
+          bgcolor: grey[200],
+         },
+        }}
+       />
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}
@@ -523,11 +576,29 @@ export default function FormTable({ mode }: { mode?: string }) {
           Pilih kemungkinan
          </Typography>
         </MenuItem>
-        <MenuItem value="1" defaultChecked>
-         Kemungkinan 1
-        </MenuItem>
-        <MenuItem value="2">Kemungkinan 2</MenuItem>
-        <MenuItem value="3">Kemungkinan 3</MenuItem>
+        {listKemungkinan.map((kemungkinanLabel, index) => (
+         <MenuItem key={index} value={kemungkinanLabel}>
+          {kemungkinanLabel.length >= 35 ? (
+           <Tooltip
+            title={kemungkinanLabel}
+            followCursor
+            TransitionComponent={Grow}
+           >
+            <Typography
+             aria-owns={open ? "mouse-over-popover" : undefined}
+             aria-haspopup="true"
+             onMouseEnter={handlePopoverOpen}
+             onMouseLeave={handlePopoverClose}
+             sx={{ fontSize: 14 }}
+            >
+             {kemungkinanLabel.substring(0, 35) + "..."}
+            </Typography>
+           </Tooltip>
+          ) : (
+           kemungkinanLabel
+          )}
+         </MenuItem>
+        ))}
        </SelectCustomTheme>
       ) : (
        <Typography fontWeight={600}>-</Typography>
@@ -554,12 +625,30 @@ export default function FormTable({ mode }: { mode?: string }) {
          <Typography fontSize={14} fontStyle="italic">
           Pilih dampak
          </Typography>
-        </MenuItem>
-        <MenuItem value="1" defaultChecked>
-         Dampak 1
-        </MenuItem>
-        <MenuItem value="2">Dampak 2</MenuItem>
-        <MenuItem value="3">Dampak 3</MenuItem>
+        </MenuItem>{" "}
+        {listDampak.map((kemungkinanLabel, index) => (
+         <MenuItem key={index} value={kemungkinanLabel}>
+          {kemungkinanLabel.length >= 35 ? (
+           <Tooltip
+            title={kemungkinanLabel}
+            followCursor
+            TransitionComponent={Grow}
+           >
+            <Typography
+             aria-owns={open ? "mouse-over-popover" : undefined}
+             aria-haspopup="true"
+             onMouseEnter={handlePopoverOpen}
+             onMouseLeave={handlePopoverClose}
+             sx={{ fontSize: 14 }}
+            >
+             {kemungkinanLabel.substring(0, 35) + "..."}
+            </Typography>
+           </Tooltip>
+          ) : (
+           kemungkinanLabel
+          )}
+         </MenuItem>
+        ))}
        </SelectCustomTheme>
       ) : (
        <Typography fontWeight={600}>-</Typography>
@@ -593,6 +682,63 @@ export default function FormTable({ mode }: { mode?: string }) {
           bgcolor: grey[200],
          },
         }}
+       />
+      ) : (
+       <Typography fontWeight={600}>-</Typography>
+      )}
+     </FormControl>
+    </Grid>
+    <Grid item lg={12}>
+     <Divider />
+    </Grid>
+    <Grid item lg={12}>
+     <FormControl fullWidth>
+      <Typography gutterBottom>Deadline Perlakuan Risiko</Typography>
+      {mode === "add" ? (
+       <>
+        <Popover
+         id={id}
+         open={open}
+         anchorEl={anchorEl}
+         onClose={handleClose}
+         anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+         }}
+        >
+         <DateRange
+          editableDateInputs={true}
+          onChange={(item: any) => setState([item.selection])}
+          moveRangeOnFirstSelection={false}
+          ranges={state}
+          months={2}
+          direction="horizontal"
+          minDate={minDate}
+          maxDate={maxDate}
+         />
+        </Popover>
+        <TextField
+         onClick={handleClick}
+         variant="outlined"
+         size="small"
+         placeholder="Periode Penerapan"
+         InputLabelProps={{
+          shrink: true,
+         }}
+         value={`${moment
+          .utc(state[0].startDate)
+          .utcOffset(7)
+          .format("D MMM YYYY")} - ${moment
+          .utc(state[0].endDate)
+          .utcOffset(7)
+          .format("D MMM YYYY")}`}
+        />
+       </>
+      ) : mode === "edit" ? (
+       <TextareaComponent
+        label="Keterangan"
+        placeholder="Keterangan"
+        value="-"
        />
       ) : (
        <Typography fontWeight={600}>-</Typography>

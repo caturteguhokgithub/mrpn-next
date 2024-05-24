@@ -12,6 +12,7 @@ import {
  SelectChangeEvent,
  Stack,
  TextField,
+ ToggleButton,
  ToggleButtonGroup,
  Typography,
  alpha,
@@ -20,15 +21,18 @@ import { grey } from "@mui/material/colors";
 import theme from "@/theme";
 import CustomToggleButton from "@/app/components/toggleButton";
 import DialogComponent from "@/app/components/dialog";
+import TextareaComponent from "@/app/components/textarea";
 
 const LabelRadio = ({
  heading,
  description,
  value,
+ rangeValue,
 }: {
  heading: string;
  description: any;
- value: string;
+ value: string | any;
+ rangeValue: string | any;
 }) => {
  return (
   <Stack direction="column" justifyContent="flex-start">
@@ -38,10 +42,11 @@ const LabelRadio = ({
     fontWeight={600}
     textTransform="none"
    >
-    {heading} (Nilai: {value})
+    {heading} {value && `(Nilai ${value})`}{" "}
+    {rangeValue && `(Rentang Nilai ${rangeValue})`}
    </Typography>
    <Typography
-    component="p"
+    component="div"
     color={grey[700]}
     textTransform="none"
     fontSize={15}
@@ -58,6 +63,14 @@ export default function PageSeleraRisiko({}) {
  const [valueTheme, setValueTheme] = React.useState<string | null>("");
  const [project, setProject] = React.useState("");
  const [modalOpenSave, setModalOpenSave] = React.useState(false);
+ const [userLevel, setUserLevel] = React.useState<string | null>("left");
+
+ const handleUserLevel = (
+  event: React.MouseEvent<HTMLElement>,
+  newUserLevel: string | null
+ ) => {
+  setUserLevel(newUserLevel);
+ };
 
  const handleModalOpenSave = () => {
   setModalOpenSave(true);
@@ -97,6 +110,8 @@ export default function PageSeleraRisiko({}) {
   </Button>
  );
 
+ const rangeValue = userLevel === "bappenas" ? "3" : "1-6";
+
  return (
   <>
    <DashboardLayout>
@@ -117,6 +132,15 @@ export default function PageSeleraRisiko({}) {
        berikut.
       </Typography>
      </Box>
+     <ToggleButtonGroup
+      value={userLevel}
+      exclusive
+      onChange={handleUserLevel}
+      sx={{ mb: 2 }}
+     >
+      <ToggleButton value="bappenas">User Bappenas</ToggleButton>
+      <ToggleButton value="kl">User KL</ToggleButton>
+     </ToggleButtonGroup>
      <Typography color={grey[600]} fontSize={14} fontStyle="italic">
       Pilih salah satu untuk memberikan nilai
      </Typography>
@@ -152,41 +176,66 @@ export default function PageSeleraRisiko({}) {
      >
       <CustomToggleButton
        variant="danger"
-       code="Nilai"
+       code={userLevel === "bappenas" ? "Nilai" : null}
        value="1"
-       valueLabel="1-2"
+       valueLabel="1-6"
        label="Tidak memberikan toleransi"
+       minheight={60}
       />
       <CustomToggleButton
        variant="warning"
-       code="Nilai"
+       code={userLevel === "bappenas" ? "Nilai" : null}
        value="2"
-       valueLabel="3-4"
+       valueLabel="7-12"
        label="Konservatif"
+       minheight={60}
       />
       <CustomToggleButton
        variant="success"
-       code="Nilai"
+       code={userLevel === "bappenas" ? "Nilai" : null}
        value="3"
-       valueLabel="5-6"
+       valueLabel="13-18"
        label="Moderat"
+       minheight={60}
       />
       <CustomToggleButton
        variant="primary"
-       code="Nilai"
+       code={userLevel === "bappenas" ? "Nilai" : null}
        value="4"
-       valueLabel="7-9"
+       valueLabel="19-25"
        label="Agresif"
+       minheight={60}
       />
      </ToggleButtonGroup>
      <Collapse in={valueTheme === "1"}>
       <Box mt={2}>
        <LabelRadio
         heading="Tidak memberikan toleransi"
-        value="1-2"
+        rangeValue={userLevel === "bappenas" ? null : "1-6"}
+        value={userLevel === "bappenas" ? 3 : null}
         description={
          <Stack gap={1}>
-          <Box component="p" maxWidth={800}>
+          {userLevel === "bappenas" ? (
+           <FormControl sx={{ maxWidth: 300, mt: 1 }}>
+            <TextareaComponent
+             label="Deskripsi"
+             placeholder="Deskripsi tidak memberikan toleransi"
+            />
+           </FormControl>
+          ) : (
+           <FormControl sx={{ maxWidth: 300, mt: 1 }}>
+            <TextField
+             variant="outlined"
+             size="small"
+             placeholder="Isi nilai tidak memberikan toleransi"
+             InputLabelProps={{
+              shrink: true,
+             }}
+             helperText="Isi dengan angka"
+            />
+           </FormControl>
+          )}
+          {/* <Box component="p" maxWidth={800}>
            Sangat berhati-hati dalam mengambil risiko dan lebih memilih menjaga
            stabilitas dan konsistensi dalam operasi bisnis
           </Box>
@@ -200,7 +249,7 @@ export default function PageSeleraRisiko({}) {
             }}
             helperText="Isi dengan angka"
            />
-          </FormControl>
+          </FormControl> */}
          </Stack>
         }
        />
@@ -211,10 +260,31 @@ export default function PageSeleraRisiko({}) {
       <Box mt={2}>
        <LabelRadio
         heading="KONSERVATIF"
-        value="3-4"
+        rangeValue={userLevel === "bappenas" ? null : "7-12"}
+        value={userLevel === "bappenas" ? 8 : null}
         description={
          <Stack gap={1}>
-          <Box component="p" maxWidth={800}>
+          {userLevel === "bappenas" ? (
+           <FormControl sx={{ maxWidth: 300, mt: 1 }}>
+            <TextareaComponent
+             label="Deskripsi"
+             placeholder="Deskripsi konservatif"
+            />
+           </FormControl>
+          ) : (
+           <FormControl sx={{ maxWidth: 300, mt: 1 }}>
+            <TextField
+             variant="outlined"
+             size="small"
+             placeholder="Isi nilai konservatif"
+             InputLabelProps={{
+              shrink: true,
+             }}
+             helperText="Isi dengan angka"
+            />
+           </FormControl>
+          )}
+          {/* <Box component="p" maxWidth={800}>
            Berhati-hati dalam mengambil risiko, dengan memilih beberapa risiko
            yang terkendali tetapi tetap memprioritaskan kestabilan kegiatan.
           </Box>
@@ -234,7 +304,7 @@ export default function PageSeleraRisiko({}) {
             }}
             helperText="Isi dengan angka"
            />
-          </FormControl>
+          </FormControl> */}
          </Stack>
         }
        />
@@ -245,10 +315,31 @@ export default function PageSeleraRisiko({}) {
       <Box mt={2}>
        <LabelRadio
         heading="MODERAT"
-        value="5-6"
+        rangeValue={userLevel === "bappenas" ? null : "13-18"}
+        value={userLevel === "bappenas" ? 15 : null}
         description={
          <Stack gap={1}>
-          <Box component="p" maxWidth={800}>
+          {userLevel === "bappenas" ? (
+           <FormControl sx={{ maxWidth: 300, mt: 1 }}>
+            <TextareaComponent
+             label="Deskripsi"
+             placeholder="Deskripsi moderat"
+            />
+           </FormControl>
+          ) : (
+           <FormControl sx={{ maxWidth: 300, mt: 1 }}>
+            <TextField
+             variant="outlined"
+             size="small"
+             placeholder="Isi nilai moderat"
+             InputLabelProps={{
+              shrink: true,
+             }}
+             helperText="Isi dengan angka"
+            />
+           </FormControl>
+          )}
+          {/* <Box component="p" maxWidth={800}>
            Bersedia mengambil risiko dalam batas tertentu untuk mencapai
            manfaat, tetapi tetap memperhatikan perlindungan terhadap kerugian
            besar.
@@ -267,7 +358,7 @@ export default function PageSeleraRisiko({}) {
             }}
             helperText="Isi dengan angka"
            />
-          </FormControl>
+          </FormControl> */}
          </Stack>
         }
        />
@@ -278,10 +369,31 @@ export default function PageSeleraRisiko({}) {
       <Box mt={2}>
        <LabelRadio
         heading="AGRESIF"
-        value="7-9"
+        rangeValue={userLevel === "bappenas" ? null : "19-25"}
+        value={userLevel === "bappenas" ? 25 : null}
         description={
          <Stack gap={1}>
-          <Box component="p" maxWidth={800}>
+          {userLevel === "bappenas" ? (
+           <FormControl sx={{ maxWidth: 300, mt: 1 }}>
+            <TextareaComponent
+             label="Deskripsi"
+             placeholder="Deskripsi agresif"
+            />
+           </FormControl>
+          ) : (
+           <FormControl sx={{ maxWidth: 300, mt: 1 }}>
+            <TextField
+             variant="outlined"
+             size="small"
+             placeholder="Isi nilai agresif"
+             InputLabelProps={{
+              shrink: true,
+             }}
+             helperText="Isi dengan angka"
+            />
+           </FormControl>
+          )}
+          {/* <Box component="p" maxWidth={800}>
            Secara aktif menerapkan strategi yang melibatkan pengelolaan risiko
            sebagai bagian integral dari rencana kegiatan, mengambil risiko lebih
            tinggi dalam rangka mencapai peluang dan inovasi yang lebih besar.
@@ -300,7 +412,7 @@ export default function PageSeleraRisiko({}) {
             }}
             helperText="Isi dengan angka"
            />
-          </FormControl>
+          </FormControl> */}
          </Stack>
         }
        />

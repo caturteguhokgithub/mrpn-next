@@ -21,6 +21,7 @@ import DropdownKp from "../dropdownKp";
 import { grey } from "@mui/material/colors";
 import { usePathname } from "next/navigation";
 import { listSelectKp } from "@/app/executive-summary/data";
+import { listTriwulan } from "@/app/utils/data";
 
 export default function ContentPage({
  title,
@@ -527,17 +528,29 @@ export default function ContentPage({
           Pilih periode
          </Typography>
         </MenuItem>
-        <MenuItem value="1" defaultChecked>
-         Triwulan 1 (Jan - Mar)
-        </MenuItem>
-        <MenuItem value="2">Triwulan 2 (Apr - Mei)</MenuItem>
-        <MenuItem value="3">Triwulan 3 (Jul - Sep)</MenuItem>
-        <MenuItem value="4">Triwulan 4 (Okt - Des)</MenuItem>
-        <MenuItem value="5">Tahun 2025</MenuItem>
-        <MenuItem value="6">Tahun 2026</MenuItem>
-        <MenuItem value="7">Tahun 2027</MenuItem>
-        <MenuItem value="8">Tahun 2028</MenuItem>
-        <MenuItem value="9">Tahun 2029</MenuItem>
+        {listTriwulan.map((triwulanLabel, index) => (
+         <MenuItem key={index} value={triwulanLabel}>
+          {triwulanLabel.length >= 35 ? (
+           <Tooltip
+            title={triwulanLabel}
+            followCursor
+            TransitionComponent={Grow}
+           >
+            <Typography
+             aria-owns={open ? "mouse-over-popover" : undefined}
+             aria-haspopup="true"
+             onMouseEnter={handlePopoverOpen}
+             onMouseLeave={handlePopoverClose}
+             sx={{ fontSize: 14 }}
+            >
+             {triwulanLabel.substring(0, 35) + "..."}
+            </Typography>
+           </Tooltip>
+          ) : (
+           triwulanLabel
+          )}
+         </MenuItem>
+        ))}
        </SelectCustomTheme>
       </FormControl>
      )}

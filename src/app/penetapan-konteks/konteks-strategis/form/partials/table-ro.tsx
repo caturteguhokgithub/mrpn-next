@@ -2,6 +2,7 @@ import React from "react";
 import {
  Button,
  DialogActions,
+ Grow,
  Icon,
  IconButton,
  MenuItem,
@@ -27,6 +28,7 @@ import FormROKunci from "./form-ro-kunci";
 import FormProfilRoProject from "@/app/executive-summary/partials/tabPolicy/form-profil-ro-project";
 import SelectCustomTheme from "@/app/components/select";
 import TableProfilRoKunci from "@/app/executive-summary/partials/tabPolicy/table-profil-ro-kunci";
+import { listEntitasUtama } from "@/app/utils/data";
 
 export default function TableRincianOutput({ mode }: { mode?: string }) {
  const [modalOpenProfilRoKunci, setModalOpenProfilRoKunci] =
@@ -35,6 +37,17 @@ export default function TableRincianOutput({ mode }: { mode?: string }) {
   React.useState(false);
  const [projectMain, setProjectMain] = React.useState("");
  const [projectSupport, setProjectSupport] = React.useState("");
+ const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+
+ const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
+  setAnchorEl(event.currentTarget);
+ };
+
+ const handlePopoverClose = () => {
+  setAnchorEl(null);
+ };
+
+ const open = Boolean(anchorEl);
 
  const handleChangeProjectMain = (event: SelectChangeEvent) => {
   setProjectMain(event.target.value);
@@ -148,7 +161,7 @@ export default function TableRincianOutput({ mode }: { mode?: string }) {
    <TableContainer component={Paper} elevation={0} variant="outlined">
     <Table sx={{ minWidth: 650 }} size="small">
      <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
-      <TableRow>
+      {/* <TableRow>
        <TableCell rowSpan={2} width="70px"></TableCell>
        <TableCell rowSpan={2}>Kode RO</TableCell>
        <TableCell rowSpan={2}>Nama RO</TableCell>
@@ -159,11 +172,19 @@ export default function TableRincianOutput({ mode }: { mode?: string }) {
        <TableCell rowSpan={2}>Kode</TableCell>
       </TableRow>
       <TableRow>
-       {/* <TableCell width="120px">Dukungan Sasaran KP</TableCell> */}
        <TableCell width="120px">Uraian Sasaran</TableCell>
        <TableCell width="120px">Satuan Sasaran</TableCell>
        <TableCell width="120px">Target Fisik</TableCell>
        <TableCell width="120px">Keuangan</TableCell>
+      </TableRow> */}
+      <TableRow>
+       <TableCell>Format Kode</TableCell>
+       <TableCell>Entitas Utama</TableCell>
+       <TableCell>Entitas Kontributor</TableCell>
+       <TableCell>Nomenklatur RO/Project</TableCell>
+       <TableCell>Target</TableCell>
+       <TableCell>Anggaran</TableCell>
+       <TableCell>Sumber Anggaran</TableCell>
       </TableRow>
      </TableHead>
      <TableBody>
@@ -257,11 +278,25 @@ export default function TableRincianOutput({ mode }: { mode?: string }) {
          Pilih Entitas Utama
         </Typography>
        </MenuItem>
-       <MenuItem value="1" defaultChecked>
-        Kementerian Kesehatan
-       </MenuItem>
-       <MenuItem value="2">Kementerian PUPR</MenuItem>
-       <MenuItem value="3">Kementerian Perindustrian</MenuItem>
+       {listEntitasUtama.map((euLabel, index) => (
+        <MenuItem key={index} value={euLabel}>
+         {euLabel.length >= 35 ? (
+          <Tooltip title={euLabel} followCursor TransitionComponent={Grow}>
+           <Typography
+            aria-owns={open ? "mouse-over-popover" : undefined}
+            aria-haspopup="true"
+            onMouseEnter={handlePopoverOpen}
+            onMouseLeave={handlePopoverClose}
+            sx={{ fontSize: 14 }}
+           >
+            {euLabel.substring(0, 35) + "..."}
+           </Typography>
+          </Tooltip>
+         ) : (
+          euLabel
+         )}
+        </MenuItem>
+       ))}
       </SelectCustomTheme>
       <SelectCustomTheme
        rounded

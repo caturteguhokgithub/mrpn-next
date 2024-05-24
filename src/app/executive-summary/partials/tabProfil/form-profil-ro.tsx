@@ -12,7 +12,6 @@ import {
  Typography,
 } from "@mui/material";
 import TextareaComponent from "@/app/components/textarea";
-import SelectCustomTheme from "@/app/components/select";
 import {
  SxAutocompleteTextField,
  SxAutocomplete,

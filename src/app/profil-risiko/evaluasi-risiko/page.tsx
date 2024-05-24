@@ -100,24 +100,24 @@ export default function PageEvaluasiRisiko({}) {
      },
     ],
    },
-   {
-    id: "residual",
-    header: "Residual",
-    columns: [
-     {
-      accessorKey: "nilai_residual",
-      header: "Nilai",
-      size: 120,
-      enableColumnActions: false,
-     },
-     {
-      accessorKey: "tingkat_residual",
-      header: "Tingkat",
-      size: 120,
-      enableColumnActions: false,
-     },
-    ],
-   },
+   //    {
+   //     id: "residual",
+   //     header: "Residual",
+   //     columns: [
+   //      {
+   //       accessorKey: "nilai_residual",
+   //       header: "Nilai",
+   //       size: 120,
+   //       enableColumnActions: false,
+   //      },
+   //      {
+   //       accessorKey: "tingkat_residual",
+   //       header: "Tingkat",
+   //       size: 120,
+   //       enableColumnActions: false,
+   //      },
+   //     ],
+   //    },
   ],
   []
  );

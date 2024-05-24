@@ -6,20 +6,36 @@ import {
  FormControlLabel,
  FormLabel,
  Grid,
+ Grow,
  MenuItem,
  Radio,
  RadioGroup,
  SelectChangeEvent,
  TextField,
+ Tooltip,
  Typography,
 } from "@mui/material";
 import TextareaComponent from "@/app/components/textarea";
 import SelectCustomTheme from "@/app/components/select";
 import { grey } from "@mui/material/colors";
+import { listKemungkinan, listDampak } from "@/app/utils/data";
+import { listPeristiwaRisiko } from "../../perlakuan-risiko/setting";
 
 export default function FormTable({ mode }: { mode?: string }) {
  const [probability, setProbability] = React.useState("");
  const [impact, setImpact] = React.useState("");
+ const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+ const [prDropdown, setPrDropdown] = React.useState("");
+
+ const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
+  setAnchorEl(event.currentTarget);
+ };
+
+ const handlePopoverClose = () => {
+  setAnchorEl(null);
+ };
+
+ const open = Boolean(anchorEl);
 
  const handleChangeProbability = (event: SelectChangeEvent) => {
   setProbability(event.target.value);
@@ -29,30 +45,58 @@ export default function FormTable({ mode }: { mode?: string }) {
   setImpact(event.target.value);
  };
 
+ const handleChangePr = (event: SelectChangeEvent) => {
+  setPrDropdown(event.target.value);
+ };
+
  return (
   <>
    <Grid container spacing={2}>
     <Grid item lg={12}>
      <FormControl fullWidth>
       <Typography gutterBottom>Peristiwa Risiko</Typography>
-      {mode === "add" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Peristiwa Risiko"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
-      ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
+      {mode === "add" || mode === "edit" ? (
+       <SelectCustomTheme
+        defaultStyle
+        small
+        anchorRight
+        value={prDropdown}
+        onChange={handleChangePr}
+       >
+        <MenuItem value="" disabled>
+         <Typography
+          fontSize={14}
+          fontStyle="italic"
+          color={grey[600]}
+          fontWeight={600}
+         >
+          Pilih peristiwa risiko
+         </Typography>
+        </MenuItem>
+        {listPeristiwaRisiko.map((prLabel) => (
+         <MenuItem key={prLabel.id} value={prLabel.value}>
+          {prLabel.label.length >= 35 ? (
+           <Tooltip
+            title={prLabel.label}
+            followCursor
+            TransitionComponent={Grow}
+           >
+            <Typography
+             aria-owns={open ? "mouse-over-popover" : undefined}
+             aria-haspopup="true"
+             onMouseEnter={handlePopoverOpen}
+             onMouseLeave={handlePopoverClose}
+             sx={{ fontSize: 14 }}
+            >
+             {prLabel.label.substring(0, 35) + "..."}
+            </Typography>
+           </Tooltip>
+          ) : (
+           prLabel.label
+          )}
+         </MenuItem>
+        ))}
+       </SelectCustomTheme>
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}
@@ -84,11 +128,29 @@ export default function FormTable({ mode }: { mode?: string }) {
           Pilih kemungkinan
          </Typography>
         </MenuItem>
-        <MenuItem value="1" defaultChecked>
-         Kemungkinan 1
-        </MenuItem>
-        <MenuItem value="2">Kemungkinan 2</MenuItem>
-        <MenuItem value="3">Kemungkinan 3</MenuItem>
+        {listKemungkinan.map((kemungkinanLabel, index) => (
+         <MenuItem key={index} value={kemungkinanLabel}>
+          {kemungkinanLabel.length >= 35 ? (
+           <Tooltip
+            title={kemungkinanLabel}
+            followCursor
+            TransitionComponent={Grow}
+           >
+            <Typography
+             aria-owns={open ? "mouse-over-popover" : undefined}
+             aria-haspopup="true"
+             onMouseEnter={handlePopoverOpen}
+             onMouseLeave={handlePopoverClose}
+             sx={{ fontSize: 14 }}
+            >
+             {kemungkinanLabel.substring(0, 35) + "..."}
+            </Typography>
+           </Tooltip>
+          ) : (
+           kemungkinanLabel
+          )}
+         </MenuItem>
+        ))}
        </SelectCustomTheme>
       ) : (
        <Typography fontWeight={600}>-</Typography>
@@ -116,11 +178,25 @@ export default function FormTable({ mode }: { mode?: string }) {
           Pilih dampak
          </Typography>
         </MenuItem>
-        <MenuItem value="1" defaultChecked>
-         Dampak 1
-        </MenuItem>
-        <MenuItem value="2">Dampak 2</MenuItem>
-        <MenuItem value="3">Dampak 3</MenuItem>
+        {listDampak.map((dampakLabel, index) => (
+         <MenuItem key={index} value={dampakLabel}>
+          {dampakLabel.length >= 35 ? (
+           <Tooltip title={dampakLabel} followCursor TransitionComponent={Grow}>
+            <Typography
+             aria-owns={open ? "mouse-over-popover" : undefined}
+             aria-haspopup="true"
+             onMouseEnter={handlePopoverOpen}
+             onMouseLeave={handlePopoverClose}
+             sx={{ fontSize: 14 }}
+            >
+             {dampakLabel.substring(0, 35) + "..."}
+            </Typography>
+           </Tooltip>
+          ) : (
+           dampakLabel
+          )}
+         </MenuItem>
+        ))}
        </SelectCustomTheme>
       ) : (
        <Typography fontWeight={600}>-</Typography>
@@ -195,12 +271,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     <Grid item lg={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Pengendalian yang ada</Typography>
-      {mode === "add" ? (
-       <RadioGroup row>
-        <FormControlLabel value="ada" control={<Radio />} label="Ada" />
-        <FormControlLabel value="tidak" control={<Radio />} label="Tidak" />
-       </RadioGroup>
-      ) : mode === "edit" ? (
+      {mode === "add" || mode === "edit" ? (
        <RadioGroup row>
         <FormControlLabel value="ada" control={<Radio />} label="Ada" />
         <FormControlLabel value="tidak" control={<Radio />} label="Tidak" />
