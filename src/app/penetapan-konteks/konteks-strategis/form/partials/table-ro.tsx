@@ -70,49 +70,75 @@ export default function TableRincianOutput({ mode }: { mode?: string }) {
 
  function createData(
   id: number,
-  kodeRo: string,
-  namaRo: string,
-  uraian: string,
-  satuan: string,
-  target: number,
-  keuangan: string,
-  kementerian: string,
-  kode: string
+  format: string,
+  entitasUtama: string,
+  entitasKontributor: string,
+  nomenklatur: string,
+  target: string,
+  anggaran: string,
+  sumber: string
  ) {
   return {
    id,
-   kodeRo,
-   namaRo,
-   uraian,
-   satuan,
+   format,
+   entitasUtama,
+   entitasKontributor,
+   nomenklatur,
    target,
-   keuangan,
-   kementerian,
-   kode,
+   anggaran,
+   sumber,
   };
  }
 
  const rows = [
   createData(
    1,
-   "xxx.xxx.xx.xxxx.xx",
-   "Eksekusi Realisasi Investasi Proyek-Proyek Mangkrak Di Wilayah Barat",
    "-",
-   "juta",
-   1,
+   "Kemkes",
    "-",
-   "BADAN INTELIJEN NEGARA",
+   "Suplementasi gizi mikro pada balita",
+   "-",
+   "-",
    "-"
   ),
   createData(
-   2,
-   "xxx.xxx.xx.xxxx.xx",
-   "Layanan Pendampingan Keberlanjutan Investasi",
+   1,
    "-",
-   "orang",
-   2,
+   "Kemkes",
    "-",
-   "BADAN INTELIJEN NEGARA",
+   "Tata laksana balita gizi buruk",
+   "-",
+   "-",
+   "-"
+  ),
+  createData(
+   1,
+   "-",
+   "Kemkes",
+   "-",
+   "Penanggulangan kurang energi kronik (KEK) pada ibu hamil",
+   "-",
+   "-",
+   "-"
+  ),
+  createData(
+   1,
+   "-",
+   "Kemkes",
+   "-",
+   "Keluarga 1000 HPK mendapatkan pendampingan",
+   "-",
+   "-",
+   "-"
+  ),
+  createData(
+   1,
+   "-",
+   "PUPR",
+   "-",
+   "Infrakstruktur air minum berbasis Masyarakat",
+   "-",
+   "-",
    "-"
   ),
  ];
@@ -178,6 +204,7 @@ export default function TableRincianOutput({ mode }: { mode?: string }) {
        <TableCell width="120px">Keuangan</TableCell>
       </TableRow> */}
       <TableRow>
+       <TableCell></TableCell>
        <TableCell>Format Kode</TableCell>
        <TableCell>Entitas Utama</TableCell>
        <TableCell>Entitas Kontributor</TableCell>
@@ -189,13 +216,15 @@ export default function TableRincianOutput({ mode }: { mode?: string }) {
      </TableHead>
      <TableBody>
       {mode === "add" ? (
-       <TableCell colSpan={8}>
-        <EmptyState
-         icon={<IconEmptyData />}
-         title="Data Kosong"
-         description="Silahkan isi konten tabel ini"
-        />
-       </TableCell>
+       <TableRow>
+        <TableCell colSpan={8}>
+         <EmptyState
+          icon={<IconEmptyData />}
+          title="Data Kosong"
+          description="Silahkan isi konten tabel ini"
+         />
+        </TableCell>
+       </TableRow>
       ) : (
        <>
         {rows.map((row) => (
@@ -220,14 +249,13 @@ export default function TableRincianOutput({ mode }: { mode?: string }) {
             </IconButton>
            </Tooltip>
           </TableCell>
-          <TableCell>{row.kodeRo}</TableCell>
-          <TableCell>{row.namaRo}</TableCell>
-          <TableCell>{row.uraian}</TableCell>
-          <TableCell>{row.satuan}</TableCell>
+          <TableCell>{row.format}</TableCell>
+          <TableCell>{row.entitasUtama}</TableCell>
+          <TableCell>{row.entitasKontributor}</TableCell>
+          <TableCell>{row.nomenklatur}</TableCell>
           <TableCell>{row.target}</TableCell>
-          <TableCell>{row.keuangan}</TableCell>
-          <TableCell>{row.kementerian}</TableCell>
-          <TableCell>{row.kode}</TableCell>
+          <TableCell>{row.anggaran}</TableCell>
+          <TableCell>{row.sumber}</TableCell>
          </TableRow>
         ))}
        </>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Grid, Paper, Stack, Typography } from "@mui/material";
 import TextareaComponent from "@/app/components/textarea";
 import { dataTema } from "../../dataTema";
@@ -13,29 +13,28 @@ export default function FormStakeholder({
 }) {
  return (
   <Grid container spacing={2}>
-   {dataTema.map((itemStakeholder) => (
-    <>
+   {dataTema.map((itemStakeholder, index) => (
+    <Fragment key={index}>
      {project === itemStakeholder.temaId && (
       <>
        {itemStakeholder.stakeholder?.map((detailStakeholder, index) => (
-        <>
-         <Grid item lg={6} key={index}>
-          <Paper
-           elevation={0}
-           variant="outlined"
-           sx={{ minWidth: "0 !important", p: 2, height: "100%" }}
-          >
-           <Stack direction="column">
-            <Typography
-             gutterBottom
-             variant="h6"
-             component="div"
-             lineHeight={1.3}
-             sx={{ minHeight: 54 }}
-            >
-             {detailStakeholder.label}
-            </Typography>
-            {/* <Box>
+        <Grid item lg={6} key={index}>
+         <Paper
+          elevation={0}
+          variant="outlined"
+          sx={{ minWidth: "0 !important", p: 2, height: "100%" }}
+         >
+          <Stack direction="column">
+           <Typography
+            gutterBottom
+            variant="h6"
+            component="div"
+            lineHeight={1.3}
+            sx={{ minHeight: 54 }}
+           >
+            {detailStakeholder.label}
+           </Typography>
+           {/* <Box>
              <TextField
               size="small"
               InputLabelProps={{
@@ -67,22 +66,21 @@ export default function FormStakeholder({
               />
              ))}
             </ToggleButtonGroup> */}
-            <ImageGalleryStakeholder />
-            <Typography variant="body2" mb={1}>
-             <strong>{detailStakeholder.tag}</strong>
-            </Typography>
-            <TextareaComponent
-             label={`Deskripsi ${detailStakeholder.label}`}
-             placeholder={`Deskripsi ${detailStakeholder.label}`}
-            />
-           </Stack>
-          </Paper>
-         </Grid>
-        </>
+           <ImageGalleryStakeholder />
+           <Typography variant="body2" mb={1}>
+            <strong>{detailStakeholder.tag}</strong>
+           </Typography>
+           <TextareaComponent
+            label={`Deskripsi ${detailStakeholder.label}`}
+            placeholder={`Deskripsi ${detailStakeholder.label}`}
+           />
+          </Stack>
+         </Paper>
+        </Grid>
        ))}
       </>
      )}
-    </>
+    </Fragment>
    ))}
   </Grid>
  );

@@ -108,13 +108,15 @@ export default function TableKemungkinan({ mode }: { mode?: string }) {
      </TableHead>
      <TableBody>
       {mode === "add" ? (
-       <TableCell colSpan={4}>
-        <EmptyState
-         icon={<IconEmptyData />}
-         title="Data Kosong"
-         description="Silahkan isi konten tabel ini"
-        />
-       </TableCell>
+       <TableRow>
+        <TableCell colSpan={4}>
+         <EmptyState
+          icon={<IconEmptyData />}
+          title="Data Kosong"
+          description="Silahkan isi konten tabel ini"
+         />
+        </TableCell>
+       </TableRow>
       ) : (
        <>
         {rows.map((row) => (

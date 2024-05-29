@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { Fragment, useRef } from "react";
 import {
  Typography,
  Stack,
@@ -18,6 +18,84 @@ import { dataTema } from "../../dataTema";
 import FormStakeholder from "./form-stakeholder";
 import theme from "@/theme";
 import DraggableScroll from "./partials/draggableScroll";
+
+export const CardItemStakeholder = ({
+ index,
+ detailStakeholder,
+}: {
+ index: any;
+ detailStakeholder: any;
+}) => (
+ <Card
+  sx={{
+   maxWidth: 345,
+   flex: "0 0 calc(25% - 12px)",
+   // borderRadius: "10px 10px 0 0",
+   borderRadius: "10px",
+   [theme.breakpoints.down("lg")]: {
+    flex: "0 0 calc(50% - 12px)",
+   },
+   [theme.breakpoints.down("sm")]: {
+    flex: "0 0 100%",
+    maxWidth: "100%",
+   },
+  }}
+  variant="outlined"
+  key={index}
+ >
+  <CardContent sx={{ pb: 1, minHeight: 84 }}>
+   <Typography
+    gutterBottom
+    variant="h6"
+    component="div"
+    lineHeight={1.3}
+    fontSize="1.1em"
+   >
+    {detailStakeholder.label}
+   </Typography>
+  </CardContent>
+  <CardContent>
+   <DraggableScroll
+    sx={{
+     display: "flex",
+     gap: 2,
+     paddingBottom: 1.5,
+     "&::-webkit-scrollbar": {
+      height: "3px",
+     },
+    }}
+   >
+    {detailStakeholder.instance.map((itemSh: any, index: any) => (
+     <Tooltip
+      key={index}
+      title={itemSh.name}
+      followCursor
+      TransitionComponent={Grow}
+     >
+      <Image
+       alt={detailStakeholder.label}
+       src={itemSh.logo}
+       width={0}
+       height={0}
+       sizes="100vw"
+       style={{
+        width: "auto",
+        height: "60px",
+        userSelect: "none",
+        touchAction: "none",
+       }}
+      />
+     </Tooltip>
+    ))}
+   </DraggableScroll>
+  </CardContent>
+  <CardContent>
+   <Typography variant="body2">
+    <strong>{detailStakeholder.tag}</strong>. {detailStakeholder.desc}.
+   </Typography>
+  </CardContent>
+ </Card>
+);
 
 export default function CardStakeholder({ project }: { project: string }) {
  const [modalOpenStakeholder, setModalOpenStakeholder] = React.useState(false);
@@ -45,84 +123,20 @@ export default function CardStakeholder({ project }: { project: string }) {
     />
    ) : (
     <Stack direction="row" flexWrap="wrap" gap={2}>
-     {dataTema.map((itemStakeholder) => (
-      <>
+     {dataTema.map((itemStakeholder, index) => (
+      <Fragment key={index}>
        {project === itemStakeholder.temaId && (
         <>
          {itemStakeholder.stakeholder?.map((detailStakeholder, index) => (
-          <Card
-           sx={{
-            maxWidth: 345,
-            flex: "0 0 calc(25% - 12px)",
-            // borderRadius: "10px 10px 0 0",
-            borderRadius: "10px",
-            [theme.breakpoints.down("lg")]: {
-             flex: "0 0 calc(50% - 12px)",
-            },
-            [theme.breakpoints.down("sm")]: {
-             flex: "0 0 100%",
-             maxWidth: "100%",
-            },
-           }}
-           variant="outlined"
+          <CardItemStakeholder
            key={index}
-          >
-           <CardContent sx={{ pb: 1, minHeight: 84 }}>
-            <Typography
-             gutterBottom
-             variant="h6"
-             component="div"
-             lineHeight={1.3}
-             fontSize="1.1em"
-            >
-             {detailStakeholder.label}
-            </Typography>
-           </CardContent>
-           <CardContent>
-            <DraggableScroll
-             sx={{
-              display: "flex",
-              gap: 2,
-              paddingBottom: 1.5,
-              "&::-webkit-scrollbar": {
-               height: "3px",
-              },
-             }}
-            >
-             {detailStakeholder.instance.map((itemSh: any, index) => (
-              <Tooltip
-               key={index}
-               title={itemSh.name}
-               followCursor
-               TransitionComponent={Grow}
-              >
-               <Image
-                alt={detailStakeholder.label}
-                src={itemSh.logo}
-                width={0}
-                height={0}
-                sizes="100vw"
-                style={{
-                 width: "auto",
-                 height: "60px",
-                 userSelect: "none",
-                 touchAction: "none",
-                }}
-               />
-              </Tooltip>
-             ))}
-            </DraggableScroll>
-           </CardContent>
-           <CardContent>
-            <Typography variant="body2">
-             <strong>{detailStakeholder.tag}</strong>. {detailStakeholder.desc}.
-            </Typography>
-           </CardContent>
-          </Card>
+           index={index}
+           detailStakeholder={detailStakeholder}
+          />
          ))}
         </>
        )}
-      </>
+      </Fragment>
      ))}
     </Stack>
    )}

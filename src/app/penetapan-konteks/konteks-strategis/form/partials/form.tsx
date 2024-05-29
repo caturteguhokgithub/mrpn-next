@@ -51,6 +51,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
  const [anchorElTooltip, setAnchorElTooltip] =
   React.useState<HTMLElement | null>(null);
  const [project, setProject] = React.useState("");
+ const [valueLocation, setValueLocation] = React.useState<string | null>("");
 
  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
   setAnchorElTooltip(event.currentTarget);
@@ -300,6 +301,10 @@ export default function FormKonstra({ mode }: { mode?: string }) {
           size="small"
           options={listKotaKab}
           getOptionLabel={(option) => option.name}
+          // value={valueLocation}
+          // onChange={(event: any, newValue: string | null) => {
+          //  setValueLocation(newValue);
+          // }}
           // defaultValue={[listKotaKab[13]]}
           renderInput={(params) => (
            <TextField
@@ -387,7 +392,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
     <Divider sx={{ my: 3 }} />
     <TableMilestone mode={mode} />
     <Divider sx={{ my: 3 }} />
-    <TableStakeholder mode={mode} />
+    <TableStakeholder mode={mode} project="1" />
     <Divider sx={{ my: 3 }} />
     <TablePeraturan mode={mode} />
     <Divider sx={{ my: 3 }} />

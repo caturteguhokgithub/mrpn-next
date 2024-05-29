@@ -17,7 +17,7 @@ import {
  Typography,
 } from "@mui/material";
 import theme from "@/theme";
-import { AddCircle } from "@mui/icons-material";
+import { AddCircle, EditSharp } from "@mui/icons-material";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
 import DialogComponent from "@/app/components/dialog";
@@ -109,7 +109,7 @@ export default function TableMilestone({ mode }: { mode?: string }) {
     alignItems="center"
    >
     <Typography fontWeight={600}>Milestone/Critical Path</Typography>
-    {mode === "add" || mode === "edit" ? (
+    {mode === "add" ? (
      <Button
       variant="outlined"
       size="small"
@@ -119,16 +119,36 @@ export default function TableMilestone({ mode }: { mode?: string }) {
      >
       Tambah Milestone
      </Button>
+    ) : mode === "edit" ? (
+     <Button
+      variant="outlined"
+      size="small"
+      startIcon={<EditSharp />}
+      sx={{ lineHeight: 1, py: 1, borderRadius: 24 }}
+      onClick={handleModalOpenAdd}
+     >
+      Ubah Milestone
+     </Button>
     ) : null}
    </Stack>
-   <Box
-    m="0 auto"
-    sx={{
-     m: "0 auto",
-    }}
-   >
-    <GanttChart tasks={tasks} />
-   </Box>
+   {mode === "add" ? (
+    <Paper variant="outlined">
+     <EmptyState
+      icon={<IconEmptyData />}
+      title="Data tidak tersedia"
+      description="Silahkan isi konten seksi ini"
+     />
+    </Paper>
+   ) : (
+    <Box
+     m="0 auto"
+     sx={{
+      m: "0 auto",
+     }}
+    >
+     <GanttChart tasks={tasks} />
+    </Box>
+   )}
    {/* <TableContainer component={Paper} elevation={0} variant="outlined">
     <Table sx={{ minWidth: 650 }} size="small">
      <TableHead sx={{ bgcolor: theme.palette.primary.light }}>

@@ -77,6 +77,9 @@ const GanttChart = ({ tasks }: { tasks: any }) => {
      display: "inline",
     },
    },
+   "& + .gantt-container": {
+    minWidth: 1200,
+   },
   },
   ".gantt": {
    ".grid-header": {

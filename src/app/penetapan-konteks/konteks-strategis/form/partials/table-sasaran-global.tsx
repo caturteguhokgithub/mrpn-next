@@ -90,13 +90,15 @@ export default function TableSasaran({
      </TableHead>
      <TableBody>
       {mode === "add" ? (
-       <TableCell colSpan={3}>
-        <EmptyState
-         icon={<IconEmptyData />}
-         title="Data Kosong"
-         description="Silahkan isi konten tabel ini"
-        />
-       </TableCell>
+       <TableRow>
+        <TableCell colSpan={3}>
+         <EmptyState
+          icon={<IconEmptyData />}
+          title="Data Kosong"
+          description="Silahkan isi konten tabel ini"
+         />
+        </TableCell>
+       </TableRow>
       ) : (
        <>
         {rows.map((row) => (
