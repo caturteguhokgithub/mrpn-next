@@ -693,63 +693,6 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={12}>
      <FormControl fullWidth>
-      <Typography gutterBottom>Deadline Perlakuan Risiko</Typography>
-      {mode === "add" ? (
-       <>
-        <Popover
-         id={id}
-         open={open}
-         anchorEl={anchorEl}
-         onClose={handleClose}
-         anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-         }}
-        >
-         <DateRange
-          editableDateInputs={true}
-          onChange={(item: any) => setState([item.selection])}
-          moveRangeOnFirstSelection={false}
-          ranges={state}
-          months={2}
-          direction="horizontal"
-          minDate={minDate}
-          maxDate={maxDate}
-         />
-        </Popover>
-        <TextField
-         onClick={handleClick}
-         variant="outlined"
-         size="small"
-         placeholder="Periode Penerapan"
-         InputLabelProps={{
-          shrink: true,
-         }}
-         value={`${moment
-          .utc(state[0].startDate)
-          .utcOffset(7)
-          .format("D MMM YYYY")} - ${moment
-          .utc(state[0].endDate)
-          .utcOffset(7)
-          .format("D MMM YYYY")}`}
-        />
-       </>
-      ) : mode === "edit" ? (
-       <TextareaComponent
-        label="Keterangan"
-        placeholder="Keterangan"
-        value="-"
-       />
-      ) : (
-       <Typography fontWeight={600}>-</Typography>
-      )}
-     </FormControl>
-    </Grid>
-    <Grid item lg={12}>
-     <Divider />
-    </Grid>
-    <Grid item lg={12}>
-     <FormControl fullWidth>
       <Typography gutterBottom>
        Rencana Perlakuan Risiko yang akan Dilaksanakan pada Periode yang akan
        Datang

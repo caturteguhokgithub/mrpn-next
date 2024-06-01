@@ -262,4 +262,10 @@ export const listEntitasPendukung = ["Kementerian Pertanian", "BPOM", "Simas"];
 
 export const listTahun = ["2025", "2026", "2027", "2028", "2029"];
 
-export const listLevelKemungkinan = ["1 - Rendah", "2 - Sedang", "3 - Tinggi"];
+export const listLevelKemungkinan = [
+ "1 - Sangat rendah",
+ "2 - Rendah",
+ "3 - Sedang",
+ "4 - Tinggi",
+ "5 - Sangat Tinggi",
+];

@@ -19,7 +19,7 @@ export default function AddButton({
  small?: boolean;
  noMargin?: boolean;
  onclick?: () => void;
- sx?: any;
+ sx?: React.CSSProperties;
  startIcon?: React.ReactNode;
 }) {
  const buttonAdd = (

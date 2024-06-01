@@ -1,6 +1,6 @@
 "use client";
 
-import ContentPage from "@/app/components/contents/content";
+import ContentPage from "@/app/components/contents";
 import React from "react";
 import DashboardLayout from "@/app/components/layouts/layout";
 import { Stack, Typography, Tooltip, Grow, Chip, Icon } from "@mui/material";
@@ -24,7 +24,7 @@ export default function PagePelaporanBerkala({}) {
 
  return (
   <DashboardLayout>
-   <ContentPage title="Pelaporan" withCard chipKp triWulan>
+   <ContentPage title="Pelaporan" withCard chipKp dateRangeDropdown>
     {/* <EmptyState
      icon={<IconEmptyPage />}
      title="Halaman Pelaporan Berkala Kosong"

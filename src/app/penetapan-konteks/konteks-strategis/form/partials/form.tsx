@@ -1,4 +1,4 @@
-import ContentPage from "@/app/components/contents/content";
+import ContentPage from "@/app/components/contents";
 import React from "react";
 import DashboardLayout from "@/app/components/layouts/layout";
 import {
@@ -38,6 +38,7 @@ import TableKemungkinan from "./table-kriteria-kemungkinan";
 import { listKotaKab } from "@/app/utils/kotaKab";
 import theme from "@/theme";
 import TableDampak from "./table-kriteria-dampak";
+import DateRangePicker from "@/app/components/dateRange";
 
 export default function FormKonstra({ mode }: { mode?: string }) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -96,72 +97,18 @@ export default function FormKonstra({ mode }: { mode?: string }) {
     title="Formulir Penetapan Konteks"
     withCard
     heightTitleBreadcrumb
-    titleChild={
-     <Chip
-      color="primary"
-      variant="outlined"
-      label={
-       <>
-        <Stack direction="row" alignItems="center">
-         <Stack
-          direction="row"
-          bgcolor={theme.palette.primary.main}
-          px={2}
-          alignItems="center"
-          height="34px"
-          sx={{
-           borderTopLeftRadius: 24,
-           borderBottomLeftRadius: 24,
-          }}
-         >
-          <Typography
-           fontSize={12}
-           color="white"
-           fontWeight={600}
-           lineHeight={1}
-          >
-           KP
-          </Typography>
-         </Stack>
-         <Tooltip title={nameOfKp} followCursor TransitionComponent={Grow}>
-          <Typography
-           aria-owns={open ? "mouse-over-popover" : undefined}
-           aria-haspopup="true"
-           onMouseEnter={handlePopoverOpen}
-           onMouseLeave={handlePopoverClose}
-           px={1.5}
-           fontSize={12}
-           fontWeight={600}
-          >
-           {nameOfKp.length >= 40
-            ? nameOfKp.substring(0, 40) + "..."
-            : nameOfKp}
-          </Typography>
-         </Tooltip>
-        </Stack>
-       </>
-      }
-      sx={{
-       height: "34px",
-       bgcolor: "white",
-       fontWeight: 600,
-       lineHeight: 1,
-       cursor: "default",
-
-       ".MuiChip-label": {
-        px: 0,
-       },
-      }}
-     />
-    }
+    chipKp
     breadcrumb={
-     <Breadcrumbs aria-label="breadcrumb">
+     <Breadcrumbs aria-label="breadcrumb" sx={{ lineHeight: 1 }}>
       <Typography fontSize="12px">Penetapan Konteks</Typography>
       <Link href="/penetapan-konteks/konteks-strategis">
        <Typography fontSize="12px">Konteks Strategis</Typography>
       </Link>
      </Breadcrumbs>
     }
+    sxCard={{
+     marginTop: 0,
+    }}
    >
     <Typography
      component="h2"
@@ -203,45 +150,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
       <FormControl fullWidth>
        <Typography gutterBottom>Periode Penerapan</Typography>
        {mode === "add" || mode === "edit" ? (
-        <>
-         <Popover
-          id={id}
-          open={open}
-          anchorEl={anchorEl}
-          onClose={handleClose}
-          anchorOrigin={{
-           vertical: "bottom",
-           horizontal: "left",
-          }}
-         >
-          <DateRange
-           editableDateInputs={true}
-           onChange={(item: any) => setState([item.selection])}
-           moveRangeOnFirstSelection={false}
-           ranges={state}
-           months={2}
-           direction="horizontal"
-           minDate={minDate}
-           maxDate={maxDate}
-          />
-         </Popover>
-         <TextField
-          onClick={handleClick}
-          variant="outlined"
-          size="small"
-          placeholder="Periode Penerapan"
-          InputLabelProps={{
-           shrink: true,
-          }}
-          value={`${moment
-           .utc(state[0].startDate)
-           .utcOffset(7)
-           .format("D MMM YYYY")} - ${moment
-           .utc(state[0].endDate)
-           .utcOffset(7)
-           .format("D MMM YYYY")}`}
-         />
-        </>
+        <DateRangePicker placeholder="Pilih periode penerapan" />
        ) : (
         <Typography fontWeight={600}>-</Typography>
        )}
@@ -268,7 +177,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
      </Grid>
     </Grid>
     <Divider sx={{ my: 3 }} />
-    <TableSasaran mode={mode} />
+    {/* <TableSasaran mode={mode} /> */}
     {/* <Divider sx={{ my: 3 }} />
     <TableSasaran variant="PN" />
     <Divider sx={{ my: 3 }} />

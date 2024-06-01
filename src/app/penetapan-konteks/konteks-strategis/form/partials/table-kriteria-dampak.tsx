@@ -118,15 +118,15 @@ export default function TableDampak({ mode }: { mode?: string }) {
      </Button>
     ) : null}
    </Stack>
-   <Paper sx={{ width: "100%" }}>
-    <TableContainer
+   <Paper sx={{ overflowX: "auto" }}>
+    {/* <TableContainer
      component={Paper}
      elevation={0}
      variant="outlined"
      sx={{ maxWidth: "100%" }}
-    >
-     <Table sx={{ minWidth: 1500 }} size="small">
-      {/* <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
+    > */}
+    <Table size="small">
+     {/* <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
       <TableRow>
        <TableCell width="70px"></TableCell>
        <TableCell>Level Kemungkinan</TableCell>
@@ -181,83 +181,113 @@ export default function TableDampak({ mode }: { mode?: string }) {
       )}
      </TableBody> */}
 
-      <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
+     <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
+      <TableRow>
+       <TableCell width="70px" rowSpan={2}></TableCell>
+       <TableCell colSpan={2} rowSpan={2}>
+        Level Kemungkinan
+       </TableCell>
+       <TableCell colSpan={5} align="center">
+        Area Dampak Risiko
+       </TableCell>
+      </TableRow>
+      <TableRow>
+       <TableCell>Beban Keuangan Negara/Daerah</TableCell>
+       <TableCell>Penurunan Reputasi</TableCell>
+       <TableCell>
+        Tuntutan Hukum (Sanksi Pidana, Perdata, dan/atau administratif)
+       </TableCell>
+       <TableCell>Lingkungan</TableCell>
+       <TableCell>Capaian Kinerja</TableCell>
+      </TableRow>
+     </TableHead>
+     <TableBody>
+      {mode === "add" ? (
        <TableRow>
-        <TableCell width="70px" rowSpan={2}></TableCell>
-        <TableCell colSpan={2} rowSpan={2}>
-         Level Kemungkinan
-        </TableCell>
-        <TableCell colSpan={5} align="center">
-         Area Dampak Risiko
+        <TableCell colSpan={8}>
+         <EmptyState
+          icon={<IconEmptyData />}
+          title="Data Kosong"
+          description="Silahkan isi konten tabel ini"
+         />
         </TableCell>
        </TableRow>
-       <TableRow>
-        <TableCell>Beban Keuangan Negara/Daerah</TableCell>
-        <TableCell>Penurunan Reputasi</TableCell>
-        <TableCell>
-         Tuntutan Hukum (Sanksi Pidana, Perdata, dan/atau administratif)
-        </TableCell>
-        <TableCell>Lingkungan</TableCell>
-        <TableCell>Capaian Kinerja</TableCell>
-       </TableRow>
-      </TableHead>
-      <TableBody>
-       {mode === "add" ? (
-        <TableRow>
-         <TableCell colSpan={8}>
-          <EmptyState
-           icon={<IconEmptyData />}
-           title="Data Kosong"
-           description="Silahkan isi konten tabel ini"
-          />
-         </TableCell>
-        </TableRow>
-       ) : (
-        <>
-         {rows.map((row) => (
-          <TableRow
-           key={row.id}
-           sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-          >
-           <TableCell sx={{ textAlign: "center" }}>
-            <Tooltip title="Delete" placement="top">
-             <IconButton
-              aria-label="delete"
-              color="error"
-              disabled={mode === "view"}
-             >
-              <Icon
-               baseClassName="fas"
-               className={`fa-trash-alt`}
-               sx={{
-                fontSize: "14px",
-               }}
-              />
-             </IconButton>
-            </Tooltip>
-           </TableCell>
-           <TableCell component="th" scope="row">
-            {row.id}
-           </TableCell>
-           <TableCell>{row.level}</TableCell>
-           <TableCell>{row.beban}</TableCell>
-           <TableCell>{row.penurunan}</TableCell>
-           <TableCell>{row.tuntutan}</TableCell>
-           <TableCell>{row.lingkungan}</TableCell>
-           <TableCell>{row.capaian}</TableCell>
-          </TableRow>
-         ))}
-        </>
-       )}
-      </TableBody>
-     </Table>
-    </TableContainer>
+      ) : (
+       <>
+        {rows.map((row) => (
+         <TableRow
+          key={row.id}
+          sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+         >
+          <TableCell sx={{ textAlign: "center" }}>
+           <Tooltip title="Delete" placement="top">
+            <IconButton
+             aria-label="delete"
+             color="error"
+             disabled={mode === "view"}
+            >
+             <Icon
+              baseClassName="fas"
+              className={`fa-trash-alt`}
+              sx={{
+               fontSize: "14px",
+              }}
+             />
+            </IconButton>
+           </Tooltip>
+          </TableCell>
+          <TableCell component="th" scope="row">
+           {row.id}
+          </TableCell>
+          <TableCell>{row.level}</TableCell>
+          <TableCell>{row.beban}</TableCell>
+          <TableCell>{row.penurunan}</TableCell>
+          <TableCell>{row.tuntutan}</TableCell>
+          <TableCell>{row.lingkungan}</TableCell>
+          <TableCell>{row.capaian}</TableCell>
+         </TableRow>
+        ))}
+       </>
+      )}
+     </TableBody>
+    </Table>
+    {/* </TableContainer> */}
+    {/* <table>
+     <thead>
+      <tr>
+       <th style={{ width: 70 }} rowSpan={2}></th>
+       <th colSpan={2} rowSpan={2}>
+        Level Kemungkinan
+       </th>
+       <th colSpan={5}>Area Dampak Risiko</th>
+      </tr>
+      <tr>
+       <th>Beban Keuangan Negara/Daerah</th>
+       <th>Penurunan Reputasi</th>
+       <th>Tuntutan Hukum (Sanksi Pidana, Perdata, dan/atau administratif)</th>
+       <th>Lingkungan</th>
+       <th>Capaian Kinerja</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td scope="row"></td>
+       <td></td>
+       <td></td>
+      </tr>
+      <tr>
+       <td scope="row"></td>
+       <td></td>
+       <td></td>
+      </tr>
+     </tbody>
+    </table> */}
    </Paper>
    <DialogComponent
-    width={400}
+    width={1200}
     dialogOpen={modalOpenAdd}
     dialogClose={handleModalClose}
-    title="Tambah Kriteria Kemungkinan"
+    title="Tambah Kriteria Dampak"
     dialogFooter={dialogActionFooter}
    >
     <FormDampak mode="add" />

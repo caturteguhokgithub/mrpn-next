@@ -12,6 +12,8 @@ import {
  SelectChangeEvent,
  Stack,
  TextField,
+ ToggleButton,
+ ToggleButtonGroup,
  Tooltip,
  Typography,
 } from "@mui/material";
@@ -30,6 +32,14 @@ export default function FormTable({ mode }: { mode?: string }) {
  const [prDropdown, setPrDropdown] = React.useState("");
  const [valueDropdown, setValueDropdown] = React.useState("");
  const [followUpDropdown, setFollowUpDropdown] = React.useState("");
+ const [handle, setHandle] = React.useState<string | null>("left");
+
+ const handleHandle = (
+  event: React.MouseEvent<HTMLElement>,
+  newHandle: string | null
+ ) => {
+  setHandle(newHandle);
+ };
 
  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
   setAnchorEl(event.currentTarget);
@@ -163,6 +173,20 @@ export default function FormTable({ mode }: { mode?: string }) {
         <FormControlLabel value="ada" control={<Radio />} label="Ada" />
         <FormControlLabel value="tidak" control={<Radio />} label="Tidak" />
        </RadioGroup>
+      ) : (
+       <Typography fontWeight={600}>-</Typography>
+      )}
+     </FormControl>
+    </Grid>
+    <Grid item lg={6}>
+     <FormControl fullWidth>
+      <Typography gutterBottom>Tindak Lanjut</Typography>
+      {mode === "add" || mode === "edit" ? (
+       <ToggleButtonGroup value={handle} exclusive onChange={handleHandle}>
+        <ToggleButton value="belum">Belum</ToggleButton>
+        <ToggleButton value="proses">Proses</ToggleButton>
+        <ToggleButton value="sudah">Sudah</ToggleButton>
+       </ToggleButtonGroup>
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}

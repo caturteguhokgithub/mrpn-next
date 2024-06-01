@@ -1,33 +1,33 @@
 "use client";
 
-import ContentPage from "@/app/components/contents/content";
+import ContentPage from "@/app/components/contents";
 import React, { useMemo } from "react";
 import DashboardLayout from "@/app/components/layouts/layout";
 import EmptyState from "@/app/components/empty";
-import { IconEmptyPage } from "@/app/components/icons";
+import { IconEmptyData, IconEmptyPage } from "@/app/components/icons";
+import { Box, Button, DialogActions, SelectChangeEvent } from "@mui/material";
+import {
+ MaterialReactTable,
+ useMaterialReactTable,
+} from "material-react-table";
+import { advancedTable } from "@/app/components/table";
+import { data } from "./setting";
 import ActionColumn from "@/app/components/actions/action";
 import AddButton from "@/app/components/buttonAdd";
-import { advancedTable } from "@/app/components/table";
-import {
- DialogActions,
- Button,
- SelectChangeEvent,
- Alert,
- AlertTitle,
-} from "@mui/material";
-import {
- useMaterialReactTable,
- MaterialReactTable,
-} from "material-react-table";
-import { data } from "../pemantauan/setting";
 import DialogComponent from "@/app/components/dialog";
 import FormTable from "./partials/form-table";
+import { addUrl, editUrl } from "@/app/utils/constant";
 
-export default function PagePeringatanDiniSaran({}) {
+export default function PagePemantauan({}) {
  const [modalOpenView, setModalOpenView] = React.useState(false);
  const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
  const [modalOpenEdit, setModalOpenEdit] = React.useState(false);
  const [modalOpenDelete, setModalOpenDelete] = React.useState(false);
+ const [project, setProject] = React.useState("");
+
+ const handleChangeProject = (event: SelectChangeEvent) => {
+  setProject(event.target.value);
+ };
 
  const handleModalOpenView = () => {
   setModalOpenView(true);
@@ -51,58 +51,127 @@ export default function PagePeringatanDiniSaran({}) {
 
  const columns = useMemo(
   () => [
+   //    {
+   //     accessorKey: "no",
+   //     header: "No.",
+   //     size: 80,
+   //     enableColumnActions: false,
+   //    },
    {
     accessorKey: "peristiwa",
     header: "Peristiwa Risiko",
-    size: 200,
-    enableColumnActions: false,
-    enableSorting: false,
-   },
-   //    {
-   //     id: "nilai_residual",
-   //     header: "Nilai Residual Risiko",
-   //     columns: [
-   //      {
-   //       accessorKey: "nilai",
-   //       header: "Nilai",
-   //       size: 120,
-   //       enableColumnActions: false,
-   //      },
-   //      {
-   //       accessorKey: "tingkat",
-   //       header: "Tingkat",
-   //       size: 120,
-   //       enableColumnActions: false,
-   //      },
-   //     ],
-   //    },
-   {
-    accessorKey: "konteks_strategis",
-    header: "Konteks Strategis",
-    size: 200,
-    enableColumnActions: false,
-    enableSorting: false,
-   },
-   {
-    accessorKey: "nilai_risiko",
-    header: "Nilai Risiko",
-    size: 100,
-    enableColumnActions: false,
-    enableSorting: false,
-   },
-   {
-    accessorKey: "pengendalian",
-    header: "Pengendalian",
     size: 150,
     enableColumnActions: false,
     enableSorting: false,
    },
+   {
+    accessorKey: "kategori",
+    header: "Kategori Risiko",
+    size: 150,
+    enableColumnActions: false,
+    enableSorting: false,
+   },
+   {
+    id: "nilai_target_sebelum",
+    header: "Nilai Risiko Sebelum Perlakuan Risiko",
+    columns: [
+     {
+      accessorKey: "before_kemungkinan",
+      header: "Kemungkinan",
+      size: 120,
+      enableColumnActions: false,
+     },
+     {
+      accessorKey: "before_dampak",
+      header: "Dampak",
+      size: 120,
+      enableColumnActions: false,
+     },
+     {
+      accessorKey: "before_tingkat_risiko",
+      header: "Tingkat Risiko",
+      size: 120,
+      enableColumnActions: false,
+     },
+    ],
+   },
+   {
+    id: "nilai_target_setelah",
+    header: "Nilai Risiko Setelah Perlakuan Risiko",
+    columns: [
+     {
+      accessorKey: "after_kemungkinan",
+      header: "Kemungkinan",
+      size: 120,
+      enableColumnActions: false,
+     },
+     {
+      accessorKey: "after_dampak",
+      header: "Dampak",
+      size: 120,
+      enableColumnActions: false,
+     },
+     {
+      accessorKey: "after_tingkat_risiko",
+      header: "Tingkat Risiko",
+      size: 120,
+      enableColumnActions: false,
+     },
+    ],
+   },
    //    {
-   //     accessorKey: "tindak_lanjut",
-   //     header: "Tindak Lanjut",
-   //     size: 150,
+   //     accessorKey: "perlakuan",
+   //     header: "Perlakuan Risiko",
+   //     size: 200,
    //     enableColumnActions: false,
-   //     enableSorting: false,
+   //    },
+   //    {
+   //     id: "waktu",
+   //     header: "Waktu Rencana dan Realisasi Mitigasi",
+   //     columns: [
+   //      {
+   //       accessorKey: "tgl_rencana",
+   //       header: "Tanggal Rencana",
+   //       size: 200,
+   //       enableColumnActions: false,
+   //      },
+   //      {
+   //       accessorKey: "tgl_realisasi",
+   //       header: "Tanggal Realisasi",
+   //       size: 200,
+   //       enableColumnActions: false,
+   //      },
+   //     ],
+   //    },
+   //    {
+   //     id: "nilai_penurunan",
+   //     header: "Nilai Penurunan Target Risiko Setelah Mitigasi",
+   //     columns: [
+   //      {
+   //       accessorKey: "kemungkinan",
+   //       header: "Kemungkinan",
+   //       size: 170,
+   //       enableColumnActions: false,
+   //      },
+   //      {
+   //       accessorKey: "dampak",
+   //       header: "Dampak",
+   //       size: 170,
+   //       enableColumnActions: false,
+   //      },
+   //      {
+   //       accessorKey: "tingkat_risiko",
+   //       header: "Tingkat Risiko",
+   //       size: 170,
+   //       enableColumnActions: false,
+   //      },
+   //     ],
+   //    },
+   //    {
+   //     accessorKey: "keterangan",
+   //     header: "Keterangan Perlakuan Risiko",
+   //     size: 250,
+   //     enableColumnActions: false,
    //    },
   ],
   []
@@ -112,7 +181,7 @@ export default function PagePeringatanDiniSaran({}) {
 
  const renderTopToolbar: ColumnsType = {
   renderTopToolbarCustomActions: () => (
-   <AddButton onclick={handleModalOpenAdd} title="Tambah Peringatan" />
+   <AddButton onclick={handleModalOpenAdd} title="Tambah Pemantauan" />
   ),
  };
 
@@ -139,13 +208,13 @@ export default function PagePeringatanDiniSaran({}) {
   //   ),
   displayColumnDefOptions: {
    "mrt-row-actions": {
-    header: "Tindak Lanjut",
+    header: "",
     size: 140,
     Cell: () => (
      <ActionColumn
       viewClick={handleModalOpenView}
       editClick={handleModalOpenEdit}
-      //   deleteClick={handleModalOpenDelete}
+      deleteClick={handleModalOpenDelete}
      />
     ),
    },
@@ -174,38 +243,34 @@ export default function PagePeringatanDiniSaran({}) {
   <>
    <DashboardLayout>
     <ContentPage
-     title="Peringatan Dini"
-     chipKp
-     //  chooseKonteks
+     title="Pemantauan"
      //  chooseRo
-     withCard={false}
-     hasAlert={
-      <Alert severity="warning" sx={{ mb: 2 }}>
-       <AlertTitle>Perhatian!</AlertTitle>
-       Butuh perhatian & tindak lanjut pengawasan
-      </Alert>
-     }
+     chipKp
+     chooseKonteks
+     project={project}
+     handleChangeProject={handleChangeProject}
     >
      {/* <EmptyState
      icon={<IconEmptyPage />}
-     title="Halaman Peringatan Dini & Saran Kosong"
+     title="Halaman Pemantauan Masih Kosong"
      description="Silahkan isi konten halaman ini"
     /> */}
-
+     {/* <Box className="table-collapsed"> */}
      <MaterialReactTable table={table} />
+     {/* </Box> */}
     </ContentPage>
    </DashboardLayout>
    <DialogComponent
     dialogOpen={modalOpenView}
     dialogClose={handleModalClose}
-    title="Detail Peringatan Dini"
+    title="Detail Pemantauan"
    >
     <FormTable mode="view" />
    </DialogComponent>
    <DialogComponent
     dialogOpen={modalOpenAdd}
     dialogClose={handleModalClose}
-    title="Tambah Peringatan Dini"
+    title="Tambah Pemantauan"
     dialogFooter={dialogActionFooter}
    >
     <FormTable mode="add" />
@@ -213,7 +278,7 @@ export default function PagePeringatanDiniSaran({}) {
    <DialogComponent
     dialogOpen={modalOpenEdit}
     dialogClose={handleModalClose}
-    title="Ubah Peringatan Dini"
+    title="Ubah Pemantauan"
     dialogFooter={dialogActionFooter}
    >
     <FormTable mode="edit" />

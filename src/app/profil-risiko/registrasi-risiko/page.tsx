@@ -1,6 +1,6 @@
 "use client";
 
-import ContentPage from "@/app/components/contents/content";
+import ContentPage from "@/app/components/contents";
 import React, { useMemo } from "react";
 import DashboardLayout from "@/app/components/layouts/layout";
 import { advancedTable } from "@/app/components/table";

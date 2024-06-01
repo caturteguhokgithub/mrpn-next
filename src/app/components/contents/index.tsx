@@ -1,15 +1,11 @@
 import React from "react";
 import {
- Alert,
- AlertTitle,
  Box,
  Chip,
  FormControl,
  Grow,
- Icon,
  MenuItem,
  Paper,
- Select,
  SelectChangeEvent,
  Stack,
  Tooltip,
@@ -22,6 +18,7 @@ import { grey } from "@mui/material/colors";
 import { usePathname } from "next/navigation";
 import { listSelectKp } from "@/app/executive-summary/data";
 import { listTriwulan } from "@/app/utils/data";
+import DateRangePicker from "@/components/dateRange";
 
 export default function ContentPage({
  title,
@@ -44,6 +41,8 @@ export default function ContentPage({
  triWulan,
  hasAlert,
  chipKp,
+ sxCard,
+ dateRangeDropdown,
 }: {
  children: React.ReactNode;
  title?: string;
@@ -65,6 +64,8 @@ export default function ContentPage({
  triWulan?: boolean;
  hasAlert?: React.ReactNode;
  chipKp?: boolean;
+ sxCard?: React.CSSProperties;
+ dateRangeDropdown?: boolean;
 }) {
  const [konteks, setKonteks] = React.useState("");
  const [roDropdown, setRoDropdown] = React.useState("");
@@ -108,6 +109,14 @@ export default function ContentPage({
  );
 
  const nameOfKp = listSelectKp[4].name;
+
+ const currentDate = new Date();
+
+ const minDate = new Date();
+ const maxDate = new Date();
+
+ minDate.setFullYear(currentDate.getFullYear() - 10);
+ maxDate.setFullYear(currentDate.getFullYear() + 20);
 
  return (
   <Box>
@@ -266,20 +275,68 @@ export default function ContentPage({
      gap={1}
      width="100%"
     >
-     <Stack direction="column">
-      {breadcrumb}
-      {title && (
-       <Typography
-        component="h2"
-        fontWeight="600"
-        fontSize="1.25rem"
-        textTransform="capitalize"
-       >
-        {title}
-       </Typography>
+     <Stack direction="row" alignItems="center" gap={2}>
+      <Stack direction="column">
+       {breadcrumb}
+       {title && (
+        <Typography
+         component="h2"
+         fontWeight="600"
+         fontSize="1.25rem"
+         textTransform="capitalize"
+        >
+         {title}
+        </Typography>
+       )}
+      </Stack>
+      {titleChild}
+      {chipKp && (
+       <Chip
+        color="primary"
+        variant="outlined"
+        label={
+         <>
+          <Stack direction="row" alignItems="center">
+           <Stack
+            direction="row"
+            bgcolor={theme.palette.primary.main}
+            px={2}
+            alignItems="center"
+            height="34px"
+            sx={{
+             borderTopLeftRadius: 24,
+             borderBottomLeftRadius: 24,
+            }}
+           >
+            <Typography
+             fontSize={13}
+             color="white"
+             fontWeight={600}
+             lineHeight={1}
+            >
+             KP
+            </Typography>
+           </Stack>
+           <Typography px={1.5} fontSize={13} fontWeight={600}>
+            {nameOfKp}
+           </Typography>
+          </Stack>
+         </>
+        }
+        sx={{
+         height: "34px",
+         bgcolor: "white",
+         fontWeight: 600,
+         lineHeight: 1,
+         cursor: "default",
+
+         ".MuiChip-label": {
+          px: 0,
+         },
+        }}
+       />
       )}
      </Stack>
-     {titleChild}
     </Stack>
     <Stack direction="row" alignItems="center" gap={1}>
      {chooseProjectPage}
@@ -412,7 +469,7 @@ export default function ContentPage({
        }}
       />
      )}
-     {chipKp && (
+     {/* {chipKp && (
       <Chip
        color="primary"
        variant="outlined"
@@ -431,7 +488,7 @@ export default function ContentPage({
            }}
           >
            <Typography
-            fontSize={12}
+            fontSize={13}
             color="white"
             fontWeight={600}
             lineHeight={1}
@@ -452,6 +509,7 @@ export default function ContentPage({
             {nameOfKp.length >= 40
              ? nameOfKp.substring(0, 40) + "..."
              : nameOfKp}
+            {nameOfKp}
            </Typography>
           </Tooltip>
          </Stack>
@@ -469,7 +527,7 @@ export default function ContentPage({
         },
        }}
       />
-     )}
+     )} */}
      {chooseKonteks && (
       <FormControl size="small">
        <SelectCustomTheme
@@ -554,6 +612,16 @@ export default function ContentPage({
        </SelectCustomTheme>
       </FormControl>
      )}
+     {dateRangeDropdown && (
+      <DateRangePicker
+       small
+       placeholder="Pilih periode"
+       rounded
+       sxInput={{
+        backgroundColor: "red",
+       }}
+      />
+     )}
      {addButton && addButton}
     </Stack>
    </Stack>
@@ -585,6 +653,7 @@ export default function ContentPage({
        borderRadius: "1.25rem",
        p: noPadding ? 0 : "1.5rem",
        m: 1,
+       ...sxCard,
       }}
      >
       {children}

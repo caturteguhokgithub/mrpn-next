@@ -1,6 +1,6 @@
 "use client";
 
-import ContentPage from "@/app/components/contents/content";
+import ContentPage from "@/app/components/contents";
 import React from "react";
 import DashboardLayout from "@/app/components/layouts/layout";
 import {
@@ -142,7 +142,8 @@ export default function PageSeleraRisiko({}) {
       <ToggleButton value="kl">User KL</ToggleButton>
      </ToggleButtonGroup>
      <Typography color={grey[600]} fontSize={14} fontStyle="italic">
-      Pilih salah satu untuk memberikan nilai
+      Pilih salah satu untuk memberikan{" "}
+      {userLevel === "bappenas" ? "deskripsi" : "nilai"}
      </Typography>
      <ToggleButtonGroup
       value={valueTheme}
@@ -152,6 +153,9 @@ export default function PageSeleraRisiko({}) {
       sx={{
        display: "grid",
        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+       [theme.breakpoints.down("md")]: {
+        gridTemplateColumns: "1fr 1fr",
+       },
        gap: 2,
        mt: 2,
        button: {
@@ -216,24 +220,46 @@ export default function PageSeleraRisiko({}) {
         description={
          <Stack gap={1}>
           {userLevel === "bappenas" ? (
-           <FormControl sx={{ maxWidth: 300, mt: 1 }}>
-            <TextareaComponent
-             label="Deskripsi"
-             placeholder="Deskripsi tidak memberikan toleransi"
-            />
-           </FormControl>
+           <Stack display="grid" gridTemplateColumns="repeat(2, 1fr)" gap={2}>
+            <FormControl sx={{ mt: 1 }}>
+             <TextareaComponent
+              label="Deskripsi"
+              placeholder="Deskripsi tidak memberikan toleransi"
+              width="100%"
+             />
+            </FormControl>
+           </Stack>
           ) : (
-           <FormControl sx={{ maxWidth: 300, mt: 1 }}>
-            <TextField
-             variant="outlined"
-             size="small"
-             placeholder="Isi nilai tidak memberikan toleransi"
-             InputLabelProps={{
-              shrink: true,
+           <>
+            <Stack
+             display="grid"
+             gridTemplateColumns="repeat(2, 1fr)"
+             sx={{
+              [theme.breakpoints.down("md")]: {
+               gridTemplateColumns: "1fr",
+              },
              }}
-             helperText="Isi dengan angka"
-            />
-           </FormControl>
+            >
+             <Box component="p">
+              Sangat berhati-hati dalam mengambil risiko dan lebih memilih
+              menjaga stabilitas dan konsistensi dalam operasi bisnis
+             </Box>
+            </Stack>
+            <Stack display="grid" gridTemplateColumns="repeat(4, 1fr)" gap={2}>
+             <FormControl sx={{ mt: 1 }}>
+              <TextField
+               type="number"
+               variant="outlined"
+               size="small"
+               placeholder="Isi nilai tidak memberikan toleransi"
+               InputLabelProps={{
+                shrink: true,
+               }}
+               helperText="Isi dengan angka"
+              />
+             </FormControl>
+            </Stack>
+           </>
           )}
           {/* <Box component="p" maxWidth={800}>
            Sangat berhati-hati dalam mengambil risiko dan lebih memilih menjaga
@@ -265,24 +291,54 @@ export default function PageSeleraRisiko({}) {
         description={
          <Stack gap={1}>
           {userLevel === "bappenas" ? (
-           <FormControl sx={{ maxWidth: 300, mt: 1 }}>
-            <TextareaComponent
-             label="Deskripsi"
-             placeholder="Deskripsi konservatif"
-            />
-           </FormControl>
+           <Stack display="grid" gridTemplateColumns="repeat(2, 1fr)" gap={2}>
+            <FormControl sx={{ mt: 1 }}>
+             <TextareaComponent
+              label="Deskripsi"
+              placeholder="Deskripsi konservatif"
+             />
+            </FormControl>
+           </Stack>
           ) : (
-           <FormControl sx={{ maxWidth: 300, mt: 1 }}>
-            <TextField
-             variant="outlined"
-             size="small"
-             placeholder="Isi nilai konservatif"
-             InputLabelProps={{
-              shrink: true,
+           <>
+            <Stack
+             display="grid"
+             gridTemplateColumns="repeat(2, 1fr)"
+             sx={{
+              [theme.breakpoints.down("md")]: {
+               gridTemplateColumns: "1fr",
+              },
              }}
-             helperText="Isi dengan angka"
-            />
-           </FormControl>
+            >
+             <Box>
+              <Box component="p">
+               Berhati-hati dalam mengambil risiko, dengan memilih beberapa
+               risiko yang terkendali tetapi tetap memprioritaskan kestabilan
+               kegiatan.
+              </Box>
+              <Box component="p">
+               Keputusan didasarkan pada upaya untuk melindungi nilai dari
+               risiko besar yang tidak terduga, termasuk di dalamnya menghindari
+               paparan terhadap fluktuasi/kondisi global/eksternal yang
+               signifikan serta dapat menanggung beban yang kecil.
+              </Box>
+             </Box>
+            </Stack>
+            <Stack display="grid" gridTemplateColumns="repeat(4, 1fr)" gap={2}>
+             <FormControl sx={{ mt: 1 }}>
+              <TextField
+               type="number"
+               variant="outlined"
+               size="small"
+               placeholder="Isi nilai konservatif"
+               InputLabelProps={{
+                shrink: true,
+               }}
+               helperText="Isi dengan angka"
+              />
+             </FormControl>
+            </Stack>
+           </>
           )}
           {/* <Box component="p" maxWidth={800}>
            Berhati-hati dalam mengambil risiko, dengan memilih beberapa risiko
@@ -320,24 +376,52 @@ export default function PageSeleraRisiko({}) {
         description={
          <Stack gap={1}>
           {userLevel === "bappenas" ? (
-           <FormControl sx={{ maxWidth: 300, mt: 1 }}>
-            <TextareaComponent
-             label="Deskripsi"
-             placeholder="Deskripsi moderat"
-            />
-           </FormControl>
+           <Stack display="grid" gridTemplateColumns="repeat(2, 1fr)" gap={2}>
+            <FormControl sx={{ mt: 1 }}>
+             <TextareaComponent
+              label="Deskripsi"
+              placeholder="Deskripsi moderat"
+             />
+            </FormControl>
+           </Stack>
           ) : (
-           <FormControl sx={{ maxWidth: 300, mt: 1 }}>
-            <TextField
-             variant="outlined"
-             size="small"
-             placeholder="Isi nilai moderat"
-             InputLabelProps={{
-              shrink: true,
+           <>
+            <Stack
+             display="grid"
+             gridTemplateColumns="repeat(2, 1fr)"
+             sx={{
+              [theme.breakpoints.down("md")]: {
+               gridTemplateColumns: "1fr",
+              },
              }}
-             helperText="Isi dengan angka"
-            />
-           </FormControl>
+            >
+             <Box>
+              <Box component="p">
+               Bersedia mengambil risiko dalam batas tertentu untuk mencapai
+               manfaat, tetapi tetap memperhatikan perlindungan terhadap
+               kerugian besar.
+              </Box>
+              <Box component="p">
+               Keputusan mempertimbangkan peluang pertumbuhan dan dampak risiko
+               secara bersamaan dan dapat menanggung beban sedang.
+              </Box>
+             </Box>
+            </Stack>
+            <Stack display="grid" gridTemplateColumns="repeat(4, 1fr)" gap={2}>
+             <FormControl sx={{ mt: 1 }}>
+              <TextField
+               type="number"
+               variant="outlined"
+               size="small"
+               placeholder="Isi nilai moderat"
+               InputLabelProps={{
+                shrink: true,
+               }}
+               helperText="Isi dengan angka"
+              />
+             </FormControl>
+            </Stack>
+           </>
           )}
           {/* <Box component="p" maxWidth={800}>
            Bersedia mengambil risiko dalam batas tertentu untuk mencapai
@@ -374,24 +458,52 @@ export default function PageSeleraRisiko({}) {
         description={
          <Stack gap={1}>
           {userLevel === "bappenas" ? (
-           <FormControl sx={{ maxWidth: 300, mt: 1 }}>
-            <TextareaComponent
-             label="Deskripsi"
-             placeholder="Deskripsi agresif"
-            />
-           </FormControl>
+           <Stack display="grid" gridTemplateColumns="repeat(2, 1fr)" gap={2}>
+            <FormControl sx={{ mt: 1 }}>
+             <TextareaComponent
+              label="Deskripsi"
+              placeholder="Deskripsi agresif"
+             />
+            </FormControl>
+           </Stack>
           ) : (
-           <FormControl sx={{ maxWidth: 300, mt: 1 }}>
-            <TextField
-             variant="outlined"
-             size="small"
-             placeholder="Isi nilai agresif"
-             InputLabelProps={{
-              shrink: true,
+           <>
+            <Stack
+             gridTemplateColumns="repeat(2, 1fr)"
+             sx={{
+              [theme.breakpoints.down("md")]: {
+               gridTemplateColumns: "1fr",
+              },
              }}
-             helperText="Isi dengan angka"
-            />
-           </FormControl>
+            >
+             <Box>
+              <Box component="p">
+               Secara aktif menerapkan strategi yang melibatkan pengelolaan
+               risiko sebagai bagian integral dari rencana kegiatan, mengambil
+               risiko lebih tinggi dalam rangka mencapai peluang dan inovasi
+               yang lebih besar.
+              </Box>
+              <Box component="p">
+               Keputusan didasarkan pada analisis risiko dan pengembalian
+               investasi jangka panjang serta dapat menanggung beban yang besar.
+              </Box>
+             </Box>
+            </Stack>
+            <Stack display="grid" gridTemplateColumns="repeat(4, 1fr)" gap={2}>
+             <FormControl sx={{ mt: 1 }}>
+              <TextField
+               type="number"
+               variant="outlined"
+               size="small"
+               placeholder="Isi nilai agresif"
+               InputLabelProps={{
+                shrink: true,
+               }}
+               helperText="Isi dengan angka"
+              />
+             </FormControl>
+            </Stack>
+           </>
           )}
           {/* <Box component="p" maxWidth={800}>
            Secara aktif menerapkan strategi yang melibatkan pengelolaan risiko

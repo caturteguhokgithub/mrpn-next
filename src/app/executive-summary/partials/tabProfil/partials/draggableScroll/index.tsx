@@ -9,7 +9,7 @@ const DraggableScroll = ({
  sx,
 }: {
  children: React.ReactNode;
- sx?: any;
+ sx?: React.CSSProperties | any;
 }) => {
  const containerRef = useRef() as MutableRefObject<HTMLDivElement>;
  const isDragging = useRef(false);

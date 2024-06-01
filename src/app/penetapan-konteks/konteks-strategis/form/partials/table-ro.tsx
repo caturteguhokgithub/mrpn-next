@@ -184,7 +184,8 @@ export default function TableRincianOutput({ mode }: { mode?: string }) {
      </Stack>
     ) : null}
    </Stack>
-   <TableContainer component={Paper} elevation={0} variant="outlined">
+   <Paper sx={{ overflowX: "auto" }}>
+    {/* <TableContainer component={Paper} elevation={0} variant="outlined"> */}
     <Table sx={{ minWidth: 650 }} size="small">
      <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
       {/* <TableRow>
@@ -262,7 +263,8 @@ export default function TableRincianOutput({ mode }: { mode?: string }) {
       )}
      </TableBody>
     </Table>
-   </TableContainer>
+    {/* </TableContainer> */}
+   </Paper>
    <DialogComponent
     width={1000}
     dialogOpen={modalOpenProfilRoKunciProject}

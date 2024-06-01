@@ -2,28 +2,28 @@
 
 import ContentPage from "@/app/components/contents";
 import React, { useMemo } from "react";
-import DashboardLayout from "@/components/layouts/layout";
-import EmptyState from "@/components/empty";
-import { IconEmptyPage } from "@/components/icons";
-import { Button, DialogActions, SelectChangeEvent } from "@mui/material";
+import DashboardLayout from "@/app/components/layouts/layout";
+import EmptyState from "@/app/components/empty";
+import { IconEmptyPage } from "@/app/components/icons";
 import ActionColumn from "@/app/components/actions/action";
 import AddButton from "@/app/components/buttonAdd";
 import { advancedTable } from "@/app/components/table";
 import {
+ DialogActions,
+ Button,
+ SelectChangeEvent,
+ Alert,
+ AlertTitle,
+} from "@mui/material";
+import {
  useMaterialReactTable,
  MaterialReactTable,
 } from "material-react-table";
-import { data } from "../analisis-risiko/setting";
+import { data } from "../pemantauan/setting";
 import DialogComponent from "@/app/components/dialog";
 import FormTable from "./partials/form-table";
 
-export default function PageEvaluasiRisiko({}) {
- const [project, setProject] = React.useState("");
-
- const handleChangeProject = (event: SelectChangeEvent) => {
-  setProject(event.target.value);
- };
-
+export default function PagePeringatanDiniSaran({}) {
  const [modalOpenView, setModalOpenView] = React.useState(false);
  const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
  const [modalOpenEdit, setModalOpenEdit] = React.useState(false);
@@ -51,16 +51,17 @@ export default function PageEvaluasiRisiko({}) {
 
  const columns = useMemo(
   () => [
-   //    {
-   //     accessorKey: "no",
-   //     header: "No.",
-   //     size: 80,
-   //     enableColumnActions: false,
-   //    },
    {
     accessorKey: "peristiwa",
     header: "Peristiwa Risiko",
-    size: 200,
+    size: 300,
+    enableColumnActions: false,
+    enableSorting: false,
+   },
+   {
+    accessorKey: "kl_utama",
+    header: "K/L Utama",
+    size: 300,
     enableColumnActions: false,
     enableSorting: false,
    },
@@ -69,88 +70,72 @@ export default function PageEvaluasiRisiko({}) {
     header: "Nilai Risiko",
     columns: [
      {
-      accessorKey: "nilai",
-      header: "Nilai",
+      accessorKey: "nr_sebelum",
+      header: "Sebelum",
       size: 120,
       enableColumnActions: false,
      },
      {
-      accessorKey: "tingkat",
-      header: "Tingkat",
+      accessorKey: "nr_sesudah",
+      header: "Sesudah",
       size: 120,
       enableColumnActions: false,
      },
     ],
    },
    {
-    id: "risk_appetite",
-    header: "Risk Appetite",
-    columns: [
-     {
-      accessorKey: "nilai_appetite",
-      header: "Nilai",
-      size: 120,
-      enableColumnActions: false,
-     },
-     {
-      accessorKey: "keterangan_appetite",
-      header: "Keterangan",
-      size: 120,
-      enableColumnActions: false,
-     },
-    ],
-   },
-   {
-    accessorKey: "pengendalian",
-    header: "Pengendalian",
-    size: 200,
+    accessorKey: "maturitas",
+    header: "Maturitas MRPN",
+    size: 150,
     enableColumnActions: false,
     enableSorting: false,
    },
-   //    {
-   //     id: "residual",
-   //     header: "Residual",
-   //     columns: [
-   //      {
-   //       accessorKey: "nilai_residual",
-   //       header: "Nilai",
-   //       size: 120,
-   //       enableColumnActions: false,
-   //      },
-   //      {
-   //       accessorKey: "tingkat_residual",
-   //       header: "Tingkat",
-   //       size: 120,
-   //       enableColumnActions: false,
-   //      },
-   //     ],
-   //    },
+   {
+    accessorKey: "saran",
+    header: "Saran/Masukan",
+    size: 150,
+    enableColumnActions: false,
+    enableSorting: false,
+   },
   ],
   []
  );
 
- //  const data: any = [];
  type ColumnsType = {};
 
  const renderTopToolbar: ColumnsType = {
-  renderTopToolbarCustomActions: () => (
-   <AddButton onclick={handleModalOpenAdd} title="Tambah Evaluasi" />
-  ),
+  renderTopToolbarCustomActions: () => null,
  };
 
  const table = useMaterialReactTable({
   columns,
   data,
-  //   ...renderTopToolbar,
+  ...renderTopToolbar,
   ...advancedTable,
+  //   enableRowActions: false,
+  //   muiTableContainerProps: {
+  //    sx: {
+  //     maxWidth: "calc(100vw - 364px)",
+  //     "&::-webkit-scrollbar": {
+  //      height: "10px",
+  //     },
+  //    },
+  //   },
+  //   renderEmptyRowsFallback: ({ table }) => (
+  //    <EmptyState
+  //     icon={<IconEmptyData />}
+  //     title="Data Kosong"
+  //     description="Silahkan isi konten halaman ini"
+  //    />
+  //   ),
   displayColumnDefOptions: {
    "mrt-row-actions": {
     header: "",
-    size: 100,
+    size: 140,
     Cell: () => (
      <ActionColumn
       viewClick={handleModalOpenView}
-      //   editClick={handleModalOpenEdit}
+      editClick={handleModalOpenEdit}
       deleteClick={handleModalOpenDelete}
      />
     ),
@@ -179,43 +164,27 @@ export default function PageEvaluasiRisiko({}) {
  return (
   <>
    <DashboardLayout>
-    <ContentPage
-     title="Evaluasi Risiko"
-     // chooseProject
-     // chooseKonteks
-     chipKp
-     chooseKonteks
-     //  chooseRo
-     project={project}
-     handleChangeProject={handleChangeProject}
-    >
+    <ContentPage title="Maturitas" chooseProject withCard={false}>
      {/* <EmptyState
      icon={<IconEmptyPage />}
-     title="Halaman Profil Risiko Kosong"
+     title="Halaman Peringatan Dini & Saran Kosong"
      description="Silahkan isi konten halaman ini"
     /> */}
+
      <MaterialReactTable table={table} />
     </ContentPage>
    </DashboardLayout>
    <DialogComponent
     dialogOpen={modalOpenView}
     dialogClose={handleModalClose}
-    title="Detail Evaluasi Risiko"
+    title="Detail Maturitas"
    >
     <FormTable mode="view" />
    </DialogComponent>
    <DialogComponent
-    dialogOpen={modalOpenAdd}
-    dialogClose={handleModalClose}
-    title="Tambah Evaluasi Risiko"
-    dialogFooter={dialogActionFooter}
-   >
-    <FormTable mode="add" />
-   </DialogComponent>
-   <DialogComponent
     dialogOpen={modalOpenEdit}
     dialogClose={handleModalClose}
-    title="Ubah Evaluasi Risiko"
+    title="Ubah Maturitas"
     dialogFooter={dialogActionFooter}
    >
     <FormTable mode="edit" />

@@ -5,8 +5,16 @@ import {
  FormControl,
  Grid,
  Grow,
+ Icon,
+ IconButton,
  MenuItem,
+ Paper,
  SelectChangeEvent,
+ Table,
+ TableBody,
+ TableCell,
+ TableHead,
+ TableRow,
  TextField,
  Tooltip,
  Typography,
@@ -15,6 +23,9 @@ import SelectCustomTheme from "@/app/components/select";
 import { grey } from "@mui/material/colors";
 import TextareaComponent from "@/app/components/textarea";
 import { listLevelKemungkinan } from "@/app/utils/data";
+import EmptyState from "@/app/components/empty";
+import { IconEmptyData } from "@/app/components/icons";
+import theme from "@/theme";
 
 export default function FormDampak({ mode }: { mode?: string }) {
  const [value, setValue] = React.useState("");
@@ -35,57 +46,29 @@ export default function FormDampak({ mode }: { mode?: string }) {
  };
 
  return (
-  <>
-   <Grid container spacing={2}>
-    <Grid item lg={12}>
-     <FormControl fullWidth>
-      <Typography gutterBottom>Level Kemungkinan</Typography>
-      {mode === "add" || mode === "edit" ? (
-       <SelectCustomTheme
-        defaultStyle
-        small
-        value={value}
-        onChange={handleChangeSelect}
-       >
-        <MenuItem value="" disabled>
-         <Typography fontSize={14} color={grey[700]} fontStyle="italic">
-          Pilih level kemungkinan
-         </Typography>
-        </MenuItem>
-        {listLevelKemungkinan.map((lkLabel, index) => (
-         <MenuItem key={index} value={lkLabel}>
-          {lkLabel.length >= 35 ? (
-           <Tooltip title={lkLabel} followCursor TransitionComponent={Grow}>
-            <Typography
-             aria-owns={open ? "mouse-over-popover" : undefined}
-             aria-haspopup="true"
-             onMouseEnter={handlePopoverOpen}
-             onMouseLeave={handlePopoverClose}
-             sx={{ fontSize: 14 }}
-            >
-             {lkLabel.substring(0, 35) + "..."}
-            </Typography>
-           </Tooltip>
-          ) : (
-           lkLabel
-          )}
-         </MenuItem>
-        ))}
-       </SelectCustomTheme>
-      ) : (
-       <Typography fontWeight={600}>-</Typography>
-      )}
-     </FormControl>
-    </Grid>
-    <Grid item lg={12}>
-     <Divider>
-      <Chip label="Area Dampak Risiko" size="small" />
-     </Divider>
-    </Grid>
-    <Grid item lg={12}>
-     <FormControl fullWidth>
-      <Typography gutterBottom>Beban Keuangan Negara/Daerah</Typography>
-      {mode === "add" ? (
+  <Paper sx={{ overflowX: "auto", minWidth: "100% !important" }}>
+   <Table size="small">
+    <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
+     <TableRow>
+      <TableCell rowSpan={2}>Level Kemungkinan</TableCell>
+      <TableCell colSpan={5} align="center">
+       Area Dampak Risiko
+      </TableCell>
+     </TableRow>
+     <TableRow>
+      <TableCell>Beban Keuangan Negara/Daerah</TableCell>
+      <TableCell>Penurunan Reputasi</TableCell>
+      <TableCell>
+       Tuntutan Hukum (Sanksi Pidana, Perdata, dan/atau administratif)
+      </TableCell>
+      <TableCell>Lingkungan</TableCell>
+      <TableCell>Capaian Kinerja</TableCell>
+     </TableRow>
+    </TableHead>
+    <TableBody>
+     <TableRow>
+      <TableCell>Kemungkinan 1</TableCell>
+      <TableCell>
        <TextField
         variant="outlined"
         size="small"
@@ -94,64 +77,28 @@ export default function FormDampak({ mode }: { mode?: string }) {
          shrink: true,
         }}
        />
-      ) : mode === "edit" ? (
+      </TableCell>
+      <TableCell>
        <TextField
         variant="outlined"
         size="small"
-        value="-"
+        placeholder="Penurunan Reputasi"
         InputLabelProps={{
          shrink: true,
         }}
        />
-      ) : (
-       <Typography fontWeight={600}>-</Typography>
-      )}
-     </FormControl>
-    </Grid>
-    <Grid item lg={12}>
-     <FormControl fullWidth>
-      <Typography gutterBottom>Penurunan Reputasi</Typography>
-      {mode === "add" ? (
-       <TextareaComponent
-        label="Penurunan Reputasi"
-        placeholder="Penurunan Reputasi"
+      </TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Tuntutan Hukum"
+        InputLabelProps={{
+         shrink: true,
+        }}
        />
-      ) : mode === "edit" ? (
-       <TextareaComponent
-        label="Penurunan Reputasi"
-        placeholder="Penurunan Reputasi"
-        value="-"
-       />
-      ) : (
-       <Typography fontWeight={600}>-</Typography>
-      )}
-     </FormControl>
-    </Grid>
-    <Grid item lg={12}>
-     <FormControl fullWidth>
-      <Typography gutterBottom>
-       Tuntutan Hukum (Sanksi Pidana, Perdata, dan/atau administratif)
-      </Typography>
-      {mode === "add" ? (
-       <TextareaComponent
-        label="Tuntutan Hukum (Sanksi Pidana, Perdata, dan/atau administratif)"
-        placeholder="Tuntutan Hukum (Sanksi Pidana, Perdata, dan/atau administratif)"
-       />
-      ) : mode === "edit" ? (
-       <TextareaComponent
-        label="Tuntutan Hukum (Sanksi Pidana, Perdata, dan/atau administratif)"
-        placeholder="Tuntutan Hukum (Sanksi Pidana, Perdata, dan/atau administratif)"
-        value="-"
-       />
-      ) : (
-       <Typography fontWeight={600}>-</Typography>
-      )}
-     </FormControl>
-    </Grid>
-    <Grid item lg={12}>
-     <FormControl fullWidth>
-      <Typography gutterBottom>Lingkungan</Typography>
-      {mode === "add" ? (
+      </TableCell>
+      <TableCell>
        <TextField
         variant="outlined"
         size="small"
@@ -160,24 +107,8 @@ export default function FormDampak({ mode }: { mode?: string }) {
          shrink: true,
         }}
        />
-      ) : mode === "edit" ? (
-       <TextField
-        variant="outlined"
-        size="small"
-        value="-"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
-      ) : (
-       <Typography fontWeight={600}>-</Typography>
-      )}
-     </FormControl>
-    </Grid>
-    <Grid item lg={12}>
-     <FormControl fullWidth>
-      <Typography gutterBottom>Capaian Kinerja</Typography>
-      {mode === "add" ? (
+      </TableCell>
+      <TableCell>
        <TextField
         variant="outlined"
         size="small"
@@ -186,21 +117,222 @@ export default function FormDampak({ mode }: { mode?: string }) {
          shrink: true,
         }}
        />
-      ) : mode === "edit" ? (
+      </TableCell>
+     </TableRow>
+     <TableRow>
+      <TableCell>Kemungkinan 2</TableCell>
+      <TableCell>
        <TextField
         variant="outlined"
         size="small"
-        value="-"
+        placeholder="Beban Keuangan Negara/Daerah"
         InputLabelProps={{
          shrink: true,
         }}
        />
-      ) : (
-       <Typography fontWeight={600}>-</Typography>
-      )}
-     </FormControl>
-    </Grid>
-   </Grid>
-  </>
+      </TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Penurunan Reputasi"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Tuntutan Hukum"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Lingkungan"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Capaian Kinerja"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+     </TableRow>
+     <TableRow>
+      <TableCell>Kemungkinan 3</TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Beban Keuangan Negara/Daerah"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Penurunan Reputasi"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Tuntutan Hukum"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Lingkungan"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Capaian Kinerja"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+     </TableRow>
+     <TableRow>
+      <TableCell>Kemungkinan 4</TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Beban Keuangan Negara/Daerah"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Penurunan Reputasi"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Tuntutan Hukum"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Lingkungan"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Capaian Kinerja"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+     </TableRow>
+     <TableRow>
+      <TableCell>Kemungkinan 5</TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Beban Keuangan Negara/Daerah"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Penurunan Reputasi"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Tuntutan Hukum"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Lingkungan"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+      <TableCell>
+       <TextField
+        variant="outlined"
+        size="small"
+        placeholder="Capaian Kinerja"
+        InputLabelProps={{
+         shrink: true,
+        }}
+       />
+      </TableCell>
+     </TableRow>
+    </TableBody>
+   </Table>
+  </Paper>
  );
 }

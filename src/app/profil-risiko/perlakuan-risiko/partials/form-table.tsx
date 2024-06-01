@@ -23,6 +23,7 @@ import { grey } from "@mui/material/colors";
 import { listPeristiwaRisiko } from "../setting";
 import { IconFA } from "@/app/components/icons/icon-fa";
 import TextareaComponent from "@/app/components/textarea";
+import DateRangePicker from "@/app/components/dateRange";
 
 export default function FormTable({ mode }: { mode?: string }) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -226,45 +227,7 @@ export default function FormTable({ mode }: { mode?: string }) {
      <FormControl fullWidth>
       <Typography gutterBottom>Waktu Rencana Mitigasi</Typography>
       {mode === "add" || mode === "edit" ? (
-       <>
-        <Popover
-         id={id}
-         open={open}
-         anchorEl={anchorEl}
-         onClose={handleClose}
-         anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-         }}
-        >
-         <DateRange
-          editableDateInputs={true}
-          onChange={(item: any) => setState([item.selection])}
-          moveRangeOnFirstSelection={false}
-          ranges={state}
-          months={2}
-          direction="horizontal"
-          minDate={minDate}
-          maxDate={maxDate}
-         />
-        </Popover>
-        <TextField
-         onClick={handleClick}
-         variant="outlined"
-         size="small"
-         placeholder="Waktu Rencana Mitigasi"
-         InputLabelProps={{
-          shrink: true,
-         }}
-         value={`${moment
-          .utc(state[0].startDate)
-          .utcOffset(7)
-          .format("D MMM YYYY")} - ${moment
-          .utc(state[0].endDate)
-          .utcOffset(7)
-          .format("D MMM YYYY")}`}
-        />
-       </>
+       <DateRangePicker placeholder="Pilih waktu rencana mitigasi" />
       ) : (
        <Typography fontWeight={600}>-</Typography>
       )}
@@ -277,7 +240,7 @@ export default function FormTable({ mode }: { mode?: string }) {
        <TextField
         variant="outlined"
         size="small"
-        placeholder="Penanggung Jawab"
+        placeholder="Penanggung jawab"
         InputLabelProps={{
          shrink: true,
         }}

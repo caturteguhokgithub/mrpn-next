@@ -152,7 +152,7 @@ export default function TableKemungkinan({ mode }: { mode?: string }) {
     </Table>
    </TableContainer>
    <DialogComponent
-    width={400}
+    width={800}
     dialogOpen={modalOpenAdd}
     dialogClose={handleModalClose}
     title="Tambah Kriteria Kemungkinan"

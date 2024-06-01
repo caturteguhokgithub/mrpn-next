@@ -15,7 +15,7 @@ const GanttChart = ({ tasks }: { tasks: any }) => {
     date_format: "DD-MMM-YYYY",
     view_mode: "Year",
     bar_height: 35,
-    step: 24,
+    step: 6,
     // header_height: 200,
     // column_width: 100,
     // padding: 2,
@@ -85,6 +85,9 @@ const GanttChart = ({ tasks }: { tasks: any }) => {
    ".grid-header": {
     strokeWidth: 0,
    },
+   ".bar": {
+    fill: theme.palette.primary.main,
+   },
    ".bar-wrapper .bar-progress": {
     fill: theme.palette.primary.main,
    },
@@ -92,7 +95,8 @@ const GanttChart = ({ tasks }: { tasks: any }) => {
     fill: orange[500],
    },
    ".bar-label": {
-    fill: grey[800],
+    // fill: grey[800],
+    fill: theme.palette.primary.light,
     fontWeight: 500,
    },
    ".bar-group": {

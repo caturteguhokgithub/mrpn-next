@@ -73,7 +73,7 @@ export default function Aside({
 
  const subMenuKonteks = "penetapan-konteks";
  const subMenuProfil = "profil-risiko";
- const subMenuMitigasi = "pemantauan-pelaksanaan-mitigasi";
+ const subMenuMitigasi = "pemantauan";
 
  const Sidemenu = (
   <Stack
@@ -183,7 +183,7 @@ export default function Aside({
        <SubmenuItem
         label="Peringatan Dini"
         url={subMenuMitigasi}
-        urlLv2="peringatan-dini-saran"
+        urlLv2="peringatan-dini"
        />
        <SubmenuItem
         label="Pemantauan"
@@ -198,7 +198,7 @@ export default function Aside({
        <SubmenuItem
         label="Pelaporan"
         url={subMenuMitigasi}
-        urlLv2="pelaporan-berkala"
+        urlLv2="pelaporan"
        />
       </MenuItem>
      </Stack>
