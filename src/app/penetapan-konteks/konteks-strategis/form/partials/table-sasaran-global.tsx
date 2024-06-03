@@ -80,7 +80,7 @@ export default function TableSasaran({
     ) : null}
    </Stack>
    <TableContainer component={Paper} elevation={0} variant="outlined">
-    <Table sx={{ minWidth: 650 }} size="small">
+    <Table size="small">
      <TableHead sx={{ bgcolor: theme.palette.primary.light }}>
       <TableRow>
        <TableCell width="70px"></TableCell>

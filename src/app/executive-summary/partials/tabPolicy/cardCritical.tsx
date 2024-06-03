@@ -17,6 +17,9 @@ import { dataTema } from "../../dataTema";
 import GanttChart from "@/app/penetapan-konteks/konteks-strategis/form/partials/gantt/gantt";
 import { tasks } from "@/app/penetapan-konteks/konteks-strategis/setting";
 import FormMilestone from "@/app/penetapan-konteks/konteks-strategis/form/partials/form-milestone";
+import { Chart } from "react-google-charts";
+import { dataCritical1, dataRowCritical } from "../../data";
+import { GanttDefault } from "./gantt";
 
 export default function CardCritical({ project }: { project: string }) {
  const [modalOpenCritical, setModalOpenCritical] = React.useState(false);
@@ -36,6 +39,53 @@ export default function CardCritical({ project }: { project: string }) {
  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
  const isEmpty = false;
+
+ const options = {
+  gantt: {
+   trackHeight: 50,
+   criticalPathEnabled: true,
+   criticalPathStyle: {
+    stroke: "#e64a19",
+    strokeWidth: 5,
+   },
+   arrow: {
+    angle: 100,
+    width: 5,
+    color: "green",
+    radius: 0,
+   },
+   labelStyle: {
+    fontFamily: "'Inter',sans-serif",
+    fontSize: 16,
+    color: "black !important",
+   },
+   innerGridHorizLine: {
+    stroke: "#e0e0e0",
+    strokeWidth: 1,
+   },
+   innerGridTrack: { fill: "#f1f8e9" },
+   innerGridDarkTrack: { fill: "#dcedc8" },
+   showRowLabels: true,
+   showTaskLabels: true,
+  },
+  timeline: {
+   showBarLabels: true,
+  },
+  hAxis: {
+   format: "yyyy",
+   gridlines: { count: -1 },
+  },
+  vAxis: {
+   title: "yyyy",
+  },
+  tooltip: {
+   isHtml: true,
+  },
+ };
+
+ console.log({ project });
+
+ const dataCritical = [dataRowCritical, ...dataCritical1];
 
  return (
   <CardItem
@@ -120,6 +170,15 @@ export default function CardCritical({ project }: { project: string }) {
      </Box>
     </>
    )}
+   <Chart
+    chartType="Gantt"
+    width="100%"
+    height="300px"
+    // data={project === "1" ? dataCritical1 : dataCritical1}
+    options={options}
+    data={dataCritical}
+   />
+   {/* <GanttDefault /> */}
    <DialogComponent
     dialogOpen={modalOpenCritical}
     dialogClose={handleModalClose}

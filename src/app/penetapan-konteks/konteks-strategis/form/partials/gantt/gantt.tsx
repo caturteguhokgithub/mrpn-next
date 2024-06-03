@@ -78,7 +78,7 @@ const GanttChart = ({ tasks }: { tasks: any }) => {
     },
    },
    "& + .gantt-container": {
-    minWidth: 1200,
+    // minWidth: 1200,
    },
   },
   ".gantt": {

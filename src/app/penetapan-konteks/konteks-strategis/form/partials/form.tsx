@@ -177,7 +177,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
      </Grid>
     </Grid>
     <Divider sx={{ my: 3 }} />
-    {/* <TableSasaran mode={mode} /> */}
+    <TableSasaran mode={mode} />
     {/* <Divider sx={{ my: 3 }} />
     <TableSasaran variant="PN" />
     <Divider sx={{ my: 3 }} />
