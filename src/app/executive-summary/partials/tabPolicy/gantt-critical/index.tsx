@@ -55,8 +55,8 @@ export default function GanttChart({ project }: { project?: string }) {
     barCornerRadius={6}
     barBackgroundColor={theme.palette.primary.main}
     barBackgroundSelectedColor={theme.palette.primary.dark}
-    arrowColor={grey[500]}
-    arrowIndent={30}
+    // arrowColor={grey[500]}
+    // arrowIndent={30}
     fontFamily="'Poppins', sans-serif"
     fontSize="14px"
     // headerHeight={200}

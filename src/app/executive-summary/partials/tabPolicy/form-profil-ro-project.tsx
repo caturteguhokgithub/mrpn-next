@@ -33,7 +33,7 @@ export default function FormProfilRoProject({ mode }: { mode?: string }) {
  };
  return (
   <Grid container spacing={2}>
-   <Grid item lg={4}>
+   <Grid item xs={12} md={4}>
     <FormControl fullWidth>
      <Typography gutterBottom>Format Kode</Typography>
      {mode === "add" ? (
@@ -59,7 +59,7 @@ export default function FormProfilRoProject({ mode }: { mode?: string }) {
      )}
     </FormControl>
    </Grid>
-   <Grid item lg={4}>
+   <Grid item xs={12} md={4}>
     <FormControl fullWidth>
      <Typography gutterBottom>Entitas Utama</Typography>
      {mode === "add" || mode === "edit" ? (
@@ -99,7 +99,7 @@ export default function FormProfilRoProject({ mode }: { mode?: string }) {
      )}
     </FormControl>
    </Grid>
-   <Grid item lg={4}>
+   <Grid item xs={12} md={4}>
     <FormControl fullWidth>
      <Typography gutterBottom>Entitas Kontributor</Typography>
      {mode === "add" ? (
@@ -125,7 +125,7 @@ export default function FormProfilRoProject({ mode }: { mode?: string }) {
      )}
     </FormControl>
    </Grid>
-   <Grid item lg={12}>
+   <Grid item xs={12}>
     <FormControl fullWidth>
      <Typography gutterBottom>Nomenklatur RO/Project</Typography>
      {mode === "add" ? (
@@ -151,53 +151,65 @@ export default function FormProfilRoProject({ mode }: { mode?: string }) {
      )}
     </FormControl>
    </Grid>
-   <Grid item lg={4}>
+   <Grid item xs={12} md={4}>
     <FormControl fullWidth>
      <Typography gutterBottom>Target</Typography>
      {mode === "add" ? (
-      <Stack direction="row" gap={1}>
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Nilai"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
-       <TextField
-        variant="outlined"
-        size="small"
-        placeholder="Satuan"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
-      </Stack>
+      <Grid container spacing={2}>
+       <Grid item xs={6}>
+        <TextField
+         fullWidth
+         variant="outlined"
+         size="small"
+         placeholder="Nilai"
+         InputLabelProps={{
+          shrink: true,
+         }}
+        />
+       </Grid>
+       <Grid item xs={6}>
+        <TextField
+         fullWidth
+         variant="outlined"
+         size="small"
+         placeholder="Satuan"
+         InputLabelProps={{
+          shrink: true,
+         }}
+        />
+       </Grid>
+      </Grid>
      ) : mode === "edit" ? (
-      <Stack direction="row" gap={1}>
-       <TextField
-        variant="outlined"
-        size="small"
-        value="2000"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
-       <TextField
-        variant="outlined"
-        size="small"
-        value="Orang"
-        InputLabelProps={{
-         shrink: true,
-        }}
-       />
-      </Stack>
+      <Grid container spacing={2}>
+       <Grid item xs={6}>
+        <TextField
+         fullWidth
+         variant="outlined"
+         size="small"
+         value="2000"
+         InputLabelProps={{
+          shrink: true,
+         }}
+        />
+       </Grid>
+       <Grid item xs={6}>
+        <TextField
+         fullWidth
+         variant="outlined"
+         size="small"
+         value="Orang"
+         InputLabelProps={{
+          shrink: true,
+         }}
+        />
+       </Grid>
+      </Grid>
      ) : (
       <Typography fontWeight={600}>-</Typography>
      )}
     </FormControl>
    </Grid>
-   <Grid item lg={4}>
+   <Grid item xs={12} md={4}>
     <FormControl fullWidth>
      <Typography gutterBottom>Anggaran</Typography>
      {mode === "add" ? (
@@ -223,7 +235,7 @@ export default function FormProfilRoProject({ mode }: { mode?: string }) {
      )}
     </FormControl>
    </Grid>
-   <Grid item lg={4}>
+   <Grid item xs={12} md={4}>
     <FormControl fullWidth>
      <Typography gutterBottom>Sumber Anggaran</Typography>
      {mode === "add" ? (

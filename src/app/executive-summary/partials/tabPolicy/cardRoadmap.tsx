@@ -78,7 +78,24 @@ export default function CardRoadmap({ project }: { project: string }) {
                Berbasis Output
               </Typography>
               {detailRoadmap.outputBase.length > 1 ? (
-               <Stack direction="row" gap={2} width="100%" mt={1}>
+               <Stack
+                direction="row"
+                gap={2}
+                width="100%"
+                mt={1}
+                sx={{
+                 [theme.breakpoints.down("md")]: {
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: 2,
+                 },
+                 [theme.breakpoints.down("sm")]: {
+                  display: "grid",
+                  gridTemplateColumns: "1fr",
+                  gap: 2,
+                 },
+                }}
+               >
                 {detailRoadmap.outputBase.map((itemOutput, index) => (
                  <Card
                   variant="outlined"
@@ -201,7 +218,24 @@ export default function CardRoadmap({ project }: { project: string }) {
                   Berbasis Bisnis
                  </Typography>
                 </Box>
-                <Stack direction="row" gap={2} width="100%" mt={1}>
+                <Stack
+                 direction="row"
+                 gap={2}
+                 width="100%"
+                 mt={1}
+                 sx={{
+                  [theme.breakpoints.down("md")]: {
+                   display: "grid",
+                   gridTemplateColumns: "1fr 1fr",
+                   gap: 2,
+                  },
+                  [theme.breakpoints.down("sm")]: {
+                   display: "grid",
+                   gridTemplateColumns: "1fr",
+                   gap: 2,
+                  },
+                 }}
+                >
                  {detailRoadmap.businessBase.map((itemOutput, index) => (
                   <Card
                    variant="outlined"

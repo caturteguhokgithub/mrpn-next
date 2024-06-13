@@ -14,6 +14,7 @@ import {
  Tab,
  Tabs,
  Tooltip,
+ alpha,
  useMediaQuery,
  useTheme,
 } from "@mui/material";
@@ -173,6 +174,18 @@ export default function PageExecutiveSummary({}) {
         sx={{
          ".MuiTabs-flexContainer": {
           gap: 1,
+         },
+         ".MuiTabs-scroller": {
+          [theme.breakpoints.down("md")]: {
+           overflowX: "auto !important",
+           "&::-webkit-scrollbar": {
+            height: "8px",
+            bgcolor: grey[100],
+           },
+           "&::-webkit-scrollbar-thumb": {
+            bgcolor: alpha(grey[400], 0.5),
+           },
+          },
          },
          button: {
           p: 2,

@@ -7,6 +7,7 @@ import {
  Icon,
  Stack,
  Zoom,
+ useMediaQuery,
  useTheme,
 } from "@mui/material";
 import Footer from "./footer";
@@ -23,8 +24,10 @@ const Aside = dynamic(() => import("./aside"), { ssr: false });
 
 export default function DashboardLayout({
  children,
+ noOverflow,
 }: {
  children: React.ReactNode;
+ noOverflow?: boolean;
 }) {
  const pathname = usePathname();
  const theme = useTheme();
@@ -70,21 +73,30 @@ export default function DashboardLayout({
  const flagPathnameTheme = [pathname === "/", pathname === "/tema"].includes(
   true
  );
+ const onlySmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
  const sxMain = {
   borderTopLeftRadius: "50px",
   transition: "all 600ms ease",
   // width: checked ? "calc(100% - 44px)" : "100%",
+  "&::-webkit-scrollbar": {
+   width: "5px",
+   borderRadius: "4px",
+  },
   [theme.breakpoints.down("md")]: {
    borderTopLeftRadius: 0,
    p: 3,
    maxWidth: "100%",
-   overflow: "auto",
+   overflow: noOverflow ? "unset" : "auto",
   },
   ".table-collapsed": {
    ".MuiTableContainer-root": {
     //  maxWidth: checked ? "calc(100vw - 364px)" : "calc(100vw - 163px)",
-    maxWidth: checked ? "calc(100vw - 364px)" : "calc(100vw - 132px)",
+    maxWidth: checked
+     ? "calc(100vw - 364px)"
+     : onlySmallScreen
+     ? "100%"
+     : "calc(100vw - 132px)",
     thead: {
      tr: {
       "&:not(:last-of-type)": {

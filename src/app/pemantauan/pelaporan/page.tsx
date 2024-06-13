@@ -3,9 +3,18 @@
 import ContentPage from "@/app/components/contents";
 import React from "react";
 import DashboardLayout from "@/app/components/layouts/layout";
-import { Stack, Typography, Tooltip, Grow, Chip, Icon } from "@mui/material";
+import {
+ Stack,
+ Typography,
+ Tooltip,
+ Grow,
+ Chip,
+ Icon,
+ useMediaQuery,
+} from "@mui/material";
 import { grey } from "@mui/material/colors";
 import AddButton from "@/app/components/buttonAdd";
+import theme from "@/theme";
 
 export default function PagePelaporanBerkala({}) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -21,6 +30,7 @@ export default function PagePelaporanBerkala({}) {
  const open = Boolean(anchorEl);
 
  const labelChipRo = "Peningkatan ketersediaan pangan keluarga 1000 HPK";
+ const onlySmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
  return (
   <DashboardLayout>
@@ -30,7 +40,17 @@ export default function PagePelaporanBerkala({}) {
      title="Halaman Pelaporan Berkala Kosong"
      description="Silahkan isi konten halaman ini"
     /> */}
-    <Stack direction="row" gap={2}>
+    <Stack
+     direction="row"
+     gap={2}
+     sx={{
+      flexWrap: "wrap",
+      [theme.breakpoints.down("sm")]: {
+       flexDirection: "column",
+       alignItems: "flex-start",
+      },
+     }}
+    >
      <Chip
       variant="outlined"
       label={
@@ -46,6 +66,9 @@ export default function PagePelaporanBerkala({}) {
            sx={{
             borderTopLeftRadius: 24,
             borderBottomLeftRadius: 24,
+            [theme.breakpoints.down("sm")]: {
+             minWidth: 133,
+            },
            }}
           >
            <Typography
@@ -101,6 +124,9 @@ export default function PagePelaporanBerkala({}) {
          sx={{
           borderTopLeftRadius: 24,
           borderBottomLeftRadius: 24,
+          [theme.breakpoints.down("sm")]: {
+           minWidth: 133,
+          },
          }}
         >
          <Typography
@@ -129,6 +155,7 @@ export default function PagePelaporanBerkala({}) {
       }}
      />
      <AddButton
+      fullWidth={onlySmallScreen}
       noMargin
       filled
       title="Download PDF & Excel"

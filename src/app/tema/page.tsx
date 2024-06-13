@@ -89,10 +89,11 @@ export default function PageTema({}) {
 
  return (
   <>
-   <DashboardLayout>
+   <DashboardLayout noOverflow>
     <LoadingPage />
     <ContentPage
      //  title="Tema"
+     noMinusMargin
      withCard={false}
      addButton={
       <AddButton
@@ -130,6 +131,7 @@ export default function PageTema({}) {
           gridTemplateColumns: "1fr 1fr 1fr",
           gap: 2,
           mt: 2,
+          p: "1px",
           button: {
            //  bgcolor: "white",
            transition: "all 800ms ease-in-out",

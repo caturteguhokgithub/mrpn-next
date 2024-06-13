@@ -290,7 +290,16 @@ export default function TableRincianOutput({ mode }: { mode?: string }) {
     dialogClose={handleModalClose}
     title="Tambah Profil RO Kunci"
     headerAction={
-     <Stack direction="row" gap={1}>
+     <Stack
+      direction="row"
+      gap={1}
+      sx={{
+       [theme.breakpoints.down("sm")]: {
+        flexDirection: "column",
+        width: "100%",
+       },
+      }}
+     >
       <SelectCustomTheme
        rounded
        small

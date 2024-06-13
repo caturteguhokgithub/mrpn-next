@@ -16,7 +16,7 @@ export default function FormMilestone({ mode }: { mode?: string }) {
  return (
   <>
    <Grid container spacing={2}>
-    <Grid item lg={12}>
+    <Grid item xs={12}>
      <FormControl fullWidth>
       <Typography gutterBottom>Program/Kegiatan</Typography>
       {mode === "add" ? (
@@ -42,7 +42,7 @@ export default function FormMilestone({ mode }: { mode?: string }) {
       )}
      </FormControl>
     </Grid>
-    <Grid item lg={6}>
+    <Grid item xs={12} sm={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Sumber Anggaran</Typography>
       {mode === "add" ? (
@@ -68,7 +68,7 @@ export default function FormMilestone({ mode }: { mode?: string }) {
       )}
      </FormControl>
     </Grid>
-    <Grid item lg={6}>
+    <Grid item xs={12} sm={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Penanggung Jawab</Typography>
       {mode === "add" ? (
@@ -94,7 +94,7 @@ export default function FormMilestone({ mode }: { mode?: string }) {
       )}
      </FormControl>
     </Grid>
-    <Grid item lg={6}>
+    <Grid item xs={12} sm={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Waktu Mulai Pekerjaan</Typography>
       {mode === "add" ? (
@@ -124,7 +124,7 @@ export default function FormMilestone({ mode }: { mode?: string }) {
       )}
      </FormControl>
     </Grid>
-    <Grid item lg={6}>
+    <Grid item xs={12} sm={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Waktu Penyelesaian Pekerjaan</Typography>
       {mode === "add" ? (
@@ -154,7 +154,7 @@ export default function FormMilestone({ mode }: { mode?: string }) {
       )}
      </FormControl>
     </Grid>
-    <Grid item lg={6}>
+    <Grid item xs={12} sm={6}>
      <FormControl fullWidth>
       <Typography gutterBottom>Progress</Typography>
       {mode === "add" ? (

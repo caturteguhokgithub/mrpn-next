@@ -29,6 +29,7 @@ export const SxAutocomplete = () => {
   minWidth: 300,
   color: theme.palette.primary.dark,
   ".MuiInputBase-root": {
+   height: "38px",
    fontWeight: 600,
    fontSize: 14,
    py: 0,

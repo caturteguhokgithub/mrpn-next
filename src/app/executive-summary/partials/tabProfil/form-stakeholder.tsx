@@ -18,7 +18,7 @@ export default function FormStakeholder({
      {project === itemStakeholder.temaId && (
       <>
        {itemStakeholder.stakeholder?.map((detailStakeholder, index) => (
-        <Grid item lg={6} key={index}>
+        <Grid item xs={12} md={6} key={index}>
          <Paper
           elevation={0}
           variant="outlined"

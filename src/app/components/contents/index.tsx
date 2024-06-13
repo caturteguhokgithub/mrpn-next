@@ -43,6 +43,8 @@ export default function ContentPage({
  chipKp,
  sxCard,
  dateRangeDropdown,
+ noMinusMargin,
+ sxHeaderCard,
 }: {
  children: React.ReactNode;
  title?: string;
@@ -66,6 +68,8 @@ export default function ContentPage({
  chipKp?: boolean;
  sxCard?: React.CSSProperties;
  dateRangeDropdown?: boolean;
+ noMinusMargin?: boolean;
+ sxHeaderCard?: React.CSSProperties;
 }) {
  const [konteks, setKonteks] = React.useState("");
  const [roDropdown, setRoDropdown] = React.useState("");
@@ -127,7 +131,8 @@ export default function ContentPage({
      // height="200px"
      m="-42px"
      mb={0}
-     px={4}
+     //  px={4}
+     px="42px"
      //  pt={6}
      pt={0}
      pb={20}
@@ -139,6 +144,9 @@ export default function ContentPage({
        "linear-gradient(0deg, rgba(0, 0, 0, 0) 20%, rgba(31, 41, 55, 1) 100%), url(https://res.cloudinary.com/caturteguh/image/upload/v1715503420/mrpn/bg-page_mynfvi.jpg)",
       backgroundSize: "cover",
       backgroundPosition: "center 70%",
+      // [theme.breakpoints.down("md")]: {
+      //  px: "42px",
+      // },
      }}
     >
      <Stack>
@@ -157,7 +165,14 @@ export default function ContentPage({
       <Typography color={grey[400]} component="div" mb={1}>
        Selamat datang <strong>Administrator</strong>,
       </Typography>
-      <Stack direction="row" gap={2} alignItems="center">
+      <Stack
+       direction="row"
+       gap={2}
+       alignItems="center"
+       sx={{
+        [theme.breakpoints.down("md")]: { gap: 0 },
+       }}
+      >
        <Stack direction="row" alignItems="center">
         <Box
          //  component="img"
@@ -167,6 +182,9 @@ export default function ContentPage({
           //  display: "flex",
           //  alignItems: "center",
           width: "30px",
+          [theme.breakpoints.down("md")]: {
+           width: 0,
+          },
          }}
         />
        </Stack>
@@ -261,12 +279,14 @@ export default function ContentPage({
     alignItems="center"
     mb="1.25rem"
     mt={flagPathnameTheme ? "-180px" : 0}
-    // sx={{
-    //  [theme.breakpoints.down("md")]: {
-    //   flexDirection: "column",
-    //   gap: 3,
-    //  },
-    // }}
+    sx={{
+     [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
+      alignItems: "flex-start",
+      gap: 1,
+      flexWrap: "wrap",
+     },
+    }}
    >
     <Stack
      direction="row"
@@ -275,7 +295,18 @@ export default function ContentPage({
      gap={1}
      width="100%"
     >
-     <Stack direction="row" alignItems="center" gap={2}>
+     <Stack
+      direction="row"
+      alignItems="center"
+      gap={2}
+      sx={{
+       [theme.breakpoints.down("sm")]: {
+        flexDirection: "column",
+        alignItems: "flex-start",
+       },
+       ...sxHeaderCard,
+      }}
+     >
       <Stack direction="column">
        {breadcrumb}
        {title && (
@@ -317,9 +348,50 @@ export default function ContentPage({
              KP
             </Typography>
            </Stack>
-           <Typography px={1.5} fontSize={13} fontWeight={600}>
-            {nameOfKp}
-           </Typography>
+           <Box
+            sx={{
+             [theme.breakpoints.up("sm")]: {
+              display: "none",
+             },
+             [theme.breakpoints.down("sm")]: {
+              display: "block",
+             },
+            }}
+           >
+            {nameOfKp.length >= 35 ? (
+             <Tooltip title={nameOfKp} followCursor TransitionComponent={Grow}>
+              <Typography
+               aria-owns={open ? "mouse-over-popover" : undefined}
+               aria-haspopup="true"
+               onMouseEnter={handlePopoverOpen}
+               onMouseLeave={handlePopoverClose}
+               px={1.5}
+               fontSize={13}
+               fontWeight={600}
+              >
+               {nameOfKp.substring(0, 35) + "..."}
+              </Typography>
+             </Tooltip>
+            ) : (
+             <Typography px={1.5} fontSize={13} fontWeight={600}>
+              {nameOfKp}
+             </Typography>
+            )}
+           </Box>
+           <Box
+            sx={{
+             [theme.breakpoints.up("sm")]: {
+              display: "block",
+             },
+             [theme.breakpoints.down("sm")]: {
+              display: "none",
+             },
+            }}
+           >
+            <Typography px={1.5} fontSize={13} fontWeight={600}>
+             {nameOfKp}
+            </Typography>
+           </Box>
           </Stack>
          </>
         }
@@ -637,7 +709,7 @@ export default function ContentPage({
       : "calc(100vh - 244px)"
     }
     overflow={overflowHidden ? "hidden" : "auto"}
-    margin={-1}
+    margin={noMinusMargin ? 0 : -1}
     sx={{
      overflowX: "hidden",
      "&::-webkit-scrollbar": {

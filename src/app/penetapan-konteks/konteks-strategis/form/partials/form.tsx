@@ -109,6 +109,12 @@ export default function FormKonstra({ mode }: { mode?: string }) {
     sxCard={{
      marginTop: 0,
     }}
+    sxHeaderCard={{
+     [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
+      alignItems: "flex-start",
+     },
+    }}
    >
     <Typography
      component="h2"
@@ -120,7 +126,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
      Konteks Manajemen Risiko
     </Typography>
     <Grid container spacing={2}>
-     <Grid item lg={6}>
+     <Grid item xs={12} sm={6} lg={6}>
       <FormControl fullWidth>
        <Typography gutterBottom>Nama PKPPR</Typography>
        {mode === "add" ? (
@@ -146,7 +152,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
        )}
       </FormControl>
      </Grid>
-     <Grid item lg={6}>
+     <Grid item xs={12} sm={6} lg={6}>
       <FormControl fullWidth>
        <Typography gutterBottom>Periode Penerapan</Typography>
        {mode === "add" || mode === "edit" ? (
@@ -156,7 +162,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
        )}
       </FormControl>
      </Grid>
-     <Grid item lg={12}>
+     <Grid item xs={12}>
       <FormControl fullWidth>
        <Typography gutterBottom>Latar Belakang</Typography>
        {mode === "add" ? (
@@ -184,7 +190,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
     <TableSasaranPkppr /> */}
     <Divider sx={{ my: 3 }} />
     <Grid container spacing={2}>
-     <Grid item lg={12}>
+     <Grid item xs={12}>
       <FormControl fullWidth>
        <Typography gutterBottom>Ruang Lingkup</Typography>
        {mode === "add" ? (
@@ -200,7 +206,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
        )}
       </FormControl>
      </Grid>
-     <Grid item lg={6}>
+     <Grid item xs={12} sm={6} lg={6}>
       <FormControl fullWidth>
        <Typography gutterBottom>Lokasi</Typography>
        {mode === "add" ? (
@@ -254,7 +260,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
        )}
       </FormControl>
      </Grid>
-     <Grid item lg={6}>
+     <Grid item xs={12} sm={6} lg={6}>
       <FormControl fullWidth>
        <Typography gutterBottom>Tahun Anggaran</Typography>
        {mode === "add" ? (

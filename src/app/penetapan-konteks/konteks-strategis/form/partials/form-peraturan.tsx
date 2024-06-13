@@ -6,7 +6,7 @@ export default function FormPeraturan({ mode }: { mode?: string }) {
  return (
   <>
    <Grid container spacing={2}>
-    <Grid item lg={12}>
+    <Grid item xs={12}>
      <FormControl fullWidth>
       <Typography gutterBottom>Peraturan Terkait</Typography>
       {mode === "add" ? (
@@ -25,7 +25,7 @@ export default function FormPeraturan({ mode }: { mode?: string }) {
       )}
      </FormControl>
     </Grid>
-    <Grid item lg={12}>
+    <Grid item xs={12}>
      <FormControl fullWidth>
       <Typography gutterBottom>Amanat Peraturan yang Terkait</Typography>
       {mode === "add" ? (

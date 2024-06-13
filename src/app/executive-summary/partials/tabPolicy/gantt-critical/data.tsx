@@ -101,6 +101,7 @@ export const TasksCriticalSampah = [
   type: "task",
   progress: 0,
   dependencies: [],
+  styles: { arrowColor: "red", arrowIndent: 50, backgroundColor: "red" },
  },
  {
   id: "tcsp-2",
@@ -110,6 +111,7 @@ export const TasksCriticalSampah = [
   type: "task",
   progress: 0,
   dependencies: ["tcsp-3"],
+  styles: { arrowColor: "red", arrowIndent: 50 },
  },
  {
   id: "tcsp-3",
@@ -119,6 +121,7 @@ export const TasksCriticalSampah = [
   type: "task",
   progress: 0,
   dependencies: ["tcsp-2"],
+  styles: { arrowColor: "red", arrowIndent: 50 },
  },
  {
   id: "tcsp-4",
@@ -127,7 +130,8 @@ export const TasksCriticalSampah = [
   name: "Peningkatan kapasitas dan pendanaan mendorong persampahan",
   type: "task",
   progress: 0,
-  dependencies: ["tcsp-5", "tcsp-7"],
+  dependencies: ["tcsp-5"],
+  styles: { arrowColor: "red", arrowIndent: 50 },
  },
  {
   id: "tcsp-5",
@@ -136,7 +140,8 @@ export const TasksCriticalSampah = [
   name: "Penguatan regulasi pengelolaan sampah",
   type: "task",
   progress: 0,
-  dependencies: ["tcsp-4", "tcsp-6", "tcsp-9"],
+  dependencies: ["tcsp-2"],
+  styles: { arrowColor: "red", arrowIndent: 50 },
  },
  {
   id: "tcsp-6",
@@ -146,6 +151,7 @@ export const TasksCriticalSampah = [
   type: "task",
   progress: 0,
   dependencies: ["tcsp-6"],
+  styles: { arrowColor: "red", arrowIndent: 50 },
  },
  {
   id: "tcsp-7",
@@ -154,7 +160,8 @@ export const TasksCriticalSampah = [
   name: "Pengembangan perangkat pendukung terkait kualifikasi SDM persampahan",
   type: "task",
   progress: 0,
-  dependencies: ["tcsp-10"],
+  dependencies: ["tcsp-4"],
+  styles: { arrowColor: "red", arrowIndent: 50 },
  },
  {
   id: "tcsp-8",
@@ -164,6 +171,7 @@ export const TasksCriticalSampah = [
   type: "task",
   progress: 0,
   dependencies: ["tcsp-10"],
+  styles: { arrowColor: "red", arrowIndent: 50 },
  },
  {
   id: "tcsp-9",
@@ -172,7 +180,8 @@ export const TasksCriticalSampah = [
   name: "Pembinaan dan pengawasan sistem pengelolaan sampah",
   type: "task",
   progress: 0,
-  dependencies: ["tcsp-11"],
+  dependencies: ["tcsp-5"],
+  styles: { arrowColor: "red", arrowIndent: 50 },
  },
  {
   id: "tcsp-10",
@@ -182,7 +191,8 @@ export const TasksCriticalSampah = [
    "Pengembangan skema insentif untuk mendorong pemanfaatan teknologi tepat guna",
   type: "task",
   progress: 0,
-  dependencies: ["tcsp-12"],
+  dependencies: ["tcsp-7", "tcsp-8"],
+  styles: { arrowColor: "red", arrowIndent: 50 },
  },
  {
   id: "tcsp-11",
@@ -191,7 +201,8 @@ export const TasksCriticalSampah = [
   name: "Pembinaan dan pengawasan sistem pengelolaan sampah",
   type: "task",
   progress: 0,
-  dependencies: [],
+  dependencies: ["tcsp-9"],
+  styles: { arrowColor: "red", arrowIndent: 50 },
  },
  {
   id: "tcsp-12",
@@ -200,7 +211,8 @@ export const TasksCriticalSampah = [
   name: "Pengembangan sirkular ekonomi persampahan",
   type: "task",
   progress: 0,
-  dependencies: [],
+  dependencies: ["tcsp-10"],
+  styles: { arrowColor: "red", arrowIndent: 50 },
  },
 ] as Task[];
 
@@ -212,7 +224,7 @@ export const TasksCriticalPariwisata = [
   name: "Penyusunan IPRO dan Identifikasi Peluang Investasi",
   type: "task",
   progress: 0,
-  dependencies: ["tcpw-2"],
+  dependencies: [],
  },
  {
   id: "tcpw-2",
@@ -221,7 +233,7 @@ export const TasksCriticalPariwisata = [
   name: "Pengembangan Strategi Promosi Investasi",
   type: "task",
   progress: 0,
-  dependencies: ["tcpw-3"],
+  dependencies: ["tcpw-1"],
  },
  {
   id: "tcpw-3",
@@ -230,7 +242,7 @@ export const TasksCriticalPariwisata = [
   name: "Penguatan infrastruktur pariwisata di destinasi prioritas",
   type: "task",
   progress: 0,
-  dependencies: ["tcpw-4"],
+  dependencies: ["tcpw-2"],
  },
  {
   id: "tcpw-4",
@@ -240,7 +252,7 @@ export const TasksCriticalPariwisata = [
    "Pengembangan produk pariwisata unggulan dan diversifikasi pengalaman wisata",
   type: "task",
   progress: 0,
-  dependencies: ["tcpw-5"],
+  dependencies: ["tcpw-3"],
  },
  {
   id: "tcpw-5",
@@ -249,6 +261,6 @@ export const TasksCriticalPariwisata = [
   name: "Evaluasi dan Peningkatan Berkelanjutan",
   type: "task",
   progress: 0,
-  dependencies: [],
+  dependencies: ["tcpw-4"],
  },
 ] as Task[];

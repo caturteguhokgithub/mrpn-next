@@ -12,6 +12,7 @@ export default function AddButton({
  onclick,
  sx,
  startIcon,
+ fullWidth,
 }: {
  title: string;
  url?: string;
@@ -21,9 +22,11 @@ export default function AddButton({
  onclick?: () => void;
  sx?: React.CSSProperties;
  startIcon?: React.ReactNode;
+ fullWidth?: boolean;
 }) {
  const buttonAdd = (
   <Button
+   fullWidth={fullWidth}
    variant={filled ? "contained" : "outlined"}
    size={small ? "small" : "medium"}
    startIcon={
@@ -58,5 +61,15 @@ export default function AddButton({
   </Button>
  );
 
- return <>{onclick ? buttonAdd : <Link href={`${url}`}>{buttonAdd}</Link>}</>;
+ return (
+  <>
+   {onclick ? (
+    buttonAdd
+   ) : (
+    <Link href={`${url}`} style={{ width: fullWidth ? "100%" : "auto" }}>
+     {buttonAdd}
+    </Link>
+   )}
+  </>
+ );
 }

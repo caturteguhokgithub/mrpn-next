@@ -1,5 +1,6 @@
 import React from "react";
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
+import theme from "@/theme";
 
 export default function DialogComponent({
  title,
@@ -30,6 +31,9 @@ export default function DialogComponent({
    sx={{
     ".MuiPaper-root": {
      minWidth: width ? width : 800,
+     [theme.breakpoints.down("md")]: {
+      minWidth: "90%",
+     },
      ".quill": {
       height: "calc(100vh - 400px)",
       ".ql-container": {
@@ -41,10 +45,16 @@ export default function DialogComponent({
   >
    {title && (
     <DialogTitle
+     component="div"
      sx={{
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
+      [theme.breakpoints.down("sm")]: {
+       flexDirection: "column",
+       alignItems: "flex-start",
+       gap: 2,
+      },
      }}
     >
      {title}

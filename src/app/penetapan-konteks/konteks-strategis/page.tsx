@@ -136,7 +136,7 @@ export default function PageKonteksStrategis({}) {
   displayColumnDefOptions: {
    "mrt-row-actions": {
     header: "",
-    size: 100,
+    size: 150,
     Cell: () => (
      <ActionColumn
       viewClick={handleModalOpenView}

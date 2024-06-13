@@ -136,7 +136,9 @@ export default function PageSeleraRisiko({}) {
       value={userLevel}
       exclusive
       onChange={handleUserLevel}
-      sx={{ mb: 2 }}
+      sx={{
+       mb: 2,
+      }}
      >
       <ToggleButton value="bappenas">User Bappenas</ToggleButton>
       <ToggleButton value="kl">User KL</ToggleButton>
@@ -155,6 +157,9 @@ export default function PageSeleraRisiko({}) {
        gridTemplateColumns: "1fr 1fr 1fr 1fr",
        [theme.breakpoints.down("md")]: {
         gridTemplateColumns: "1fr 1fr",
+       },
+       [theme.breakpoints.down("sm")]: {
+        gridTemplateColumns: "1fr",
        },
        gap: 2,
        mt: 2,

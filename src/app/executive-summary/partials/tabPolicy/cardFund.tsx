@@ -15,6 +15,7 @@ import DialogComponent from "@/app/components/dialog";
 import { grey, green, red } from "@mui/material/colors";
 import { dataTema } from "../../dataTema";
 import FormPendanaan from "./form-pendanaan";
+import theme from "@/theme";
 
 const FundSource = ({
  label,
@@ -131,7 +132,17 @@ export default function CardFund({ project }: { project: string }) {
            description="Silahkan isi konten halaman ini"
           />
          ) : (
-          <Grid container spacing={2}>
+          <Grid
+           container
+           spacing={2}
+           sx={{
+            [theme.breakpoints.down("md")]: {
+             display: "grid",
+             gridTemplateColumns: "1fr",
+             gap: 2,
+            },
+           }}
+          >
            <GridItemSource title="Jumlah per Tahun">
             <Stack gap={1}>
              {dataTema.map((itemFund) => (

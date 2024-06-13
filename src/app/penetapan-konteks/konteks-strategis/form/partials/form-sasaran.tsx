@@ -6,7 +6,7 @@ export default function FormSasaran({ mode }: { mode?: string }) {
  return (
   <>
    <Grid container spacing={2}>
-    <Grid item lg={12}>
+    <Grid item xs={12}>
      <FormControl fullWidth>
       <Typography gutterBottom>Nama Sasaran</Typography>
       {mode === "add" ? (
@@ -32,7 +32,7 @@ export default function FormSasaran({ mode }: { mode?: string }) {
       )}
      </FormControl>
     </Grid>
-    <Grid item lg={12}>
+    <Grid item xs={12}>
      <FormControl fullWidth>
       <Typography gutterBottom>Keterangan</Typography>
       {mode === "add" ? (

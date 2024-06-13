@@ -45,3 +45,7 @@ a:active {
 .mui-vcku06-MuiModal-root-MuiDialog-root {
  max-height: 100vh;
 }
+
+.MuiAutocomplete-listbox::-webkit-scrollbar {
+ width: 3px;
+}
