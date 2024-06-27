@@ -29,6 +29,7 @@ import FormProfilRoProject from "@/app/executive-summary/partials/tabPolicy/form
 import SelectCustomTheme from "@/app/components/select";
 import TableProfilRoKunci from "@/app/executive-summary/partials/tabPolicy/table-profil-ro-kunci";
 import { listEntitasUtama } from "@/app/utils/data";
+import FieldLabelInfo from "@/app/components/fieldLabelInfo";
 
 export default function TableRincianOutput({ mode }: { mode?: string }) {
  const [modalOpenProfilRoKunci, setModalOpenProfilRoKunci] =
@@ -160,7 +161,11 @@ export default function TableRincianOutput({ mode }: { mode?: string }) {
     justifyContent="space-between"
     alignItems="center"
    >
-    <Typography fontWeight={600}>Profil Intervensi Kunci</Typography>
+    <FieldLabelInfo
+     titleSection
+     title="Profil Intervensi Kunci"
+     information="Profil Intervensi Kunci"
+    />
     {mode === "add" || mode === "edit" ? (
      <Stack direction="row" gap={1}>
       <Button

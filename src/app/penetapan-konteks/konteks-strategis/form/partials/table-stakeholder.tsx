@@ -24,6 +24,7 @@ import FormStakeholder from "@/app/executive-summary/partials/tabProfil/form-sta
 import { CardItemStakeholder } from "@/app/executive-summary/partials/tabProfil/cardStakeholder";
 import { dataTema } from "@/app/executive-summary/dataTema";
 import { IconFA } from "@/app/components/icons/icon-fa";
+import FieldLabelInfo from "@/app/components/fieldLabelInfo";
 
 export default function TableStakeholder({
  mode,
@@ -71,9 +72,11 @@ export default function TableStakeholder({
     justifyContent="space-between"
     alignItems="center"
    >
-    <Typography fontWeight={600}>
-     Daftar Pemangku Kepentingan (Entitas)
-    </Typography>
+    <FieldLabelInfo
+     titleSection
+     title="Daftar Pemangku Kepentingan (Entitas)"
+     information="Daftar Pemangku Kepentingan (Entitas)"
+    />
     {mode === "add" ? (
      <Button
       variant="outlined"

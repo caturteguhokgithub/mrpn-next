@@ -23,6 +23,7 @@ import DialogComponent from "@/app/components/dialog";
 import FormPeraturan from "./form-peraturan";
 import FormKemungkinan from "./form-kemungkinan";
 import FormDampak from "./form-dampak";
+import FieldLabelInfo from "@/app/components/fieldLabelInfo";
 
 export default function TableDampak({ mode }: { mode?: string }) {
  const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
@@ -105,7 +106,11 @@ export default function TableDampak({ mode }: { mode?: string }) {
     justifyContent="space-between"
     alignItems="center"
    >
-    <Typography fontWeight={600}>Kriteria Dampak</Typography>
+    <FieldLabelInfo
+     titleSection
+     title="Kriteria Dampak"
+     information="Kriteria Dampak"
+    />
     {mode === "add" || mode === "edit" ? (
      <Button
       variant="outlined"

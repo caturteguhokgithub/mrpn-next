@@ -9,6 +9,10 @@ import {
  ListItemText,
  Menu,
  MenuItem,
+ Box,
+ Stack,
+ Tooltip,
+ Grow,
 } from "@mui/material";
 import { IconFA } from "@/app/components/icons/icon-fa";
 import { grey, red } from "@mui/material/colors";
@@ -188,7 +192,24 @@ export default function CardItem({
   >
    <CardHeader
     action={<>{addButton ? addButton : setting ? settingButton : null}</>}
-    title={<Typography fontWeight={500}>{title}</Typography>}
+    title={
+     <Stack direction="row" alignItems="center" gap={1}>
+      <Typography fontWeight={500}>{title}</Typography>
+      <Tooltip title={title} followCursor TransitionComponent={Grow}>
+       <Typography
+        lineHeight={1}
+        sx={{
+         span: {
+          position: "relative",
+          top: 2,
+         },
+        }}
+       >
+        <IconFA name="circle-info" size={17} />
+       </Typography>
+      </Tooltip>
+     </Stack>
+    }
     sx={{ bgcolor: grey[300] }}
    />
    <CardContent sx={{ pb: "16px !important" }}>{children}</CardContent>

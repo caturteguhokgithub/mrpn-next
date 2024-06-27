@@ -206,7 +206,7 @@ export default function TabTable({}) {
    <DialogComponent
     dialogOpen={modalOpenAdd}
     dialogClose={handleModalClose}
-    title="Detail Analisis Risiko"
+    title="Tambah Analisis Risiko"
     dialogFooter={dialogActionFooter}
    >
     <FormTable mode="add" />
@@ -214,7 +214,7 @@ export default function TabTable({}) {
    <DialogComponent
     dialogOpen={modalOpenEdit}
     dialogClose={handleModalClose}
-    title="Detail Analisis Risiko"
+    title="Ubah Analisis Risiko"
    >
     <FormTable mode="edit" />
    </DialogComponent>

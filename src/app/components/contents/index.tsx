@@ -112,7 +112,7 @@ export default function ContentPage({
   true
  );
 
- const nameOfKp = listSelectKp[4].name;
+ const nameOfKp = listSelectKp[2].name;
 
  const currentDate = new Date();
 
@@ -200,8 +200,9 @@ export default function ContentPage({
          color="white"
          sx={{
           [theme.breakpoints.down("md")]: {
-           fontSize: "1em",
+           fontSize: "1.3em",
            lineHeight: 1.2,
+           marginBottom: 6,
           },
          }}
         >
@@ -229,7 +230,7 @@ export default function ContentPage({
           s
          </Box>
          k{" "}
-         <Box
+         {/* <Box
           component="span"
           sx={{
            [theme.breakpoints.up("md")]: {
@@ -238,7 +239,7 @@ export default function ContentPage({
           }}
          >
           <br />
-         </Box>
+         </Box> */}
          <Box
           component="span"
           color={theme.palette.primary.main}

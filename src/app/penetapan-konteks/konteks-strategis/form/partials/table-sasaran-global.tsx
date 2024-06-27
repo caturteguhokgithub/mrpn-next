@@ -22,6 +22,7 @@ import { IconEmptyData } from "@/app/components/icons";
 import DialogComponent from "@/app/components/dialog";
 import FormTable from "./form-table";
 import FormSasaran from "./form-sasaran";
+import FieldLabelInfo from "@/app/components/fieldLabelInfo";
 
 export default function TableSasaran({
  variant,
@@ -66,7 +67,8 @@ export default function TableSasaran({
     justifyContent="space-between"
     alignItems="center"
    >
-    <Typography fontWeight={600}>Sasaran {variant}</Typography>
+    <FieldLabelInfo titleSection title="Sasaran" information="Sasaran" />
+    {/* <Typography fontWeight={600}>Sasaran {variant}</Typography> */}
     {mode === "add" || mode === "edit" ? (
      <Button
       variant="outlined"

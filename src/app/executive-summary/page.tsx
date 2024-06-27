@@ -222,7 +222,7 @@ export default function PageExecutiveSummary({}) {
          icon={<IconFA size={16} name="file-shield" sx={{ width: "auto" }} />}
         />
         <Tab
-         label="Indikasi Risiko Strategis "
+         label="Indikasi Risiko RPJMN"
          {...a11yProps(3)}
          iconPosition="start"
          icon={<IconFA size={16} name="rotate" sx={{ width: "auto" }} />}

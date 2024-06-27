@@ -26,6 +26,7 @@ import { grey } from "@mui/material/colors";
 import { listNilaiRisiko } from "@/app/profil-risiko/evaluasi-risiko/setting";
 import { IconFA } from "@/app/components/icons/icon-fa";
 import { listTindakLanjut } from "../setting";
+import FieldLabelInfo from "@/app/components/fieldLabelInfo";
 
 export default function FormTable({ mode }: { mode?: string }) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -65,7 +66,7 @@ export default function FormTable({ mode }: { mode?: string }) {
    <Grid container spacing={2}>
     <Grid item lg={12}>
      <FormControl fullWidth>
-      <Typography gutterBottom>Peristiwa Risiko</Typography>
+      <FieldLabelInfo title="Peristiwa Risiko" information="Peristiwa Risiko" />
       {mode === "add" || mode === "edit" ? (
        <SelectCustomTheme
         defaultStyle
@@ -115,7 +116,10 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography gutterBottom>Konteks Strategis</Typography>
+      <FieldLabelInfo
+       title="Konteks Strategis"
+       information="Konteks Strategis"
+      />
       {mode === "add" ? (
        <TextField
         variant="outlined"
@@ -141,7 +145,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography gutterBottom>Nilai Risiko</Typography>
+      <FieldLabelInfo title="Nilai Risiko" information="Nilai Risiko" />
       {mode === "add" ? (
        <TextField
         variant="outlined"
@@ -167,7 +171,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography gutterBottom>Pengendalian</Typography>
+      <FieldLabelInfo title="Pengendalian" information="Pengendalian" />
       {mode === "add" || mode === "edit" ? (
        <RadioGroup row>
         <FormControlLabel value="ada" control={<Radio />} label="Ada" />
@@ -180,7 +184,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography gutterBottom>Tindak Lanjut</Typography>
+      <FieldLabelInfo title="Tindak Lanjut" information="Tindak Lanjut" />
       {mode === "add" || mode === "edit" ? (
        <ToggleButtonGroup value={handle} exclusive onChange={handleHandle}>
         <ToggleButton value="belum">Belum</ToggleButton>

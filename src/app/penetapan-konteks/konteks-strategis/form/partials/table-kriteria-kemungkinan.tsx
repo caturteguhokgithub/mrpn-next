@@ -22,6 +22,7 @@ import { IconEmptyData } from "@/app/components/icons";
 import DialogComponent from "@/app/components/dialog";
 import FormPeraturan from "./form-peraturan";
 import FormKemungkinan from "./form-kemungkinan";
+import FieldLabelInfo from "@/app/components/fieldLabelInfo";
 
 export default function TableKemungkinan({ mode }: { mode?: string }) {
  const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
@@ -81,7 +82,11 @@ export default function TableKemungkinan({ mode }: { mode?: string }) {
     justifyContent="space-between"
     alignItems="center"
    >
-    <Typography fontWeight={600}>Kriteria Kemungkinan</Typography>
+    <FieldLabelInfo
+     titleSection
+     title="Kriteria Kemungkinan"
+     information="Kriteria Kemungkinan"
+    />
     {mode === "add" || mode === "edit" ? (
      <Button
       variant="outlined"

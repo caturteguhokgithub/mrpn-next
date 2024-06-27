@@ -120,7 +120,7 @@ export default function PageRegistrasiRisiko({}) {
 
  const renderTopToolbar: ColumnsType = {
   renderTopToolbarCustomActions: () => (
-   <AddButton onclick={handleModalOpenAdd} title="Tambah Registrasi" />
+   <AddButton onclick={handleModalOpenAdd} title="Tambah Identifikasi" />
   ),
  };
 

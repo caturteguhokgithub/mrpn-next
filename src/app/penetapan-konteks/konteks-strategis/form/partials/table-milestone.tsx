@@ -13,6 +13,7 @@ import { IconEmptyData } from "@/app/components/icons";
 import DialogComponent from "@/app/components/dialog";
 import FormMilestone from "./form-milestone";
 import GanttChart from "@/app/executive-summary/partials/tabPolicy/gantt-critical";
+import FieldLabelInfo from "@/app/components/fieldLabelInfo";
 
 export default function TableMilestone({ mode }: { mode?: string }) {
  const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
@@ -95,7 +96,11 @@ export default function TableMilestone({ mode }: { mode?: string }) {
     justifyContent="space-between"
     alignItems="center"
    >
-    <Typography fontWeight={600}>Milestone/Critical Path</Typography>
+    <FieldLabelInfo
+     titleSection
+     title="Milestone/Critical Path"
+     information="Milestone/Critical Path"
+    />
     {mode === "add" ? (
      <Button
       variant="outlined"

@@ -26,7 +26,7 @@ export default function TabIndikasi({ project }: { project: string }) {
   <>
    <Stack gap={1}>
     <CardItem
-     title="Indikasi Risiko Strategis"
+     title="Indikasi Risiko RPJMN"
      addButton={
       <AddButton
        filled

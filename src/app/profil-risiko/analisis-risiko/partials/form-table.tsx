@@ -22,6 +22,7 @@ import SelectCustomTheme from "@/app/components/select";
 import { blue, green, grey, red, yellow } from "@mui/material/colors";
 import { listKemungkinan, listDampak } from "@/app/utils/data";
 import { listPeristiwaRisiko } from "../../perlakuan-risiko/setting";
+import FieldLabelInfo from "@/app/components/fieldLabelInfo";
 
 export default function FormTable({ mode }: { mode?: string }) {
  const [probability, setProbability] = React.useState("");
@@ -55,7 +56,7 @@ export default function FormTable({ mode }: { mode?: string }) {
   <Grid container spacing={2}>
    <Grid item xs={12}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Peristiwa Risiko</Typography>
+     <FieldLabelInfo title="Peristiwa Risiko" information="Peristiwa Risiko" />
      {mode === "add" || mode === "edit" ? (
       <SelectCustomTheme
        defaultStyle
@@ -110,7 +111,7 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={6}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Kemungkinan</Typography>
+     <FieldLabelInfo title="Kemungkinan" information="Kemungkinan" />
      {mode === "add" || mode === "edit" ? (
       <TextField
        variant="outlined"
@@ -144,7 +145,7 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={6}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Dampak</Typography>
+     <FieldLabelInfo title="Dampak" information="Dampak" />
      {mode === "add" || mode === "edit" ? (
       <TextField
        variant="outlined"
@@ -178,7 +179,7 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={6}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Nilai Risiko</Typography>
+     <FieldLabelInfo title="Nilai Risiko" information="Nilai Risiko" />
      {mode === "add" || mode === "edit" ? (
       <TextField
        variant="outlined"
@@ -212,7 +213,7 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={6}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Tingkat Risiko</Typography>
+     <FieldLabelInfo title="Tingkat Risiko" information="Tingkat Risiko" />
      {mode === "add" || mode === "edit" ? (
       <Stack direction="row" height="40px" alignItems="center">
        <Chip
@@ -281,7 +282,10 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={6}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Pengendalian yang ada</Typography>
+     <FieldLabelInfo
+      title="Pengendalian yang ada"
+      information="Pengendalian yang ada"
+     />
      {mode === "add" || mode === "edit" ? (
       <RadioGroup row>
        <FormControlLabel value="ada" control={<Radio />} label="Ada" />

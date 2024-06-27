@@ -22,6 +22,7 @@ import { IconEmptyData } from "@/app/components/icons";
 import DialogComponent from "@/app/components/dialog";
 import FormROKunci from "./form-ro-kunci";
 import FormPeraturan from "./form-peraturan";
+import FieldLabelInfo from "@/app/components/fieldLabelInfo";
 
 export default function TablePeraturan({ mode }: { mode?: string }) {
  const [modalOpenAdd, setModalOpenAdd] = React.useState(false);
@@ -73,9 +74,11 @@ export default function TablePeraturan({ mode }: { mode?: string }) {
     justifyContent="space-between"
     alignItems="center"
    >
-    <Typography fontWeight={600}>
-     Daftar Peraturan Perundang-Undangan yang Terkait
-    </Typography>
+    <FieldLabelInfo
+     titleSection
+     title="Daftar Peraturan Perundang-Undangan yang Terkait"
+     information="Daftar Peraturan Perundang-Undangan yang Terkait"
+    />
     {mode === "add" || mode === "edit" ? (
      <Button
       variant="outlined"

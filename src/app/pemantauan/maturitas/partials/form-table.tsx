@@ -22,6 +22,7 @@ import { listNilaiRisiko } from "@/app/profil-risiko/evaluasi-risiko/setting";
 import { IconFA } from "@/app/components/icons/icon-fa";
 import { listMaturity } from "../setting";
 import TextareaComponent from "@/app/components/textarea";
+import FieldLabelInfo from "@/app/components/fieldLabelInfo";
 
 export default function FormTable({ mode }: { mode?: string }) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -57,7 +58,7 @@ export default function FormTable({ mode }: { mode?: string }) {
    <Grid container spacing={2}>
     <Grid item lg={12}>
      <FormControl fullWidth>
-      <Typography gutterBottom>Peristiwa Risiko</Typography>
+      <FieldLabelInfo title="Peristiwa Risiko" information="Peristiwa Risiko" />
       <Typography fontWeight={600}>Peristiwa risiko 1</Typography>
      </FormControl>
     </Grid>
@@ -68,13 +69,13 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography gutterBottom>Sebelum</Typography>
+      <FieldLabelInfo title="Sebelum" information="Sebelum" />
       <Typography fontWeight={600}>1</Typography>
      </FormControl>
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography gutterBottom>Sesudah</Typography>
+      <FieldLabelInfo title="Sesudah" information="Sesudah" />
       <Typography fontWeight={600}>3</Typography>
      </FormControl>
     </Grid>
@@ -85,7 +86,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography gutterBottom>Nilai</Typography>{" "}
+      <FieldLabelInfo title="Nilai" information="Nilai" />
       {mode === "add" || mode === "edit" ? (
        <SelectCustomTheme
         defaultStyle
@@ -135,7 +136,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography gutterBottom>Deskripsi</Typography>
+      <FieldLabelInfo title="Deskripsi" information="Deskripsi" />
       {mode === "add" || mode === "edit" ? (
        <Stack height="40px" direction="row" alignItems="center">
         {valueMaturity === "1" ? (
@@ -159,8 +160,12 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={12}>
      <FormControl fullWidth>
-      <Typography gutterBottom>Saran/Masukan</Typography>
-      <TextareaComponent label="Saran/Masukan" placeholder="Saran/Masukan" />
+      <FieldLabelInfo title="Saran/Masukan" information="Saran/Masukan" />
+      {mode === "add" || mode === "edit" ? (
+       <TextareaComponent label="Saran/Masukan" placeholder="Saran/Masukan" />
+      ) : (
+       <Typography fontWeight={600}>-</Typography>
+      )}
      </FormControl>
     </Grid>
    </Grid>

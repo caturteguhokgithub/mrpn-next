@@ -22,6 +22,7 @@ import theme from "@/theme";
 import CustomToggleButton from "@/app/components/toggleButton";
 import DialogComponent from "@/app/components/dialog";
 import TextareaComponent from "@/app/components/textarea";
+import FieldLabelInfo from "@/app/components/fieldLabelInfo";
 
 const LabelRadio = ({
  heading,
@@ -36,15 +37,23 @@ const LabelRadio = ({
 }) => {
  return (
   <Stack direction="column" justifyContent="flex-start">
-   <Typography
-    component="h2"
-    fontSize="18px"
-    fontWeight={600}
-    textTransform="none"
-   >
-    {heading} {value && `(Nilai ${value})`}{" "}
-    {rangeValue && `(Rentang Nilai ${rangeValue})`}
-   </Typography>
+   <Stack direction="row" alignItems="center" gap={1}>
+    <Typography
+     component="h2"
+     fontSize="18px"
+     fontWeight={600}
+     textTransform="none"
+    >
+     {heading} {value && `(Nilai ${value})`}{" "}
+     {rangeValue && `(Rentang Nilai ${rangeValue})`}
+    </Typography>
+    <FieldLabelInfo
+     iconOnly
+     titleSection
+     title={heading}
+     information={heading}
+    />
+   </Stack>
    <Typography
     component="div"
     color={grey[700]}

@@ -21,6 +21,7 @@ import { IconFA } from "@/app/components/icons/icon-fa";
 import { listPeristiwaRisiko } from "../../perlakuan-risiko/setting";
 import { listAppetiteRisiko, listNilaiRisiko } from "../setting";
 import theme from "@/theme";
+import FieldLabelInfo from "@/app/components/fieldLabelInfo";
 
 export default function FormTable({ mode }: { mode?: string }) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -80,7 +81,7 @@ export default function FormTable({ mode }: { mode?: string }) {
    <Grid container spacing={2}>
     <Grid item lg={12}>
      <FormControl fullWidth>
-      <Typography gutterBottom>Peristiwa Risiko</Typography>
+      <FieldLabelInfo title="Peristiwa Risiko" information="Peristiwa Risiko" />
       {mode === "add" || mode === "edit" ? (
        <SelectCustomTheme
         defaultStyle
@@ -135,7 +136,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography gutterBottom>Nilai</Typography>
+      <FieldLabelInfo title="Nilai" information="Nilai" />
       {mode === "add" || mode === "edit" ? (
        <SelectCustomTheme
         defaultStyle
@@ -162,7 +163,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography gutterBottom>Tingkat</Typography>
+      <FieldLabelInfo title="Tingkat" information="Tingkat" />
       {mode === "add" || mode === "edit" ? (
        <Stack height="40px" direction="row" alignItems="center">
         {valueDropdown === "1" || valueDropdown === "2" ? (
@@ -208,7 +209,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography gutterBottom>Nilai</Typography>
+      <FieldLabelInfo title="Nilai" information="Nilai" />
       {mode === "add" || mode === "edit" ? (
        <SelectCustomTheme
         defaultStyle
@@ -235,7 +236,7 @@ export default function FormTable({ mode }: { mode?: string }) {
     </Grid>
     <Grid item lg={6}>
      <FormControl fullWidth>
-      <Typography gutterBottom>Keterangan</Typography>
+      <FieldLabelInfo title="Keterangan" information="Keterangan" />
       <Stack height="40px" direction="row" alignItems="center">
        {appetitteDropdown === "1" || appetitteDropdown === "2" ? (
         <Chip
@@ -262,6 +263,54 @@ export default function FormTable({ mode }: { mode?: string }) {
          variant="filled"
          label={listAppetiteRisiko[6].label}
          sx={{ px: 1, bgcolor: theme.palette.primary.main, color: "white" }}
+        />
+       ) : (
+        "-"
+       )}
+      </Stack>
+     </FormControl>
+    </Grid>
+    <Grid item xs={12}>
+     <Divider />
+    </Grid>
+    <Grid item xs={12} sm={6}>
+     <FormControl fullWidth>
+      <FieldLabelInfo
+       title="Pengendalian yang ada"
+       information="Pengendalian yang ada"
+      />
+      <Stack fontWeight={600} height="40px" direction="row" alignItems="center">
+       {prDropdown === "1" ? (
+        <Chip
+         variant="outlined"
+         color="error"
+         icon={<IconFA name="close" size={16} />}
+         label="Tidak"
+         sx={{ px: 1 }}
+        />
+       ) : prDropdown === "2" ? (
+        <Chip
+         variant="outlined"
+         color="success"
+         icon={<IconFA name="check" size={16} />}
+         label="Ada"
+         sx={{ px: 1 }}
+        />
+       ) : prDropdown === "3" ? (
+        <Chip
+         variant="outlined"
+         color="success"
+         icon={<IconFA name="check" size={16} />}
+         label="Ada"
+         sx={{ px: 1 }}
+        />
+       ) : prDropdown === "4" ? (
+        <Chip
+         variant="outlined"
+         color="error"
+         icon={<IconFA name="close" size={16} />}
+         label="Tidak"
+         sx={{ px: 1 }}
         />
        ) : (
         "-"

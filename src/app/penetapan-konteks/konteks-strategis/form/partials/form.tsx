@@ -39,6 +39,8 @@ import { listKotaKab } from "@/app/utils/kotaKab";
 import theme from "@/theme";
 import TableDampak from "./table-kriteria-dampak";
 import DateRangePicker from "@/app/components/dateRange";
+import { IconFA } from "@/app/components/icons/icon-fa";
+import FieldLabelInfo from "@/app/components/fieldLabelInfo";
 
 export default function FormKonstra({ mode }: { mode?: string }) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -128,7 +130,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
     <Grid container spacing={2}>
      <Grid item xs={12} sm={6} lg={6}>
       <FormControl fullWidth>
-       <Typography gutterBottom>Nama PKPPR</Typography>
+       <FieldLabelInfo title="Nama PKPPR" information="Nama PKPPR" />
        {mode === "add" ? (
         <TextField
          variant="outlined"
@@ -154,7 +156,10 @@ export default function FormKonstra({ mode }: { mode?: string }) {
      </Grid>
      <Grid item xs={12} sm={6} lg={6}>
       <FormControl fullWidth>
-       <Typography gutterBottom>Periode Penerapan</Typography>
+       <FieldLabelInfo
+        title="Periode Penerapan"
+        information="Periode Penerapan"
+       />
        {mode === "add" || mode === "edit" ? (
         <DateRangePicker placeholder="Pilih periode penerapan" />
        ) : (
@@ -164,7 +169,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
      </Grid>
      <Grid item xs={12}>
       <FormControl fullWidth>
-       <Typography gutterBottom>Latar Belakang</Typography>
+       <FieldLabelInfo title="Latar Belakang" information="Latar Belakang" />
        {mode === "add" ? (
         <TextareaComponent
          label="Latar Belakang"
@@ -192,7 +197,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
     <Grid container spacing={2}>
      <Grid item xs={12}>
       <FormControl fullWidth>
-       <Typography gutterBottom>Ruang Lingkup</Typography>
+       <FieldLabelInfo title="Ruang Lingkup" information="Ruang Lingkup" />
        {mode === "add" ? (
         <TextareaComponent label="Ruang Lingkup" placeholder="Ruang Lingkup" />
        ) : mode === "edit" ? (
@@ -208,7 +213,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
      </Grid>
      <Grid item xs={12} sm={6} lg={6}>
       <FormControl fullWidth>
-       <Typography gutterBottom>Lokasi</Typography>
+       <FieldLabelInfo title="Lokasi" information="Lokasi" />
        {mode === "add" ? (
         <>
          <Autocomplete
@@ -262,7 +267,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
      </Grid>
      <Grid item xs={12} sm={6} lg={6}>
       <FormControl fullWidth>
-       <Typography gutterBottom>Tahun Anggaran</Typography>
+       <FieldLabelInfo title="Tahun Anggaran" information="Tahun Anggaran" />
        {mode === "add" ? (
         <TextField
          disabled

@@ -24,6 +24,7 @@ import { listPeristiwaRisiko } from "../setting";
 import { IconFA } from "@/app/components/icons/icon-fa";
 import TextareaComponent from "@/app/components/textarea";
 import DateRangePicker from "@/app/components/dateRange";
+import FieldLabelInfo from "@/app/components/fieldLabelInfo";
 
 export default function FormTable({ mode }: { mode?: string }) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -69,7 +70,7 @@ export default function FormTable({ mode }: { mode?: string }) {
   <Grid container spacing={2}>
    <Grid item xs={12} sm={6}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Peristiwa Risiko</Typography>
+     <FieldLabelInfo title="Peristiwa Risiko" information="Peristiwa Risiko" />
      {mode === "add" ? (
       <SelectCustomTheme
        defaultStyle
@@ -161,7 +162,10 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={6}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Pengendalian yang ada</Typography>
+     <FieldLabelInfo
+      title="Pengendalian yang ada"
+      information="Pengendalian yang ada"
+     />
      <Stack fontWeight={600} height="40px" direction="row" alignItems="center">
       {prDropdown === "1" ? (
        <Chip
@@ -208,7 +212,10 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Deskripsi Rencana Mitigasi</Typography>
+     <FieldLabelInfo
+      title="Deskripsi Rencana Mitigasi"
+      information="Deskripsi Rencana Mitigasi"
+     />
      {mode === "add" ? (
       <TextareaComponent label="Keterangan" placeholder="Keterangan" />
      ) : mode === "edit" ? (
@@ -224,7 +231,10 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={6}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Waktu Rencana Mitigasi</Typography>
+     <FieldLabelInfo
+      title="Waktu Rencana Mitigasi"
+      information="Waktu Rencana Mitigasi"
+     />
      {mode === "add" || mode === "edit" ? (
       <DateRangePicker placeholder="Pilih waktu rencana mitigasi" />
      ) : (
@@ -234,12 +244,12 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={6}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Penanggung Jawab</Typography>
+     <FieldLabelInfo title="Penanggungjawab" information="Penanggungjawab" />
      {mode === "add" ? (
       <TextField
        variant="outlined"
        size="small"
-       placeholder="Penanggung jawab"
+       placeholder="Penanggungjawab"
        InputLabelProps={{
         shrink: true,
        }}

@@ -24,6 +24,7 @@ import { listDampak, listKemungkinan } from "@/app/utils/data";
 import { id } from "date-fns/locale";
 import moment from "moment";
 import { DateRange } from "react-date-range";
+import FieldLabelInfo from "@/app/components/fieldLabelInfo";
 
 export default function FormTable({ mode }: { mode?: string }) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -78,7 +79,7 @@ export default function FormTable({ mode }: { mode?: string }) {
   <Grid container spacing={2}>
    <Grid item xs={12} sm={6}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Peristiwa Risiko</Typography>
+     <FieldLabelInfo title="Peristiwa Risiko" information="Peristiwa Risiko" />
      {mode === "add" || mode === "edit" ? (
       <SelectCustomTheme
        defaultStyle
@@ -128,7 +129,10 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={6}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Pemilik Risiko (PJ Sasaran)</Typography>
+     <FieldLabelInfo
+      title="Pemilik Risiko (PJ Sasaran)"
+      information="Pemilik Risiko (PJ Sasaran)"
+     />
      {mode === "add" || mode === "edit" ? (
       <TextField
        variant="outlined"
@@ -161,7 +165,7 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={6}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Kode Risiko</Typography>
+     <FieldLabelInfo title="Kode Risiko" information="Kode Risiko" />
      {mode === "add" || mode === "edit" ? (
       <TextField
        variant="outlined"
@@ -194,7 +198,7 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={6}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Kategori Risiko</Typography>
+     <FieldLabelInfo title="Kategori Risiko" information="Kategori Risiko" />
      {mode === "add" || mode === "edit" ? (
       <TextField
        variant="outlined"
@@ -236,7 +240,7 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={4}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Kemungkinan</Typography>
+     <FieldLabelInfo title="Kemungkinan" information="Kemungkinan" />
      {mode === "add" || mode === "edit" ? (
       <TextField
        variant="outlined"
@@ -273,7 +277,7 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={4}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Dampak</Typography>
+     <FieldLabelInfo title="Dampak" information="Dampak" />
      {mode === "add" || mode === "edit" ? (
       <TextField
        variant="outlined"
@@ -310,7 +314,7 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={4}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Tingkat Risiko</Typography>
+     <FieldLabelInfo title="Tingkat Risiko" information="Tingkat Risiko" />
      {mode === "add" || mode === "edit" ? (
       <TextField
        variant="outlined"
@@ -348,7 +352,10 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Realisasi Tindakan Perlakuan Risiko</Typography>
+     <FieldLabelInfo
+      title="Realisasi Tindakan Perlakuan Risiko"
+      information="Realisasi Tindakan Perlakuan Risiko"
+     />
      {mode === "add" ? (
       <TextareaComponent
        label="Keterangan"
@@ -484,7 +491,7 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={6}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Tanggal Rencana</Typography>
+     <FieldLabelInfo title="Tanggal Rencana" information="Tanggal Rencana" />
      {mode === "add" || mode === "edit" ? (
       <TextField
        variant="outlined"
@@ -521,7 +528,10 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={6}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Tanggal Realisasi</Typography>
+     <FieldLabelInfo
+      title="Tanggal Realisasi"
+      information="Tanggal Realisasi"
+     />
      {mode === "add" ? (
       <LocalizationProvider dateAdapter={AdapterDayjs}>
        <DatePicker
@@ -556,7 +566,7 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={4}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Kemungkinan</Typography>
+     <FieldLabelInfo title="Kemungkinan" information="Kemungkinan" />
      {mode === "add" || mode === "edit" ? (
       <SelectCustomTheme
        small
@@ -606,7 +616,7 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={4}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Dampak</Typography>
+     <FieldLabelInfo title="Dampak" information="Dampak" />
      {mode === "add" || mode === "edit" ? (
       <SelectCustomTheme
        small
@@ -656,7 +666,7 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12} sm={4}>
     <FormControl fullWidth>
-     <Typography gutterBottom>Tingkat Risiko</Typography>
+     <FieldLabelInfo title="Tingkat Risiko" information="Tingkat Risiko" />
      {mode === "add" || mode === "edit" ? (
       <TextField
        variant="outlined"
@@ -692,10 +702,12 @@ export default function FormTable({ mode }: { mode?: string }) {
    </Grid>
    <Grid item xs={12}>
     <FormControl fullWidth>
-     <Typography gutterBottom>
-      Rencana Perlakuan Risiko yang akan Dilaksanakan pada Periode yang akan
-      Datang
-     </Typography>
+     <FieldLabelInfo
+      title="Rencana Perlakuan Risiko yang akan Dilaksanakan pada Periode yang akan
+      Datang"
+      information="Rencana Perlakuan Risiko yang akan Dilaksanakan pada Periode yang akan
+      Datang"
+     />
      {mode === "add" ? (
       <TextareaComponent
        label="Keterangan"
