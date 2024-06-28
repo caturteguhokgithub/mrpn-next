@@ -5,11 +5,18 @@ import {
  Autocomplete,
  Box,
  Breadcrumbs,
+ Checkbox,
  Chip,
  Divider,
  FormControl,
+ FormControlLabel,
  Grid,
  Grow,
+ List,
+ ListItem,
+ ListItemButton,
+ ListItemText,
+ Paper,
  Popover,
  Stack,
  TextField,
@@ -41,6 +48,9 @@ import TableDampak from "./table-kriteria-dampak";
 import DateRangePicker from "@/app/components/dateRange";
 import { IconFA } from "@/app/components/icons/icon-fa";
 import FieldLabelInfo from "@/app/components/fieldLabelInfo";
+import { listProvinsi } from "@/app/utils/provinsi";
+
+type Option = (typeof listProvinsi)[number];
 
 export default function FormKonstra({ mode }: { mode?: string }) {
  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -55,6 +65,8 @@ export default function FormKonstra({ mode }: { mode?: string }) {
   React.useState<HTMLElement | null>(null);
  const [project, setProject] = React.useState("");
  const [valueLocation, setValueLocation] = React.useState<string | null>("");
+ const [columns, setColumns] = React.useState<Option[]>([]);
+ const [selectAll, setSelectAll] = React.useState<boolean>(false);
 
  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
   setAnchorElTooltip(event.currentTarget);
@@ -91,6 +103,14 @@ export default function FormKonstra({ mode }: { mode?: string }) {
 
  const handleChangeProject = (value: any) => {
   setProject(value);
+ };
+
+ const handleToggleSelectAll = () => {
+  setSelectAll((prev) => {
+   if (!prev) setColumns([...listProvinsi]);
+   else setColumns([]);
+   return !prev;
+  });
  };
 
  return (
@@ -131,7 +151,8 @@ export default function FormKonstra({ mode }: { mode?: string }) {
      <Grid item xs={12} sm={6} lg={6}>
       <FormControl fullWidth>
        <FieldLabelInfo title="Nama PKPPR" information="Nama PKPPR" />
-       {mode === "add" ? (
+       <Typography fontWeight={600}>Penurunan Stunting</Typography>
+       {/* {mode === "add" ? (
         <TextField
          variant="outlined"
          size="small"
@@ -150,8 +171,8 @@ export default function FormKonstra({ mode }: { mode?: string }) {
          }}
         />
        ) : (
-        <Typography fontWeight={600}>-</Typography>
-       )}
+        <Typography fontWeight={600}>Penurunan Stunting</Typography>
+       )} */}
       </FormControl>
      </Grid>
      <Grid item xs={12} sm={6} lg={6}>
@@ -160,17 +181,46 @@ export default function FormKonstra({ mode }: { mode?: string }) {
         title="Periode Penerapan"
         information="Periode Penerapan"
        />
-       {mode === "add" || mode === "edit" ? (
+       <Typography fontWeight={600}>2025 - 2029</Typography>
+       {/* {mode === "add" || mode === "edit" ? (
         <DateRangePicker placeholder="Pilih periode penerapan" />
        ) : (
         <Typography fontWeight={600}>-</Typography>
-       )}
+       )} */}
       </FormControl>
      </Grid>
      <Grid item xs={12}>
       <FormControl fullWidth>
        <FieldLabelInfo title="Latar Belakang" information="Latar Belakang" />
-       {mode === "add" ? (
+       <Typography fontWeight={600} component="div">
+        <List
+         sx={{
+          listStyleType: "disc",
+          py: 0,
+          pl: 2,
+          ml: 1,
+          li: {
+           pl: 0,
+           py: "2px",
+          },
+         }}
+        >
+         <ListItem sx={{ display: "list-item" }}>
+          Indonesia menuju upper-middle income countries, tetapi AKI dan
+          stunting sebagai indikator kesejahteraan masih tertinggal
+         </ListItem>
+         <ListItem sx={{ display: "list-item" }}>
+          AKI merupakah indikator penting dalam pencapaian IPM, untuk itu
+          penurunan kematian ibu investasi penting bagi pembangunan ekonomi dan
+          pembangunan manusia
+         </ListItem>
+         <ListItem sx={{ display: "list-item" }}>
+          Stunting menjadi ancaman dalam menciptakan generasi yang unggul dan
+          berdaya saing, dalam mewujudkan Indonesia Emas tahun 2045
+         </ListItem>
+        </List>
+       </Typography>
+       {/* {mode === "add" ? (
         <TextareaComponent
          label="Latar Belakang"
          placeholder="Latar Belakang"
@@ -183,7 +233,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
         />
        ) : (
         <Typography fontWeight={600}>-</Typography>
-       )}
+       )} */}
       </FormControl>
      </Grid>
     </Grid>
@@ -198,7 +248,37 @@ export default function FormKonstra({ mode }: { mode?: string }) {
      <Grid item xs={12}>
       <FormControl fullWidth>
        <FieldLabelInfo title="Ruang Lingkup" information="Ruang Lingkup" />
-       {mode === "add" ? (
+       <Typography fontWeight={600} component="div">
+        <List
+         sx={{
+          listStyleType: "disc",
+          py: 0,
+          pl: 2,
+          ml: 1,
+          li: {
+           pl: 0,
+           py: "2px",
+          },
+         }}
+        >
+         <ListItem sx={{ display: "list-item" }}>
+          SSGB, 2019: sebesar 27,7% ,termasuk dalam kategori tinggi berdasarkan
+          (WHO)
+         </ListItem>
+         <ListItem sx={{ display: "list-item" }}>
+          Diperlukan percepatan hingga dua kali (2,7% rata-rata penurunan per
+          tahun) untuk mencapai target RPJMN
+         </ListItem>
+         <ListItem sx={{ display: "list-item" }}>
+          Diperlukan intervensi lintas-sector
+         </ListItem>
+         <ListItem sx={{ display: "list-item" }}>
+          Kegiatan Pembangunan relevan dengan Program Prioritas
+          Presiden/Gamechanger/Percepatan pencapaian 45 indikator.
+         </ListItem>
+        </List>
+       </Typography>
+       {/* {mode === "add" ? (
         <TextareaComponent label="Ruang Lingkup" placeholder="Ruang Lingkup" />
        ) : mode === "edit" ? (
         <TextareaComponent
@@ -208,7 +288,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
         />
        ) : (
         <Typography fontWeight={600}>-</Typography>
-       )}
+       )} */}
       </FormControl>
      </Grid>
      <Grid item xs={12} sm={6} lg={6}>
@@ -218,24 +298,64 @@ export default function FormKonstra({ mode }: { mode?: string }) {
         <>
          <Autocomplete
           multiple
+          disableCloseOnSelect
+          filterSelectedOptions
+          freeSolo={false}
           size="small"
-          options={listKotaKab}
-          getOptionLabel={(option) => option.name}
+          value={columns}
+          options={listProvinsi}
+          getOptionLabel={(option) => option.nama}
           // value={valueLocation}
           // onChange={(event: any, newValue: string | null) => {
           //  setValueLocation(newValue);
           // }}
           // defaultValue={[listKotaKab[13]]}
+
+          onChange={(_e, value, reason) => {
+           if (reason === "clear" || reason === "removeOption")
+            setSelectAll(false);
+           if (
+            reason === "selectOption" &&
+            value.length === listProvinsi.length
+           )
+            setSelectAll(true);
+           setColumns(value);
+          }}
           renderInput={(params) => (
            <TextField
             {...params}
             InputLabelProps={{
              shrink: true,
             }}
-            placeholder="Pilih kota/kabupaten"
+            placeholder="Pilih provinsi"
             sx={SxAutocompleteTextField}
            />
           )}
+          PaperComponent={(paperProps) => {
+           const { children, ...restPaperProps } = paperProps;
+           return (
+            <Paper {...restPaperProps}>
+             <Box
+              onMouseDown={(e) => e.preventDefault()} // prevent blur
+              pl={1.5}
+              py={0.5}
+             >
+              <FormControlLabel
+               onClick={(e) => {
+                e.preventDefault(); // prevent blur
+                handleToggleSelectAll();
+               }}
+               label="Pilih semua provinsi"
+               control={
+                <Checkbox id="select-all-checkbox" checked={selectAll} />
+               }
+              />
+             </Box>
+             <Divider />
+             {children}
+            </Paper>
+           );
+          }}
           sx={{
            ...SxAutocomplete,
            ".MuiInputBase-root": {
@@ -268,7 +388,15 @@ export default function FormKonstra({ mode }: { mode?: string }) {
      <Grid item xs={12} sm={6} lg={6}>
       <FormControl fullWidth>
        <FieldLabelInfo title="Tahun Anggaran" information="Tahun Anggaran" />
-       {mode === "add" ? (
+       <Typography
+        fontWeight={600}
+        height={40}
+        alignItems="center"
+        display="inline-flex"
+       >
+        2024
+       </Typography>
+       {/* {mode === "add" ? (
         <TextField
          disabled
          variant="outlined"
@@ -303,7 +431,7 @@ export default function FormKonstra({ mode }: { mode?: string }) {
         />
        ) : (
         <Typography fontWeight={600}>-</Typography>
-       )}
+       )} */}
       </FormControl>
      </Grid>
     </Grid>

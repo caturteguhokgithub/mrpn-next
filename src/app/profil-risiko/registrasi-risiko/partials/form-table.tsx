@@ -1,5 +1,8 @@
 import React from "react";
 import {
+ Autocomplete,
+ Box,
+ Button,
  Checkbox,
  Chip,
  Divider,
@@ -23,16 +26,24 @@ import {
 } from "@mui/material";
 import TextareaComponent from "@/app/components/textarea";
 import SelectCustomTheme from "@/app/components/select";
-import { riskCategory } from "../setting";
+import { listPeristiwaRisiko, listSasaran, riskCategory } from "../setting";
 import { red } from "@mui/material/colors";
 import FieldLabelInfo from "@/app/components/fieldLabelInfo";
 import EmptyState from "@/app/components/empty";
 import { IconEmptyData } from "@/app/components/icons";
 import theme from "@/theme";
+import {
+ SxAutocompleteTextField,
+ SxAutocomplete,
+} from "@/app/components/dropdownKp";
+
+type Option = (typeof listPeristiwaRisiko)[number];
 
 export default function FormTable({ mode }: { mode?: string }) {
  const [konteks, setKonteks] = React.useState("");
  const [project, setProject] = React.useState("");
+ const [columns, setColumns] = React.useState<Option[]>([]);
+ const [selectAll, setSelectAll] = React.useState<boolean>(false);
 
  const handleChangeProject = (event: SelectChangeEvent) => {
   setProject(event.target.value);
@@ -95,6 +106,14 @@ export default function FormTable({ mode }: { mode?: string }) {
   ),
  ];
 
+ const handleToggleSelectAll = () => {
+  setSelectAll((prev) => {
+   if (!prev) setColumns([...listPeristiwaRisiko]);
+   else setColumns([]);
+   return !prev;
+  });
+ };
+
  return (
   <Grid container spacing={2}>
    {/* <Grid item lg={6}>
@@ -135,22 +154,27 @@ export default function FormTable({ mode }: { mode?: string }) {
    <Grid item xs={12}>
     <FormControl fullWidth>
      <FieldLabelInfo title="Sasaran" information="Sasaran" />
-     {mode === "add" ? (
-      <TextField
-       variant="outlined"
+     {mode === "add" || mode === "edit" ? (
+      <Autocomplete
+       freeSolo
        size="small"
-       placeholder="Sasaran"
-       InputLabelProps={{
-        shrink: true,
-       }}
-      />
-     ) : mode === "edit" ? (
-      <TextField
-       variant="outlined"
-       size="small"
-       value="-"
-       InputLabelProps={{
-        shrink: true,
+       options={listSasaran}
+       getOptionLabel={(option: any) => option.target}
+       renderInput={(params) => (
+        <TextField
+         {...params}
+         InputLabelProps={{
+          shrink: true,
+         }}
+         placeholder="Pilih sasaran"
+         sx={SxAutocompleteTextField}
+        />
+       )}
+       sx={{
+        ...SxAutocomplete,
+        ".MuiInputBase-root": {
+         borderRadius: 1,
+        },
        }}
       />
      ) : (
@@ -411,16 +435,70 @@ export default function FormTable({ mode }: { mode?: string }) {
       title="Peristiwa Risiko Strategis MRPN Linsek"
       information="Peristiwa Risiko Strategis MRPN Linsek"
      />
-     {mode === "add" ? (
-      <TextareaComponent
-       label="Peristiwa risiko strategis MRPN Linsek"
-       placeholder="Peristiwa risiko strategis MRPN Linsek"
-      />
-     ) : mode === "edit" ? (
-      <TextareaComponent
-       label="Peristiwa risiko strategis MRPN Linsek"
-       placeholder="Peristiwa risiko strategis MRPN Linsek"
-       value="-"
+     {mode === "add" || mode === "edit" ? (
+      <Autocomplete
+       multiple
+       disableCloseOnSelect
+       filterSelectedOptions
+       freeSolo={false}
+       size="small"
+       value={columns}
+       options={listPeristiwaRisiko}
+       getOptionLabel={(option) => option.risk}
+       noOptionsText={
+        "Pencarian Anda tidak ada di list? Klik tombol Tambah Peristiwa Risiko Baru"
+       }
+       onChange={(_e, value, reason) => {
+        if (reason === "clear" || reason === "removeOption")
+         setSelectAll(false);
+        if (
+         reason === "selectOption" &&
+         value.length === listPeristiwaRisiko.length
+        )
+         setSelectAll(true);
+        setColumns(value);
+       }}
+       renderInput={(params) => (
+        <TextField
+         {...params}
+         InputLabelProps={{
+          shrink: true,
+         }}
+         placeholder="Pilih peristiwa risiko"
+         sx={SxAutocompleteTextField}
+        />
+       )}
+       PaperComponent={(paperProps) => {
+        const { children, ...restPaperProps } = paperProps;
+        return (
+         <Paper {...restPaperProps}>
+          {children}
+          <Divider />
+          <Stack width="100%">
+           <Button
+            fullWidth
+            startIcon={
+             <Icon
+              baseClassName="fas"
+              className={`fa-plus-circle`}
+              sx={{
+               fontSize: "18px",
+              }}
+             />
+            }
+           >
+            Tambah Peristiwa Risiko Baru
+           </Button>
+          </Stack>
+         </Paper>
+        );
+       }}
+       sx={{
+        ...SxAutocomplete,
+        ".MuiInputBase-root": {
+         borderRadius: 1,
+        },
+       }}
       />
      ) : (
       <Typography fontWeight={600}>-</Typography>
