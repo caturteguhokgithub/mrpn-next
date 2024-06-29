@@ -1,5 +1,5 @@
 import React from "react";
-import { Grow, Stack, Tooltip, Typography } from "@mui/material";
+import { Button, Grow, Stack, Tooltip, Typography } from "@mui/material";
 import { IconFA } from "../icons/icon-fa";
 
 export default function FieldLabelInfo({
@@ -7,11 +7,15 @@ export default function FieldLabelInfo({
  information,
  titleSection,
  iconOnly,
+ buttonInfo,
+ buttonInfoOnclick,
 }: {
  title?: string;
  information?: React.ReactNode;
  titleSection?: boolean;
  iconOnly?: boolean;
+ buttonInfo?: boolean;
+ buttonInfoOnclick?: () => void;
 }) {
  const tooltipContent = (
   <Tooltip title={information} followCursor TransitionComponent={Grow}>
@@ -28,6 +32,17 @@ export default function FieldLabelInfo({
   </Tooltip>
  );
 
+ const buttonInfoContent = (
+  <Button
+   size="small"
+   variant="outlined"
+   sx={{ py: 0, position: "relative", top: -2 }}
+   onClick={buttonInfoOnclick}
+  >
+   Lihat Matriks
+  </Button>
+ );
+
  return (
   <>
    {iconOnly ? (
@@ -39,7 +54,7 @@ export default function FieldLabelInfo({
      ) : (
       <Typography gutterBottom>{title}</Typography>
      )}
-     {tooltipContent}
+     {buttonInfo ? buttonInfoContent : tooltipContent}
     </Stack>
    )}
   </>

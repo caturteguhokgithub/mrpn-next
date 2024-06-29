@@ -585,11 +585,11 @@ export default function FormTable({ mode }: { mode?: string }) {
          Pilih kemungkinan
         </Typography>
        </MenuItem>
-       {listKemungkinan.map((kemungkinanLabel, index) => (
-        <MenuItem key={index} value={kemungkinanLabel}>
-         {kemungkinanLabel.length >= 35 ? (
+       {listKemungkinan.map((kemungkinanLabel) => (
+        <MenuItem key={kemungkinanLabel.id} value={kemungkinanLabel.value}>
+         {kemungkinanLabel.label.length >= 35 ? (
           <Tooltip
-           title={kemungkinanLabel}
+           title={kemungkinanLabel.label}
            followCursor
            TransitionComponent={Grow}
           >
@@ -600,11 +600,11 @@ export default function FormTable({ mode }: { mode?: string }) {
             onMouseLeave={handlePopoverClose}
             sx={{ fontSize: 14 }}
            >
-            {kemungkinanLabel.substring(0, 35) + "..."}
+            {kemungkinanLabel.label.substring(0, 35) + "..."}
            </Typography>
           </Tooltip>
          ) : (
-          kemungkinanLabel
+          kemungkinanLabel.label
          )}
         </MenuItem>
        ))}
@@ -635,11 +635,11 @@ export default function FormTable({ mode }: { mode?: string }) {
          Pilih dampak
         </Typography>
        </MenuItem>{" "}
-       {listDampak.map((kemungkinanLabel, index) => (
-        <MenuItem key={index} value={kemungkinanLabel}>
-         {kemungkinanLabel.length >= 35 ? (
+       {listDampak.map((dampakLabel) => (
+        <MenuItem key={dampakLabel.id} value={dampakLabel.value}>
+         {dampakLabel.label.length >= 35 ? (
           <Tooltip
-           title={kemungkinanLabel}
+           title={dampakLabel.label}
            followCursor
            TransitionComponent={Grow}
           >
@@ -650,11 +650,11 @@ export default function FormTable({ mode }: { mode?: string }) {
             onMouseLeave={handlePopoverClose}
             sx={{ fontSize: 14 }}
            >
-            {kemungkinanLabel.substring(0, 35) + "..."}
+            {dampakLabel.label.substring(0, 35) + "..."}
            </Typography>
           </Tooltip>
          ) : (
-          kemungkinanLabel
+          dampakLabel.label
          )}
         </MenuItem>
        ))}

@@ -1,6 +1,7 @@
 import React from "react";
-import { Dialog, DialogContent, DialogTitle } from "@mui/material";
+import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
 import theme from "@/theme";
+import { IconFA } from "../icons/icon-fa";
 
 export default function DialogComponent({
  title,
@@ -12,6 +13,7 @@ export default function DialogComponent({
  tableMode,
  headerAction,
  noDivider,
+ closeButton,
 }: {
  title?: React.ReactNode;
  dialogOpen: boolean;
@@ -22,6 +24,7 @@ export default function DialogComponent({
  tableMode?: boolean;
  headerAction?: React.ReactNode;
  noDivider?: boolean;
+ closeButton?: boolean;
 }) {
  return (
   <Dialog
@@ -60,6 +63,20 @@ export default function DialogComponent({
      {title}
      {headerAction}
     </DialogTitle>
+   )}
+   {closeButton && (
+    <IconButton
+     aria-label="close"
+     onClick={dialogClose}
+     sx={{
+      position: "absolute",
+      right: 12,
+      top: 12,
+      color: (theme) => theme.palette.grey[500],
+     }}
+    >
+     <IconFA name="close" size={15} />
+    </IconButton>
    )}
    <DialogContent dividers={noDivider} sx={{ p: tableMode ? 0 : "16px 24px" }}>
     {children}

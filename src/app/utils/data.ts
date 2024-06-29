@@ -216,20 +216,36 @@
 //  },
 // ];
 
+// export const listKemungkinan = [
+//  "Kemungkinan 1",
+//  "Kemungkinan 2",
+//  "Kemungkinan 3",
+//  "Kemungkinan 4",
+//  "Kemungkinan 5",
+// ];
+
 export const listKemungkinan = [
- "Kemungkinan 1",
- "Kemungkinan 2",
- "Kemungkinan 3",
- "Kemungkinan 4",
- "Kemungkinan 5",
+ { id: "1", value: "1", label: "Kemungkinan 1" },
+ { id: "2", value: "2", label: "Kemungkinan 2" },
+ { id: "3", value: "3", label: "Kemungkinan 3" },
+ { id: "4", value: "4", label: "Kemungkinan 4" },
+ { id: "5", value: "5", label: "Kemungkinan 5" },
 ];
 
+// export const listDampak = [
+//  "Dampak 1",
+//  "Dampak 2",
+//  "Dampak 3",
+//  "Dampak 4",
+//  "Dampak 5",
+// ];
+
 export const listDampak = [
- "Dampak 1",
- "Dampak 2",
- "Dampak 3",
- "Dampak 4",
- "Dampak 5",
+ { id: "1", value: "1", label: "Dampak 1" },
+ { id: "2", value: "2", label: "Dampak 2" },
+ { id: "3", value: "3", label: "Dampak 3" },
+ { id: "4", value: "4", label: "Dampak 4" },
+ { id: "5", value: "5", label: "Dampak 5" },
 ];
 
 export const listTriwulan = [
